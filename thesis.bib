@@ -1,0 +1,699 @@
+
+@article{levy_strong_2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1608.05426},
+  primaryClass = {cs},
+  title = {A {{Strong Baseline}} for {{Learning Cross}}-{{Lingual Word Embeddings}} from {{Sentence Alignments}}},
+  url = {http://arxiv.org/abs/1608.05426},
+  abstract = {While cross-lingual word embeddings have been studied extensively in recent years, the qualitative differences between the different algorithms remain vague. We observe that whether or not an algorithm uses a particular feature set (sentence IDs) accounts for a significant performance gap among these algorithms. This feature set is also used by traditional alignment algorithms, such as IBM Model-1, which demonstrate similar performance to state-of-the-art embedding algorithms on a variety of benchmarks. Overall, we observe that different algorithmic approaches for utilizing the sentence ID feature space result in similar performance. This paper draws both empirical and theoretical parallels between the embedding and alignment literature, and suggests that adding additional sources of information, which go beyond the traditional signal of bilingual sentence-aligned corpora, may substantially improve cross-lingual word embeddings, and that future baselines should at least take such features into account.},
+  urldate = {2018-11-08},
+  date = {2016-08-18},
+  keywords = {Computer Science - Computation and Language,cross-lingual word embedding},
+  author = {Levy, Omer and Søgaard, Anders and Goldberg, Yoav},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/UJ685QKV/Levy et al. - 2016 - A Strong Baseline for Learning Cross-Lingual Word .pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/RN39MKCK/1608.html}
+}
+
+@article{vulic_bilingual_2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1509.07308},
+  primaryClass = {cs},
+  title = {Bilingual {{Distributed Word Representations}} from {{Document}}-{{Aligned Comparable Data}}},
+  url = {http://arxiv.org/abs/1509.07308},
+  abstract = {We propose a new model for learning bilingual word representations from non-parallel document-aligned data. Following the recent advances in word representation learning, our model learns dense real-valued word vectors, that is, bilingual word embeddings (BWEs). Unlike prior work on inducing BWEs which heavily relied on parallel sentence-aligned corpora and/or readily available translation resources such as dictionaries, the article reveals that BWEs may be learned solely on the basis of document-aligned comparable data without any additional lexical resources nor syntactic information. We present a comparison of our approach with previous state-of-the-art models for learning bilingual word representations from comparable data that rely on the framework of multilingual probabilistic topic modeling (MuPTM), as well as with distributional local context-counting models. We demonstrate the utility of the induced BWEs in two semantic tasks: (1) bilingual lexicon extraction, (2) suggesting word translations in context for polysemous words. Our simple yet effective BWE-based models significantly outperform the MuPTM-based and context-counting representation models from comparable data as well as prior BWE-based models, and acquire the best reported results on both tasks for all three tested language pairs.},
+  urldate = {2018-11-12},
+  date = {2015-09-24},
+  keywords = {Computer Science - Computation and Language},
+  author = {Vulić, Ivan and Moens, Marie-Francine},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/PXIRYREQ/Vulić and Moens - 2015 - Bilingual Distributed Word Representations from Do.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/GP7D3QMI/1509.html}
+}
+
+@inproceedings{vulic_monolingual_2015,
+  location = {{New York, NY, USA}},
+  title = {Monolingual and {{Cross}}-{{Lingual Information Retrieval Models Based}} on ({{Bilingual}}) {{Word Embeddings}}},
+  isbn = {978-1-4503-3621-5},
+  url = {http://doi.acm.org/10.1145/2766462.2767752},
+  doi = {10.1145/2766462.2767752},
+  abstract = {We propose a new unified framework for monolingual (MoIR) and cross-lingual information retrieval (CLIR) which relies on the induction of dense real-valued word vectors known as word embeddings (WE) from comparable data. To this end, we make several important contributions: (1) We present a novel word representation learning model called Bilingual Word Embeddings Skip-Gram (BWESG) which is the first model able to learn bilingual word embeddings solely on the basis of document-aligned comparable data; (2) We demonstrate a simple yet effective approach to building document embeddings from single word embeddings by utilizing models from compositional distributional semantics. BWESG induces a shared cross-lingual embedding vector space in which both words, queries, and documents may be presented as dense real-valued vectors; (3) We build novel ad-hoc MoIR and CLIR models which rely on the induced word and document embeddings and the shared cross-lingual embedding space; (4) Experiments for English and Dutch MoIR, as well as for English-to-Dutch and Dutch-to-English CLIR using benchmarking CLEF 2001-2003 collections and queries demonstrate the utility of our WE-based MoIR and CLIR models. The best results on the CLEF collections are obtained by the combination of the WE-based approach and a unigram language model. We also report on significant improvements in ad-hoc IR tasks of our WE-based framework over the state-of-the-art framework for learning text representations from comparable data based on latent Dirichlet allocation (LDA).},
+  booktitle = {Proceedings of the 38th {{International ACM SIGIR Conference}} on {{Research}} and {{Development}} in {{Information Retrieval}}},
+  series = {{{SIGIR}} '15},
+  publisher = {{ACM}},
+  urldate = {2018-11-12},
+  date = {2015},
+  pages = {363--372},
+  keywords = {ad-hoc retrieval,comparable data,cross-lingual information retrieval,multilinguality,semantic composition,text representation learning,vector space retrieval models,word embeddings},
+  author = {Vulić, Ivan and Moens, Marie-Francine},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/XVULM8SI/Vulić and Moens - 2015 - Monolingual and Cross-Lingual Information Retrieva.pdf}
+}
+
+@article{litschko_unsupervised_2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1805.00879},
+  primaryClass = {cs},
+  title = {Unsupervised {{Cross}}-{{Lingual Information Retrieval}} Using {{Monolingual Data Only}}},
+  url = {http://arxiv.org/abs/1805.00879},
+  abstract = {We propose a fully unsupervised framework for ad-hoc cross-lingual information retrieval (CLIR) which requires no bilingual data at all. The framework leverages shared cross-lingual word embedding spaces in which terms, queries, and documents can be represented, irrespective of their actual language. The shared embedding spaces are induced solely on the basis of monolingual corpora in two languages through an iterative process based on adversarial neural networks. Our experiments on the standard CLEF CLIR collections for three language pairs of varying degrees of language similarity (English-Dutch/Italian/Finnish) demonstrate the usefulness of the proposed fully unsupervised approach. Our CLIR models with unsupervised cross-lingual embeddings outperform baselines that utilize cross-lingual embeddings induced relying on word-level and document-level alignments. We then demonstrate that further improvements can be achieved by unsupervised ensemble CLIR models. We believe that the proposed framework is the first step towards development of effective CLIR models for language pairs and domains where parallel data are scarce or non-existent.},
+  urldate = {2018-11-12},
+  date = {2018-05-02},
+  keywords = {Computer Science - Computation and Language},
+  author = {Litschko, Robert and Glavaš, Goran and Ponzetto, Simone Paolo and Vulić, Ivan},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/SCQUJN8D/Litschko et al. - 2018 - Unsupervised Cross-Lingual Information Retrieval u.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/USYHIZXU/1805.html}
+}
+
+@inproceedings{kusner_word_2015-2,
+  langid = {english},
+  title = {From {{Word Embeddings To Document Distances}}},
+  url = {http://proceedings.mlr.press/v37/kusnerb15.html},
+  abstract = {We present the Word Mover’s Distance (WMD), a novel distance function between text documents. Our work is based on recent results in word embeddings that learn semantically meaningful representatio...},
+  eventtitle = {International {{Conference}} on {{Machine Learning}}},
+  booktitle = {International {{Conference}} on {{Machine Learning}}},
+  urldate = {2018-11-13},
+  date = {2015-06-01},
+  pages = {957-966},
+  author = {Kusner, M. J. and Sun, Y. and Kolkin, N. I. and Weinberger, K. Q.},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/Z5XVPFNC/Kusner et al. - 2015 - From Word Embeddings To Document Distances.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/IR349273/kusnerb15.html}
+}
+
+@article{irvine_comprehensive_2017,
+  title = {A {{Comprehensive Analysis}} of {{Bilingual Lexicon Induction}}},
+  volume = {43},
+  issn = {0891-2017},
+  url = {https://doi.org/10.1162/COLI_a_00284},
+  doi = {10.1162/COLI_a_00284},
+  abstract = {Bilingual lexicon induction is the task of inducing word translations from monolingual corpora in two languages. In this article we present the most comprehensive analysis of bilingual lexicon induction to date. We present experiments on a wide range of languages and data sizes. We examine translation into English from 25 foreign languages: Albanian, Azeri, Bengali, Bosnian, Bulgarian, Cebuano, Gujarati, Hindi, Hungarian, Indonesian, Latvian, Nepali, Romanian, Serbian, Slovak, Somali, Spanish, Swedish, Tamil, Telugu, Turkish, Ukrainian, Uzbek, Vietnamese, and Welsh. We analyze the behavior of bilingual lexicon induction on low-frequency words, rather than testing solely on high-frequency words, as previous research has done. Low-frequency words are more relevant to statistical machine translation, where systems typically lack translations of rare words that fall outside of their training data. We systematically explore a wide range of features and phenomena that affect the quality of the translations discovered by bilingual lexicon induction. We provide illustrative examples of the highest ranking translations for orthogonal signals of translation equivalence like contextual similarity and temporal similarity. We analyze the effects of frequency and burstiness, and the sizes of the seed bilingual dictionaries and the monolingual training corpora. Additionally, we introduce a novel discriminative approach to bilingual lexicon induction. Our discriminative model is capable of combining a wide variety of features that individually provide only weak indications of translation equivalence. When feature weights are discriminatively set, these signals produce dramatically higher translation quality than previous approaches that combined signals in an unsupervised fashion (e.g., using minimum reciprocal rank). We also directly compare our model's performance against a sophisticated generative approach, the matching canonical correlation analysis (MCCA) algorithm used by Haghighi et al. (2008). Our algorithm achieves an accuracy of 42\% versus MCCA's 15\%.},
+  number = {2},
+  journaltitle = {Computational Linguistics},
+  urldate = {2018-11-18},
+  date = {2017-03-28},
+  pages = {273-310},
+  author = {Irvine, Ann and Callison-Burch, Chris},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/9GGUDPBU/Irvine and Callison-Burch - 2017 - A Comprehensive Analysis of Bilingual Lexicon Indu.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/DS5MMUAR/COLI_a_00284.html}
+}
+
+@article{duong_learning_2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1606.09403},
+  primaryClass = {cs},
+  title = {Learning {{Crosslingual Word Embeddings}} without {{Bilingual Corpora}}},
+  url = {http://arxiv.org/abs/1606.09403},
+  abstract = {Crosslingual word embeddings represent lexical items from different languages in the same vector space, enabling transfer of NLP tools. However, previous attempts had expensive resource requirements, difficulty incorporating monolingual data or were unable to handle polysemy. We address these drawbacks in our method which takes advantage of a high coverage dictionary in an EM style training algorithm over monolingual corpora in two languages. Our model achieves state-of-the-art performance on bilingual lexicon induction task exceeding models using large bilingual corpora, and competitive results on the monolingual word similarity and cross-lingual document classification task.},
+  urldate = {2018-11-28},
+  date = {2016-06-30},
+  keywords = {Computer Science - Computation and Language,Computer Science - Artificial Intelligence},
+  author = {Duong, Long and Kanayama, Hiroshi and Ma, Tengfei and Bird, Steven and Cohn, Trevor},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/XJVS7YU3/Duong et al. - 2016 - Learning Crosslingual Word Embeddings without Bili.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/MLBHSSMJ/1606.html}
+}
+
+@article{li_multi-sense_2015-1,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1506.01070},
+  primaryClass = {cs},
+  title = {Do {{Multi}}-{{Sense Embeddings Improve Natural Language Understanding}}?},
+  url = {http://arxiv.org/abs/1506.01070},
+  abstract = {Learning a distinct representation for each sense of an ambiguous word could lead to more powerful and fine-grained models of vector-space representations. Yet while `multi-sense' methods have been proposed and tested on artificial word-similarity tasks, we don't know if they improve real natural language understanding tasks. In this paper we introduce a multi-sense embedding model based on Chinese Restaurant Processes that achieves state of the art performance on matching human word similarity judgments, and propose a pipelined architecture for incorporating multi-sense embeddings into language understanding. We then test the performance of our model on part-of-speech tagging, named entity recognition, sentiment analysis, semantic relation identification and semantic relatedness, controlling for embedding dimensionality. We find that multi-sense embeddings do improve performance on some tasks (part-of-speech tagging, semantic relation identification, semantic relatedness) but not on others (named entity recognition, various forms of sentiment analysis). We discuss how these differences may be caused by the different role of word sense information in each of the tasks. The results highlight the importance of testing embedding models in real applications.},
+  urldate = {2018-11-28},
+  date = {2015-06-02},
+  keywords = {Computer Science - Computation and Language},
+  author = {Li, Jiwei and Jurafsky, Dan},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/A2F74U75/Li and Jurafsky - 2015 - Do Multi-Sense Embeddings Improve Natural Language.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/IMGUPLZQ/1506.html}
+}
+
+@inproceedings{artetxe_learning_2017,
+  location = {{Vancouver, Canada}},
+  title = {Learning Bilingual Word Embeddings with (Almost) No Bilingual Data},
+  url = {http://aclweb.org/anthology/P17-1042},
+  doi = {10.18653/v1/P17-1042},
+  booktitle = {Proceedings of the 55th {{Annual Meeting}} of the {{Association}} for {{Computational Linguistics}} ({{Volume}} 1: {{Long Papers}})},
+  publisher = {{Association for Computational Linguistics}},
+  urldate = {2018-11-28},
+  date = {2017},
+  pages = {451--462},
+  author = {Artetxe, Mikel and Labaka, Gorka and Agirre, Eneko},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/IRJFWXUX/Artetxe et al. - 2017 - Learning bilingual word embeddings with (almost) n.pdf}
+}
+
+@inproceedings{faruqui_improving_2014,
+  location = {{Gothenburg, Sweden}},
+  title = {Improving {{Vector Space Word Representations Using Multilingual Correlation}}},
+  url = {http://aclweb.org/anthology/E14-1049},
+  doi = {10.3115/v1/E14-1049},
+  booktitle = {Proceedings of the 14th {{Conference}} of the {{European Chapter}} of the {{Association}} for {{Computational Linguistics}}},
+  publisher = {{Association for Computational Linguistics}},
+  urldate = {2018-11-28},
+  date = {2014},
+  pages = {462--471},
+  author = {Faruqui, Manaal and Dyer, Chris},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/ZHAHMQ6G/Faruqui and Dyer - 2014 - Improving Vector Space Word Representations Using .pdf}
+}
+
+@article{faruqui_problems_2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1605.02276},
+  primaryClass = {cs},
+  title = {Problems {{With Evaluation}} of {{Word Embeddings Using Word Similarity Tasks}}},
+  url = {http://arxiv.org/abs/1605.02276},
+  abstract = {Lacking standardized extrinsic evaluation methods for vector representations of words, the NLP community has relied heavily on word similarity tasks as a proxy for intrinsic evaluation of word vectors. Word similarity evaluation, which correlates the distance between vectors and human judgments of semantic similarity is attractive, because it is computationally inexpensive and fast. In this paper we present several problems associated with the evaluation of word vectors on word similarity datasets, and summarize existing solutions. Our study suggests that the use of word similarity tasks for evaluation of word vectors is not sustainable and calls for further research on evaluation methods.},
+  urldate = {2018-11-28},
+  date = {2016-05-08},
+  keywords = {Computer Science - Computation and Language},
+  author = {Faruqui, Manaal and Tsvetkov, Yulia and Rastogi, Pushpendre and Dyer, Chris},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/5XLWF3FT/Faruqui et al. - 2016 - Problems With Evaluation of Word Embeddings Using .pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/H26KZCGL/1605.html}
+}
+
+@article{upadhyay_cross-lingual_2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1604.00425},
+  primaryClass = {cs},
+  title = {Cross-Lingual {{Models}} of {{Word Embeddings}}: {{An Empirical Comparison}}},
+  url = {http://arxiv.org/abs/1604.00425},
+  shorttitle = {Cross-Lingual {{Models}} of {{Word Embeddings}}},
+  abstract = {Despite interest in using cross-lingual knowledge to learn word embeddings for various tasks, a systematic comparison of the possible approaches is lacking in the literature. We perform an extensive evaluation of four popular approaches of inducing cross-lingual embeddings, each requiring a different form of supervision, on four typographically different language pairs. Our evaluation setup spans four different tasks, including intrinsic evaluation on mono-lingual and cross-lingual similarity, and extrinsic evaluation on downstream semantic and syntactic applications. We show that models which require expensive cross-lingual knowledge almost always perform better, but cheaply supervised models often prove competitive on certain tasks.},
+  urldate = {2018-11-28},
+  date = {2016-04-01},
+  keywords = {Computer Science - Computation and Language},
+  author = {Upadhyay, Shyam and Faruqui, Manaal and Dyer, Chris and Roth, Dan},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/MWZM3DEG/Upadhyay et al. - 2016 - Cross-lingual Models of Word Embeddings An Empiri.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/L5IGGNSK/1604.html}
+}
+
+@article{ruder_survey_2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1706.04902},
+  primaryClass = {cs},
+  title = {A {{Survey Of Cross}}-Lingual {{Word Embedding Models}}},
+  url = {http://arxiv.org/abs/1706.04902},
+  abstract = {Cross-lingual representations of words enable us to reason about word meaning in multilingual contexts and are a key facilitator of cross-lingual transfer when developing natural language processing models for low-resource languages. In this survey, we provide a comprehensive typology of cross-lingual word embedding models. We compare their data requirements and objective functions. The recurring theme of the survey is that many of the models presented in the literature optimize for the same objectives, and that seemingly different models are often equivalent modulo optimization strategies, hyper-parameters, and such. We also discuss the different ways cross-lingual word embeddings are evaluated, as well as future challenges and research horizons.},
+  urldate = {2018-11-28},
+  date = {2017-06-15},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning},
+  author = {Ruder, Sebastian and Vulić, Ivan and Søgaard, Anders},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/87LVYAAX/Ruder et al. - 2017 - A Survey Of Cross-lingual Word Embedding Models.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/X2ZAMGLS/1706.html}
+}
+
+@online{noauthor_dont_nodate,
+  langid = {english},
+  title = {Don't Count, Predict! {{A}} Systematic Comparison of Context-Counting vs. Context-Predicting Semantic Vectors | {{Request PDF}}},
+  url = {https://www.researchgate.net/publication/270877599_Don't_count_predict_A_systematic_comparison_of_context-counting_vs_context-predicting_semantic_vectors},
+  abstract = {Request PDF on ResearchGate | Don't count, predict! A systematic comparison of context-counting vs. context-predicting semantic vectors | Context-predicting models (more commonly known as embeddings or neural language models) are the new kids on the distributional semantics block. Despite the buzz surrounding these models, the literature is still lacking a systematic comparison of the predictive models with...},
+  journaltitle = {ResearchGate},
+  urldate = {2018-12-13},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/BGYBQXUX/Don't count, predict! A systematic comparison of c.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/KI2BGWIM/270877599_Don't_count_predict_A_systematic_comparison_of_context-counting_vs_context-predicting.html},
+  doi = {http://dx.doi.org/10.3115/v1/P14-1023}
+}
+
+@inproceedings{zhang_building_2016,
+  title = {Building {{Earth Mover}}'s {{Distance}} on {{Bilingual Word Embeddings}} for {{Machine Translation}}},
+  url = {http://dl.acm.org/citation.cfm?id=3016100.3016303},
+  abstract = {Following their monolingual counterparts, bilingual word embeddings are also on the rise. As a major application task, word translation has been relying on the nearest neighbor to connect embeddings cross-lingually. However, the nearest neighbor strategy suffers from its inherently local nature and fails to cope with variations in realistic bilingual word embeddings. Furthermore, it lacks a mechanism to deal with many-to-many mappings that often show up across languages. We introduce Earth Mover's Distance to this task by providing a natural formulation that translates words in a holistic fashion, addressing the limitations of the nearest neighbor. We further extend the formulation to a new task of identifying parallel sentences, which is useful for statistical machine translation systems, thereby expanding the application realm of bilingual word embeddings. We show encouraging performance on both tasks.},
+  booktitle = {Proceedings of the {{Thirtieth AAAI Conference}} on {{Artificial Intelligence}}},
+  series = {{{AAAI}}'16},
+  publisher = {{AAAI Press}},
+  urldate = {2019-02-14},
+  date = {2016},
+  pages = {2870--2876},
+  author = {Zhang, Meng and Liu, Yang and Luan, Huanbo and Sun, Maosong and Izuha, Tatsuya and Hao, Jie},
+  venue = {Phoenix, Arizona}
+}
+
+@article{grave_unsupervised_2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1805.11222},
+  primaryClass = {cs, stat},
+  title = {Unsupervised {{Alignment}} of {{Embeddings}} with {{Wasserstein Procrustes}}},
+  url = {http://arxiv.org/abs/1805.11222},
+  abstract = {We consider the task of aligning two sets of points in high dimension, which has many applications in natural language processing and computer vision. As an example, it was recently shown that it is possible to infer a bilingual lexicon, without supervised data, by aligning word embeddings trained on monolingual data. These recent advances are based on adversarial training to learn the mapping between the two embeddings. In this paper, we propose to use an alternative formulation, based on the joint estimation of an orthogonal matrix and a permutation matrix. While this problem is not convex, we propose to initialize our optimization algorithm by using a convex relaxation, traditionally considered for the graph isomorphism problem. We propose a stochastic algorithm to minimize our cost function on large scale problems. Finally, we evaluate our method on the problem of unsupervised word translation, by aligning word embeddings trained on monolingual data. On this task, our method obtains state of the art results, while requiring less computational resources than competing approaches.},
+  urldate = {2019-02-14},
+  date = {2018-05-28},
+  keywords = {Computer Science - Computation and Language,Statistics - Machine Learning,Computer Science - Machine Learning},
+  author = {Grave, Edouard and Joulin, Armand and Berthet, Quentin},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/7HAHD4B8/Grave et al. - 2018 - Unsupervised Alignment of Embeddings with Wasserst.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/R8QKKNF2/1805.html}
+}
+
+@article{balikas_cross-lingual_2018-1,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1805.04437},
+  primaryClass = {cs, stat},
+  title = {Cross-Lingual {{Document Retrieval}} Using {{Regularized Wasserstein Distance}}},
+  url = {http://arxiv.org/abs/1805.04437},
+  abstract = {Many information retrieval algorithms rely on the notion of a good distance that allows to efficiently compare objects of different nature. Recently, a new promising metric called Word Mover's Distance was proposed to measure the divergence between text passages. In this paper, we demonstrate that this metric can be extended to incorporate term-weighting schemes and provide more accurate and computationally efficient matching between documents using entropic regularization. We evaluate the benefits of both extensions in the task of cross-lingual document retrieval (CLDR). Our experimental results on eight CLDR problems suggest that the proposed methods achieve remarkable improvements in terms of Mean Reciprocal Rank compared to several baselines.},
+  urldate = {2019-02-14},
+  date = {2018-05-11},
+  keywords = {Computer Science - Computation and Language,Statistics - Machine Learning},
+  author = {Balikas, Georgios and Laclau, Charlotte and Redko, Ievgen and Amini, Massih-Reza},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/4IM3Q9LH/Balikas et al. - 2018 - Cross-lingual Document Retrieval using Regularized.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/I8CVJA8H/1805.html}
+}
+
+@article{radford_improving_nodate,
+  langid = {english},
+  title = {Improving {{Language Understanding}} by {{Generative Pre}}-{{Training}}},
+  abstract = {Natural language understanding comprises a wide range of diverse tasks such as textual entailment, question answering, semantic similarity assessment, and document classiﬁcation. Although large unlabeled text corpora are abundant, labeled data for learning these speciﬁc tasks is scarce, making it challenging for discriminatively trained models to perform adequately. We demonstrate that large gains on these tasks can be realized by generative pre-training of a language model on a diverse corpus of unlabeled text, followed by discriminative ﬁne-tuning on each speciﬁc task. In contrast to previous approaches, we make use of task-aware input transformations during ﬁne-tuning to achieve effective transfer while requiring minimal changes to the model architecture. We demonstrate the effectiveness of our approach on a wide range of benchmarks for natural language understanding. Our general task-agnostic model outperforms discriminatively trained models that use architectures speciﬁcally crafted for each task, signiﬁcantly improving upon the state of the art in 9 out of the 12 tasks studied. For instance, we achieve absolute improvements of 8.9\% on commonsense reasoning (Stories Cloze Test), 5.7\% on question answering (RACE), and 1.5\% on textual entailment (MultiNLI).},
+  pages = {12},
+  author = {Radford, Alec and Narasimhan, Karthik and Salimans, Tim and Sutskever, Ilya},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/6QEGU8NC/Radford et al. - Improving Language Understanding by Generative Pre.pdf}
+}
+
+@article{radford_language_nodate,
+  langid = {english},
+  title = {Language {{Models}} Are {{Unsupervised Multitask Learners}}},
+  abstract = {Natural language processing tasks, such as question answering, machine translation, reading comprehension, and summarization, are typically approached with supervised learning on taskspeciﬁc datasets. We demonstrate that language models begin to learn these tasks without any explicit supervision when trained on a new dataset of millions of webpages called WebText. When conditioned on a document plus questions, the answers generated by the language model reach 55 F1 on the CoQA dataset - matching or exceeding the performance of 3 out of 4 baseline systems without using the 127,000+ training examples. The capacity of the language model is essential to the success of zero-shot task transfer and increasing it improves performance in a log-linear fashion across tasks. Our largest model, GPT-2, is a 1.5B parameter Transformer that achieves state of the art results on 7 out of 8 tested language modeling datasets in a zero-shot setting but still underﬁts WebText. Samples from the model reﬂect these improvements and contain coherent paragraphs of text. These ﬁndings suggest a promising path towards building language processing systems which learn to perform tasks from their naturally occurring demonstrations.},
+  pages = {24},
+  author = {Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/AUCIVHKH/Radford et al. - Language Models are Unsupervised Multitask Learner.pdf}
+}
+
+@article{peters_deep_2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1802.05365},
+  primaryClass = {cs},
+  title = {Deep Contextualized Word Representations},
+  url = {http://arxiv.org/abs/1802.05365},
+  abstract = {We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pre-trained on a large text corpus. We show that these representations can be easily added to existing models and significantly improve the state of the art across six challenging NLP problems, including question answering, textual entailment and sentiment analysis. We also present an analysis showing that exposing the deep internals of the pre-trained network is crucial, allowing downstream models to mix different types of semi-supervision signals.},
+  urldate = {2019-02-20},
+  date = {2018-02-14},
+  keywords = {Computer Science - Computation and Language},
+  author = {Peters, Matthew E. and Neumann, Mark and Iyyer, Mohit and Gardner, Matt and Clark, Christopher and Lee, Kenton and Zettlemoyer, Luke},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/R3T6EBPM/Peters et al. - 2018 - Deep contextualized word representations.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/FR7VQZ2C/1802.html}
+}
+
+@article{cuturi_sinkhorn_2013,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1306.0895},
+  primaryClass = {stat},
+  title = {Sinkhorn {{Distances}}: {{Lightspeed Computation}} of {{Optimal Transportation Distances}}},
+  url = {http://arxiv.org/abs/1306.0895},
+  shorttitle = {Sinkhorn {{Distances}}},
+  abstract = {Optimal transportation distances are a fundamental family of parameterized distances for histograms. Despite their appealing theoretical properties, excellent performance in retrieval tasks and intuitive formulation, their computation involves the resolution of a linear program whose cost is prohibitive whenever the histograms' dimension exceeds a few hundreds. We propose in this work a new family of optimal transportation distances that look at transportation problems from a maximum-entropy perspective. We smooth the classical optimal transportation problem with an entropic regularization term, and show that the resulting optimum is also a distance which can be computed through Sinkhorn-Knopp's matrix scaling algorithm at a speed that is several orders of magnitude faster than that of transportation solvers. We also report improved performance over classical optimal transportation distances on the MNIST benchmark problem.},
+  urldate = {2019-02-22},
+  date = {2013-06-04},
+  keywords = {Statistics - Machine Learning},
+  author = {Cuturi, Marco},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/XQBJZRY9/Cuturi - 2013 - Sinkhorn Distances Lightspeed Computation of Opti.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/BGMAQI53/1306.html}
+}
+
+@inproceedings{nothman_stop_2018,
+  location = {{Melbourne, Australia}},
+  title = {Stop {{Word Lists}} in {{Free Open}}-Source {{Software Packages}}},
+  url = {http://www.aclweb.org/anthology/W18-2502},
+  abstract = {Open-source software packages for language processing often include stop word lists. Users may apply them without awareness of their surprising omissions (e.g. "hasn't" but not "hadn't") and inclusions ("computer"), or their incompatibility with a particular tokenizer. Motivated by issues raised about the Scikit-learn stop list, we investigate variation among and consistency within 52 popular English-language stop lists, and propose strategies for mitigating these issues.},
+  booktitle = {Proceedings of {{Workshop}} for {{NLP Open Source Software}} ({{NLP}}-{{OSS}})},
+  publisher = {{Association for Computational Linguistics}},
+  urldate = {2019-02-27},
+  date = {2018-07},
+  pages = {7--12},
+  author = {Nothman, Joel and Qin, Hanmin and Yurchak, Roman},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/347Z2YQQ/Nothman et al. - 2018 - Stop Word Lists in Free Open-source Software Packa.pdf}
+}
+
+@article{pedersen_dannet_2009,
+  langid = {english},
+  title = {{{DanNet}}: The Challenge of Compiling a Wordnet for {{Danish}} by Reusing a Monolingual Dictionary},
+  volume = {43},
+  issn = {1574-0218},
+  url = {https://doi.org/10.1007/s10579-009-9092-1},
+  doi = {10.1007/s10579-009-9092-1},
+  shorttitle = {{{DanNet}}},
+  abstract = {This paper is a contribution to the discussion on compiling computational lexical resources from conventional dictionaries. It describes the theoretical as well as practical problems that are encountered when reusing a conventional dictionary for compiling a lexical-semantic resource in terms of a wordnet. More specifically, it describes the methodological issues of compiling a wordnet for Danish, DanNet, from a monolingual basis, and not—as is often seen—by applying the translational expansion method with Princeton WordNet as the English source. Thus, we apply as our basis a large, corpus-based printed dictionary of modern Danish. Using this approach, we discuss the issues of readjusting inconsistent and/or underspecified hyponymy hierarchies taken from the conventional dictionary, sense distinctions as opposed to the synonym sets of wordnets, generating semantic wordnet relations on the basis of sense definitions, and finally, supplementing missing or implicit information.},
+  number = {3},
+  journaltitle = {Lang Resources \& Evaluation},
+  urldate = {2019-03-23},
+  date = {2009-09-01},
+  pages = {269-299},
+  keywords = {Dictionary,Hyponymy,Lexical semantics,Nouns,Semantic relations,Verbs,Wordnet},
+  author = {Pedersen, Bolette Sandford and Nimb, Sanni and Asmussen, Jørg and Sørensen, Nicolai Hartvig and Trap-Jensen, Lars and Lorentzen, Henrik},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/NTFZN3XS/Pedersen et al. - 2009 - DanNet the challenge of compiling a wordnet for D.pdf}
+}
+
+@article{de_boom_representation_2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1607.00570},
+  title = {Representation Learning for Very Short Texts Using Weighted Word Embedding Aggregation},
+  volume = {80},
+  issn = {01678655},
+  url = {http://arxiv.org/abs/1607.00570},
+  doi = {10.1016/j.patrec.2016.06.012},
+  abstract = {Short text messages such as tweets are very noisy and sparse in their use of vocabulary. Traditional textual representations, such as tf-idf, have difficulty grasping the semantic meaning of such texts, which is important in applications such as event detection, opinion mining, news recommendation, etc. We constructed a method based on semantic word embeddings and frequency information to arrive at low-dimensional representations for short texts designed to capture semantic similarity. For this purpose we designed a weight-based model and a learning procedure based on a novel median-based loss function. This paper discusses the details of our model and the optimization methods, together with the experimental results on both Wikipedia and Twitter data. We find that our method outperforms the baseline approaches in the experiments, and that it generalizes well on different word embeddings without retraining. Our method is therefore capable of retaining most of the semantic information in the text, and is applicable out-of-the-box.},
+  journaltitle = {Pattern Recognition Letters},
+  urldate = {2019-03-26},
+  date = {2016-09},
+  pages = {150-156},
+  keywords = {Computer Science - Computation and Language,Computer Science - Information Retrieval},
+  author = {De Boom, Cedric and Van Canneyt, Steven and Demeester, Thomas and Dhoedt, Bart},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/D3FIFPRV/De Boom et al. - 2016 - Representation learning for very short texts using.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/2VVSAQ2D/1607.html}
+}
+
+@article{glavas_how_2019,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1902.00508},
+  primaryClass = {cs},
+  title = {How to ({{Properly}}) {{Evaluate Cross}}-{{Lingual Word Embeddings}}: {{On Strong Baselines}}, {{Comparative Analyses}}, and {{Some Misconceptions}}},
+  url = {http://arxiv.org/abs/1902.00508},
+  shorttitle = {How to ({{Properly}}) {{Evaluate Cross}}-{{Lingual Word Embeddings}}},
+  abstract = {Cross-lingual word embeddings (CLEs) enable multilingual modeling of meaning and facilitate cross-lingual transfer of NLP models. Despite their ubiquitous usage in downstream tasks, recent increasingly popular projection-based CLE models are almost exclusively evaluated on a single task only: bilingual lexicon induction (BLI). Even BLI evaluations vary greatly, hindering our ability to correctly interpret performance and properties of different CLE models. In this work, we make the first step towards a comprehensive evaluation of cross-lingual word embeddings. We thoroughly evaluate both supervised and unsupervised CLE models on a large number of language pairs in the BLI task and three downstream tasks, providing new insights concerning the ability of cutting-edge CLE models to support cross-lingual NLP. We empirically demonstrate that the performance of CLE models largely depends on the task at hand and that optimizing CLE models for BLI can result in deteriorated downstream performance. We indicate the most robust supervised and unsupervised CLE models and emphasize the need to reassess existing baselines, which still display competitive performance across the board. We hope that our work will catalyze further work on CLE evaluation and model analysis.},
+  urldate = {2019-04-04},
+  date = {2019-02-01},
+  keywords = {Computer Science - Computation and Language},
+  author = {Glavas, Goran and Litschko, Robert and Ruder, Sebastian and Vulic, Ivan},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/J8FEKW9D/Glavas et al. - 2019 - How to (Properly) Evaluate Cross-Lingual Word Embe.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/Y2K45GPP/1902.html}
+}
+
+@article{jonker_shortest_1987,
+  langid = {english},
+  title = {A Shortest Augmenting Path Algorithm for Dense and Sparse Linear Assignment Problems},
+  volume = {38},
+  issn = {1436-5057},
+  url = {https://doi.org/10.1007/BF02278710},
+  doi = {10.1007/BF02278710},
+  abstract = {We develop a shortest augmenting path algorithm for the linear assignment problem. It contains new initialization routines and a special implementation of Dijkstra's shortest path method. For both dense and sparse problems computational experiments show this algorithm to be uniformly faster than the best algorithms from the literature. A Pascal implementation is presented.},
+  number = {4},
+  journaltitle = {Computing},
+  urldate = {2019-04-04},
+  date = {1987-12-01},
+  pages = {325-340},
+  keywords = {68 E 10,90 C 08,Linear assignment problem,Pascal implementation,shortest path methods},
+  author = {Jonker, R. and Volgenant, A.},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/UT9ZEJAS/Jonker and Volgenant - 1987 - A shortest augmenting path algorithm for dense and.pdf}
+}
+
+@article{de_boom_learning_2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1512.00765},
+  title = {Learning {{Semantic Similarity}} for {{Very Short Texts}}},
+  url = {http://arxiv.org/abs/1512.00765},
+  doi = {10.1109/ICDMW.2015.86},
+  abstract = {Levering data on social media, such as Twitter and Facebook, requires information retrieval algorithms to become able to relate very short text fragments to each other. Traditional text similarity methods such as tf-idf cosine-similarity, based on word overlap, mostly fail to produce good results in this case, since word overlap is little or non-existent. Recently, distributed word representations, or word embeddings, have been shown to successfully allow words to match on the semantic level. In order to pair short text fragments - as a concatenation of separate words - an adequate distributed sentence representation is needed, in existing literature often obtained by naively combining the individual word representations. We therefore investigated several text representations as a combination of word embeddings in the context of semantic pair matching. This paper investigates the effectiveness of several such naive techniques, as well as traditional tf-idf similarity, for fragments of different lengths. Our main contribution is a first step towards a hybrid method that combines the strength of dense distributed representations - as opposed to sparse term matching - with the strength of tf-idf based methods to automatically reduce the impact of less informative terms. Our new approach outperforms the existing techniques in a toy experimental set-up, leading to the conclusion that the combination of word embeddings and tf-idf information might lead to a better model for semantic content within very short text fragments.},
+  journaltitle = {2015 IEEE International Conference on Data Mining Workshop (ICDMW)},
+  urldate = {2019-04-16},
+  date = {2015-11},
+  pages = {1229-1234},
+  keywords = {Computer Science - Computation and Language,Computer Science - Information Retrieval},
+  author = {De Boom, Cedric and Van Canneyt, Steven and Bohez, Steven and Demeester, Thomas and Dhoedt, Bart},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/VNNPYN8R/De Boom et al. - 2015 - Learning Semantic Similarity for Very Short Texts.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/A64EP4R5/1512.html}
+}
+
+@article{levy_improving_2015,
+  title = {Improving {{Distributional Similarity}} with {{Lessons Learned}} from {{Word Embeddings}}},
+  volume = {3},
+  doi = {10.1162/tacl_a_00134},
+  journaltitle = {Transactions of the Association for Computational Linguistics},
+  date = {2015-12-01},
+  pages = {211-225},
+  author = {Levy, Omer and Goldberg, Yoav and Dagan, Ido},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/CQGXXRS3/Levy et al. - 2015 - Improving Distributional Similarity with Lessons L.pdf}
+}
+
+@collection{fellbaum_wordnet_1998,
+  title = {{{WordNet}}: An Electronic Lexical Database},
+  publisher = {{MIT Press}},
+  date = {1998},
+  keywords = {WordNet wordnet},
+  editor = {Fellbaum, Christiane}
+}
+
+@article{mu_all-but--top_2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1702.01417},
+  primaryClass = {cs, stat},
+  title = {All-but-the-{{Top}}: {{Simple}} and {{Effective Postprocessing}} for {{Word Representations}}},
+  url = {http://arxiv.org/abs/1702.01417},
+  shorttitle = {All-but-the-{{Top}}},
+  abstract = {Real-valued word representations have transformed NLP applications; popular examples are word2vec and GloVe, recognized for their ability to capture linguistic regularities. In this paper, we demonstrate a \{\textbackslash{}em very simple\}, and yet counter-intuitive, postprocessing technique -- eliminate the common mean vector and a few top dominating directions from the word vectors -- that renders off-the-shelf representations \{\textbackslash{}em even stronger\}. The postprocessing is empirically validated on a variety of lexical-level intrinsic tasks (word similarity, concept categorization, word analogy) and sentence-level tasks (semantic textural similarity and \{ text classification\}) on multiple datasets and with a variety of representation methods and hyperparameter choices in multiple languages; in each case, the processed representations are consistently better than the original ones.},
+  urldate = {2019-04-24},
+  date = {2017-02-05},
+  keywords = {Computer Science - Computation and Language,Statistics - Machine Learning},
+  author = {Mu, Jiaqi and Bhat, Suma and Viswanath, Pramod},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/CD9TDZZR/Mu et al. - 2017 - All-but-the-Top Simple and Effective Postprocessi.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/HILLFWK4/1702.html}
+}
+
+@article{conneau_xnli_2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1809.05053},
+  primaryClass = {cs},
+  title = {{{XNLI}}: {{Evaluating Cross}}-Lingual {{Sentence Representations}}},
+  url = {http://arxiv.org/abs/1809.05053},
+  shorttitle = {{{XNLI}}},
+  abstract = {State-of-the-art natural language processing systems rely on supervision in the form of annotated data to learn competent models. These models are generally trained on data in a single language (usually English), and cannot be directly used beyond that language. Since collecting data in every language is not realistic, there has been a growing interest in cross-lingual language understanding (XLU) and low-resource cross-language transfer. In this work, we construct an evaluation set for XLU by extending the development and test sets of the Multi-Genre Natural Language Inference Corpus (MultiNLI) to 15 languages, including low-resource languages such as Swahili and Urdu. We hope that our dataset, dubbed XNLI, will catalyze research in cross-lingual sentence understanding by providing an informative standard evaluation task. In addition, we provide several baselines for multilingual sentence understanding, including two based on machine translation systems, and two that use parallel data to train aligned multilingual bag-of-words and LSTM encoders. We find that XNLI represents a practical and challenging evaluation suite, and that directly translating the test data yields the best performance among available baselines.},
+  urldate = {2019-04-24},
+  date = {2018-09-13},
+  keywords = {Computer Science - Computation and Language,Computer Science - Artificial Intelligence,Computer Science - Machine Learning},
+  author = {Conneau, Alexis and Lample, Guillaume and Rinott, Ruty and Williams, Adina and Bowman, Samuel R. and Schwenk, Holger and Stoyanov, Veselin},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/JN25KTGH/Conneau et al. - 2018 - XNLI Evaluating Cross-lingual Sentence Representa.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/NUZTKPVQ/1809.html}
+}
+
+@inproceedings{khodak_automated_2017-1,
+  langid = {american},
+  title = {Automated {{WordNet Construction Using Word Embeddings}}},
+  url = {https://www.aclweb.org/anthology/papers/W/W17/W17-1902/},
+  doi = {10.18653/v1/W17-1902},
+  eventtitle = {Proceedings of the 1st {{Workshop}} on {{Sense}}, {{Concept}} and {{Entity Representations}} and Their {{Applications}}},
+  urldate = {2019-04-24},
+  date = {2017-04},
+  pages = {12-23},
+  author = {Khodak, Mikhail and Risteski, Andrej and Fellbaum, Christiane and Arora, Sanjeev},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/TWK9RWS2/Khodak et al. - 2017 - Automated WordNet Construction Using Word Embeddin.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/IHBQ5XMM/W17-1902.html}
+}
+
+@article{singh_context_2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1808.09663},
+  primaryClass = {cs, stat},
+  title = {Context {{Mover}}'s {{Distance}} \& {{Barycenters}}: {{Optimal}} Transport of Contexts for Building Representations},
+  url = {http://arxiv.org/abs/1808.09663},
+  shorttitle = {Context {{Mover}}'s {{Distance}} \& {{Barycenters}}},
+  abstract = {We present a framework for building unsupervised representations of entities and their compositions, where each entity is viewed as a probability distribution rather than a fixed length vector. In particular, this distribution is supported over the contexts which co-occur with the entity and are embedded in a suitable low-dimensional space. This enables us to consider the problem of representation learning with a perspective from Optimal Transport and take advantage of its numerous tools such as Wasserstein distance and Wasserstein barycenters. We elaborate how the method can be applied for obtaining unsupervised representations of text and illustrate the performance quantitatively as well as qualitatively on tasks such as measuring sentence similarity and word entailment, where we empirically observe significant gains (e.g., 4.1\% relative improvement over Sent2vec and GenSen). The key benefits of the proposed approach include: (a) capturing uncertainty and polysemy via modeling the entities as distributions, (b) utilizing the underlying geometry of the particular task (with the ground cost), (c) simultaneously providing interpretability with the notion of optimal transport between contexts and (d) easy applicability on top of existing point embedding methods. In essence, the framework can be useful for any unsupervised or supervised problem (on text or other modalities); and only requires a co-occurrence structure inherent to many problems. The code, as well as pre-built histograms, are available under https://github.com/context-mover/.},
+  urldate = {2019-04-24},
+  date = {2018-08-29},
+  keywords = {Computer Science - Computation and Language,Statistics - Machine Learning,Computer Science - Machine Learning},
+  author = {Singh, Sidak Pal and Hug, Andreas and Dieuleveut, Aymeric and Jaggi, Martin},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/47KHRGPC/Singh et al. - 2018 - Context Mover's Distance & Barycenters Optimal tr.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/NC3UPLG5/1808.html}
+}
+
+@thesis{aldarmaki_cross-lingual_2019,
+  langid = {english},
+  location = {{United States -- District of Columbia}},
+  title = {Cross-{{Lingual Alignment}} of {{Word}} \& {{Sentence Embeddings}}},
+  url = {https://search.proquest.com/docview/2206636278/abstract/8A87D7B035414476PQ/1},
+  abstract = {One of the notable developments in current natural language processing is the practical efficacy of probabilistic word representations, where words are embedded in high-dimensional continuous vector spaces that are optimized to reflect their distributional relationships. For sequences of words, such as phrases and sentences, distributional representations can be estimated by combining word embeddings using arithmetic operations like vector averaging or by estimating composition parameters from data using various objective functions. The quality of these compositional representations is typically estimated by their performance as features in extrinsic supervised classification benchmarks. Word and compositional embeddings for a single language can be induced without supervision using a large training corpus of raw text. To handle multiple languages and dialects, bilingual dictionaries and parallel corpora are often used for learning cross-lingual embeddings directly or to align pre-trained monolingual embeddings.
+In this work, we explore and develop various cross-lingual alignment techniques, compare the performance of the resulting cross-lingual embeddings, and study their characteristics. We pay particular attention to the bilingual data requirements of each approach since lower requirements facilitate wider language expansion. To begin with, we analyze various monolingual general-purpose sentence embedding models to better understand their qualities. By comparing their performance on extrinsic evaluation benchmarks and unsupervised clustering, we infer the characteristics of the most dominant features in their respective vector spaces.
+We then look into various cross-lingual alignment frameworks with different degrees of supervision. We begin with unsupervised word alignment, for which we propose an approach for inducing cross-lingual word mappings with no prior bilingual resources. We rely on assumptions about the consistency and structural similarities between the monolingual vector spaces of different languages. Using comparable monolingual news corpora, our approach resulted in highly accurate word mappings for two language pairs: French to English, and Arabic to English. With various refinement heuristics, the performance of the unsupervised alignment methods approached the performance of supervised dictionary mapping.
+Finally, we develop and evaluate different alignment approaches based on parallel text. We show that incorporating context in the alignment process often leads to significant improvements in performance. At the word level, we explore the alignment of contextualized word embeddings that are dynamically generated for each sentence. At the sentence level, we develop and investigate three alignment frameworks: joint modeling, representation transfer, and sentence mapping, applied to different sentence embedding models. We experiment with a matrix factorization model based on word-sentence co-occurrence statistics, and two general-purpose neural sentence embedding models. We report the performance of the various cross-lingual models with different sizes of parallel corpora to assess the minimal degree of supervision required by each alignment framework.},
+  pagetotal = {113},
+  institution = {{The George Washington University}},
+  type = {Ph.D.},
+  urldate = {2019-04-24},
+  date = {2019},
+  keywords = {Applied sciences,Cross-lingual embeddings,Language,literature and linguistics,NLP,Sentence embeddings,Unsupervised mapping,Word embeddings,Word translation},
+  author = {Aldarmaki, Hanan},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/5S9NLD8M/Aldarmaki - 2019 - Cross-Lingual Alignment of Word & Sentence Embeddi.pdf}
+}
+
+@article{jawanpuria_learning_2019,
+  title = {Learning {{Multilingual Word Embeddings}} in {{Latent Metric Space}}: {{A Geometric Approach}}},
+  volume = {7},
+  url = {https://doi.org/10.1162/tacl_a_00257},
+  doi = {10.1162/tacl_a_00257},
+  shorttitle = {Learning {{Multilingual Word Embeddings}} in {{Latent Metric Space}}},
+  abstract = {We propose a novel geometric approach for learning bilingual mappings given monolingual embeddings and a bilingual dictionary. Our approach decouples the source-to-target language transformation into (a) language-specific rotations on the original embeddings to align them in a common, latent space, and (b) a language-independent similarity metric in this common space to better model the similarity between the embeddings. Overall, we pose the bilingual mapping problem as a classification problem on smooth Riemannian manifolds. Empirically, our approach outperforms previous approaches on the bilingual lexicon induction and cross-lingual word similarity tasks.We next generalize our framework to represent multiple languages in a common latent space. Language-specific rotations for all the languages and a common similarity metric in the latent space are learned jointly from bilingual dictionaries for multiple language pairs. We illustrate the effectiveness of joint learning for multiple languages in an indirect word translation setting.},
+  journaltitle = {Transactions of the Association for Computational Linguistics},
+  urldate = {2019-05-02},
+  date = {2019-03-01},
+  pages = {107-120},
+  author = {Jawanpuria, Pratik and Balgovind, Arjun and Kunchukuttan, Anoop and Mishra, Bamdev}
+}
+
+@book{manning_introduction_2009,
+  langid = {english},
+  location = {{Cambridge}},
+  title = {Introduction to Information Retrieval},
+  edition = {Reprinted},
+  isbn = {978-0-521-86571-5},
+  pagetotal = {482},
+  publisher = {{Cambridge Univ. Press}},
+  date = {2009},
+  author = {Manning, Christopher D. and Raghavan, Prabhakar and Schütze, Hinrich},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/VL52WU6Y/Manning et al. - 2009 - Introduction to information retrieval.pdf},
+  note = {OCLC: 549201180}
+}
+
+@article{arora_simple_2016,
+  title = {A {{Simple}} but {{Tough}}-to-{{Beat Baseline}} for {{Sentence Embeddings}}},
+  url = {https://openreview.net/forum?id=SyK00v5xx},
+  abstract = {The success of neural network methods for computing word embeddings has motivated methods for generating semantic embeddings of longer pieces of text, such as sentences and paragraphs....},
+  urldate = {2019-05-07},
+  date = {2016-11-04},
+  author = {Arora, Sanjeev and Liang, Yingyu and Ma, Tengyu},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/ZCAPE7A7/Arora et al. - 2016 - A Simple but Tough-to-Beat Baseline for Sentence E.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/F2DLKYWI/forum.html}
+}
+
+@online{noauthor_youre_nodate,
+  langid = {american},
+  title = {You’re Probably Using the Wrong Dictionary « the Jsomers.Net Blog},
+  url = {http://jsomers.net/blog/dictionary},
+  urldate = {2019-05-19},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/CPYDBQW9/dictionary.html}
+}
+
+@article{bond_survey_2012,
+  title = {A {{Survey}} of {{WordNets}} and Their {{Licenses}}},
+  abstract = {This paper surveys currently avail-able wordnets. We measure the ef-fect that license choice has on their us-age, measured by the number of cita-tions. Finally, we discuss methods to make wordnets more generally accessi-ble, starting with a shared online server for freely distributable wordnets.},
+  date = {2012-01-01},
+  author = {Bond, Francis and Paik, Kyonghee},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/DQL7LC9A/Bond and Paik - 2012 - A Survey of WordNets and their Licenses.pdf}
+}
+
+@report{ruci_current_2008,
+  title = {On the Current State of {{Albanet}} and Related Applications},
+  institution = {{Technical report, University of Vlora.(http://fjalnet. com …}},
+  date = {2008},
+  author = {Ruci, Ervin}
+}
+
+@inproceedings{simov_constructing_2010,
+  title = {Constructing of an {{Ontology}}-Based {{Lexicon}} for {{Bulgarian}}.},
+  booktitle = {{{LREC}}},
+  publisher = {{Citeseer}},
+  date = {2010},
+  author = {Simov, Kiril Ivanov and Osenova, Petya},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/GUC2U3NG/Simov and Osenova - 2010 - Constructing of an Ontology-based Lexicon for Bulg.pdf}
+}
+
+@inproceedings{stamou_exploring_2004,
+  title = {Exploring {{Balkanet Shared Ontology}} for {{Multilingual Conceptual Indexing}}.},
+  booktitle = {{{LREC}}},
+  date = {2004},
+  author = {Stamou, Sofia and Nenadic, Goran and Christodoulakis, Dimitris},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/B7HHGLHR/Stamou et al. - 2004 - Exploring Balkanet Shared Ontology for Multilingua.pdf}
+}
+
+@inproceedings{pianta_multiwordnet_2002,
+  title = {{{MultiWordNet}}: Developing an Aligned Multilingual Database},
+  shorttitle = {{{MultiWordNet}}},
+  booktitle = {First International Conference on Global {{WordNet}}},
+  date = {2002},
+  pages = {293--302},
+  author = {Pianta, Emanuele and Bentivogli, Luisa and Girardi, Christian},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/QHHIFBUI/499.html}
+}
+
+@inproceedings{tufis_romanian_2008,
+  title = {Romanian Wordnet: {{Current}} State, New Applications and Prospects},
+  shorttitle = {Romanian Wordnet},
+  booktitle = {Proceedings of 4th {{Global WordNet Conference}}, {{GWC}}},
+  date = {2008},
+  pages = {441--452},
+  author = {Tufiş, Dan and Ion, Radu and Bozianu, Luigi and Ceauşu, Alexandru and Ştefănescu, Dan},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/CADVMCCW/Tufiş et al. - 2008 - Romanian wordnet Current state, new applications .pdf}
+}
+
+@inproceedings{fiser_slownet_2012,
+  title = {{{sloWNet}} 3.0: Development, Extension and Cleaning},
+  shorttitle = {{{sloWNet}} 3.0},
+  booktitle = {Proceedings of 6th {{International Global Wordnet Conference}} ({{GWC}} 2012)},
+  date = {2012},
+  pages = {113--117},
+  author = {Fišer, Darja and Novak, Jernej and Erjavec, Tomaž},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/K5MC7PA9/Fišer et al. - 2012 - sloWNet 3.0 development, extension and cleaning.pdf}
+}
+
+@article{miller_wordnet_1995,
+  title = {{{WordNet}}: {{A Lexical Database}} for {{English}}},
+  volume = {38},
+  issn = {0001-0782},
+  url = {http://doi.acm.org/10.1145/219717.219748},
+  doi = {10.1145/219717.219748},
+  shorttitle = {{{WordNet}}},
+  abstract = {Because meaningful sentences are composed of meaningful words, any system that hopes to process natural languages as people do must have information about words and their meanings. This information is traditionally provided through dictionaries, and machine-readable dictionaries are now widely available. But dictionary entries evolved for the convenience of human readers, not for machines. WordNet1 provides a more effective combination of traditional lexicographic information and modern computing. WordNet is an online lexical database designed for use under program control. English nouns, verbs, adjectives, and adverbs are organized into sets of synonyms, each representing a lexicalized concept. Semantic relations link the synonym sets [4].},
+  number = {11},
+  journaltitle = {Commun. ACM},
+  urldate = {2019-05-20},
+  date = {1995-11},
+  pages = {39--41},
+  author = {Miller, George A.},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/EAU8RULD/Miller - 1995 - WordNet A Lexical Database for English.pdf}
+}
+
+@inproceedings{gordeev_unsupervised_2018,
+  title = {Unsupervised {{Cross}}-Lingual {{Matching}} of {{Product Classifications}}},
+  url = {http://dl.acm.org/citation.cfm?id=3299905.3299967},
+  booktitle = {Proceedings of the 23rd {{Conference}} of {{Open Innovations Association FRUCT}}},
+  series = {{{FRUCT}}'23},
+  publisher = {{FRUCT Oy}},
+  date = {2018},
+  pages = {62:459-62:464},
+  keywords = {cross-lingual embeddings,unsupervised category matching,word embeddings},
+  author = {Gordeev, Denis and Rey, Alexey and Shagarov, Dmitry},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/APF99QHB/Gordeev et al. - 2018 - Unsupervised Cross-lingual Matching of Product Cla.pdf},
+  venue = {Bologna, Italy},
+  articleno = {62},
+  numpages = {6},
+  acmid = {3299967}
+}
+
+@article{edilson_a._correa_nilc-usp_2017,
+  title = {{{NILC}}-{{USP}} at {{SemEval}}-2017 {{Task}} 4: {{A Multi}}-View {{Ensemble}} for {{Twitter Sentiment Analysis}}},
+  shorttitle = {{{NILC}}-{{USP}} at {{SemEval}}-2017 {{Task}} 4},
+  abstract = {This paper describes our multi-view ensemble approach to SemEval-2017 Task 4 on Sentiment Analysis in Twitter, specifically, the Message Polarity Classification subtask for English (subtask A). Our system is a voting ensemble, where each base classifier is trained in a different feature space. The first space is a bag-of-words model and has a Linear SVM as base classifier. The second and third spaces are two different strategies of combining word embeddings to represent sentences and use a Linear SVM and a Logistic Regressor as base classifiers. The proposed system was ranked 18th out of 38 systems considering F1 score and 20th considering recall.},
+  date = {2017-04-07},
+  author = {Edilson A. Corrêa, Jr and Marinho, Vanessa and Borges dos Santos, Leandro},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/D6TNF56U/Edilson A. Corrêa et al. - 2017 - NILC-USP at SemEval-2017 Task 4 A Multi-view Ense.pdf}
+}
+
+@inproceedings{bengio_neural_2000,
+  title = {A {{Neural Probabilistic Language Model}}},
+  volume = {3},
+  doi = {10.1162/153244303322533223},
+  abstract = {A goal of statistical language modeling is to learn the joint probabilit y function of sequences of words. This is intrinsically difficult because o f the curse of dimensionality: we propose to fight it with its own weap ons. In the proposed approach one learns simultaneously (1) a distributed r ep- resentation for each word (i.e. a similarity between words) along with (2) the probability function for word sequences, expressed with these repr e- sentations. Generalization is obtained because a sequence of words that has never been seen before gets high probability if it is made of words that are similar to words forming an already seen sentence. We report on experiments using neural networks for the probability function, sh owing on two text corpora that the proposed approach very significantly im- proves on a state-of-the-art trigram model.},
+  eventtitle = {Journal of {{Machine Learning Research}}},
+  date = {2000-01-01},
+  pages = {932-938},
+  author = {Bengio, Y and Ducharme, Réjean and Vincent, Pascal},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/QW3T28FK/Bengio et al. - 2000 - A Neural Probabilistic Language Model.pdf}
+}
+
+@book{zhao_ecnu_nodate,
+  title = {{{ECNU}}: {{Using Traditional Similarity Measurements}} and {{Word Embedding}} for {{Semantic Textual Similarity Estimation}}},
+  shorttitle = {{{ECNU}}},
+  abstract = {This paper reports our submissions to seman-tic textual similarity task, i.e., task 2 in Se-mantic Evaluation 2015. We built our sys-tems using various traditional features, such as string-based, corpus-based and syntactic simi-larity metrics, as well as novel similarity mea-sures based on distributed word representa-tions, which were trained using deep learning paradigms. Since the training and test datasets consist of instances collected from various do-mains, three different strategies of the usage of training datasets were explored: (1) use all available training datasets and build a unified supervised model for all test datasets; (2) se-lect the most similar training dataset and sep-arately construct a individual model for each test set; (3) adopt multi-task learning frame-work to make full use of available training set-s. Results on the test datasets show that using all datasets as training set achieves the best av-eraged performance and our best system ranks 15 out of 73. 1},
+  author = {Zhao, Jiang and Lan, Man and Tian, Jun Feng},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/V7SEF32W/Zhao et al. - ECNU Using Traditional Similarity Measurements an.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/N4WP3BRA/summary.html}
+}
+
+@inproceedings{maslova_neural_2017,
+  title = {Neural Network Doc2vec in Automated Sentiment Analysis for Short Informal Texts},
+  booktitle = {International {{Conference}} on {{Speech}} and {{Computer}}},
+  publisher = {{Springer}},
+  date = {2017},
+  pages = {546--554},
+  author = {Maslova, Natalia and Potapov, Vsevolod},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/SPCQ9GW8/Maslova and Potapov - 2017 - Neural network doc2vec in automated sentiment anal.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/A9TZKQ8Y/978-3-319-66429-3_54.html}
+}
+
+@book{sterkenburg_practical_2003,
+  langid = {english},
+  title = {A {{Practical Guide}} to {{Lexicography}}},
+  isbn = {978-1-58811-381-8},
+  abstract = {This is a state-of-the-art Guide to the fascinating world of the lexicon and its description in various types of dictionaries.A team of experts brings together a solid Introduction to Lexicography and leads you through decision-making processes step-by-step to compile and design dictionaries for general and specific purposes. The domains of lexicography are outlined and its specific terminology is explained in the Glossary. Each chapter provides ample suggestions for further reading. Naturally, electronic dictionaries, corpus analysis, and database management are central themes throughout the book.The book also "introduces" questions about the many types of definition, meaning, sense relations, and stylistics. And that is not all: those afraid to embark on a dictionary adventure will find out all about the pitfalls in the chapters on Design."A Practical Guide to Lexicography" introduces and seduces you to learn about the achievements, unexpected possibilities, and challenges of modern-day lexicography.},
+  pagetotal = {478},
+  publisher = {{John Benjamins Publishing}},
+  date = {2003},
+  keywords = {Language Arts & Disciplines / Linguistics / General},
+  author = {van Sterkenburg, P. G. J.},
+  eprinttype = {googlebooks}
+}
+
+

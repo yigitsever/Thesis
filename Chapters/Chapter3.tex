@@ -1,35 +1,52 @@
 % Chapter Template
+\chapter{Method}
+\label{chap:method}
+%%% TODO, muhtemelen degisecek
 
-\chapter{Chapter Title Here} % Main chapter title
+%%% ROUGH FIRST DRAFT
+\section{Machine Translation}
 
-\label{ChapterX} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+The first method we have investigated works naively by translating the target language's corpora to English using Google Cloud API\@. %TODO ref
+As before, we have created a baseline/golden/basis aligned corpora where English WordNet definitions are aligned to the translated target language definitions.
+Casting the task to monolingual retrieval, we can establish a baseline using \tfidf{} retrieval.
+We have chosen \tfidf{} as to ask if the task at hand can be solved by naive tools.
+In order to get \tfidf{} scores of the documents, first a term-document matrix is created.
+Documents being definitions and with an average of 10.62 words per definition, the resulting matrix is parse.
+In a \tfidf{} matrix, for an entry in the matrix $w_{i,j}$, we can give the formula for it as:
+\begin{equation*}
+    \varB{tf_{w,d}-idf_{w}} = {\sum_{w' \in d}{f_{w',d}}} \cdot \log \frac {N} {df_w}
+\end{equation*}
+Such that term $w_{i,j}$ depicts the importance of term $t$ with relation to its general importance throughout the corpus.
+Now we can define the similarity between the documents as the cosine similarity between their \tfidf{} vectors.
+For the row $w_t$ and $w_p$, cosine similarity between definitions $t, p$ is
+\begin{equation*}
+    cos(\theta) =
+\end{equation*}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
+Definitions are then separated into queries and corpora.
+Query definitions is then matched up against every definition in the corpora and the ten documents that are closest in terms of cosine similarity is retrieved.
+Within the retrieved documents, if the document with the matched sense id is retrieved in the first result, this is taken as a hit at 1.
+Mean Reciprocal Rank is also calculated in order to show the success of a retrieval scenario.
 
-\section{Main Section 1}
+Where monolingual retrieval falls short, we leveraged the power of word embeddings to capture the semantic information of the words.
+A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015-2}.
+For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
+Yet before moving forward with WMD, we wanted to test sentence embeddings.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+%%% CITATION
+\textcite{edilson_a._correa_nilc-usp_2017} used sentence embeddings that were tailored for short text.
+Their work was on Twitter where the need for word embeddings to capture the essence of the text is crucial given the low amount of data packed in a Twitter document or a tweet.
+For our purposes, we used sentence embeddings as described in their implementation;
+% For sentence embeddings, first a \tfidf{} matrix is constructed.
+Then, with the term-embedding matrix at hand, we have calculated sentence embeddings using;
+\begin{equation}
+    S_{\text{emb}}(S) = \sum_{w_{i} \in S} \varB{tf_{w_{i},S}-idf_{w_i}} \cdot Emb_{w}(w_{i})
+\end{equation}
+Every word that makes up a definition is scaled by its vector in ${\rm I\!R}^n$, then concatenated to form sentence embeddings on ${\rm I\!R}^n$.
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
+Given the N vectors from source and target language, we hypothesize that there exists a matching where every source definition vector is perfectly mapped to one target vector.
+Given that this problem naively iterates over $N!$ matchings, we have looked into an algorithm.
 
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+%%% TODO lapjv %%%
 
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
 
-\subsection{Subsection 2}
-Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
-
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
-
-\section{Main Section 2}
-
-Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.

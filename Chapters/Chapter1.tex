@@ -1,8 +1,39 @@
-% Chapter 1
+% Chapter 1 - Introduction
 
-\chapter{Introduction} % Main chapter title
-\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1}
+\chapter{Introduction}\label{chap:introduction}%
 
 To our best knowledge, a succinct set of words to define a dictionary where words are presented alongside their translations and one where words from a single language are presented with their definitions with groupings for synyoynms and hypernyms are not available.
 Thus, we will refer the first type as a bilingual dictionary and the second type as a monolingual dictionary.
-James Somers puts down the currently available modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.} which is a bother for a writer but gives us further encouragement with our intuition.
+James Somers puts down the currently available modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}\cite{noauthor_youre_nodate}
+
+The lack of WordNets for languages other than English has been tackled before %TODO reference
+Yet, against %TODO how many?
+senses in the English Princeton WordNet, the most comprehensive counterpart remian at ... % TODO how many
+Coupled with the licensing issue which prevents scientific research from using some WordNets.
+This study is constrained only to freely available WordNets.
+Open Multilingual WordNet~\cite{bond_survey_2012} presents wordnets from other languages with three crucial additions; % TODO the following sentence is plagiarism
+the data is normalized, aligned with English Princeton WordNet and they are all accessible from a single source~\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}.
+With alignment information at hand, we have a way to create a golden corpora that we assume to be perfectly aligned.
+Among the %TODO how many
+wordnets available on Open Multilingual WordNet, only %TODO
+has definition or gloss information built in.
+Given this thesis will only investigate the ability to map senses using definitinos of the sense, we used the subset of Albanian~\cite{ruci_current_2008}, Bulgarian~\cite{simov_constructing_2010}, Greek~\cite{stamou_exploring_2004}, Italian~\cite{pianta_multiwordnet_2002}, Slovenian~\cite{fiser_slownet_2012} and Romanian~\cite{tufis_romanian_2008}.
+\begin{table*}[!hbp]
+    \begin{center}
+        \caption{Summary of the Wordnets used.}\label{tab:summary_table}
+        \begin{tabular}{llrr}
+            \toprule%
+            \textbf{Name of the Project} & \textbf{Language} & \textbf{Number of Definitions} & \textbf{Words Per Definition} \\
+            \midrule%
+            Albanet & Albanian & 4681 & 11.75 \\
+            BulTreeBank WordNet & Bulgarian & 4959 & 12.71 \\
+            % DanNet & Danish    & 784                   & 8.63                           \\
+            Greek Wordnet & Greek & 18136 & 11.24 \\
+            ItalWordnet & Italian & 12688 & 7.33 \\
+            Romanian Wordnet & Romanian & 58754 & 9.98 \\
+            SloWNet & Slovenian & 3144 & 12.68 \\
+            \bottomrule %
+        \end{tabular}
+    \end{center}
+\end{table*}
+

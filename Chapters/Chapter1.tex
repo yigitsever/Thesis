@@ -27,36 +27,53 @@ Dictionaries take an immense amount of time and expertise to prepare.
 We can list the examples after narrowing our scope down to the dictionaries that people still use today.
 A survey by \textcite{uzun_1945ten_1999} notes that the first instalment of the modern Turkish dictionary, led by a team of experts, has taken over 6 years to prepare.
 \textcite{kendall_forgotten_2011} talks about how Noah Webster, the writer of the \emph{An American Dictionary of the English Language} had to mortgage off his home in order to finish his project which took over 26 years.
-Early lexicographers had to work for years in order to collect material to prepare a corpus~\cite{uzun_1945ten_1999}.
-This endeavour was necessary since a corpus is crucial to create the vocabulary of a language, otherwise known as a \emph{lexicon}.
+Early lexicographers had invest tremendous amounts of time in order to collect enough material to prepare a collection of documents, also knows as a \emph{corpus}~\cite{uzun_1945ten_1999}.
+This endeavour is necessary since a corpus is crucial to create the vocabulary of a language.
+After the corpus is processed, lemmas are extracted and the resulting wordstock is called the \emph{lexicon}.
 
-The internet radically changed the way researchers aggreate the data.
+The internet radically changed the way researchers aggregate the data.
 The advancements in digital storage technology allowed the data to be persistent.
-Improvements in networking ensured that people can share the volume of it between themselves.
-With the popularization of the social media, the internet generates everyday conversations that are useful in natural language applications.
-On the other hand, efforts on open, collaborative, web based encyclopedias generate structured, multilingual data.
+Improvements in networking ensured that people can share the volume of it among themselves.
+With the popularization of the social media, the internet generates everyday conversations at an unprecedented rate that researchers are using for natural language applications. % any reference is fine
+Moreover,  efforts on open, collaborative, web based encyclopedias generate structured, multilingual data often used in machine translation and text categorization tasks. % again, any reference
 Once cumbersome task of corpus attainment is now akin to web crawling.
+With the digitized data, it was only natural for dictionaries to go digital as well since it's generally acknowledged that they are no longer viable without an electronic guise~\cite{sterkenburg_practical_2003}.
 
-With the digitized data, it was only natural for dictionaries to go digital as well.
 % start wordnets
-\section{WordNet}% not sold on having wordnet as a section
+\section{WordNet}% not sold on having 'wordnet' as a section
 \label{sec:wordnet}
 WordNet~\cite{fellbaum_wordnet_1998-1} is a lexical database.
 In the context of dictionaries, we have emphasized lemmas and definitions.
+Once again, lemmas are the basic building blocks of the WordNet.
+Yet they are not arranged alphabetically.
+When a word is looked up on WordNet, the \emph{senses} that are denoted by the word come up.
+The lookup string is the lemma while the results will list other lemmas alongside it.
+The sense can be denoted by any and all lemmas give.
+The set of these synonyms is aptly named synset.
+Since the elements of a synset share the same meaning, WordNet includes a definition, called a \emph{gloss} to go alongside them.
 WordNet can show relationships like hyponymym hierarchy transitive or meronymym part-whole relation, only possible with an electronic resource.
-
-\enquote{WordNet is a semantic network}\cite{fellbaum_wordnet_1998-1}
+\textcite{fellbaum_semantic_1998} defines the correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
+Hence \emph{WordNet} refers to English Princeton WordNet, while wordnets created for other languages are not stylized.
+\begin{figure*}[!hbp]
+    \begin{center}
+        {%
+            \setlength{\fboxsep}{1pt}%
+            \setlength{\fboxrule}{1pt}%
+            \fbox{\includegraphics[page=1,width=\textwidth]{Figures/run_wordnet.pdf}}
+        }%
+    \caption{WordNet result for the query \enquote{run}.}\label{fig:example_run}
+    \end{center}
+\end{figure*}
+% \enquote{WordNet is a semantic network}~\cite{fellbaum_wordnet_1998-1}
 
 Authorities list more than 7000 living languages\footnote{\url{https://www.ethnologue.com/statistics}} with only 40\footnote{\url{https://w3techs.com/technologies/history_overview/content_language/}} of them having a sizeable presence on the internet.
 Nevertheless, among this small fraction, English is the dominant language of the web.
 
-Translation, information transfer from foreign languages is a valid way of enriching a language's corpora~\cite{ibrahim_usta_turkce_2006}.
+Translation, information transfer from foreign languages is a valid way of enriching a language's corpora. If a sense does not have a match in target language~\cite{ibrahim_usta_turkce_2006}.
 
 We should note that the languages of the wordnets used in the thesis are all present in the 40 languages that have a significant presence on the internet that we have mentioned before.
 Linking wordnets leads to more research~\cite{sagot_building_2008}.
 
-\textcite{fellbaum_semantic_1998} defines the correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
-Hence \emph{WordNet} refers to English Princeton WordNet, while wordnets created for other languages are not stylized.
 
 Further research in the area contributes to more languages having access to tools that will incorporate them into the literature.
 English in not the centrepiece for most natural language processing research because it is the language that can store the most information or any other linguistic advantage.
@@ -68,7 +85,7 @@ Yet no distinction exists for English and senses collapse together in \emph{uncl
 % \might be too cheesy
 
 
-James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}\cite{somers_youre_2014}.
+James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
 
 The work on wordnets for languages other than English has been under way since the early days of the predecessor.
 

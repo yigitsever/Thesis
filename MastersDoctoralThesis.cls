@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Masters/Doctoral Thesis 
+% Masters/Doctoral Thesis
 % Class File
 % Version 1.6 (27/8/17)
 %
@@ -47,7 +47,7 @@
 \DeclareOption{chapterinoneline}{\booltrue{chapteroneline}}
 \DeclareOption{toctotoc}{\booltrue{toctoc}}
 \DeclareOption{parskip}{\booltrue{parskip}}
-\DeclareOption{headsepline}{\booltrue{headsepline}}
+\DeclareOption{headsepline}{\boolfalse{headsepline}}
 \DeclareOption{consistentlayout}{\booltrue{consistentlayout}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\baseclass}}
 
@@ -55,7 +55,7 @@
 
 \LoadClass{\baseclass}
 
-%  Simple interface for the user  to customize the chapter titles 
+%  Simple interface for the user  to customize the chapter titles
 \ProvideDocumentCommand{\abovechapterskip}{}{\vspace*{20pt}}
 \ProvideDocumentCommand{\chapterbelowskip}{}{\vspace*{40pt}}
 \ProvideDocumentCommand{\chapterinbetweenskip}{}{\vspace*{20pt}}
@@ -131,7 +131,7 @@
 %	CLASS OPTIONS
 %----------------------------------------------------------------------------------------
 
-\ifbool{parskip}{\RequirePackage{parskip}} % If the parskip option is passed to the class, require the parskip package 
+\ifbool{parskip}{\RequirePackage{parskip}} % If the parskip option is passed to the class, require the parskip package
 
 
 \ifbool{listtoc}{% If the liststotoc option has been passed to the class, add the lists to the table of contents
@@ -224,7 +224,7 @@
 \NewDocumentCommand{\subject}{m}{\newcommand{\subjectname}{#1}}
 \NewDocumentCommand{\keywords}{m}{\newcommand{\keywordnames}{#1}}
 
-\newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
+\newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active
 	\if@openright\cleardoublepage\else\clearpage\fi
 	\ifdef{\phantomsection}{\phantomsection}{}% The \phantomsection command is necessary for hyperref to jump to the correct page
 }
@@ -278,25 +278,28 @@
 \RequirePackage[markcase=used]{scrlayer-scrpage}
 \providepairofpagestyles{thesisSimple}{%
 	\clearpairofpagestyles%
-	\automark[chapter]{chapter}
-	\ihead{\headmark}% Inner header
-	\ohead[\pagemark]{\pagemark}% Outer header
+        \cfoot*{\pagemark}
+%	\automark[chapter]{chapter}
+%	\ihead{\headmark}% Inner header
+%	\ohead[\pagemark]{\pagemark}% Outer header
 }
 \ifoot{}% Inner footer
 \ofoot{}% Outer footer
+%\cfoot*{\pagemark}
 \pagestyle{thesisSimple}
 \providepairofpagestyles[thesisSimple]{thesis}{%
-	\automark*[section]{}%
+	%\automark*[section]{}%
 }
 \providepairofpagestyles[thesisSimple]{review}{%
 	\ofoot[\shorttitle/\authorname]{\shorttitle/\authorname}
 	\ifoot[\today]{\today}
 }
 \pagestyle{thesis}
-\ifbool{headsepline}{\KOMAoption{headsepline}{true}}{}
+% \ifbool{headsepline}{\KOMAoption{headsepline}{false}}{}
+\KOMAoption{headsepline}{false}
 \PreventPackageFromLoading[\ClassError{\classname}{Package `fancyhdr' is
-incompatible\MessageBreak with this class}{The pagesyles are defined 
-	using package `scrlayer-scrpage', please consult the\MessageBreak 
+incompatible\MessageBreak with this class}{The pagesyles are defined
+	using package `scrlayer-scrpage', please consult the\MessageBreak
 KOMA-script documentation for details.}]{fancyhdr}
 
 

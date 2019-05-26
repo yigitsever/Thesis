@@ -3,24 +3,46 @@
 \chapter{Background Information \& Related Work}\label{chap:background_n_related}
 
 % ROUGH DRAFT
+
+% from Leveraging Parallel Corpora and Existing Wordnets for Automatic Construction of the Slovene Wordnet
+WordNet generation is broken down into 4 categories
+\begin{enumerate}
+    \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
+    \item Link English entries from machine-readble bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
+    \item Taxonomy parsing~\textcite{farreres_using_1998}.
+    \item Ontology matching~\textcite{farreres_towards_2004}
+\end{enumerate}
+
 \textcite{gordeev_unsupervised_2018} uses unsupervised cross-lingual embeddings to match cross-lingual product classifications.
 Working on taxonomy matching, they use out of domain pre-trained embeddings due to small size of their corpora and investigate methods using untranslated and translated text.
 
-\textcite{irvine_comprehensive_2017} used as a guideline on best practices.
-
-\textcite{banerjee_adapted_2002} developed on lesk algorithm and included WordNet.
-
-
+\textcite{lesk_automatic_1986} represent words using their gloss. Relied upon traditional dictionaries.
+\textcite{banerjee_adapted_2002} developed on lesk algorithm and included WordNet definitions.
 \textcite{khodak_automated_2017} used word embeddings and WordNet.
 
-\textcite{metzler_similarity_2007} talked about short text retrieval and lexical matching. They reported that lexical matching is good for finding semantically identical matches.A
+\textcite{metzler_similarity_2007} talked about short text retrieval and lexical matching. They reported that lexical matching is good for finding semantically identical matches.
 
 \textcite{sagot_building_2008} built a French wordnet.
 
-\textcite{balikas_cross-lingual_2018} suggested using optimal transport for cross-lingual document retrieval.
+
+\section{Word Embeddings}%
+\label{sec:word_embeddings}
+James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
+From his perspective as an author, the efficient descriptions of the dictionaries is a bother but we will build the thesis on the idea that we can represent words, senses using their dictionary definitions.
+
+\textcite{mikolov_distributed_2013} Word2Vec paper.
+\textcite{xiao_distributed_2014} another embedding paper.
+
+\textcite{bengio_neural_2000} root word embedding paper.
 
 \textcite{kusner_word_2015} is Word Mover's Distance.
 
-\textcite{jonker_shortest_1987} lapjv paper.
+\textcite{balikas_cross-lingual_2018} suggested using optimal transport for cross-lingual document retrieval.
 
 \textcite{arora_simple_2016} simple but tough-to-beat baseline for sentence embeddings.
+
+\textcite{klementiev_inducing_2012} base paper for cross lingual word embeddings?
+
+\textcite{irvine_comprehensive_2017} used as a guideline on best practices.
+
+\textcite{jonker_shortest_1987} lapjv paper.

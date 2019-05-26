@@ -41,7 +41,7 @@ With the digitized data, it was only natural for dictionaries to go digital as w
 % start wordnets
 \section{WordNet}% not sold on having 'wordnet' as a section
 \label{sec:wordnet}
-George A\@. Miller started the WordNet project in the mid-1980s.
+George A.\ Miller started the WordNet project in the mid-1980s.
 On its early days, project members studied theories that were aimed towards enabling computers to understand natural language as intrinsically as humans do.
 While working on then popular semantic networks and sense graphs, they have started something that will evolve into an expansive, influential resource~\cite{fellbaum_wordnet_1998}.
 
@@ -50,18 +50,20 @@ Today, WordNet can be used as a browser much like an online dictionary or thesau
 Behind the scenes, a sprawling lexical database has relationship information for more than 117000 senses. % wrong, actually has 117000 synsets, sense != synset?
 Figure~\ref{fig:example_run} shows a brief result for the query string \enquote{run}.
 
-WordNet lists the term, much like a traditional dictionary, alongside its synonyms.
-Additionally, there is a horizontal association; for any sense the lemmas that share the row with the target term are synonyms.
-They represent the sense given in the short description.
+WordNet lists terms, much like a traditional dictionary, alongside its synonyms.
+Additionally, there is a horizontal association; for any sense, the lemmas that share the row with the target term are synonyms.
 This set of synonyms is aptly named \emph{synsets}.
+A short description is also provided to clarify the meaning fully.
 
-WordNet also includes other relations such as \emph{hypernymy} and \emph{hyponymy}, semantic relation of senses being type-of one another.
-For instance, the term \enquote{building} is a hyponym of \enquote{restaurant} since it encompasses a more general sense; the restaurant is a type of building.
+WordNet also includes other relationships such as \emph{hypernymy} and \emph{hyponymy}, semantic relation of senses being type-of one another~\cite{miller_nouns_1990}.
+For instance, the term \enquote{building} is a hyponym of \enquote{restaurant} since it encompasses a more general sense; the restaurant is type of a building.
 While coffee shop is a hypernym to the restaurant since it is a more specific sense.
-One other relation is the meronymy, defined as a sense being part of or a member of another.
+One other relation is the meronymy, defined as a sense being part of or a member of another~\cite{winston_taxonomy_1987}.
 Keeping to our building example, windows are meronym to buildings.
 Other relationships exist but listing them is outside the scope of this thesis.
-Bottom line is the effort that has gone through to map 117000 senses according to different semantic relationships.
+Bottom line is the effort that has gone through to map $117,000$ senses according to different semantic relationships. % TODO how to typeset numbers?
+According to \textcite{sagot_building_2008}, the semantic relationships betwen senses are not tied to a specific language.
+The
 If we assume that terms keep their semantic relationships when translated, we can infer the effort behind the WordNet does not need to be replicated but can be translated to other languages.
 
 \begin{figure*}[!hbp]
@@ -77,37 +79,44 @@ If we assume that terms keep their semantic relationships when translated, we ca
 
 Since it's inception, other projects built lexical databases, using the same WordNet design.
 % TODO move references from bottom to here
-\textcite{fellbaum_semantic_1998} talks about correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
+\textcite{fellbaum_semantic_1998} talks about the correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
 Hence \emph{WordNet} refers to English Princeton WordNet, while \emph{wordnets} created for other languages are not stylized.
 
 \section{Multilingual Wordnets}%
 \label{sec:multilingual_wordnets}
-Authorities list more than 7000\footnote{\url{https://www.ethnologue.com/statistics}} living languages with only 40\footnote{\url{https://w3techs.com/technologies/history_overview/content_language/}} of them having a sizeable presence on the internet.
+Authorities list more than 7000\footnote{\url{https://www.ethnologue.com/statistics}} living languages but only 40\footnote{\url{https://w3techs.com/technologies/history_overview/content_language/}} of them have a sizeable presence on the internet.
 Among this small fraction, English is the dominant language of the web.
-Translation, information transfer from foreign languages is a valid way of enriching a language's corpora;
-if a term that denotes a sense does not have a match in the target language, it is a good indication for the linguists of that language to look into their lexicons and work towards expanding it~\cite{ibrahim_usta_turkce_2006}.
-% we haven't built wordnets yet
-\textcite{sagot_building_2008} argue that linking wordnets leads to more research and there seems to be a vicious cycle between the available data for a language to form a lexicon and a corpus.
-Further research in the area contributes to more languages having access to tools that will incorporate them into the literature.
-English in not the centrepiece for most natural language processing research because it is the language that can store the most information or any other linguistic advantage.
-It's the most abundant language on web.
-Distributions like spaCy resorts to lemmatizations such as \emph{=PRON=} to denote pronouns in order to collapse the senses for \enquote{I} \enquote{you}, \enquote{them} etc.\@.
+English in not the centrepiece for natural language processing research because of any linguistic advantage but it is the most abundant language on web.
+
+Distributions like spaCy~\footnote{\url{https://spacy.io/}} resorts to lemmatizations such as \emph{=PRON=} to denote pronouns in order to collapse the senses for \enquote{I} \enquote{you}, \enquote{them} etc.\@.
 % might be too cheesy
 The sense and the accompanying word for being the brother of someone's father or mother differs in Turkish while both collapse in \enquote{uncle} in English.
 % \might be too cheesy
+Studying other languages can provide insight towards concepts that are not present in English.
+
+Translation, information transfer from foreign languages is a valid way of enriching a language's corpora; if a term that denotes a sense does not have a match in the target language, it is a good indication for the linguists of that language to look into their lexicons and work towards expanding it~\cite{ibrahim_usta_turkce_2006}.
+Further research in the area contributes to more languages having access to tools that will incorporate them into the literature.
 
 We should note that the languages of the wordnets used in the thesis are all present in the 40 languages that have a significant presence on the internet that we have mentioned before.
 The work on wordnets for languages other than English has been under way since the early days of the predecessor.
+% TODO expand here
 Research has tackled the issue of lack of wordnets for languages besides English. %TODO reference
 Yet, against 117000 senses in the English Princeton WordNet, the counterparts, with the exception of FinnWordNet~\cite{linden_finnwordnet_2010} have about a quarter.
-We have constrained this study to use only the freely available wordnets and not considered wordnets that are gated behind restrictive licenses since we believe that academic resources should be free.
+We have constrained this study to use only the freely available wordnets and not considered wordnets that are gated behind restrictive licenses.
 
-Open Multilingual WordNet~\cite{bond_survey_2012} presents wordnets from other languages with three crucial additions; % TODO the following sentence is plagiarism
-They have normalized the data, aligned with English Princeton WordNet and they are all accessible from a single source.\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}
-With alignment information at hand, we have a way to create a golden corpora that we assume to be perfectly aligned.
+Open Multilingual WordNet~\cite{bond_survey_2012} set out to discover the effects related to the choice of license for wordnets.
+Their criteria for usefulness is the number of citations a publication tied to the wordnet gets on literature.
+They identified two major problems with the current distributions;
+some projects have picked restrictive licenses, effectively barring access to their tools for research purposes.
+Other finding is the lack of a standardized form for the wordnets.
+While on a conceptual level, a database of semantic relations has been derived by others, implementations differed on a software engineering level.
+This made writing scripts to parse wordnets difficult.
+Thankfully, \citeauthor{bond_survey_2012} have standardized the wordnets and are currently hosting them from a single source.\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}
+
+With alignment information at hand, we have created our dataset that we will assume to be perfectly aligned; a golden corpus.
 Among the 34 wordnets available on Open Multilingual WordNet, only 6 of them have gloss information available.
-Given this thesis will only investigate the ability to map senses using definitions of the sense, we used the subset of Albanian~\cite{ruci_current_2008}, Bulgarian~\cite{simov_constructing_2010}, Greek~\cite{stamou_exploring_2004}, Italian~\cite{pianta_multiwordnet_2002}, Slovenian~\cite{fiser_slownet_2012} and Romanian~\cite{tufis_romanian_2008}.
-Table~\ref{tab:summary_table} shows brief statistics about the wordnets.
+Given this thesis will only investigate the ability to map senses using definitions of the sense, we used the subset of Albanian~\cite{ruci_current_2008}, Bulgarian~\cite{simov_constructing_2010}, Greek~\cite{stamou_exploring_2004}, Italian~\cite{pianta_multiwordnet_2002}, Slovenian~\cite{fiser_slownet_2012} and Romanian~\cite{tufis_romanian_2008} wordnets.
+Table~\ref{tab:summary_table} shows brief statistics about them.
 
 \begin{table*}[!hbp]
     \begin{center}
@@ -128,18 +137,17 @@ Table~\ref{tab:summary_table} shows brief statistics about the wordnets.
     \end{center}
 \end{table*}
 
-\section{Word Embeddings}%
-\label{sec:word_embeddings}
-James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
-From his perspective as an author, the efficient descriptions of the dictionaries is a bother but we will build the thesis on the idea that we can represent words, senses using their dictionary definitions.
-
-% For research on languages other than English to benefit from the power of wordnet the language should have copious data available to generate corpora.
-Traditional dictionaries are more commonly available and include definition information.
-
-\section{Thesis Goals}%
+\section{Thesis Goals}% TODO return here
 \label{sec:thesis_goals}
 In this thesis, our aim is to study the possibility of creating wordnets using dictionary alignment.
 We will evaluate existing methods for their performance on cross-lingual document retrieval but our documents are dictionary definitions which are short, descriptive snippets of text.
+At the end of this study, we will answer the following research questions;
+
+\begin{enumerate}
+    \item Is it possible to create wordnet like lexical databases using off-the-shelf methods.
+    \item How well does the studied techniques perform.
+    \item What attributes need to be considered regarding the available data.
+\end{enumerate}
 
 \section{Thesis Outline}%
 \label{sec:thesis_outline}

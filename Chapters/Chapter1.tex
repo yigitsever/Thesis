@@ -3,38 +3,51 @@
 % Neden cozmek istiyoruz
 \section{Dictionaries}%
 \label{sec:dictionaries}
-Dictionaries vary with regard to their use case, target audience, and scope.
-For instance, bilingual dictionaries present words alongside their translations in the target language.
-Domain-specific dictionaries list technical terms that target people who are familiar with the terminology.
-Yet, the term \emph{dictionary} on its own brings forth the monolingual, sometimes known as descriptive dictionary into consideration.
-This type of dictionary presents words alongside their definitions following an alphabetical order~\cite{sterkenburg_practical_2003}.
-Their primary intention is to inform the user about the words~\cite{uzun_modern_2005}.
-Some words are polysemous, sharing the same spelling and having related, often derivative meanings.
-Multiple definition entries clarify the differences between these related senses.
-Likewise, homonymous words have distinct meanings while having identical spellings through coincidence.
-They are often denoted using discrete blocks of descriptions.
-Another lexical relation we are concerned with is the synonymity.
-A word is synonymous to another if they share the same meaning but are not spelled alike.
-Synonymity is seldom shown in dictionaries.
+
+Dictionaries are living records of a society's language usage.
+Languages change over time, people adopt new words for new senses while others fall out of use.
+Concepts appear as a result of technological advancements or social shifts, giving birth to new senses and words to define them.
+Meanwhile, the term \emph{dictionary} is a broad one to define.
+On its own, it brings forth the monolingual dictionary into consideration~\cite{sterkenburg_practical_2003}.
+This type of dictionary presents words alongside their definitions following an alphabetical order.
+The intention is to inform the user about the words~\cite{uzun_modern_2005}.
+Other types of dictionaries vary with regard to their use case, target audience, and scope.
+For instance, bilingual dictionaries present words alongside their translations in the target language, often used by language learners or translators.
+Domain specific dictionaries list technical terms that target people who are familiar with the terminology.
+
 The term that precedes the entries is called \emph{headword} or \emph{lemma}.
 Usually, lemmas are the form of a word without inflections.
 The sense they convey is as comprehensive as possible, reducing the number of otherwise redundant entries that would have been the derivatives of the unmarked form~\cite{ibrahim_usta_turkce_2006}.
 
+Dictionaries also inform the user about how senses relate to each other.
+\textbf{Polysemous} words share the same spelling while having related, often derivative meanings.
+For example; under the entry for the term \emph{bank}, a definition might clarify the meaning \emph{financial institution} while another can define \emph{the building of a financial institution}.
+In contrast, \textbf{homonymous} words have distinct meanings while having identical spellings through coincidence.
+The \emph{bank of a river} is homonym to the given examples.
+Homonyms are often shown in discrete blocks of descriptions.
+% TODO Maybe a figure.
+
+\textbf{Synonymity} is another lexical relation we are interested in.
+A word is synonymous to another if they share the same meaning but are not spelled alike, such as the terms \emph{right} and \emph{correct}.
+However, synonymity is seldom shown in dictionaries.
+
 % from dictionaries to multilingual web
 Dictionaries take an immense amount of time and expertise to prepare.
-We can talk about the examples after narrowing our scope down to the dictionaries that are still available to use today.
+We can talk about the examples after narrowing our scope down to the dictionaries that are still available today.
 A survey by \textcite{uzun_1945ten_1999} notes that the first instalment of the modern Turkish dictionary, led by a team of experts, has taken over 6 years to prepare.
 \textcite{kendall_forgotten_2011} talks about how Noah Webster, the writer of the \emph{An American Dictionary of the English Language} had to mortgage off his home in order to finish his project which took over 26 years.
-
-Early lexicographers had to invest tremendous amounts of time putting together a collection of documents and other written material in order to establish a \emph{corpus}~\cite{uzun_1945ten_1999}.
+The bulk of this effort is collecting documents and other written material in order to establish a \emph{corpus}~\cite{uzun_1945ten_1999}.
 This endeavour is necessary since a corpus is crucial to create the vocabulary of a language.
-After processing the corpus, lemmas can be extracted and the resulting wordstock is called the \emph{lexicon} of the language.
+Once the corpus is at hand, researchers can extract the lemmas.
+The resulting wordstock is called the \emph{lexicon} of the language.
 
 The internet radically changed the way researchers aggregate data.
 The advancements in digital storage technology allowed the data to be persistent.
 Improvements in networking ensured that people can share the volume of it among themselves.
-With the popularization of social media, the internet generates everyday conversations at an unprecedented rate that researchers are using for natural language applications. % TODO any reference
-Moreover,  efforts on open, collaborative, web based encyclopedias generate structured, multilingual data often used in machine translation and text categorization tasks. % TODO any reference
+With the popularization of social media, the internet generates everyday conversations at an unprecedented rate that researchers are using for natural language applications.
+% TODO A reference here
+Moreover,  efforts on open, collaborative, web based encyclopedias generate structured, multilingual data often used in machine translation and text categorization tasks.
+% TODO A reference here
 Once the cumbersome task of corpus attainment is now akin to web crawling.
 With the digitized data, it was only natural for dictionaries to go digital as well since it's generally acknowledged that they are no longer viable if they are not electronic~\cite{sterkenburg_practical_2003}.
 
@@ -46,25 +59,10 @@ On its early days, project members studied theories that were aimed towards enab
 While working on then popular semantic networks and sense graphs, they have started something that will evolve into an expansive, influential resource~\cite{fellbaum_wordnet_1998}.
 
 Traditional dictionaries are rigid, constrained by the nature of the printed form.
-Today, WordNet can be used as a browser much like an online dictionary or thesaurus that informs users about the senses, accessed by queries.
-Behind the scenes, a sprawling lexical database has relationship information for more than 117000 senses. % wrong, actually has 117000 synsets, sense != synset?
+Today, people can browse WordNet via queries, like an online dictionary or a thesaurus.
+Behind the scenes, a sprawling lexical database has relationship information for more than 117000 senses.
+% wrong, actually has 117000 synsets, sense != synset?
 Figure~\ref{fig:example_run} shows a brief result for the query string \enquote{run}.
-
-WordNet lists terms, much like a traditional dictionary, alongside its synonyms.
-Additionally, there is a horizontal association; for any sense, the lemmas that share the row with the target term are synonyms.
-This set of synonyms is aptly named \emph{synsets}.
-A short description is also provided to clarify the meaning fully.
-
-WordNet also includes other relationships such as \emph{hypernymy} and \emph{hyponymy}, semantic relation of senses being type-of one another~\cite{miller_nouns_1990}.
-For instance, the term \enquote{building} is a hyponym of \enquote{restaurant} since it encompasses a more general sense; the restaurant is type of a building.
-While coffee shop is a hypernym to the restaurant since it is a more specific sense.
-One other relation is the meronymy, defined as a sense being part of or a member of another~\cite{winston_taxonomy_1987}.
-Keeping to our building example, windows are meronym to buildings.
-Other relationships exist but listing them is outside the scope of this thesis.
-Bottom line is the effort that has gone through to map $117,000$ senses according to different semantic relationships. % TODO how to typeset numbers?
-According to \textcite{sagot_building_2008}, the semantic relationships betwen senses are not tied to a specific language.
-The
-If we assume that terms keep their semantic relationships when translated, we can infer the effort behind the WordNet does not need to be replicated but can be translated to other languages.
 
 \begin{figure*}[!hbp]
     \begin{center}
@@ -77,8 +75,26 @@ If we assume that terms keep their semantic relationships when translated, we ca
     \end{center}
 \end{figure*}
 
+WordNet lists terms, much like a traditional dictionary, alongside its polysemes but also their homonyms.
+Additionally, there is a horizontal association; for any sense, the lemmas that share the row with the target term are synonyms.
+This set of synonyms is aptly named \emph{synsets}.
+During this discussion, we have used sense and synset interchangeably.
+A short description is also provided to clarify the meaning.
+
+WordNet also includes other relationships such as \emph{hypernymy} and \emph{hyponymy}, semantic relation of senses being type-of one another~\cite{miller_nouns_1990}.\footnote{not to be confused with homonymy}
+For instance, the term \enquote{building} is a hyponym of \enquote{restaurant} since it encompasses a more general sense; the restaurant is type of a building.
+While coffee shop is a hypernym to the restaurant since it is a more specific sense.
+% TODO maybe a sense graph here
+One other relation is the meronymy, defined as a sense being part of or a member of another~\cite{winston_taxonomy_1987}.
+Keeping to our building example, windows are meronym to buildings.
+Other relationships exist but listing them is outside the scope of this thesis.
+Bottom line is the effort that has gone through to map $117,000$ senses according to different semantic relationships.
+% TODO how to typeset numbers?
+\textcite{sagot_building_2008} argue that the semantic relationships between senses are not tied to a specific language.
+With this assumption at hand, we can infer the effort behind the WordNet does not need to be repeated but can be translated to other languages.
+
 Since it's inception, other projects built lexical databases, using the same WordNet design.
-% TODO move references from bottom to here
+% TODO reference here after chapter 2
 \textcite{fellbaum_semantic_1998} talks about the correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
 Hence \emph{WordNet} refers to English Princeton WordNet, while \emph{wordnets} created for other languages are not stylized.
 
@@ -86,37 +102,34 @@ Hence \emph{WordNet} refers to English Princeton WordNet, while \emph{wordnets} 
 \label{sec:multilingual_wordnets}
 Authorities list more than 7000\footnote{\url{https://www.ethnologue.com/statistics}} living languages but only 40\footnote{\url{https://w3techs.com/technologies/history_overview/content_language/}} of them have a sizeable presence on the internet.
 Among this small fraction, English is the dominant language of the web.
-English in not the centrepiece for natural language processing research because of any linguistic advantage but it is the most abundant language on web.
+English in not the centrepiece for natural language processing research because of any linguistic attribute.
+It is simply the most abundant language on web, giving researchers data to work with.
 
-Distributions like spaCy~\footnote{\url{https://spacy.io/}} resorts to lemmatizations such as \emph{=PRON=} to denote pronouns in order to collapse the senses for \enquote{I} \enquote{you}, \enquote{them} etc.\@.
+Natural language processing library spaCy~\footnote{\url{https://spacy.io/}} resorts to lemmatizations such as \emph{=PRON=} to denote pronouns in order to collapse the senses for \enquote{I} \enquote{you}, \enquote{them} etc.\@.
 % might be too cheesy
-The sense and the accompanying word for being the brother of someone's father or mother differs in Turkish while both collapse in \enquote{uncle} in English.
+The sense and the accompanying word for being the brother of a person's father or mother differs in Turkish while both collapse in \enquote{uncle} in English.
 % \might be too cheesy
 Studying other languages can provide insight towards concepts that are not present in English.
 
-Translation, information transfer from foreign languages is a valid way of enriching a language's corpora; if a term that denotes a sense does not have a match in the target language, it is a good indication for the linguists of that language to look into their lexicons and work towards expanding it~\cite{ibrahim_usta_turkce_2006}.
-Further research in the area contributes to more languages having access to tools that will incorporate them into the literature.
-
-We should note that the languages of the wordnets used in the thesis are all present in the 40 languages that have a significant presence on the internet that we have mentioned before.
-The work on wordnets for languages other than English has been under way since the early days of the predecessor.
-% TODO expand here
-Research has tackled the issue of lack of wordnets for languages besides English. %TODO reference
-Yet, against 117000 senses in the English Princeton WordNet, the counterparts, with the exception of FinnWordNet~\cite{linden_finnwordnet_2010} have about a quarter.
-We have constrained this study to use only the freely available wordnets and not considered wordnets that are gated behind restrictive licenses.
+Translation, information transfer from foreign languages is a valid way of enriching a language's corpora; if a term that for a sense does not have a match in the target language, it is a good indication for the linguists of that language to look into their lexicons and work towards expanding it~\cite{ibrahim_usta_turkce_2006}.
+Further research in the area contributes to languages other than English having access to tools that will incorporate them into the literature.
 
 Open Multilingual WordNet~\cite{bond_survey_2012} set out to discover the effects related to the choice of license for wordnets.
-Their criteria for usefulness is the number of citations a publication tied to the wordnet gets on literature.
+Their criteria for usefulness is the number of citations a publication tied to the wordnet has gotten on literature.
 They identified two major problems with the current distributions;
-some projects have picked restrictive licenses, effectively barring access to their tools for research purposes.
-Other finding is the lack of a standardized form for the wordnets.
-While on a conceptual level, a database of semantic relations has been derived by others, implementations differed on a software engineering level.
-This made writing scripts to parse wordnets difficult.
-Thankfully, \citeauthor{bond_survey_2012} have standardized the wordnets and are currently hosting them from a single source.\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}
+\begin{itemize}
+    \item some projects have picked restrictive licenses, effectively barring access to their tools for research purposes.
+    \item the structures of the wordnets are not standardized, creating additional cost for creating programs to parse and use the wordnets.
+\end{itemize}
+In order to overcome the standardization issue, \citeauthor{bond_survey_2012} have aligned the wordnets according to their English Princeton WordNet lemma ids and have written individual scripts to parse them.
+They are currently hosting the results from a single source.\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}
 
 With alignment information at hand, we have created our dataset that we will assume to be perfectly aligned; a golden corpus.
 Among the 34 wordnets available on Open Multilingual WordNet, only 6 of them have gloss information available.
 Given this thesis will only investigate the ability to map senses using definitions of the sense, we used the subset of Albanian~\cite{ruci_current_2008}, Bulgarian~\cite{simov_constructing_2010}, Greek~\cite{stamou_exploring_2004}, Italian~\cite{pianta_multiwordnet_2002}, Slovenian~\cite{fiser_slownet_2012} and Romanian~\cite{tufis_romanian_2008} wordnets.
 Table~\ref{tab:summary_table} shows brief statistics about them.
+We should note that the languages of the wordnets used in the thesis are all present in the 40 languages that have a significant presence on the internet that we have mentioned before.
+We have constrained this study to use only the freely available wordnets and not considered wordnets that are gated behind restrictive licenses.
 
 \begin{table*}[!hbp]
     \begin{center}
@@ -139,12 +152,15 @@ Table~\ref{tab:summary_table} shows brief statistics about them.
 
 \section{Thesis Goals}% TODO return here
 \label{sec:thesis_goals}
-In this thesis, our aim is to study the possibility of creating wordnets using dictionary alignment.
+% TODO we assume word embeddings are interchangeable
+
+In this thesis, we will study document matching and document retrieval methods.
+
 We will evaluate existing methods for their performance on cross-lingual document retrieval but our documents are dictionary definitions which are short, descriptive snippets of text.
 At the end of this study, we will answer the following research questions;
 
 \begin{enumerate}
-    \item Is it possible to create wordnet like lexical databases using off-the-shelf methods.
+    \item Is it possible to create wordnet like lexical databases using unsupervised document matching and retrieval techniques.
     \item How well does the studied techniques perform.
     \item What attributes need to be considered regarding the available data.
 \end{enumerate}

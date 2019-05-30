@@ -55,7 +55,11 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 \usepackage{booktabs}   % beautiful tables
 \usepackage{tabularx}
-\usepackage{amsmath}    % general purpose math
+% \usepackage{amsmath}    % general purpose math
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil} % ceiling function wrapper
+
 \usepackage{url}        % add urls to footnotes
 \emergencystretch=1em
 \RequirePackage[xetex]{hyperref}

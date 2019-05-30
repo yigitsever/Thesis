@@ -1,85 +1,103 @@
 % Chapter Template
 
 \chapter{Background Information \& Related Work}\label{chap:background_n_related}
-
-James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
-From his perspective as an author, the efficient descriptions of the dictionaries is a bother but we will build the thesis on the idea that we can represent words, senses using their dictionary definitions.
-
 % ROUGH DRAFT
 
-\section{Approaches in Wordnet Generation}%
-\label{sec:approaches_in_wordnet_generation}
-
-% from Leveraging Parallel Corpora and Existing Wordnets for Automatic Construction of the Slovene Wordnet
-WordNet generation is broken down into 4 categories
-\begin{enumerate}
-    \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
-    \item Link English entries from machine-readable bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
-    \item Taxonomy parsing~\textcite{farreres_using_1998}.
-    \item Ontology matching~\textcite{farreres_towards_2004}
-\end{enumerate}
+James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
+Even though the author criticises the efficient of the dictionary definitions, we will build the thesis on the idea that we can represent senses using their dictionary definitions.
 
 \section{Word Embeddings}%
 \label{sec:word_embeddings}
 
-Recent literature has been using existing pre-trained word representations, commonly known as \emph{word embeddings}.
-Word embeddings are real valued dense feature vectors for words.
+Recent studies have been using word representations, commonly known as \emph{word embeddings}.
+Word embeddings are real valued, dense feature vectors for words.
 They are induced in order to map a lexicon to a multidimensional latent space.
 This representation allows researchers access to the tools of a broad literature in linear algebra and machine learning.
-Since the embeddings and their accompanying words (labels) can be saved to the disk and shared on the internet, researchers have been using existing (often called pre-trained) models in their own applications by simply downloading them off of the internet.
+Since the embeddings and their respective words (labels) can be saved to the disk, researchers have been sharing their models on the internet for other researchers to simply download and use them on their own applications.
+Word embeddings acquired this way are often called \emph{pre-trained}.
 
 In this section, we will present a brief history of word embeddings.
-We will finish the section by presenting our selected model, \emph{fasttext}~\cite{mikolov2018advances}.
-Word embeddings is a sprawling subject that borrowed ideas from probabilistic, statistical and neural network models.
+At the end of the section, we will study our selected model, \emph{fasttext}~\cite{mikolov2018advances}.
+
+Word embeddings is a sprawling subject that has been built upon ideas from probabilistic, statistical and neural network models.
 We have omitted approaches that are not used for our study and constrained ourselves only to the literature that lead up to the model we will use. % dilimiz dondugunce
 
 \subsection{History of Word Representations}%
 \label{sub:history_of_word_representations}
 
-In order to talk about how words can be mapped to a multidimensional space, first we should talk about how the semantic similarity between words has been theorized.
+In order to talk about how words can be mapped to a multidimensional space, first we should talk about how the idea that they can has been theorized.
 
 \subsubsection{Linguistic Background}%
 \label{ssub:linguistic_background}
 
-With his \citeyear{harris_distributional_1954} article, \textcite{harris_distributional_1954} introduced the distributional hypothesis for the field of linguistics.
+In his \citeyear{harris_distributional_1954} article, \textcite{harris_distributional_1954} introduced his ideas which later came to known as \emph{distributional hypothesis} in the field of linguistics.
 He argued that similar words appear within similar contexts.
-For instance, the semantic similarity between the terms \emph{jacket} and \emph{coat} can be empirically proven since they will be accompanied by similar verbs, such as \emph{wear}, \emph{dry clean} or \emph{hang}, and similar adjectives such as \emph{warm} or \emph{leather}.
+The famous quote by \textcite{firth_synopsis_1957} captures the idea as;
+\enquote{You shall know a word by the company it keeps!}
+For instance, the semantic similarity between the terms \emph{jacket} and \emph{coat} can be theoretically proven since they will be accompanied by similar verbs, such as \emph{wear}, \emph{dry clean} or \emph{hang}, and similar adjectives such as \emph{warm} or \emph{leather}.
 % is leather an adjective?
+However, for a researcher to extract these rules by hand would have been infeasible.
+
+Even though \citeauthor{harris_distributional_1954} argued that \enquote{language is not merely a bag of words}, using unordered collection of word counts to capture the semantic information will be used in the literature and be known as the \emph{bag-of-words} hypothesis.
 
 \subsubsection{Vector Space Model}%
 \label{ssub:vector_space_model}
 
-Using vector representation in natural language processing tasks stemmed from information retrieval and the inception of vector space model can be traced back to \citetitle{salton_vector_1975} by \textcite{salton_vector_1975}.
-They presented the novel idea of a \emph{document space}, consisting of fixed sized vectors.
-In this space, a document $D_i$ is represented using $t$ number of weights so that;
+The vector space models first appeared in the information retrieval field.
+Initial vector space model developed by \textcite{salton_vector_1975} and presented in \citetitle{salton_vector_1975}.
+It was the first application of bag-of-words hypothesis on a corpus to extract semantic information~\cite{turney_frequency_2010}.
+\citeauthor{salton_vector_1975} presented the novel idea of a \emph{document space}, consisting of fixed sized vectors as the columns of a term document matrix.
+The dimensions of the vectors were the whole vocabulary of the corpus.
+
+In this space, a document $D_i$ is represented using $t$ distinct terms as a row vector;
 \begin{displaymath}
     D_{i} = (d_{i1}, d_{i2}, \ldots, d_{it})
 \end{displaymath}
+The weights for the index terms are calculated by using the \tfidf{} measure introduced by \textcite{jones_statistical_1972}.
+\tfidf{} is the multiplication of two metrics;
+\begin{description}
+    \item[\emph{tf}] the number of times a term $k$ occurs in a document
+    \item[\emph{idf}] the inverse of the number of documents that contain $k$.
+\end{description}
 
-Treating documents as vectors and queries as pseudo-vectors was intuitive for both researchers and machines.
+\citeauthor{salton_vector_1975} presented their particular weighting scheme where the term frequency is multiplied by the following inverse document frequency for the term $k$.
+\begin{displaymath}
+IDF_{k} = \ceil[\big]{\log_{2}n} - \ceil[\big]{\log_{2}d_{k}} + 1
+\end{displaymath}
+% simply log_2(n/d_{k})
+Where $n$ is the number of documents in the collection and $d_k$ is the number of documents that consists the term $k$.
+The weighting scheme was selected to \enquote{assign the largest weight to those terms which arise with high frequency in individual documents, but are at the same time relatively rare in the collection as a whole}.
+Finally, they have cast their similarity function between documents $i$ and $j$, as the inner product between their vectors which corresponds to the cosine similarity.
 
-Alongside this revolutionary idea, the most important leverage from mathematical vectors have followed.
-\citeauthor{salton_vector_1975} suggested using cosine similarity, cast as inner product between two vectors after they are normalized to unit length.
-For the weights of the index terms, they identified term frequency with IDF~\cite{jones_statistical_1972}.
-% Get idf from turney
-%A statistical interpretation of term specificity and its application in retrieval
+The vector space model allowed \citeauthor{salton_vector_1975} to handle the similarity between documents as the angle between two vectors.
+More importantly, they have shown that there is merit to handling documents as real valued vectors.
 
-1 being the smoothing term so that division by zero doesn't occur of tf-idf.
-The weighting scheme was selected to that "\ldots will assign the largest weight".
+\subsubsection{Latent Semantic Analysis}%
+\label{ssub:latent_semantic_analysis}
 
-However, one shortcoming was immediately obvious as the theory cemented in practice, using large corpora lead to vocabularies getting larger as well.
-\citeauthor{deerwester_indexing_1990} introduced latent semantic analysis to attack the ever-increasing dimensions of vocabulary on their 1990 study.
-They have used representations of 100 dimensions.
-They start with a term-document matrix.
-Then, SVD is applied.
+\textcite{deerwester_indexing_1990} identified a crucial problem with the vector space model.
+According to the author, synonyms and homonyms cannot be handled by the naive term document matrix approach.
+Synonymity is an issue because the query might have terms that have the same meaning as the target word.
+On the other hand, homonyms might match with an unrelated word.
+In order to address these issues, they introduced \emph{latent semantic analysis}.
+Dimensionality reduction is used.
+Sought higher order latent semantic structure.
+For a term document matrix $X$ can be decomposed into;
+\begin{displaymath}
+    X = T_{0}S_{0}D_{0}'
+\end{displaymath}
 
-% SVD here
+\begin{displayquote}
+Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
+That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
+\end{displayquote}
+They have used the obtained $\hat{X}$ in both document similarity task but more importantly to measure \emph{word similarity}.
 
 So that the words can be represented by much lower dimensionality.
 \citeauthor{deerwester_indexing_1990} has reported 100 dimensions.
 
 \citeauthor{lund_producing_1996} provided a method to obtain feature vectors to represent the meaning of words building an co-occurance  information.
-Their crucial contribution was to use a window to constrain the co-occurance information to spatially close terms.
+Their crucial contribution was to use a window to constrain the co-occurrence information to spatially close terms.
 
 % \textcite{bengio_neural_2000} root word embedding paper.
 \textcite{bengio_neural_2000} proposed the first neural network model.
@@ -88,14 +106,14 @@ They wanted to pursue the curse of dimensionality initially because the corpora 
 They claimed that "we use a continuous real-vector..."
 
 The idea presented by \citeauthor{lund_producing_1996} similar words should have similar feature vectors is presented here.
-\citeauthor{lund_producing_1996} has shown this hypothesis with cooccurence vectors and \citeauthor{bengio_neural_2000} used a distributed feature vector, learned by a probability distribution.
+\citeauthor{lund_producing_1996} has shown this hypothesis with co-occurrence vectors and \citeauthor{bengio_neural_2000} used a distributed feature vector, learned by a probability distribution.
 
 \citeauthor{collobert_unified_2008} suggested a deep neural network model to solve various natural language processing tasks but relevant to our study, have proposed to explicitly learn the feature vectors at the same time.
 % something about unsup. learning
 
 They have also used a window that looked ahead and behind of the target word instead of previous methods which have traditionally only looked up to the word, sticking to $P(w_t | w_{t+1})$.
 Jointly with \citeauthor{collobert_unified_2008}, \citeauthor{p._turian_word_2010} steered the work on word representations to the today's route.
-Distributed word reprs.
+Distributed word representations.
 % TODO write with paper at hand
 They showcased that word embeddings can indeed be used as ready made feature vectors and once trained, can be used for other applications by other researchers.
 Important to note that they reported training times in the order of days, even weeks.
@@ -125,6 +143,18 @@ Researchers and industry professionals have been using the embeddings since the 
 \section{Matching}%
 \label{sec:matching}
 
+\section{Approaches in Wordnet Generation}%
+\label{sec:approaches_in_wordnet_generation}
+
+% from Leveraging Parallel Corpora and Existing Wordnets for Automatic Construction of the Slovene Wordnet
+WordNet generation is broken down into 4 categories
+\begin{enumerate}
+    \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
+    \item Link English entries from machine-readable bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
+    \item Taxonomy parsing~\textcite{farreres_using_1998}.
+    \item Ontology matching~\textcite{farreres_towards_2004}
+\end{enumerate}
+
 \textcite{gordeev_unsupervised_2018} uses unsupervised cross-lingual embeddings to match cross-lingual product classifications.
 Working on taxonomy matching, they use out of domain pre-trained embeddings due to small size of their corpora and investigate methods using untranslated and translated text.
 
@@ -148,4 +178,4 @@ Working on taxonomy matching, they use out of domain pre-trained embeddings due 
 
 \textcite{irvine_comprehensive_2017} used as a guideline on best practices.
 
-\textcite{jonker_shortest_1987} lapjv paper.
+%\textcite{jonker_shortest_1987} lapjv paper.

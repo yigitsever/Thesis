@@ -23,6 +23,7 @@ Dictionaries also inform the user about how senses relate to each other.
 \textbf{Polysemous} words share the same spelling while having related, often derivative meanings.
 For example; under the entry for the term \emph{bank}, a definition might clarify the meaning \emph{financial institution} while another can define \emph{the building of a financial institution}.
 In contrast, \textbf{homonymous} words have distinct meanings while having identical spellings through coincidence.
+Formal definition of homonymy separates sound based and spelling based homonymy differently as homophones and homographs but for the purposes of our text based arguments, we do not delve into the specifics.
 The \emph{bank of a river} is homonym to the given examples.
 Homonyms are often shown in discrete blocks of descriptions.
 % TODO Maybe a figure.
@@ -78,8 +79,10 @@ Figure~\ref{fig:example_run} shows a brief result for the query string \enquote{
 WordNet lists terms, much like a traditional dictionary, alongside its polysemes but also their homonyms.
 Additionally, there is a horizontal association; for any sense, the lemmas that share the row with the target term are synonyms.
 This set of synonyms is aptly named \emph{synsets}.
-During this discussion, we have used sense and synset interchangeably.
+% Furthermore, synset terms can have one or more lexemes, not necessarily singular tokens.
 A short description is also provided to clarify the meaning.
+These descriptions, hence the meanings for any synset is unique within the WordNet.
+During this discussion, we have used sense and synset interchangeably.
 
 WordNet also includes other relationships such as \emph{hypernymy} and \emph{hyponymy}, semantic relation of senses being type-of one another~\cite{miller_nouns_1990}.\footnote{not to be confused with homonymy}
 For instance, the term \enquote{building} is a hyponym of \enquote{restaurant} since it encompasses a more general sense; the restaurant is type of a building.
@@ -134,21 +137,39 @@ We have constrained this study to use only the freely available wordnets and not
 \begin{table*}[!hbp]
     \begin{center}
         \caption{Summary of the Wordnets used.}\label{tab:summary_table}
-        \begin{tabular}{llrr}
+        \begin{tabular}{l l r}
             \toprule%
-            \textbf{Name of the Project} & \textbf{Language} & \textbf{Number of Definitions} & \textbf{Words Per Definition} \\
+            \textbf{Name of the Project} & \textbf{Language} & \textbf{Number of Definitions} \\
             \midrule%
-            Albanet & Albanian & 4681 & 11.75 \\
-            BulTreeBank WordNet & Bulgarian & 4959 & 12.71 \\
-            % DanNet & Danish    & 784                   & 8.63                           \\
-            Greek Wordnet & Greek & 18136 & 11.24 \\
-            ItalWordnet & Italian & 12688 & 7.33 \\
-            Romanian Wordnet & Romanian & 58754 & 9.98 \\
-            SloWNet & Slovenian & 3144 & 12.68 \\
+            Albanet & Albanian & 4681 \\
+            BulTreeBank WordNet & Bulgarian & 4959 \\
+            Greek Wordnet & Greek & 18136 \\
+            ItalWordnet & Italian & 12688 \\
+            Romanian Wordnet & Romanian & 58754 \\
+            SloWNet & Slovenian & 3144 \\
             \bottomrule %
         \end{tabular}
     \end{center}
 \end{table*}
+
+% \begin{table*}[!hbp]
+%     \begin{center}
+%         \caption{Summary of the Wordnets used.}\label{tab:summary_table}
+%         \begin{tabular}{llrr}
+%             \toprule%
+%             \textbf{Name of the Project} & \textbf{Language} & \textbf{Number of Definitions} & \textbf{Words Per Definition} \\
+%             \midrule%
+%             Albanet & Albanian & 4681 & 11.75 \\
+%             BulTreeBank WordNet & Bulgarian & 4959 & 12.71 \\
+%             % DanNet & Danish    & 784                   & 8.63                           \\
+%             Greek Wordnet & Greek & 18136 & 11.24 \\
+%             ItalWordnet & Italian & 12688 & 7.33 \\
+%             Romanian Wordnet & Romanian & 58754 & 9.98 \\
+%             SloWNet & Slovenian & 3144 & 12.68 \\
+%             \bottomrule %
+%         \end{tabular}
+%     \end{center}
+% \end{table*}
 
 \section{Thesis Goals}% TODO return here
 \label{sec:thesis_goals}

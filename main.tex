@@ -41,7 +41,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \setdefaultlanguage{english}
-\setmainfont{Liberation Serif}
+\setmainfont{Lora}
 \usepackage[bottom]{footmisc} % prevent figures from appearing under footnotes
 \usepackage[backend=biber,style=nature,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 \addbibresource{thesis.bib} % The filename of the bibliography
@@ -54,10 +54,12 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \newcommand{\tfidf}{\ $\varB{tf-idf}$\ }
 
 \usepackage{booktabs}   % beautiful tables
+\usepackage{tabularx}
 \usepackage{amsmath}    % general purpose math
 \usepackage{url}        % add urls to footnotes
 \emergencystretch=1em
 \RequirePackage[xetex]{hyperref}
+\usepackage{todonotes}
 
 \newcommand{\titletitlesize}{\fontsize{16pt}{18pt}\selectfont}
 %----------------------------------------------------------------------------------------

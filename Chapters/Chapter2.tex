@@ -43,6 +43,7 @@ Even though \citeauthor{harris_distributional_1954} argued that \enquote{languag
 \subsubsection{Vector Space Model}%
 \label{ssub:vector_space_model}
 
+The history of word embeddings is tightly coupled with vector space models.
 The vector space models first appeared in the information retrieval field.
 Initial vector space model developed by \textcite{salton_vector_1975} and presented in \citetitle{salton_vector_1975}.
 It was the first application of bag-of-words hypothesis on a corpus to extract semantic information~\cite{turney_frequency_2010}.
@@ -75,31 +76,58 @@ More importantly, they have shown that there is merit to handling documents as r
 \subsubsection{Latent Semantic Analysis}%
 \label{ssub:latent_semantic_analysis}
 
-\textcite{deerwester_indexing_1990} identified a crucial problem with the vector space model.
-According to the author, synonyms and homonyms cannot be handled by the naive term document matrix approach.
+\textcite{deerwester_indexing_1990} introduced latent semantic analysis in order to address a crucial problem with the vector space model.
+They have identified that synonyms and homonyms cannot be handled by the naive term document matrix approach due to the fact that vector space model requires the words to match exactly between the two documents.
 Synonymity is an issue because the query might have terms that have the same meaning as the target word.
 On the other hand, homonyms might match with an unrelated word.
-In order to address these issues, they introduced \emph{latent semantic analysis}.
-Dimensionality reduction is used.
-Sought higher order latent semantic structure.
-For a term document matrix $X$ can be decomposed into;
+Their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
+
+Latent semantic analysis starts with a word co-occurrence matrix $X$.
+The terms of the matrix is weighted by an arbitrary weighting scheme, such as \tfidf{}, pointwise mutual information\cite{church_word_1990} or raw term frequencies as used in the original study.
+% Ruder Survey claims pmi weights, original paper uses raw frequencies, says it'll be chosen per application anyway
+A term document matrix $X$ is then factorized into three matrices using singular value decomposition~\cite{forsythe_computer_1977};
+% People don't cite this for some reason, is it wrong?
 \begin{displaymath}
     X = T_{0}S_{0}D_{0}'
 \end{displaymath}
+Where the columns of $T_{0}$ and $D_{0}'$ are orthogonal to each other and $S_{0}$ is the diagonal matrix of singular values.
+The singular values of $S_{0}$ can be ordered by size to keep only the $k$ largest elements, setting the others to zero~\cite{deerwester_indexing_1990}.
 
+Their use for the resulting matrix is as follows;
 \begin{displayquote}
 Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
 That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
 \end{displayquote}
-They have used the obtained $\hat{X}$ in both document similarity task but more importantly to measure \emph{word similarity}.
+They have used this technique to solve document similarity task and touched upon \emph{word similarity}.
+% TODO I can't talk about this paper in a concise way or any way really, return later
+Using latent semantic analysis to represent word similarity is later studied by \textcite{landauer_solution_1997}
 
-So that the words can be represented by much lower dimensionality.
-\citeauthor{deerwester_indexing_1990} has reported 100 dimensions.
+\subsubsection{Building Upon Distributional Hypothesis}%
+\label{ssub:building_upon_distributional_hypothesis}
 
-\citeauthor{lund_producing_1996} provided a method to obtain feature vectors to represent the meaning of words building an co-occurance  information.
-Their crucial contribution was to use a window to constrain the co-occurrence information to spatially close terms.
+% \textcite{schutze_dimensions_1992} (intro to information retrieval co-author) is earlier but doesn't appear in any survey, A Survey on Word Representations of Meaning cites later works (Automatic word sense disambiguation), most just skip to lund
+% "in order for the dimensions of meaning and the vector representations of words to reflect closeness in meaning faithfully, a global optimization of cooccurrence constraints is necessary, an operation so complex that only a supercomputer can perform it." that's why
+% also used a context size of _characters_ because "few long words are better than many short words"
+While \citeauthor{deerwester_indexing_1990} studied relatedness between words using vectors, their approach used the whole corpus for the co-occurrence information and the focus was still on the document similarity.
+
+\textcite{schutze_dimensions_1992} proposed \enquote{to represent the semantics of words and contexts in a text as vectors} and built upon word co-occurrence.
+They theorized a context window of 1000 characters in order to not consider the whole corpus but only words that are close to the target word to be considered in co-occurrence calculations.
+% They used cosine similarity as a measure of semantic relatedness between word vectors.
+However, they claimed that the computation power available was not suitable yet to fully tackle the task.
+
+% Lund is not cited as much, is context window important?
+\textcite{lund_producing_1996} took the challenge and experimented upon 160 million words taken from the internet.
+They used a context size of 10 words and provided a method to obtain feature vectors to represent the meaning of words.
+% maybe talk about the method but seems redundant
+However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
+% Figure 1 of this paper can be adapted here
+
+\subsubsection{Neural Network Models}%
+\label{ssub:neural_network_models}
 
 % \textcite{bengio_neural_2000} root word embedding paper.
+% There is another paper called A Neural Probabilistic Language Model, that came out in 2000
+% People pretend that it doesn't exist
 \textcite{bengio_neural_2000} proposed the first neural network model.
 Neural network models will be the centrepiece in word embedding research later.
 They wanted to pursue the curse of dimensionality initially because the corpora were getting bigger and term document matrices were \ldots.
@@ -133,6 +161,11 @@ Also element-wise addition in section 5.
 They have been hosting their project open source but perhaps more importantly, they published an word2vec pretrained model on English on the internet.
 Researchers and industry professionals have been using the embeddings since the semantic similarity between close words were relevant in numerous applications.
 %Finally, word2vec lead up to \textcite{bajo}
+% http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/
+% Ruder says don't dwell on the specific embedding too much
+% fasttext is trained on a huge corpus with tuned hyperparameters
+% hence the choice of the specific model is not important
+
 
 \section{Bilingual Word Embeddings}%
 \label{sec:bilingual_word_embeddings}

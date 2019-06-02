@@ -1,0 +1,20 @@
+Chapters/Chapter3.tex:The first method we have investigated works naively by translating the target language's corpora to English using Google Cloud API\@. %TODO ref
+Chapters/Chapter3.tex:%%% TODO lapjv %%%
+Chapters/Chapter1.tex:% TODO Maybe a figure.
+Chapters/Chapter1.tex:% TODO A reference here
+Chapters/Chapter1.tex:% TODO A reference here
+Chapters/Chapter1.tex:% TODO maybe a sense graph here
+Chapters/Chapter1.tex:% TODO how to typeset numbers?
+Chapters/Chapter1.tex:% TODO reference here after chapter 2
+Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
+Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter2.tex:% TODO I can't talk about this paper in a concise way or any way really, return later
+Chapters/Chapter2.tex:% TODO proper reference and check your notation
+Chapters/Chapter2.tex:% TODO wrong, there's a tanh layer in the middle too
+Chapters/Chapter2.tex:% TODO please check this after you've gotten some sleep
+Chapters/Chapter2.tex:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
+Chapters/Chapter2.tex:  \textelp{} % TODO want this on it's own line
+Chapters/Chapter2.tex:First and foremost, they used an efficient loss function for their neural network architecture, the hierarchical softmax. % TODO ref here
+Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
+Chapters/Chapter2.tex:% TODO read section 5
+Chapters/Chapter2.tex:% TODO define hyperparameters?

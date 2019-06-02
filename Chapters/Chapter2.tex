@@ -1,6 +1,7 @@
 % Chapter Template
 
-\chapter{Background Information \& Related Work}\label{chap:background_n_related}
+\chapter{Background Information \& Related Work}%
+\label{chap:background_n_related}
 % ROUGH DRAFT
 
 James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
@@ -8,6 +9,15 @@ Even though the author criticises the efficient of the dictionary definitions, w
 
 \section{Word Embeddings}%
 \label{sec:word_embeddings}
+
+% Surveys used are
+% \cite{turney_frequency_2010} -> VSM Survey
+% Has the history but omits (rightfully) language modelling stuff (bengio and so on)
+% \cite{camacho-collados_word_2018} -> Sense Embeddings Survey (Short section on word embeddings)
+% \cite{almeida_word_2019} -> Brasil Survey (Very poorly written, don't want to cite if I can help it)
+% \cite{ruder_survey_2017} -> Ruder Survey (Bilingual embeddings, short section on word embeddings)
+% http://ruder.io/word-embeddings-1/index.html
+% Used as 'what to look for', though some has conflicting information
 
 Recent studies have been using word representations, commonly known as \emph{word embeddings}.
 Word embeddings are real valued, dense feature vectors for words.
@@ -95,8 +105,8 @@ The singular values of $S_{0}$ can be ordered by size to keep only the $k$ large
 
 Their use for the resulting matrix is as follows;
 \begin{displayquote}
-Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
-That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
+    Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
+    That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
 \end{displayquote}
 They have used this technique to solve document similarity task and touched upon \emph{word similarity}.
 % TODO I can't talk about this paper in a concise way or any way really, return later
@@ -116,35 +126,80 @@ They theorized a context window of 1000 characters in order to not consider the 
 However, they claimed that the computation power available was not suitable yet to fully tackle the task.
 
 % Lund is not cited as much, is context window important?
+% Why did Lund capture associativity instead of semantic relatedness?
+% Collobert! This just predicts the next word, not the job of a word in a text
 \textcite{lund_producing_1996} took the challenge and experimented upon 160 million words taken from the internet.
 They used a context size of 10 words and provided a method to obtain feature vectors to represent the meaning of words.
 % maybe talk about the method but seems redundant
 However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
 % Figure 1 of this paper can be adapted here
 
-\subsubsection{Neural Network Models}%
-\label{ssub:neural_network_models}
+% Conventional VSM produces high dimensional representations, since the dims. correspond to words in the number can reach millions -> don't know where I got this, can't use it as it probably plagiarism
+\subsubsection{Into The Language Models}%
+\label{ssub:into_the_language_models}
+% https://www.gavagai.se/blog/2015/09/30/a-brief-history-of-word-embeddings/
+% Wish this post had an author, main takeaways;
+% The main difference between these various models (neural language models and distributional semantic models) is the type of contextual information they use.
+% LSA and topic models use documents as contexts, which is a legacy from their roots in information retrieval.
+% Neural language models and distributional semantic models instead use words as contexts, which is arguably more natural from a linguistic and cognitive perspective.
+% These different contextual representations capture different types of semantic similarity; the document-based models capture semantic relatedness (e.g. “boat” – “water”) while the word-based models capture semantic similarity (e.g. “boat” – “ship”).
+% This very basic difference is too often misunderstood.
 
 % \textcite{bengio_neural_2000} root word embedding paper.
+% EVERYONE says they coined 'word embeddings', doesn't appear in the paper, don't know where people got that
 % There is another paper called A Neural Probabilistic Language Model, that came out in 2000
-% People pretend that it doesn't exist
-\textcite{bengio_neural_2000} proposed the first neural network model.
-Neural network models will be the centrepiece in word embedding research later.
-They wanted to pursue the curse of dimensionality initially because the corpora were getting bigger and term document matrices were \ldots.
-They claimed that "we use a continuous real-vector..."
+% People pretend that it doesn't exist, we'll use the 2003 one as well, it's just the extended version I think
 
-The idea presented by \citeauthor{lund_producing_1996} similar words should have similar feature vectors is presented here.
-\citeauthor{lund_producing_1996} has shown this hypothesis with co-occurrence vectors and \citeauthor{bengio_neural_2000} used a distributed feature vector, learned by a probability distribution.
+% So far we've been talking about IR, now this is language models
+% For instance Turney Pantel (VSM Survey) doesn't mention bengio or any other word embeddings (2010)
 
-\citeauthor{collobert_unified_2008} suggested a deep neural network model to solve various natural language processing tasks but relevant to our study, have proposed to explicitly learn the feature vectors at the same time.
-% something about unsup. learning
+% input layer -> emb. layer -> softmax layer
+\textcite{bengio_neural_2003} proposed learning word representations using a feedforward neural network.
+Their model would learn feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
+Although neural networks have been proposed to learn a language model~\cite{xu_can_2000}, the main contribution of \citeauthor{bengio_neural_2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
+For a corpus of $V$ words, there are $|V|$ dimensions for the language model to learn and taking \emph{n-gram} representations into consideration, the problem grows exponentially.
+Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable dimensions.
+% $|V| >> m$
 
-They have also used a window that looked ahead and behind of the target word instead of previous methods which have traditionally only looked up to the word, sticking to $P(w_t | w_{t+1})$.
-Jointly with \citeauthor{collobert_unified_2008}, \citeauthor{p._turian_word_2010} steered the work on word representations to the today's route.
-Distributed word representations.
-% TODO write with paper at hand
-They showcased that word embeddings can indeed be used as ready made feature vectors and once trained, can be used for other applications by other researchers.
-Important to note that they reported training times in the order of days, even weeks.
+The setup for the neural network starts with the one hot encoded vector representation of the context for a word $w$.
+This context is not a window but similar to statistical models that predicts the word $w$ using the words that lead up to $w$, $w_{}$.
+% TODO something about statistical models here
+The input layer is projected into an embedding layer, later to a softmax layer to get a probability distribution.
+% TODO softmax formula here
+
+However, the softmax layer is computationally expensive to be viable.
+% TODO why
+Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
+% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
+
+\citeauthor{collobert_unified_2008} suggested a deep neural network model in order to learn feature vectors for various natural language processing tasks.
+Their proposed approach for language model is important for our case since it explicitly learned distributed word representations or simply word embeddings.
+They have introduced two key ideas;
+\begin{itemize}
+    \item Instead of using a context window that used words left of the target word to estimate the probability of the target word, they have placed the context window \emph{on} the target window, using $n$ words for left and right of the target word.
+    \item They introduced negative examples, where they randomly changed the middle word with a random one. This allowed them to use the ranking cost;
+        \begin{displaymath}
+            \sum_{s \in S} \sum_{w \in D} \text{max}\big( 0, 1 - f(s) + f(s^w)\big)
+        \end{displaymath}
+\end{itemize}
+\citeauthor{collobert_unified_2008} claim that these additions allowed their system to learn the representation better rather than the probability.
+
+% Turian 2010 doesn't appear much in any of the surveys or word embedding blogs
+% but as far as i can tell, they're the first to say word embeddings are useful because they're off the shelf which I want to emphasize
+% Like they literally say "With this contribution word embeddings can now be used off-the-shelf as word features, no tuning"
+
+\textcite{p._turian_word_2010} evaluated the performance of different word representations as word features you can include into an existing task.
+They summarize their contribution as follows;
+\begin{displayquote}
+  Word features can be learned in advance in an unsupervised, task-inspecific, and model-agnostic manner.
+  These word features, once learned, are easily disseminated with other researchers, and easily integrated into existing supervised NLP systems.
+  \textelp{} % TODO want this on it's own line
+  With this contribution, word embeddings can now be used off-the-shelf as word features, with no tuning.
+\end{displayquote}
+
+% Jointly with \citeauthor{collobert_unified_2008}, \citeauthor{p._turian_word_2010} steered the work on word representations to the today's route.
+% They showcased that word embeddings can indeed be used as ready made feature vectors and once trained, can be used for other applications by other researchers.
+% Important to note that they reported training times in the order of days, even weeks.
 
 % \textcite{mikolov_distributed_2013} Word2Vec paper.
 Word2Vec by \textcite{mikolov_distributed_2013} brought together the advancements and attractiveness that were brewing in the word embedding research.
@@ -166,15 +221,14 @@ Researchers and industry professionals have been using the embeddings since the 
 % fasttext is trained on a huge corpus with tuned hyperparameters
 % hence the choice of the specific model is not important
 
-
 \section{Bilingual Word Embeddings}%
 \label{sec:bilingual_word_embeddings}
 
+Cross lingual embedding models optimize similar objectives.
+Only source of variation is due to the data used and the monolingual regularization objectives employed~\cite{ruder_survey_2017}.
+
 \section{Document Retrieval}%
 \label{sec:document_retrieval}
-
-\section{Matching}%
-\label{sec:matching}
 
 \section{Approaches in Wordnet Generation}%
 \label{sec:approaches_in_wordnet_generation}
@@ -188,16 +242,18 @@ WordNet generation is broken down into 4 categories
     \item Ontology matching~\textcite{farreres_towards_2004}
 \end{enumerate}
 
+\textcite{sagot_building_2008} built a French wordnet.
+
 \textcite{gordeev_unsupervised_2018} uses unsupervised cross-lingual embeddings to match cross-lingual product classifications.
 Working on taxonomy matching, they use out of domain pre-trained embeddings due to small size of their corpora and investigate methods using untranslated and translated text.
 
-\textcite{lesk_automatic_1986} represent words using their gloss. Relied upon traditional dictionaries.
+\textcite{lesk_automatic_1986} represent words using their gloss.
+Relied upon traditional dictionaries.
 \textcite{banerjee_adapted_2002} developed on lesk algorithm and included WordNet definitions.
 \textcite{khodak_automated_2017} used word embeddings and WordNet.
 
-\textcite{metzler_similarity_2007} talked about short text retrieval and lexical matching. They reported that lexical matching is good for finding semantically identical matches.
-
-\textcite{sagot_building_2008} built a French wordnet.
+\textcite{metzler_similarity_2007} talked about short text retrieval and lexical matching.
+They reported that lexical matching is good for finding semantically identical matches.
 
 \textcite{xiao_distributed_2014} another embedding paper.
 
@@ -208,7 +264,3 @@ Working on taxonomy matching, they use out of domain pre-trained embeddings due 
 \textcite{arora_simple_2016} simple but tough-to-beat baseline for sentence embeddings.
 
 \textcite{klementiev_inducing_2012} base paper for cross lingual word embeddings?
-
-\textcite{irvine_comprehensive_2017} used as a guideline on best practices.
-
-%\textcite{jonker_shortest_1987} lapjv paper.

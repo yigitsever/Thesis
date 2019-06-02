@@ -1,5 +1,5 @@
 % Chapter Template
-\chapter{Unsupervised Matching}
+\chapter{Unsupervised Matching}%
 \label{chap:unsupervised_matching}
 
 %%% ROUGH FIRST DRAFT
@@ -19,7 +19,7 @@ Such that term $w_{i,j}$ depicts the importance of term $t$ with relation to its
 Now we can define the similarity between the documents as the cosine similarity between their \tfidf{} vectors.
 For the row $w_t$ and $w_p$, cosine similarity between definitions $t, p$ is
 \begin{equation*}
-    cos(\theta) =
+    \cos(\theta) =
 \end{equation*}
 
 Definitions are then separated into queries and corpora.
@@ -35,12 +35,72 @@ Yet before moving forward with WMD, we wanted to test sentence embeddings.
 \section{Linear Assignment Using Sentence Embeddings}%
 \label{sec:linear_assignment_using_sentence_embeddings}
 
-%%% CITATION
-\textcite{edilson_a._correa_nilc-usp_2017} used sentence embeddings that were tailored for short text.
-Their work was on Twitter where the need for word embeddings to capture the essence of the text is crucial given the low amount of data packed in a Twitter document or a tweet.
-For our purposes, we used sentence embeddings as described in their implementation;
+Using word embeddings to obtain embeddings for longer pieces of text has been studied with implementations like doc2vec~\cite{le_distributed_2014} that builds upon the word2vec~\cite{mikolov_distributed_2013} model in order to learn paragraph embeddings.
+However, there is an assumption of a continuous text for the given model.
+When the text that we would like to show on a latent space is not part of a longer piece of text but \emph{discrete} pieces, that presumption does not hold.
+With the dictionary definitions, we have such a case.
+Our dictionary definitions are comprised of 10 to 11 words and there is no relation from one distinct dictionary definition to another.
+% TODO reference the wordnet statistics table when you decide on where to put it
+In other words, they are not continuous.
+One other case where a similar situation occur is \emph{twitter}.
+\emph{Tweets} are short pieces of text due to the 280 character constraint imposed by the platform.
+With such short pieces of text, instead of paragraph embeddings, we can talk about \emph{sentence embeddings}.
+A sentence embedding model should ideally capture the collective meaning of the short text where every word is potentially informative.
+
+\textcite{zhao_ecnu_2015} used two approaches for SemEval-2015 Task 2: Semantic Textual Similarity~\footnote{\url{http://alt.qcri.org/semeval2015/task2/}}.
+First, for a sentence $S = (w_{1}, w_{2}, \dots, w_{s})$ where the length of the presumably small sentence is $|S| = s$ and the word embedding of a $w_t$ is $v_t$;
+\begin{itemize}
+    \item They summed up the word embeddings of the sentence $\sum_{t \in S}v_{t}$
+    \item Used information content~\cite{saric_takelab_2012} to weigh each word's LSA vector $\sum_{t \in S} I(w_t) v_{t}$
+\end{itemize}
+Both approaches results in a vector that is in the same dimensions $R^{d}$ as the original word representations.
+
+\textcite{edilson_a._correa_nilc-usp_2017} expanded upon this simple yet effective idea to tackle the SemEval-2017 Task 4\footnote{\url{http://alt.qcri.org/semeval2017/task4}}, Sentiment Analysis in Twitter.
+In order to acquire embeddings that represented \emph{tweets}, they weighed the word embeddings that made up a tweet; $\text{tweet}_i = (w_{i1}, w_{i2}, \dots, w_{im})$ with the \tfidf{} weights.
+For the \tfidf{} calculation, they cast individual weights as documents so that term frequency become the term count in a single tweet while document frequency become the number of tweets the term $w_t$ occurs.
+
+We have mentioned that our dictionary definitions are not continuous.
+Yet, we advocate using \tfidf{} weights to weigh our word embeddings to get sentence embeddings.
+In order to clarify, let us present Table~\ref{tab:en_it_examples}.
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+        % \caption{Example English Princeton WordNet definitions}
+        turn red, as if in embarrassment or shame \\
+        a feeling of extreme joy \\
+        a person who charms others (usually by personal attractiveness) \\
+        so as to appear worn and threadbare or dilapidated \\
+        a large indefinite number \\
+        distributed in portions (often equal) on the basis of a plan or purpose \\
+        a lengthy rebuke
+    }%
+}%
+% TODO maybe a fbox with more line width but captions don't work
+
+\begin{table}
+    \centering
+    \caption{Some definitions from English Princeton WordNet}%
+    \label{tab:en_it_examples}
+    \begin{tabular}{l}
+        \toprule
+        turn red, as if in embarrassment or shame \\
+        a feeling of extreme joy \\
+        a person who charms others (usually by personal attractiveness) \\
+        so as to appear worn and threadbare or dilapidated \\
+        a large indefinite number \\
+        distributed in portions (often equal) on the basis of a plan or purpose \\
+        a lengthy rebuke \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+% TODO this table is ugly can we do better?
+
 % For sentence embeddings, first a \tfidf{} matrix is constructed.
-Then, with the term-embedding matrix at hand, we have calculated sentence embeddings using;
+For the \tfidf{} calculations, we followed a similar approach.
+The term frequency is the raw count of a term in a dictionary definition.
+While the document frequency is the number of dictionary definitions where $w_t$ occurs.
+
+Then, with the term-embedding matrix at hand, we have calculated definition embeddings using;
 \begin{equation}
     S_{\text{emb}}(S) = \sum_{w_{i} \in S} \varB{tf_{w_{i},S}-idf_{w_i}} \cdot Emb_{w}(w_{i})
 \end{equation}

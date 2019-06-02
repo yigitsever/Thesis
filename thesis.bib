@@ -13,6 +13,20 @@
   file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/E4CB2KAG/Mikolov et al. - 2013 - Exploiting Similarities among Languages for Machin.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/2DUUT77T/1309.html}
 }
 
+@article{le_distributed_2014,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1405.4053},
+  primaryClass = {cs},
+  title = {Distributed {{Representations}} of {{Sentences}} and {{Documents}}},
+  url = {http://arxiv.org/abs/1405.4053},
+  abstract = {Many machine learning algorithms require the input to be represented as a fixed-length feature vector. When it comes to texts, one of the most common fixed-length features is bag-of-words. Despite their popularity, bag-of-words features have two major weaknesses: they lose the ordering of the words and they also ignore semantics of the words. For example, "powerful," "strong" and "Paris" are equally distant. In this paper, we propose Paragraph Vector, an unsupervised algorithm that learns fixed-length feature representations from variable-length pieces of texts, such as sentences, paragraphs, and documents. Our algorithm represents each document by a dense vector which is trained to predict words in the document. Its construction gives our algorithm the potential to overcome the weaknesses of bag-of-words models. Empirical results show that Paragraph Vectors outperform bag-of-words models as well as other techniques for text representations. Finally, we achieve new state-of-the-art results on several text classification and sentiment analysis tasks.},
+  date = {2014-05-16},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Learning},
+  author = {Le, Quoc V. and Mikolov, Tomas},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/V4EC6U8K/Le and Mikolov - 2014 - Distributed Representations of Sentences and Docum.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/7236JI6V/1405.html}
+}
+
 @inproceedings{lesk_automatic_1986,
   location = {{New York, NY, USA}},
   title = {Automatic {{Sense Disambiguation Using Machine Readable Dictionaries}}: {{How}} to {{Tell}} a {{Pine Cone}} from an {{Ice Cream Cone}}},
@@ -661,14 +675,6 @@ Finally, we develop and evaluate different alignment approaches based on paralle
   pages = {932-938},
   author = {Bengio, Y and Ducharme, Réjean and Vincent, Pascal},
   file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/QW3T28FK/Bengio et al. - 2000 - A Neural Probabilistic Language Model.pdf}
-}
-
-@book{zhao_ecnu_nodate,
-  title = {{{ECNU}}: {{Using Traditional Similarity Measurements}} and {{Word Embedding}} for {{Semantic Textual Similarity Estimation}}},
-  shorttitle = {{{ECNU}}},
-  abstract = {This paper reports our submissions to seman-tic textual similarity task, i.e., task 2 in Se-mantic Evaluation 2015. We built our sys-tems using various traditional features, such as string-based, corpus-based and syntactic simi-larity metrics, as well as novel similarity mea-sures based on distributed word representa-tions, which were trained using deep learning paradigms. Since the training and test datasets consist of instances collected from various do-mains, three different strategies of the usage of training datasets were explored: (1) use all available training datasets and build a unified supervised model for all test datasets; (2) se-lect the most similar training dataset and sep-arately construct a individual model for each test set; (3) adopt multi-task learning frame-work to make full use of available training set-s. Results on the test datasets show that using all datasets as training set achieves the best av-eraged performance and our best system ranks 15 out of 73. 1},
-  author = {Zhao, Jiang and Lan, Man and Tian, Jun Feng},
-  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/V7SEF32W/Zhao et al. - ECNU Using Traditional Similarity Measurements an.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/N4WP3BRA/summary.html}
 }
 
 @inproceedings{maslova_neural_2017,
@@ -1511,6 +1517,35 @@ and also checked by hand.},
   date = {2005},
   pages = {246--252},
   author = {Morin, Frederic and Bengio, Yoshua}
+}
+
+@inproceedings{zhao_ecnu_2015,
+  title = {{{ECNU}}: {{Using Traditional Similarity Measurements}} and {{Word Embedding}} for {{Semantic Textual Similarity Estimation}}},
+  doi = {10.18653/v1/S15-2021},
+  shorttitle = {{{ECNU}}},
+  abstract = {This paper reports our submissions to semantic textual similarity task, i.e., task 2 in Semantic Evaluation 2015. We built our systems using various traditional features, such as string-based, corpus-based and syntactic similarity metrics, as well as novel similarity measures based on distributed word representations, which were trained using deep learning paradigms. Since the training and test datasets consist of instances collected from various domains, three different strategies of the usage of training datasets were explored: (1) use all available training datasets and build a unified supervised model for all test datasets; (2) select the most similar training dataset and separately construct a individual model for each test set; (3) adopt multi-task learning framework to make full use of available training sets. Results on the test datasets show that using all datasets as training set achieves the best averaged performance and our best system ranks 15 out of 73.},
+  booktitle = {{{SemEval}}@{{NAACL}}-{{HLT}}},
+  date = {2015},
+  keywords = {Computer multitasking,Deep learning,Multi-task learning,Semantic similarity,Supervised learning,Test set,Text corpus,Trustworthy computing,Word embedding},
+  author = {Zhao, Jiang and Lan, Man and Tian, Junfeng},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/K6S26JLL/Zhao et al. - 2015 - ECNU Using Traditional Similarity Measurements an.pdf}
+}
+
+@inproceedings{saric_takelab_2012,
+  location = {{Stroudsburg, PA, USA}},
+  title = {{{TakeLab}}: {{Systems}} for {{Measuring Semantic Text Similarity}}},
+  url = {http://dl.acm.org/citation.cfm?id=2387636.2387708},
+  shorttitle = {{{TakeLab}}},
+  abstract = {This paper describes the two systems for determining the semantic similarity of short texts submitted to the SemEval 2012 Task 6. Most of the research on semantic similarity of textual content focuses on large documents. However, a fair amount of information is condensed into short text snippets such as social media posts, image captions, and scientific abstracts. We predict the human ratings of sentence similarity using a support vector regression model with multiple features measuring word-overlap similarity and syntax similarity. Out of 89 systems submitted, our two systems ranked in the top 5, for the three overall evaluation metrics used (overall Pearson -- 2nd and 3rd, normalized Pearson -- 1st and 3rd, weighted mean -- 2nd and 5th).},
+  booktitle = {Proceedings of the {{First Joint Conference}} on {{Lexical}} and {{Computational Semantics}} - {{Volume}} 1: {{Proceedings}} of the {{Main Conference}} and the {{Shared Task}}, and {{Volume}} 2: {{Proceedings}} of the {{Sixth International Workshop}} on {{Semantic Evaluation}}},
+  series = {{{SemEval}} '12},
+  publisher = {{Association for Computational Linguistics}},
+  urldate = {2019-06-02},
+  date = {2012},
+  pages = {441--448},
+  author = {Šarić, Frane and Glavaš, Goran and Karan, Mladen and Šnajder, Jan and Bašić, Bojana Dalbelo},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/I7CWA5G7/Šarić et al. - 2012 - TakeLab Systems for Measuring Semantic Text Simil.pdf},
+  venue = {Montréal, Canada}
 }
 
 

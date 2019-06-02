@@ -8,13 +8,16 @@ Chapters/Chapter1.tex:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:% TODO reference here after chapter 2
 Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
 Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter2.tex:% TODO if this line stays you need to cite them
 Chapters/Chapter2.tex:% TODO I can't talk about this paper in a concise way or any way really, return later
 Chapters/Chapter2.tex:% TODO proper reference and check your notation
 Chapters/Chapter2.tex:% TODO wrong, there's a tanh layer in the middle too
-Chapters/Chapter2.tex:% TODO please check this after you've gotten some sleep
+Chapters/Chapter2.tex:% TODO please check this after you've gotten some sleep, like what is y?
 Chapters/Chapter2.tex:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
 Chapters/Chapter2.tex:  \textelp{} % TODO want this on it's own line
-Chapters/Chapter2.tex:First and foremost, they used an efficient loss function for their neural network architecture, the hierarchical softmax. % TODO ref here
+Chapters/Chapter2.tex:% TODO skip-gram and maybe cbow figure here
+Chapters/Chapter2.tex:% TODO paste the negative sampling and subsampling of frequent words to be honest
 Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
-Chapters/Chapter2.tex:% TODO read section 5
 Chapters/Chapter2.tex:% TODO define hyperparameters?
+Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
+Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?

@@ -4,8 +4,9 @@
 \label{chap:background_n_related}
 % ROUGH DRAFT
 
-James Somers puts down the modern dictionaries by saying \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
-Even though the author criticises the efficiency of the dictionary definitions, we will build the thesis on the idea that we can represent senses using their dictionary definitions.
+James Somers puts down the modern dictionaries in their article \citetitle{somers_youre_2014}.
+\enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
+Even though the author criticises the efficiency of the dictionary definitions, we will build a thesis on the idea that we can represent senses using their dictionary definitions.
 
 \section{Word Embeddings}%
 \label{sec:word_embeddings}
@@ -16,25 +17,31 @@ Even though the author criticises the efficiency of the dictionary definitions, 
 % \cite{camacho-collados_word_2018} -> Sense Embeddings Survey (Short section on word embeddings)
 % \cite{almeida_word_2019} -> Brasil Survey (Very poorly written, don't want to cite if I can help it)
 % \cite{ruder_survey_2017} -> Ruder Survey (Bilingual embeddings, short section on word embeddings)
-% http://ruder.io/word-embeddings-1/index.html
+% http://ruder.io/word-embeddings-1
 % Used as 'what to look for', though some has conflicting information
 
-\emph{Word embeddings} are real valued, dense feature vectors for words.
-They are learned in order to map a lexicon to show points or phrases as points on a multidimensional latent space.
-This representation allows researchers access to the tools of a broad literature in linear algebra and machine learning.
-Since the embeddings and their respective words (labels) can be saved to the disk, researchers have been sharing their models on the internet for other researchers to simply download and use them on their own applications.
+\emph{Word embeddings} feature vectors for words.
+Language modelling algorithms learn word embeddings and map a lexicon to show words or phrases as points on a multidimensional latent space.
+This representation allows researchers access to the tools of the broad literature in linear algebra and machine learning.
+Vectors are intuitive for humans to interpret, more so for machines.
+They can be compared or operated on algebraically to build more expansive representations.
+
+The embeddings can be saved to the disk in matrix notation.
+Each row is labelled with a word or phrase that is denoted by the following $n$ real numbers.
+Researchers have been sharing their models on the internet for other researchers to simply download and use them on their own applications.
 Word embeddings acquired this way are often called \emph{pre-trained}.
+Some examples to the pre-trained word embeddings that are online as of writing this thesis are \emph{word2vec}, \emph{GloVe}, \emph{Numberbatch} and \emph{fastText}.
+% TODO if this line stays you need to cite them
 
-In this section, we will present a brief history of word embeddings.
-At the end of the section, we will talk about why we have chosen the model that we primarily use on our experiments, \emph{fastText}~\cite{mikolov2018advances}.
-
-Word embeddings is a sprawling subject that has been built upon ideas from probabilistic, statistical and neural network models.
+In this section, we will briefly present the history of word embeddings.
+Word embeddings is a sprawling subject that researchers has been building upon the ideas from probabilistic, statistical and neural network models.
 We have omitted approaches that are not used for our study and constrained ourselves only to the literature that lead up to the model we will use. % dilimiz dondugunce
+At the end of the section, we will talk about the reasoning behind our decision to choose the model that we primarily use on our experiments; \emph{fastText}~\cite{mikolov2018advances}.
 
 \subsection{History of Word Representations}%
 \label{sub:history_of_word_representations}
 
-In order to talk about how words can be mapped to a multidimensional space, first we should talk about how the idea that \emph{they can} has been theorized.
+In order to talk about how words can be mapped to a multidimensional space, we should first talk about how the idea that \emph{they can} has came about.
 
 \subsubsection{Linguistic Background}%
 \label{ssub:linguistic_background}
@@ -54,10 +61,11 @@ Even though \citeauthor{harris_distributional_1954} argued that \enquote{languag
 \subsubsection{Vector Space Model}%
 \label{ssub:vector_space_model}
 
-The history of word embeddings is tightly coupled with vector space models.
-The vector space models first appeared in the information retrieval field.
+The history of word embeddings is tightly coupled with \emph{vector space models}.
+Initially, vector space models appeared in the field of information retrieval.
 The intent was to extract vectors that represented \emph{documents}.
-Initial vector space model developed by \textcite{salton_vector_1975} was presented in \citetitle{salton_vector_1975}.
+First vector space model developed by \textcite{salton_vector_1975} was presented in \citetitle{salton_vector_1975}.
+% multiple sources say it's first, we should be fine
 It was the first application of bag-of-words hypothesis on a corpus to extract semantic information~\cite{turney_frequency_2010}.
 \citeauthor{salton_vector_1975} presented the novel idea of a \emph{document space}, consisting of fixed sized vectors as the columns of a term document matrix.
 The dimensions of the vectors were the whole vocabulary of the corpus.
@@ -80,19 +88,19 @@ IDF_{k} = \ceil[\big]{\log_{2}n} - \ceil[\big]{\log_{2}d_{k}} + 1
 % simply log_2(n/d_{k})
 Where $n$ is the number of documents in the collection and $d_k$ is the number of documents that consists the term $k$.
 The weighting scheme was selected to \enquote{assign the largest weight to those terms which arise with high frequency in individual documents, but are at the same time relatively rare in the collection as a whole}.
-They have cast their similarity function between documents $i$ and $j$, as the inner product between their vectors which corresponds to the cosine similarity.
+They have cast their similarity function between documents as the inner product between their vectors which corresponds to the cosine similarity.
 
 The vector space model allowed \citeauthor{salton_vector_1975} to handle the similarity between documents as the angle between two vectors.
-More importantly, they have shown that there is merit to handling documents as real valued vectors.
+Above all, they have shown that there is merit to handling documents as real valued vectors.
 
 \subsection{Latent Semantic Analysis}%
 \label{sub:latent_semantic_analysis}
 
 \textcite{deerwester_indexing_1990} introduced latent semantic analysis in order to address a crucial problem with the vector space model.
-They have identified that synonyms and homonyms cannot be handled by the naive term document matrix approach due to the fact that vector space model requires the words to match exactly between the two documents.
-Synonymity is an issue because the query might have terms that have the same meaning as the target word.
-On the other hand, homonyms might match with an unrelated word.
-Their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
+They have identified that the naive term document matrix approach cannot handle synonyms and homonyms due to the fact that vector space model requires the words to match exactly between the two documents.
+Synonymity is an issue because the query can have terms that have the same meaning as the target word, without getting matched.
+On the other hand, homonyms can match with an unrelated word.
+In order to address these issues, their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
 
 Latent semantic analysis starts with a word co-occurrence matrix $X$.
 The terms of the matrix is weighted by some weighting scheme.
@@ -113,7 +121,7 @@ They talk about the use for the resulting matrix as follows;
 They have used this technique to solve document similarity task and briefly mentioned \emph{word similarity}.
 % TODO I can't talk about this paper in a concise way or any way really, return later
 % levy_improving_2015 section 2.2 has a very short and nice explanation if you want
-Using latent semantic analysis to represent word similarity is later studied by \textcite{landauer_solution_1997}
+Using latent semantic analysis to measure word similarity is later studied by \textcite{landauer_solution_1997}
 
 \subsection{Building Upon Distributional Hypothesis}%
 \label{sub:building_upon_distributional_hypothesis}
@@ -131,7 +139,7 @@ However, they claimed that the computation power available was not suitable yet 
 % Lund is not cited as much, is context window important?
 % Why did Lund capture associativity instead of semantic relatedness?
 % Collobert! This just predicts the next word, not the job of a word in a text
-\textcite{lund_producing_1996} took the challenge and experimented upon 160 million \emph{words} taken from the internet.
+\textcite{lund_producing_1996} took the challenge and experimented upon 160 million \emph{words} taken from the Usenet, a precursor to the internet.
 They used a context size of 10 words and provided a method to obtain feature vectors to represent the meaning of words.
 % maybe talk about the method but seems redundant
 However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
@@ -160,9 +168,9 @@ However, intricate tuning of word co-occurrence generated associatively similar 
 % input layer -> emb. layer -> softmax layer
 \textcite{bengio_neural_2003} proposed learning word representations using a feedforward neural network.
 Their model would learn feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
-Although neural networks have been proposed to learn a language model by ~\textcite{xu_can_2000}, the main contribution of \citeauthor{bengio_neural_2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
+Although neural networks have been proposed to learn a language model by \textcite{xu_can_2000}, the main contribution of \citeauthor{bengio_neural_2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
 For a corpus of $V$ words, there are $|V|$ dimensions for the language model to learn and taking \emph{n-gram} representations into consideration, the problem grows exponentially.
-Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable dimensions.
+Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable, more representative dimensions.
 % $|V| >> m$
 
 The setup for the neural network starts with the one hot encoded vector representation of the context for a word $w$.
@@ -170,17 +178,20 @@ This context window is similar to those used in statistical models that predicts
 In other words, context window of $w_t$ is $T$ words on the left of $w_t$.
 
 % TODO proper reference and check your notation
+% this is from Bengio
 \begin{displaymath}
-    \hat{P}(w_1^T) = \prod_{t=1}^{T}\hat{P}(w_t | w_{1}^{t-1}
+    \hat{P}(w_1^T) = \prod_{t=1}^{T}\hat{P}(w_t | w_{1}^{t-1})
 \end{displaymath}
 
 The input layer is projected into an embedding layer, later to a softmax layer to get a probability distribution.
 % TODO wrong, there's a tanh layer in the middle too
-\begin{displaymath}
+% http://ruder.io/word-embeddings-softmax/index.html has a beautiful softmax equation
+\begin{equation}%
+    \label{eqn:bengio_softmax}
     \hat{P}(w_t|w_{t-1}, \dots, w_{t-n+1}) = \frac{e^{y_{w_{t}}}}{\sum_{i}e^{y_{i}}}
-\end{displaymath}
+\end{equation}
 However, this formulation is too expensive computationally since all vocabulary needs to be considered for the sum in the denominator.
-% TODO please check this after you've gotten some sleep
+% TODO please check this after you've gotten some sleep, like what is y?
 Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
 % TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
 
@@ -197,8 +208,11 @@ They have introduced two key ideas;
 \textcite{collobert_unified_2008} claim that these additions allowed their system to learn the representation better rather than the probability.
 
 % Turian 2010 doesn't appear much in any of the surveys or word embedding blogs
-% but as far as i can tell, they're the first to say word embeddings are useful because they're off the shelf which I want to emphasize
+% but as far as I can tell, they're the first to say word embeddings are useful because they're off the shelf which I want to emphasize
 % Like they literally say "With this contribution word embeddings can now be used off-the-shelf as word features, no tuning"
+
+\subsection{Pre-trained Embeddings}%
+\label{sub:pre_trained_embeddings}
 
 \textcite{p._turian_word_2010} evaluated the performance of different word representations as word features you can include into an existing task.
 They summarize their contribution as follows;
@@ -215,31 +229,40 @@ They summarize their contribution as follows;
 
 % \textcite{mikolov_distributed_2013} word2vec paper.
 % This paper is legendary, talk about skip-gram, hierarchical softmax negative sampling
+% Also this paper is cursed and I can't explain it to save my life.
+% And the approaches are rabbit holes and I don't have time
 % If need be, \cite{goldberg_word2vec_2014} -> word2vec explained
 
 \subsection{Popularization of Word Embeddings}%
 \label{sub:popularization_of_word_embeddings}
 
-word2vec~\footnote{\url{https://github.com/tmikolov/word2vec}} package~\cite{mikolov_distributed_2013,mikolov_linguistic_2013,mikolov_exploiting_2013} popularized word embeddings.
+word2vec package~\cite{mikolov_efficient_2013,mikolov_distributed_2013,mikolov_linguistic_2013} popularized word embeddings.
 There are two aspects of the work done by \citeauthor{mikolov_distributed_2013}  that contributed to the fact;
 \begin{itemize}
     \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words.
-    \item They published their code as well as their pre-trained embeddings.
+    \item They published their code as well as their pre-trained embeddings as an open source project\footnote{\url{https://code.google.com/archive/p/word2vec/}}.
 \end{itemize}
+The second point is self explanatory but in order to argue about the first one, we should report the algorithms behind word2vec.
 
-by \textcite{mikolov_distributed_2013} brought together the advancements and attractiveness that were brewing in the word embedding research.
-First and foremost, they used an efficient loss function for their neural network architecture, the hierarchical softmax. % TODO ref here
+The \emph{skip-gram model}~\cite{mikolov_efficient_2013} model differs from the previous methods by predicting the surrounding words given the target word.
+% TODO skip-gram and maybe cbow figure here
+In \citetitle{mikolov_distributed_2013}, it is defined as follows;
+\begin{equation}
+    \frac{1}{T}\sum_{t=1}^{T}\sum_{-c \leq j \leq c, j \neq 0} \log p(w_{t+j}|w_t)
+\end{equation}
+%The $w_{t-c}, w_{t-c+1}, \dots, w_{t+c-1}, w_{t+c}$ are the context of the word $w_t$.
+The $w_{1}, w_{2}, \dots, w_{T}$ are the context of the word $w_t$.
+%It includes $c$ words behind and $c$ words ahead of the word $w_t$.
+We should note that, \textcite{levy_improving_2015} has identified that this window size is \emph{dynamic} in the open source implementation of word2vec, where the actual window size is sampled between $1$ and $T$.
+% In the Equation~\ref{eqn:bengio_softmax}, we have reported on the \emph{costly} softmax function, used by \citeauthor{bengio_neural_2003}.
+% \citeauthor{mikolov_distributed_2013} significantly improves their model's performance by using \emph{hierarchical softmax}.
+% Hierarchical softmax~\cite{morin_hierarchical_2005} uses a binary tree to distribute the probability distribution among the leaves of the nodes.
+% In short, the costly denominator of the softmax calculation that scaled exponentially with the size of vocabulary $|W|$, it scales in $\log(|W|)$.
+% no need to talk about this actually delete later
+% TODO paste the negative sampling and subsampling of frequent words to be honest
 
-With training time under manageable conditions \ldots.
-Used negative subsampling, essentially a probability for a word to be discarded by inversely proportional to how frequent it is in the dataset.
-Their most famous contribution is the quality of the vectors they have learned.
-The theory set out by ? was empirically shown by \citeauthor{mikolov_distributed_2013} by demonstrating that countries and their capital cities exhibited a linear pattern on the PCA.
+%The theory set out by ? was empirically shown by \citeauthor{mikolov_distributed_2013} by demonstrating that countries and their capital cities exhibited a linear pattern on the PCA.
 % TODO simplified graphic here, what is a PCA?
-
-Also element-wise addition in section 5.
-% TODO read section 5
-They have been hosting their project open source but perhaps more importantly, they published an word2vec pretrained model on English on the internet.
-Researchers and industry professionals have been using the embeddings since the semantic similarity between close words were relevant in numerous applications.
 
 % http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/
 % Ruder says don't dwell on the specific embedding too much
@@ -269,6 +292,16 @@ Armed with the fact that a good word representation model should tune their hype
 On their website, authors define fastText as (a) \enquote{Library for efficient text classification and representation learning}.
 The ideas behind it are presented in \textcite{mikolov2018advances}.
 Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
+
+The character n-grams or subword model is presented in \citetitle{bojanowski_enriching_2016}.
+Instead of using a context window and learning the representation of a target word given the context or the other way around given the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams;
+% TODO <wh, whe, her, ere, re> figure
+With the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
+\begin{displaymath}
+    s(w,c) = \sum_{g \in G_{w}}z_{g}^T v_c
+\end{displaymath}
+% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
+
 They are currently hosting pre-trained word embeddings for 157 languages, built from \emph{Common Crawl} and \emph{Wikipedia} data on their website.
 
 \section{Bilingual Word Embeddings}%

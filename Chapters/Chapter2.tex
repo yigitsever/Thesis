@@ -27,7 +27,7 @@ Since the embeddings and their respective words (labels) can be saved to the dis
 Word embeddings acquired this way are often called \emph{pre-trained}.
 
 In this section, we will present a brief history of word embeddings.
-At the end of the section, we will study our selected model, \emph{fasttext}~\cite{mikolov2018advances}.
+At the end of the section, we will study our selected model, \emph{fastText}~\cite{mikolov2018advances}.
 
 Word embeddings is a sprawling subject that has been built upon ideas from probabilistic, statistical and neural network models.
 We have omitted approaches that are not used for our study and constrained ourselves only to the literature that lead up to the model we will use. % dilimiz dondugunce
@@ -93,8 +93,8 @@ On the other hand, homonyms might match with an unrelated word.
 Their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
 
 Latent semantic analysis starts with a word co-occurrence matrix $X$.
-The terms of the matrix is weighted by an arbitrary weighting scheme, such as \tfidf{}, pointwise mutual information\cite{church_word_1990} or raw term frequencies as used in the original study.
-% Ruder Survey claims pmi weights, original paper uses raw frequencies, says it'll be chosen per application anyway
+The terms of the matrix is weighted by some weighting scheme.
+While original study used raw term frequencies, \tfidf{} is a possibility while \textcite{levy_improving_2015} reports pointwise mutual information (PMI)~\cite{church_word_1990} as a popular choice.
 A term document matrix $X$ is then factorized into three matrices using singular value decomposition~\cite{forsythe_computer_1977};
 % People don't cite this for some reason, is it wrong?
 \begin{displaymath}
@@ -110,6 +110,7 @@ Their use for the resulting matrix is as follows;
 \end{displayquote}
 They have used this technique to solve document similarity task and touched upon \emph{word similarity}.
 % TODO I can't talk about this paper in a concise way or any way really, return later
+% levy_improving_2015 section 2.2 has a very short and nice explanation if you want
 Using latent semantic analysis to represent word similarity is later studied by \textcite{landauer_solution_1997}
 
 \subsubsection{Building Upon Distributional Hypothesis}%
@@ -134,9 +135,10 @@ They used a context size of 10 words and provided a method to obtain feature vec
 However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
 % Figure 1 of this paper can be adapted here
 
+% Count based approaches to predictive approaches
 % Conventional VSM produces high dimensional representations, since the dims. correspond to words in the number can reach millions -> don't know where I got this, can't use it as it probably plagiarism
-\subsubsection{Into The Language Models}%
-\label{ssub:into_the_language_models}
+\subsubsection{Distributed Vector Representations}%
+\label{ssub:distributed_vector_representations}
 % https://www.gavagai.se/blog/2015/09/30/a-brief-history-of-word-embeddings/
 % Wish this post had an author, main takeaways;
 % The main difference between these various models (neural language models and distributional semantic models) is the type of contextual information they use.
@@ -201,8 +203,18 @@ They summarize their contribution as follows;
 % They showcased that word embeddings can indeed be used as ready made feature vectors and once trained, can be used for other applications by other researchers.
 % Important to note that they reported training times in the order of days, even weeks.
 
-% \textcite{mikolov_distributed_2013} Word2Vec paper.
-Word2Vec by \textcite{mikolov_distributed_2013} brought together the advancements and attractiveness that were brewing in the word embedding research.
+% \textcite{mikolov_distributed_2013} word2vec paper.
+% This paper is legendary, talk about skip-gram, hierarchical softmax negative sampling
+% If need be, \cite{goldberg_word2vec_2014} -> word2vec explained
+
+word2vec~\footnote{\url{https://github.com/tmikolov/word2vec}} package~\cite{mikolov_distributed_2013,mikolov_linguistic_2013,mikolov_exploiting_2013} popularized the word embeddings.
+There are two aspects of the work done by \citeauthor{mikolov_distributed_2013}  that contributed to the fact;
+\begin{itemize}
+    \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words.
+    \item Their code and the pre-trained embeddings have been published as open source.
+\end{itemize}
+
+by \textcite{mikolov_distributed_2013} brought together the advancements and attractiveness that were brewing in the word embedding research.
 First and foremost, they used an efficient loss function for their neural network architecture, the hierarchical softmax. % TODO ref here
 
 With training time under manageable conditions \ldots.
@@ -215,11 +227,34 @@ Also element-wise addition in section 5.
 % TODO read section 5
 They have been hosting their project open source but perhaps more importantly, they published an word2vec pretrained model on English on the internet.
 Researchers and industry professionals have been using the embeddings since the semantic similarity between close words were relevant in numerous applications.
-%Finally, word2vec lead up to \textcite{bajo}
+
 % http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/
 % Ruder says don't dwell on the specific embedding too much
 % fasttext is trained on a huge corpus with tuned hyperparameters
 % hence the choice of the specific model is not important
+\textcite{levy_improving_2015} compared the performance of count based and prediction based word representation models.
+Representation algorithms they considered are;
+\begin{itemize}
+    \item Positive pointwise mutual information (PPMI)~\cite{church_word_1990, bullinaria_extracting_2007}
+    \item Singular Value Decomposition on PPMI Matrix (Latent Semantic Analysis)~\cite{deerwester_indexing_1990}
+    \item Skip-Gram with Negative Sampling~\cite{mikolov_distributed_2013}
+    \item Global Vectors for Word Representation~\cite{pennington_glove_2014}
+\end{itemize}
+They found out that choice of a particular algorithm played an insignificant role compared to choosing the right \emph{hyperparameters}.
+They used this finding to counter the results reported by \textcite{baroni_dont_2014} which claimed that predictive models outperformed count based models.
+On the other hand, \citeauthor{levy_improving_2015} noted that \citeauthor{baroni_dont_2014} used count based models without hyperparameter tuning, denying them from \enquote{tricks} developed in the word representation literature.
+
+\subsubsection{fastText}%
+\label{ssub:fasttext}
+
+%Finally, word2vec lead up to \textcite{bajo}
+% bag of character n-grams, no need to worry about mophological structure of the language, can induce oov words if parts of it are available,
+% Ruder survey demonstrated how good at compositing they are *citation needed*
+Armed with the fact that a good word representation model should have tuned hyperparameters and should be trained on a large dataset, we set our sights on \emph{fastText}~\footnote{\url{https://fasttext.cc/}}.
+From their website, fastText is (a) \enquote{Library for efficient text classification and representation learning}.
+Ideas behind it are presented in \textcite{mikolov2018advance}.
+Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
+On their website, they are currently hosting pre-trained word embeddings for 157 languages, built from \emph{Common Crawl} and \emph{Wikipedia} data.
 
 \section{Bilingual Word Embeddings}%
 \label{sec:bilingual_word_embeddings}

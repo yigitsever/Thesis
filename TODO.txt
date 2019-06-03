@@ -15,7 +15,6 @@ Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
 Chapters/Chapter2.tex:% TODO define hyperparameters?
 Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
 Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
-Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here
 Chapters/Chapter1.tex:% TODO Maybe a figure.
 Chapters/Chapter1.tex:% TODO A reference here
 Chapters/Chapter1.tex:% TODO A reference here
@@ -24,3 +23,4 @@ Chapters/Chapter1.tex:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:% TODO reference here after chapter 2
 Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
 Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here

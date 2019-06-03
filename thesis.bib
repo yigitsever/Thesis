@@ -22,7 +22,7 @@
   url = {http://arxiv.org/abs/1405.4053},
   abstract = {Many machine learning algorithms require the input to be represented as a fixed-length feature vector. When it comes to texts, one of the most common fixed-length features is bag-of-words. Despite their popularity, bag-of-words features have two major weaknesses: they lose the ordering of the words and they also ignore semantics of the words. For example, "powerful," "strong" and "Paris" are equally distant. In this paper, we propose Paragraph Vector, an unsupervised algorithm that learns fixed-length feature representations from variable-length pieces of texts, such as sentences, paragraphs, and documents. Our algorithm represents each document by a dense vector which is trained to predict words in the document. Its construction gives our algorithm the potential to overcome the weaknesses of bag-of-words models. Empirical results show that Paragraph Vectors outperform bag-of-words models as well as other techniques for text representations. Finally, we achieve new state-of-the-art results on several text classification and sentiment analysis tasks.},
   date = {2014-05-16},
-  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Learning},
+  keywords = {Computer Science - Computation and Language,Computer Science - Artificial Intelligence,Computer Science - Learning},
   author = {Le, Quoc V. and Mikolov, Tomas},
   file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/V4EC6U8K/Le and Mikolov - 2014 - Distributed Representations of Sentences and Docum.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/7236JI6V/1405.html}
 }
@@ -1546,6 +1546,108 @@ and also checked by hand.},
   author = {Šarić, Frane and Glavaš, Goran and Karan, Mladen and Šnajder, Jan and Bašić, Bojana Dalbelo},
   file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/I7CWA5G7/Šarić et al. - 2012 - TakeLab Systems for Measuring Semantic Text Simil.pdf},
   venue = {Montréal, Canada}
+}
+
+@article{ruder_discriminative_2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1808.09334},
+  primaryClass = {cs, stat},
+  title = {A {{Discriminative Latent}}-{{Variable Model}} for {{Bilingual Lexicon Induction}}},
+  url = {http://arxiv.org/abs/1808.09334},
+  abstract = {We introduce a novel discriminative latent-variable model for the task of bilingual lexicon induction. Our model combines the bipartite matching dictionary prior of Haghighi et al. (2008) with a state-of-the-art embedding-based approach. To train the model, we derive an efficient Viterbi EM algorithm. We provide empirical improvements on six language pairs under two metrics and show that the prior theoretically and empirically helps to mitigate the hubness problem. We also demonstrate how previous work may be viewed as a similarly fashioned latent-variable model, albeit with a different prior.},
+  urldate = {2019-06-03},
+  date = {2018-08-28},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Ruder, Sebastian and Cotterell, Ryan and Kementchedjhieva, Yova and Søgaard, Anders},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/WB7FGA2N/Ruder et al. - 2018 - A Discriminative Latent-Variable Model for Bilingu.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/S7U5KFHF/1808.html}
+}
+
+@inproceedings{jagarlamudi_bilingual_2011,
+  location = {{Stroudsburg, PA, USA}},
+  title = {From {{Bilingual Dictionaries}} to {{Interlingual Document Representations}}},
+  isbn = {978-1-932432-88-6},
+  url = {http://dl.acm.org/citation.cfm?id=2002736.2002768},
+  abstract = {Mapping documents into an interlingual representation can help bridge the language barrier of a cross-lingual corpus. Previous approaches use aligned documents as training data to learn an interlingual representation, making them sensitive to the domain of the training data. In this paper, we learn an interlingual representation in an unsupervised manner using only a bilingual dictionary. We first use the bilingual dictionary to find candidate document alignments and then use them to find an interlingual representation. Since the candidate alignments are noisy, we develop a robust learning algorithm to learn the interlingual representation. We show that bilingual dictionaries generalize to different domains better: our approach gives better performance than either a word by word translation method or Canonical Correlation Analysis (CCA) trained on a different domain.},
+  booktitle = {Proceedings of the 49th {{Annual Meeting}} of the {{Association}} for {{Computational Linguistics}}: {{Human Language Technologies}}: {{Short Papers}} - {{Volume}} 2},
+  series = {{{HLT}} '11},
+  publisher = {{Association for Computational Linguistics}},
+  urldate = {2019-06-03},
+  date = {2011},
+  pages = {147--152},
+  keywords = {matching},
+  author = {Jagarlamudi, Jagadeesh and Daumé, III, Hal and Udupa, Raghavendra},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/K648X7IF/Jagarlamudi et al. - 2011 - From Bilingual Dictionaries to Interlingual Docume.pdf},
+  venue = {Portland, Oregon}
+}
+
+@inproceedings{daume_domain_2011,
+  location = {{Stroudsburg, PA, USA}},
+  title = {Domain {{Adaptation}} for {{Machine Translation}} by {{Mining Unseen Words}}},
+  isbn = {978-1-932432-88-6},
+  url = {http://dl.acm.org/citation.cfm?id=2002736.2002819},
+  abstract = {We show that unseen words account for a large part of the translation error when moving to new domains. Using an extension of a recent approach to mining translations from comparable corpora (Haghighi et al., 2008), we are able to find translations for otherwise OOV terms. We show several approaches to integrating such translations into a phrase-based translation system, yielding consistent improvements in translations quality (between 0.5 and 1.5 Bleu points) on four domains and two language pairs.},
+  booktitle = {Proceedings of the 49th {{Annual Meeting}} of the {{Association}} for {{Computational Linguistics}}: {{Human Language Technologies}}: {{Short Papers}} - {{Volume}} 2},
+  series = {{{HLT}} '11},
+  publisher = {{Association for Computational Linguistics}},
+  urldate = {2019-06-03},
+  date = {2011},
+  pages = {407--412},
+  keywords = {matching},
+  author = {Daumé, III, Hal and Jagarlamudi, Jagadeesh},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/UKZ2EZHT/Daumé and Jagarlamudi - 2011 - Domain Adaptation for Machine Translation by Minin.pdf},
+  venue = {Portland, Oregon}
+}
+
+@article{singhal_modern_2001,
+  title = {Modern Information Retrieval: A Brief Overview},
+  volume = {24},
+  shorttitle = {Modern Information Retrieval},
+  abstract = {For thousands of years people have realized the importance of archiving and finding information. With the advent of computers, it became possible to store large amounts of information; and finding useful information from such collections became a necessity. The field of Information Retrieval (IR) was born in the 1950s out of this necessity. Over the last forty years, the field has matured considerably. Several IR systems are used on an everyday basis by a wide variety of users. This article is a brief overview of the key advances in the field of Information Retrieval, and a description of where the state-of-the-art is at in the field.},
+  journaltitle = {Bulletin of the Ieee Computer Society Technical Committee on Data Engineering},
+  date = {2001},
+  pages = {2001},
+  author = {Singhal, Amit},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/Y4P7GIQE/Singhal - 2001 - Modern information retrieval a brief overview.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/6TS6UQBR/summary.html}
+}
+
+@article{bush_as_1945,
+  title = {As We May Think},
+  volume = {176},
+  number = {1},
+  journaltitle = {The atlantic monthly},
+  date = {1945},
+  pages = {101--108},
+  author = {Bush, Vannevar},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/YGX7UZTB/Bush - 1945 - As we may think.pdf}
+}
+
+@article{luhn_statistical_1957,
+  title = {A Statistical Approach to Mechanized Encoding and Searching of Literary Information},
+  volume = {1},
+  number = {4},
+  journaltitle = {IBM Journal of research and development},
+  date = {1957},
+  pages = {309--317},
+  author = {Luhn, Hans Peter},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/TH8IEUQD/Luhn - 1957 - A statistical approach to mechanized encoding and .pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/TM8CVX8R/5392697.html}
+}
+
+@article{groves_friend_2015,
+  title = {Friend or Foe? {{Google Translate}} in Language for Academic Purposes},
+  volume = {37},
+  issn = {0889-4906},
+  url = {http://www.sciencedirect.com/science/article/pii/S088949061400060X},
+  doi = {10.1016/j.esp.2014.09.001},
+  shorttitle = {Friend or Foe?},
+  abstract = {A recent development in digital technology, machine translation (MT), is improving in its ability to translate with grammatical and lexical accuracy, and is also becoming increasingly available for students of language for academic purposes. Given the acceptance of other digital technology for teaching and learning, it seems likely that machine translation will become a tool students will rely on to complete their assignments in a second language. This would have implications for the community of practice of academic language teaching. In this study students were asked to submit an essay in their first language and this was then translated into English through a web-based translation engine. The resulting English text was analysed for grammatical error. The analysis found that the translation engine was far from able to produce error-free text – however, judging in relation to international testing standards, the level of accuracy is approaching the minimum needed for university admission at many institutions. Thus, this paper sets out to argue, based on the assumption that MT will continue to improve, that this technology will have a profound influence on the teaching of Languages for Academic Purposes, and with imaginative use, will allow this influence to be positive for both the students and their instructors.},
+  journaltitle = {English for Specific Purposes},
+  urldate = {2019-06-03},
+  date = {2015-01-01},
+  pages = {112-121},
+  keywords = {Academic literacy,IT in SLA,Language for academic purposes,Machine translation,google translate},
+  author = {Groves, Michael and Mundt, Klaus},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/G4ZK6ZL8/Groves and Mundt - 2015 - Friend or foe Google Translate in language for ac.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/QVKWSS4F/S088949061400060X.html}
 }
 
 

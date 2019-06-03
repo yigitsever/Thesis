@@ -1,3 +1,7 @@
+Chapters/Chapter3.tex:% TODO reference the wordnet statistics table when you decide on where to put it
+Chapters/Chapter3.tex:% TODO maybe a fbox with more line width but captions don't work
+Chapters/Chapter3.tex:% TODO this table is ugly can we do better?
+Chapters/Chapter3.tex:%%% TODO lapjv %%%
 Chapters/Chapter2.tex:% TODO if this line stays you need to cite them
 Chapters/Chapter2.tex:% TODO I can't talk about this paper in a concise way or any way really, return later
 Chapters/Chapter2.tex:% TODO proper reference and check your notation
@@ -11,12 +15,6 @@ Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
 Chapters/Chapter2.tex:% TODO define hyperparameters?
 Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
 Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
-Chapters/Chapter3.tex:The first method we have investigated works naively by translating the target language's corpora to English using Google Cloud API\@. %TODO ref
-Chapters/Chapter3.tex:% TODO reference the wordnet statistics table when you decide on where to put it
-Chapters/Chapter3.tex:% TODO maybe a fbox with more line width but captions don't work
-Chapters/Chapter3.tex:% TODO this table is ugly can we do better?
-Chapters/Chapter3.tex:% TODO are you sure about N!
-Chapters/Chapter3.tex:%%% TODO lapjv %%%
 Chapters/Chapter1.tex:% TODO Maybe a figure.
 Chapters/Chapter1.tex:% TODO A reference here
 Chapters/Chapter1.tex:% TODO A reference here
@@ -25,3 +23,4 @@ Chapters/Chapter1.tex:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:% TODO reference here after chapter 2
 Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
 Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here

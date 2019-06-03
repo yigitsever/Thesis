@@ -6,3 +6,42 @@
 We experimented with in domain \emph{fasttext} embeddings.
 We have trained Romanian and Bulgarian embeddings and ran the WMD and Sinkhorn experiments.
 The performance dropped to the quarter of pre-trained embeddings so we have not repeated the experiments for other language corpora.
+
+We have evaluated our embeddings using the standard bilingual lexicon extraction as a general measure for their performance.
+Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say you should evaluate them using downstream tasks.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Language} & \textbf{FastText 1M} & \textbf{FastText 500k} & \textbf{numberbatch} \\
+        \midrule
+        bg & 33.61 & 35.17 & 51.97 \\
+        el & 37.37 & 39.58 & 30.35 \\
+        it & 58.20 & 59.28 & 50.37 \\
+        ro & 37.33 & 38.71 & 64.17 \\
+        sl & 21.42 & 22.91 & 74.74 \\
+        sq & 24.46 & 25.36 & 58.63 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Accuracy Scores of the Vectors Aligned Using VecMap}%
+    \label{tab:accuracy_results}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Language} & \textbf{FastText 1M} & \textbf{FastText 500k} & \textbf{numberbatch} \\
+        \midrule
+        bg & 96.43 & 93.36 & 17.53 \\
+        el & 94.44 & 90.28 & 12.15 \\
+        it & 97.93 & 95.97 & 41.08 \\
+        ro & 97.06 & 94.91 & 16.4 \\
+        sl & 94.67 & 90.73 & 9.23 \\
+        sq & 83.59 & 80.92 & 9.51 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Coverage Scores for the Vectors Aligned Using VecMap}%
+    \label{tab:coverage_results}
+\end{table}

@@ -3,34 +3,6 @@
 \label{chap:unsupervised_matching}
 
 %%% ROUGH FIRST DRAFT
-\section{Machine Translation}
-
-The first method we have investigated works naively by translating the target language's corpora to English using Google Cloud API\@. %TODO ref
-As before, we have created a baseline/golden/basis aligned corpora where English WordNet definitions are aligned to the translated target language definitions.
-Casting the task to monolingual retrieval, we can establish a baseline using \tfidf{} retrieval.
-We have chosen \tfidf{} as to ask if the task at hand can be solved by naive tools.
-In order to get \tfidf{} scores of the documents, first a term-document matrix is created.
-Documents being definitions and with an average of 10.62 words per definition, the resulting matrix is parse.
-In a \tfidf{} matrix, for an entry in the matrix $w_{i,j}$, we can give the formula for it as:
-\begin{equation*}
-    \varB{tf_{w,d}-idf_{w}} = {\sum_{w' \in d}{f_{w',d}}} \cdot \log \frac {N} {df_w}
-\end{equation*}
-Such that term $w_{i,j}$ depicts the importance of term $t$ with relation to its general importance throughout the corpus.
-Now we can define the similarity between the documents as the cosine similarity between their \tfidf{} vectors.
-For the row $w_t$ and $w_p$, cosine similarity between definitions $t, p$ is
-\begin{equation*}
-    \cos(\theta) =
-\end{equation*}
-
-Definitions are then separated into queries and corpora.
-Query definitions is then matched up against every definition in the corpora and the ten documents that are closest in terms of cosine similarity is retrieved.
-Within the retrieved documents, if the document with the matched sense id is retrieved in the first result, this is taken as a hit at 1.
-Mean Reciprocal Rank is also calculated in order to show the success of a retrieval scenario.
-
-Where monolingual retrieval falls short, we leveraged the power of word embeddings to capture the semantic information of the words.
-A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
-For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
-Yet before moving forward with WMD, we wanted to test sentence embeddings.
 
 \section{Linear Assignment Using Sentence Embeddings}%
 \label{sec:linear_assignment_using_sentence_embeddings}
@@ -106,11 +78,72 @@ Then, with the term-embedding matrix at hand, we have calculated definition embe
 \end{equation}
 Every word that makes up a definition is scaled by its vector in ${\rm I\!R}^n$, then concatenated to form sentence embeddings on ${\rm I\!R}^n$.
 
+% Bipartite graph or matrix
+% Give the assumption, defintions are one-to-one
 Given the N vectors from source and target language, we hypothesize that there exists a matching where every source definition vector is perfectly mapped to one target vector.
 Given that this problem naively iterates over $N!$ matchings, we have looked into an algorithm.
-% TODO are you sure about N!
 
 %%% TODO lapjv %%%
 % https://blog.sourced.tech/post/lapjv/
 %
+\section{Jonker Volgenant Algorithm}%
+\label{sec:jonker_volgenant_algorithm}
+% Ok jonker volgenant is super complicated
+% can I just say I'm using linear assignment? maybe talk about hungarian algortihm a bit
 
+\section{Results}%
+\label{sec:results}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+& \multicolumn{3}{c}{Percentage of Correctly Matched Definitions} \\
+\cmidrule(lr){2-4}
+        \textbf{Language} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+        \midrule
+        bg & 0.39 & 0.41 & 0.19 \\
+        el & 0.37 & 0.38 & 0.14 \\
+        it & 0.28 & 0.28 & 0.36 \\
+        ro & 0.39 & 0.39 & 0.20 \\
+        sl & 0.15 & 0.15 & 0.06 \\
+        sq & 0.55 & 0.54 & 0.27 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Linear Assignment Using 2000 Definitions}%
+    \label{tab:lapjv_2000}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+& \multicolumn{3}{c}{Percentage of Correctly Matched Definitions} \\
+\cmidrule(lr){2-4}
+        \textbf{Language} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+        bg & 0.35 & 0.36 & 0.18 \\
+        el & 0.36 & 0.36 & 0.12 \\
+        it & 0.25 & 0.25 & 0.32 \\
+        ro & 0.36 & 0.37 & 0.19 \\
+        sl & 0.11 & 0.11 & 0.05 \\
+        sq & 0.39 & 0.40 & 0.19 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Linear Assignment Using 3000 Definitions}%
+    \label{tab:lapjv_3000}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+& \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+\midrule
+        Best & 0.55 & 0.54 & 0.36 \\
+        Worst & 0.11 & 0.11 & 0.05 \\
+        Average & 0.33 & 0.33 & 0.19 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Summary of Linear Assignment}%
+    \label{tab:lapjv_summary}
+\end{table}

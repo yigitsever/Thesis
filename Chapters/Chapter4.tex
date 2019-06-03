@@ -1,7 +1,50 @@
 % Chapter Template
 
-\chapter{Unsupervised Retrieval}%
-\label{chap:unsupervised_retrieval}
+\chapter{Dictionary Alignment as Pseudo-Document Retrieval}%
+\label{chap:retrieval}
+
+Document retrieval is the prototypical information retrieval task.
+\textcite{bush_as_1945} first theorized the possibilities of the automatic information retrieval by machines in his essay titled \citetitle{bush_as_1945}.
+\textcite{singhal_modern_2001} also gives due credit to \textcite{luhn_statistical_1957} for the suggestion of document retrieval using word overlap.
+
+Modern information retrieval techniques are far from the scope of this thesis.
+Considering the small collection of documents at hand, we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them was small as well~\cite{singhal_modern_2001}.
+However, we will get leverage from a state of the art tool from the modern computer science that is Google Translate.
+
+\section{Machine Translation}
+
+The first method we will study starts off by translating the target language's corpora to English using Google Translate.
+We have used the Google Cloud API\footnote{\url{https://cloud.google.com/translate}} in order to automate the process.
+% TODO when the preparing the wordnets section is ready, refer there from here
+
+With the English Princeton WordNet definitions and the target wordnet definitions at hand, we can handle the task as monolingual document retrieval.
+We have used the vector space representation we have talked about in Chapter~\ref{chap:background_n_related}.
+
+
+
+We have chosen \tfidf{} as to ask if the task at hand can be solved by naive tools.
+In order to get \tfidf{} scores of the documents, first a term-document matrix is created.
+Documents being definitions and with an average of 10.62 words per definition, the resulting matrix is parse.
+In a \tfidf{} matrix, for an entry in the matrix $w_{i,j}$, we can give the formula for it as:
+\begin{equation*}
+    \varB{tf_{w,d}-idf_{w}} = {\sum_{w' \in d}{f_{w',d}}} \cdot \log \frac {N} {df_w}
+\end{equation*}
+Such that term $w_{i,j}$ depicts the importance of term $t$ with relation to its general importance throughout the corpus.
+Now we can define the similarity between the documents as the cosine similarity between their \tfidf{} vectors.
+For the row $w_t$ and $w_p$, cosine similarity between definitions $t, p$ is
+\begin{equation*}
+    \cos(\theta) =
+\end{equation*}
+
+Definitions are then separated into queries and corpora.
+Query definitions is then matched up against every definition in the corpora and the ten documents that are closest in terms of cosine similarity is retrieved.
+Within the retrieved documents, if the document with the matched sense id is retrieved in the first result, this is taken as a hit at 1.
+Mean Reciprocal Rank is also calculated in order to show the success of a retrieval scenario.
+
+Where monolingual retrieval falls short, we leveraged the power of word embeddings to capture the semantic information of the words.
+A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
+For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
+Yet before moving forward with WMD, we wanted to test sentence embeddings.
 
 \section{Cross Lingual Document Retrival}%
 \label{sec:cross_lingual_document_retrival}

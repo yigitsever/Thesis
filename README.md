@@ -38,3 +38,15 @@ Behbood's 1969 paper provides a framework for . . .
 In a follow-up experiment, we will study the role of . . .
 The influence of temperature will be the object of future research . . .
 
+# [Indicate Elision in Quotation](https://tex.stackexchange.com/questions/3389/how-to-indicate-elision-in-a-quotation)
+
+```latex
+\documentclass{article}
+\usepackage{csquotes}
+
+\begin{document}
+
+\enquote{The csquotes package provides elipses, \textelp{} as well as smart quoting.}
+
+\end{document}
+```

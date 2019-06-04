@@ -24,7 +24,11 @@ Chapters/Chapter1.tex:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:% TODO reference here after chapter 2
 Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
 Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
-Chapters/Chapter4.tex:% TODO they are we use cldr, rewrite this after
-Chapters/Chapter4.tex:% TODO Then, we will look into cldr
+Chapters/Chapter4.tex:% TODO this can be expanded or moved to chapter 2
+Chapters/Chapter4.tex:% TODO they are not, we use cldr, rewrite this after
+Chapters/Chapter4.tex:% TODO then, we will look into cldr
 Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here
 Chapters/Chapter4.tex:% TODO figure out how to render bulgarian and greek text here and add them
+Chapters/Chapter4.tex:% TODO think about this / citation needed
+Chapters/Chapter4.tex:% TODO maybe a graphic here or one of those cool pseudo-codes
+Chapters/Chapter4.tex:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's

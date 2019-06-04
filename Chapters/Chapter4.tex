@@ -4,20 +4,21 @@
 \label{chap:retrieval}
 
 Document retrieval is the prototypical information retrieval task.
-\textcite{bush_as_1945} first theorized the possibilities of the automatic information retrieval by machines in his essay titled \citetitle{bush_as_1945}.
+\textcite{bush_as_1945} theorized the possibilities of the automatic information retrieval by machines in his essay titled \citetitle{bush_as_1945}.
 On his \citetitle{singhal_modern_2001}, \textcite{singhal_modern_2001} gives due credit to \textcite{luhn_statistical_1957} for the initial suggestion of using word overlap in document retrieval.
+% TODO this can be expanded or moved to chapter 2
 
 Modern information retrieval techniques are far from the scope of this thesis.
-% TODO they are we use cldr, rewrite this after
+% TODO they are not, we use cldr, rewrite this after
 Yet, we can still benefit from the tried and tested methods of the early information retrieval.
-Considering the small collection of documents at hand, first we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them was small as well~\cite{singhal_modern_2001}.
-However, we will get leverage from a state of the art tool from the modern computer science that is Google Translate.
-% TODO Then, we will look into cldr
+Considering the small collection of documents at hand, first we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them were small as well~\cite{singhal_modern_2001}.
+However, we will get leverage from a state of the art tool from the modern computer science; \emph{Google Translate}.
+% TODO then, we will look into cldr
 
-\section{Machine Translation}
+\section{Monolingual Retrieval}
 
-First of all, we will create a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
-We have used the Google Cloud API\footnote{\url{https://cloud.google.com/translate}} in order to automate the process.
+First of all, we created a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
+We used the Google Cloud API\footnote{\url{https://cloud.google.com/translate}} in order to automate the process.
 % TODO when the preparing the wordnets section is ready, refer there from here
 
 % TODO figure out how to render bulgarian and greek text here and add them
@@ -46,34 +47,37 @@ We have used the Google Cloud API\footnote{\url{https://cloud.google.com/transla
     \label{tab:google_translate_lol}
 \end{table}
 
-On Table~\ref{tab:google_translate_lol} we present some definitions and their automated translations to English.
-While the translations can inform the user about the general sense of the word, errors in sentence structure and the collapse of synonyms to singular terms are apparent from the duplicate words.
+Table~\ref{tab:google_translate_lol} presents some definitions and their automated translations to English.
+While the translations can inform the user about the general sense of the word, sentence structure is flawed at times.
+We can also see word duplication when synonyms collapse into single words.
 These shortcomings are also reported by \textcite{groves_friend_2015}.
 
-With the English Princeton WordNet definitions and 6 the target wordnet definitions at hand, we can handle the task as monolingual document retrieval.
+With the English Princeton WordNet definitions and 6 target wordnet definitions at hand, we can handle the task as \emph{monolingual document retrieval}.
 % We have presented the preliminary knowledge for the vector space representation in Chapter~\ref{chap:background_n_related}.
-We will use the vector space model we have talked about in Chapter~\ref{chap:background_n_related} to have real valued vectors that represent our definitions.
+We will use the vector space model that was mentioned in Chapter~\ref{chap:background_n_related} to have real valued vectors that represent the definitions.
 
-To begin with, the definitions that were extracted from English Princeton WordNet and target wordnet definitions have been collocated to form a corpora.
+To begin with, the definitions that were extracted from English Princeton WordNet and the target wordnet have been collocated to form a corpora.
+This process includes one target wordnet at a time and experiments were simply repeated for each wordnet.
 The vocabulary of this corpora is shared between the wordnet pairs as they have been joined in a single language.
 
-With the definitions and the vocabulary at hand, we have created a term-document matrix.
-In a term-document matrix the rows represent the documents and the columns denote individual vocabulary entries.
-Such a matrix $X$ is $d$ by $v$ while $d$ is the number of documents and $v$ is the size of the dictionary $|V|$.
-Our definitions are just short documents so we use the terms \emph{definition} and \emph{document} interchangeably.
-They also nicely collapse in the denotation $d$.
+\subsection{Term Document Matrix}%
+\label{sub:term_document_matrix}
 
-For any element of $X$, $X_{i,j}$ is the number of times $j$ occurs in the document $i$ .
-This matrix traditionally is sparse since documents use a fraction of the available vocabulary $V$.
+With the definition collection and the vocabulary at hand, we created a \emph{term-document} matrix.
+In a term-document matrix, rows represent the documents and columns denote individual vocabulary entries.
+Such a matrix $C$ is $m$ by $n$ while $m$ is the number of documents and $n$ is the size of the vocabulary $|V|$.
+Our definitions are just short documents so we use the terms \emph{definition} and \emph{document} interchangeably with the added benefit of using $d$ for both of them.
+
+For any element of $C$, $C_{i,j}$ is the number of times $j$ occurs in the document $i$.
+This matrix is sparse since documents use a fraction of the available vocabulary $V$.
 Our case with definitions is no different with an average of 10.62 words per definition.
 
-Using this sparse matrix representation, the similarity between two documents can be calculated by assigning a scoring scheme that uses their row representations.
-\emph{Cosine similarity} measure can be used to find the angle between two vectors and scales to multidimensional case trivially.
-Moreover, since the majority of the dimensions between the vectors are zero, cosine similarity ignores these dimensions and implicitly prioritizes the non-zero dimensions.
+\subsection{Term Weighting}%
+\label{sub:term_weighting}
 
-A term-document matrix is scaled in order to weigh the significant terms.
+Elements of a term-document matrix is scaled in order to assign weights to elements according to their discriminative power~\cite{manning_introduction_2009}.
 Stopwords like \enquote{the}, \enquote{and} have virtually no significance and terms that are common in the corpora's domain will have no discriminating power either, as explained by \textcite{manning_introduction_2009}.
-We have opted out of stopword removal considering our already limited short definitions.
+We have opted out of stopword removal considering our short definitions.
 
 What is a good scaling method for term weighing?
 \tfidf{} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
@@ -94,22 +98,48 @@ Where $N$ is the number of documents in the corpus. $\log(\cdot)$ is used to dam
         \item lowest when the term occurs in virtually all documents.
     \end{enumerate}
 \end{displayquote}
-
-By weighing our term-document matrix $X$, for any term $x_{i,j}$
+By weighing our term-document matrix $C$, for any term $x_{i,j}$
 \begin{equation}
-    x_{i,j} = tf_{td} \cdot idf_{t}
-\end{equation}
-Such that term $x_{i,j}$ depicts the importance of term $t$ with relation to its general significance throughout the corpus.
+x_{i,j} = \text{tf}_{td} \cdot \text{idf}_{t} \end{equation}
+Such that term $x_{i,j}$ shows the importance of term $t$ with relation to its general significance throughout the corpus.
 
-We can define the similarity between the definitions as the cosine similarity between their row vectors.
-For the row $d_t$ and $d_p$, cosine similarity between definitions $t, p$ is
+\subsection{Similarity Measure}%
+\label{sub:similarity_measure}
+
+Using the term-document matrix, similarity between two documents can be calculated by assigning a scoring scheme that uses rows as document vectors.
+\emph{Cosine similarity} is such a measure that can be used to find the cosine of the angle between two vectors and scales to multidimensional case trivially.
+Moreover, since the majority of the dimensions between the vectors are zero, cosine similarity ignores these dimensions and implicitly prioritizes the non-zero dimensions.
+% TODO think about this / citation needed
+
+For the row vector $\vec{d_t}$ and $\vec{d_p}$, cosine similarity between definitions $t, p$ is
 \begin{equation}
     \cos(\theta) = \text{sim}(d_t, d_p) = \frac{\vec{d_t} \cdot \vec{d_p}}{|\vec{d_t}||\vec{d_p}|}
 \end{equation}
 
-With rows that denote our definitions and a similarity measure at hand, we split the term-document matrix $X$ as English Princeton WordNet definitions and target wordnet definitions.
-We used the target wordnet definitions as pseudo-queries and used the English Princeton WordNet definitions as the corpus.
-We know that the definitions are aligned across wordnets, the correct definition we want to retrieve has the same index as the query definition.
+\subsection{Retrieval}%
+\label{sub:retrieval}
+
+With definition vectors and a similarity measure at hand, we split the term-document matrix $C$ as English Princeton WordNet definitions and target wordnet definitions.
+The target wordnet definitions were used as pseudo-queries and English Princeton WordNet definitions were used as the document collection to retrieve definitions from.
+% TODO maybe a graphic here or one of those cool pseudo-codes
+In order to retrieve and rank definitions given the query definition, cosine similarity between query and each corpus definition is calculated.
+The similarity scores that range between 0 and 1 are sorted in descending order with the definition index attached.
+The retrieved documents are ranked according to their similarity score.
+Since the definitions are aligned across wordnets, a correctly retrieved definition will have the same index as the query definition.
+
+\subsection{Evaluation}%
+\label{sub:evaluation}
+
+Information retrieval literature usually uses \emph{precision} and \emph{recall} as the evaluation metric with the assumption that the user wants to receive as many relevant documents as possible~\cite{salton_state_1992}.
+However, we only have one correct definition we are interested in and cannot access relevance any further for any other retrieved definitions anyway.
+As a result, we used a tweaked version of \emph{Mean reciprocal rank} (MRR) as introduced by \textcite{voorhees_trec-8_1999} in \citetitle{voorhees_trec-8_1999}.
+In the report, mean reciprocal rank was used in order to evaluate a question answering track where a singular correct answer was sought among other answers and is rewarded according to the returned rank.
+In other words, mean reciprocal rank evaluates a system's retrieval score with respect to the rank of a single correct answer. % cares about only the single highest ranked term
+\begin{equation}
+    \text{MRR} = \frac{1}{|Q|} \cdot \sum_{q}^{|Q|} \frac{1}{\text{rank}_{q}}
+\end{equation}
+% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
+Where rank$_q$ is the ranking of the \emph{correct} definition for the query $q$.
 
 \begin{table}[htbp]
     \centering
@@ -136,8 +166,25 @@ We know that the definitions are aligned across wordnets, the correct definition
     \label{tab:pwn_translated}
 \end{table}
 
-Within the retrieved documents, if the document with the matched sense id is retrieved in the first result, this is taken as a hit at 1.
-Mean Reciprocal Rank is also calculated in order to show the success of a retrieval scenario.
+\subsection{Results}%
+\label{sub:results}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrrrr}
+        \toprule%
+        Language & MRR & Top 10 & Top 10 \% & Top 1 & Top 1 \% \\
+        \midrule%
+        bg & 0.087 & 674 & 0.337 & 403 & 0.202 \\
+        el & 0.122 & 1006 & 0.503 & 709 & 0.355 \\
+        it & 0.016 & 476 & 0.238 & 250 & 0.125 \\
+        ro & 0.051 & 988 & 0.494 & 728 & 0.364 \\
+        sl & 0.073 & 584 & 0.292 & 317 & 0.159 \\
+        sq & 0.056 & 979 & 0.490 & 767 & 0.384 \\
+    \end{tabular}
+    \caption{Experiment results for monolingual retrieval}%
+    \label{tab:monolingual_tfidf}
+\end{table}
 
 Following the monolingual retrieval, we leveraged the power of word embeddings to include the semantic similarity between words.
 A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
@@ -152,9 +199,3 @@ Yet before moving forward with WMD, we wanted to test sentence embeddings.
 
 \subsection{Sinkhorn}%
 \label{sub:sinkhorn}
-
-
-
-
-
-

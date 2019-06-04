@@ -252,7 +252,8 @@ In \citetitle{mikolov_distributed_2013}, it is defined as follows;
 %The $w_{t-c}, w_{t-c+1}, \dots, w_{t+c-1}, w_{t+c}$ are the context of the word $w_t$.
 The $w_{1}, w_{2}, \dots, w_{T}$ are the context of the word $w_t$.
 %It includes $c$ words behind and $c$ words ahead of the word $w_t$.
-We should note that, \textcite{levy_improving_2015} has identified that this window size is \emph{dynamic} in the open source implementation of word2vec, where the actual window size is sampled between $1$ and $T$.
+We should note that, \textcite{levy_improving_2015} has identified that this window size is \emph{dynamic} in the open source implementation of word2vec, where the actual window size is sampled between $1$ and $T$.\footnote{Refer to \url{https://github.com/bollu/bollu.github.io\#everything-you-know-about-word2vec-is-wrong} for a comprehensive analysis}
+% TODO # was giving errors ...
 % In the Equation~\ref{eqn:bengio_softmax}, we have reported on the \emph{costly} softmax function, used by \citeauthor{bengio_neural_2003}.
 % \citeauthor{mikolov_distributed_2013} significantly improves their model's performance by using \emph{hierarchical softmax}.
 % Hierarchical softmax~\cite{morin_hierarchical_2005} uses a binary tree to distribute the probability distribution among the leaves of the nodes.

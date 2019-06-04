@@ -5,43 +5,141 @@
 
 Document retrieval is the prototypical information retrieval task.
 \textcite{bush_as_1945} first theorized the possibilities of the automatic information retrieval by machines in his essay titled \citetitle{bush_as_1945}.
-\textcite{singhal_modern_2001} also gives due credit to \textcite{luhn_statistical_1957} for the suggestion of document retrieval using word overlap.
+On his \citetitle{singhal_modern_2001}, \textcite{singhal_modern_2001} gives due credit to \textcite{luhn_statistical_1957} for the initial suggestion of using word overlap in document retrieval.
 
 Modern information retrieval techniques are far from the scope of this thesis.
-Considering the small collection of documents at hand, we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them was small as well~\cite{singhal_modern_2001}.
+% TODO they are we use cldr, rewrite this after
+Yet, we can still benefit from the tried and tested methods of the early information retrieval.
+Considering the small collection of documents at hand, first we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them was small as well~\cite{singhal_modern_2001}.
 However, we will get leverage from a state of the art tool from the modern computer science that is Google Translate.
+% TODO Then, we will look into cldr
 
 \section{Machine Translation}
 
-The first method we will study starts off by translating the target language's corpora to English using Google Translate.
+First of all, we will create a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
 We have used the Google Cloud API\footnote{\url{https://cloud.google.com/translate}} in order to automate the process.
 % TODO when the preparing the wordnets section is ready, refer there from here
 
-With the English Princeton WordNet definitions and the target wordnet definitions at hand, we can handle the task as monolingual document retrieval.
-We have used the vector space representation we have talked about in Chapter~\ref{chap:background_n_related}.
+% TODO figure out how to render bulgarian and greek text here and add them
+\begin{table}[htbp]
+    \centering
+    \begin{tabulary}{\textwidth}{LR}
+        \toprule%
+        \textbf{Original Definition} & \textbf{Translated Definition} \\
+        \midrule%
+        bila pri starih Grkih in Rimljanih vojna ladja s tremi vrstami vesel & with the ancient Greeks and Romans, a three-wheeled war ship was happy \\
+        \cmidrule(rl){1-2}
+        znanstvena veja matematike, ki se ukvarja s prostorskimi lastnostmi teles in njihovimi medsebojnimi odnosi & the scientific branch of mathematics, which deals with the spatial properties of the bodies and their interrelations \\
+        \cmidrule(rl){1-2}
+        circumstanțe, stări de fapte, lucruri luate în calcul într + o discuție sau dezbatere & circumstances, facts, things taken into account in a discussion or discussion \\
+        \cmidrule(rl){1-2}
+        Fază a lunii în care este complet iluminată & Phase of the month in which it is fully illuminated \\
+        \cmidrule(rl){1-2}
+        Persoană care se ocupă cu pescuitul și uneori cu conservarea peștelui pescuit & A person who deals with fishing and sometimes with the conservation of fish fishing \\
+        \cmidrule(rl){1-2}
+        E bëj diçka që të shkojë e të përputhet me një qëllim të caktuar, i bëj ndryshimet e ndreqjet e nevojshme, që t'u përgjigjet kushteve e rrethanave të caktuara. & I do something to go and match a certain purpose, make the necessary adjustments and adjustments, to respond to certain conditions and circumstances. \\
+        \cmidrule(rl){1-2}
+        pohoj, a paraqit dikujt një gjë për ta parë, për t'u njohur me të a për të gjykuar për të; zbuloj diçka që të shihet; tregoj & I assure you, did someone present a thing to see, to know him or to judge him? I find something to be seen; show \\
+        \bottomrule %
+    \end{tabulary}%
+    \caption{Example definitions and translations}%
+    \label{tab:google_translate_lol}
+\end{table}
 
+On Table~\ref{tab:google_translate_lol} we present some definitions and their automated translations to English.
+While the translations can inform the user about the general sense of the word, errors in sentence structure and the collapse of synonyms to singular terms are apparent from the duplicate words.
+These shortcomings are also reported by \textcite{groves_friend_2015}.
 
+With the English Princeton WordNet definitions and 6 the target wordnet definitions at hand, we can handle the task as monolingual document retrieval.
+% We have presented the preliminary knowledge for the vector space representation in Chapter~\ref{chap:background_n_related}.
+We will use the vector space model we have talked about in Chapter~\ref{chap:background_n_related} to have real valued vectors that represent our definitions.
 
-We have chosen \tfidf{} as to ask if the task at hand can be solved by naive tools.
-In order to get \tfidf{} scores of the documents, first a term-document matrix is created.
-Documents being definitions and with an average of 10.62 words per definition, the resulting matrix is parse.
-In a \tfidf{} matrix, for an entry in the matrix $w_{i,j}$, we can give the formula for it as:
-\begin{equation*}
-    \varB{tf_{w,d}-idf_{w}} = {\sum_{w' \in d}{f_{w',d}}} \cdot \log \frac {N} {df_w}
-\end{equation*}
-Such that term $w_{i,j}$ depicts the importance of term $t$ with relation to its general importance throughout the corpus.
-Now we can define the similarity between the documents as the cosine similarity between their \tfidf{} vectors.
-For the row $w_t$ and $w_p$, cosine similarity between definitions $t, p$ is
-\begin{equation*}
-    \cos(\theta) =
-\end{equation*}
+To begin with, the definitions that were extracted from English Princeton WordNet and target wordnet definitions have been collocated to form a corpora.
+The vocabulary of this corpora is shared between the wordnet pairs as they have been joined in a single language.
 
-Definitions are then separated into queries and corpora.
-Query definitions is then matched up against every definition in the corpora and the ten documents that are closest in terms of cosine similarity is retrieved.
+With the definitions and the vocabulary at hand, we have created a term-document matrix.
+In a term-document matrix the rows represent the documents and the columns denote individual vocabulary entries.
+Such a matrix $X$ is $d$ by $v$ while $d$ is the number of documents and $v$ is the size of the dictionary $|V|$.
+Our definitions are just short documents so we use the terms \emph{definition} and \emph{document} interchangeably.
+They also nicely collapse in the denotation $d$.
+
+For any element of $X$, $X_{i,j}$ is the number of times $j$ occurs in the document $i$ .
+This matrix traditionally is sparse since documents use a fraction of the available vocabulary $V$.
+Our case with definitions is no different with an average of 10.62 words per definition.
+
+Using this sparse matrix representation, the similarity between two documents can be calculated by assigning a scoring scheme that uses their row representations.
+\emph{Cosine similarity} measure can be used to find the angle between two vectors and scales to multidimensional case trivially.
+Moreover, since the majority of the dimensions between the vectors are zero, cosine similarity ignores these dimensions and implicitly prioritizes the non-zero dimensions.
+
+A term-document matrix is scaled in order to weigh the significant terms.
+Stopwords like \enquote{the}, \enquote{and} have virtually no significance and terms that are common in the corpora's domain will have no discriminating power either, as explained by \textcite{manning_introduction_2009}.
+We have opted out of stopword removal considering our already limited short definitions.
+
+What is a good scaling method for term weighing?
+\tfidf{} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
+\tfidf{} is composed of two scores; term frequency \emph{tf} and inverse document frequency \emph{idf}.
+Term frequency $tf_{w,d}$ is the number of times term $w$ occurs in a document $d$.
+Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$.
+\begin{equation}
+    idf_w = \log{\frac{N}{df_w}}
+\end{equation}
+Where $N$ is the number of documents in the corpus. $\log(\cdot)$ is used to dampen the effect of the $idf$.
+
+\citeauthor{manning_introduction_2009} explains the intuition behind the \tfidf{} in his \citetitle{manning_introduction_2009} as follows;
+\begin{displayquote}
+    \textelp{}, tf-idf$_{t,d}$ assigns to term $t$ a weight in document $d$ that is
+    \begin{enumerate}
+        \item highest when $t$ occurs many times within a small number of documents (thus lending high discriminating power to those documents);
+        \item lower when the term occurs fewer times in a document, or occurs in many documents (thus offering a less pronounced relevance signal);
+        \item lowest when the term occurs in virtually all documents.
+    \end{enumerate}
+\end{displayquote}
+
+By weighing our term-document matrix $X$, for any term $x_{i,j}$
+\begin{equation}
+    x_{i,j} = tf_{td} \cdot idf_{t}
+\end{equation}
+Such that term $x_{i,j}$ depicts the importance of term $t$ with relation to its general significance throughout the corpus.
+
+We can define the similarity between the definitions as the cosine similarity between their row vectors.
+For the row $d_t$ and $d_p$, cosine similarity between definitions $t, p$ is
+\begin{equation}
+    \cos(\theta) = \text{sim}(d_t, d_p) = \frac{\vec{d_t} \cdot \vec{d_p}}{|\vec{d_t}||\vec{d_p}|}
+\end{equation}
+
+With rows that denote our definitions and a similarity measure at hand, we split the term-document matrix $X$ as English Princeton WordNet definitions and target wordnet definitions.
+We used the target wordnet definitions as pseudo-queries and used the English Princeton WordNet definitions as the corpus.
+We know that the definitions are aligned across wordnets, the correct definition we want to retrieve has the same index as the query definition.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabulary}{\textwidth}{LR}
+        \toprule%
+        \textbf{English Princeton WordNet Definition} & \textbf{Translated Definition} \\
+        \midrule%
+        ancient Greek or Roman galley or warship having three tiers of oars on each side & with the ancient Greeks and Romans, a three-wheeled war ship was happy \\
+        \cmidrule(rl){1-2}
+        the pure mathematics of points and lines and curves and surfaces & the scientific branch of mathematics, which deals with the spatial properties of the bodies and their interrelations \\
+        \cmidrule(rl){1-2}
+        everything stated or assumed in a given discussion & circumstances, facts, things taken into account in a discussion or discussion \\
+        \cmidrule(rl){1-2}
+        the time when the Moon is fully illuminated & Phase of the month in which it is fully illuminated \\
+        \cmidrule(rl){1-2}
+        someone whose occupation is catching fish & A person who deals with fishing and sometimes with the conservation of fish fishing \\
+        \cmidrule(rl){1-2}
+        make fit for, or change to suit a new purpose & I do something to go and match a certain purpose, make the necessary adjustments and adjustments, to respond to certain conditions and circumstances. \\
+        \cmidrule(rl){1-2}
+        admit (to a wrongdoing) & I assure you, did someone present a thing to see, to know him or to judge him? I find something to be seen; show \\
+        \bottomrule %
+    \end{tabulary}%
+    \caption{English Princeton WordNet definitions and the target wordnet definitions we want to match}%
+    \label{tab:pwn_translated}
+\end{table}
+
 Within the retrieved documents, if the document with the matched sense id is retrieved in the first result, this is taken as a hit at 1.
 Mean Reciprocal Rank is also calculated in order to show the success of a retrieval scenario.
 
-Where monolingual retrieval falls short, we leveraged the power of word embeddings to capture the semantic information of the words.
+Following the monolingual retrieval, we leveraged the power of word embeddings to include the semantic similarity between words.
 A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
 For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
 Yet before moving forward with WMD, we wanted to test sentence embeddings.

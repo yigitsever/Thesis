@@ -86,8 +86,9 @@ What is a good scaling method for term weighing?
 \tfidf{} is composed of two scores; term frequency \emph{tf} and inverse document frequency \emph{idf}.
 Term frequency $tf_{w,d}$ is the number of times term $w$ occurs in a document $d$.
 Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$.
+We have used the smooth variant of idf as follows;
 \begin{equation}
-    idf_w = \log{\frac{N}{df_w}}
+    idf_w = \log{\frac{N + 1}{df_w + 1}}
 \end{equation}
 Where $N$ is the number of documents in the corpus. $\log(\cdot)$ is used to dampen the effect of the $idf$.
 
@@ -185,18 +186,52 @@ Where rank$_q$ is the ranking of the \emph{correct} definition for the query $q$
         ro & 0.051 & 988 & 0.494 & 728 & 0.364 \\
         sl & 0.073 & 584 & 0.292 & 317 & 0.159 \\
         sq & 0.056 & 979 & 0.490 & 767 & 0.384 \\
+        \bottomrule
     \end{tabular}
     \caption{Experiment results for monolingual retrieval}%
     \label{tab:monolingual_tfidf}
 \end{table}
 
-Following the monolingual retrieval, we leveraged the power of word embeddings to include the semantic similarity between words.
-A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
-For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
-Yet before moving forward with WMD, we wanted to test sentence embeddings.
+% temporary
+% Following the monolingual retrieval, we leveraged the power of word embeddings to include the semantic similarity between words.
+% A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
+% For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
+% Yet before moving forward with WMD, we wanted to test sentence embeddings.
 
 \section{Cross Lingual Document Retrival}%
 \label{sec:cross_lingual_document_retrival}
+
+\subsection{Word Movers Distance}%
+\label{sub:word_movers_distance}
+
+% ROUGH DRAFT
+Following the popularization of the word2vec~\cite{mikolov_distributed_2013}, \textcite{kusner_word_2015} introduced \emph{Word Mover's Distance}.
+By adapting the optimal transport theorem into using distances between word embeddings and documents as probability distributions that are composed of words, he suggested the following;
+
+For an embedding matrix $X \in R^{n \times d}$ $d$ is the dimension the embedding was learned at and $n$ is the size of the vocabulary.
+% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
+In this configuration, a row $\vec{x_i} \in R^d$ of the matrix $X$ is the embedding for the $i^{\text{th}}$ word $w_i$.
+% TODO we have a nth package use it
+
+Given a a separate term-document matrix $C \in R^{m \times n}$, a row $\vec{d_j} \in R^n$ is the row vector for the $j^{\text{th}}$ document $d_j$.
+In the original paper \citetitle{kusner_word_2015}, the elements of the term-document matrix $C$ are given as normalized bag-of-words representations.
+Given the $i^{\text{th}}$ word in a document;
+\begin{equation}
+    d_i = \frac{tf_{}}{\sum_{j = 1}^{n}tf_{j}}
+\end{equation}
+Where tf$_{i,j}$ is the term frequency or the number of times term $i$ appears in document $j$.
+
+We have studied the \tfidf{} weighted case for using term-document matrices for document retrieval tasks.
+\citeauthor{kusner_word_2015} gives a brilliant example on a case where word overlap scoring nature of term-document matrices fall short;
+\begin{displayquote}
+    Recall the earlier example of two similar, but word-different sentences in one document: \enquote{Obama speaks to the media in Illinois} and in another: \enquote{The President greets the press in Chicago}. After stop-word removal, the two corresponding nBOW vectors \textbf{$d$} and \textbf{$d'$} have no common non-zero dimensions and therefore have close to maximum simplex distance, although their true distance is small.
+\end{displayquote}
+In order to use the innate similarity between words provided by word embeddings, \citeauthor{kusner_word_2015} first introduces a flow matrix $T \in R^{n \times n}$.
+
+\section{\citeauthor{balikas_cross-lingual_2018} Implementation}%
+\label{sec:balikas_cross-lingual_2018_implementation}
+
+
 
 \subsection{Optimal Transport}%
 \label{sub:optimal_transport}

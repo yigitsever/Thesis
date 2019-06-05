@@ -3,6 +3,19 @@ Chapters/Chapter3.tex:% TODO This can go to chapter2 and get expanded if need be
 Chapters/Chapter3.tex:% TODO reference the wordnet statistics table when you decide on where to put it
 Chapters/Chapter3.tex:% TODO cost matrix
 Chapters/Chapter3.tex:%%% TODO lapjv %%%
+Chapters/Chapter2.tex:% TODO if this line stays you need to cite them
+Chapters/Chapter2.tex:% TODO I can't talk about this paper in a concise way or any way really, return later
+Chapters/Chapter2.tex:% TODO proper reference and check your notation
+Chapters/Chapter2.tex:% TODO wrong, there's a tanh layer in the middle too
+Chapters/Chapter2.tex:% TODO please check this after you've gotten some sleep, like what is y?
+Chapters/Chapter2.tex:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
+Chapters/Chapter2.tex:% TODO skip-gram and maybe cbow figure here
+Chapters/Chapter2.tex:% TODO # was giving errors ...
+Chapters/Chapter2.tex:% TODO paste the negative sampling and subsampling of frequent words to be honest
+Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
+Chapters/Chapter2.tex:% TODO define hyperparameters?
+Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
+Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
 Chapters/Chapter1.tex:% TODO Maybe a figure.
 Chapters/Chapter1.tex:% TODO A reference here
 Chapters/Chapter1.tex:% TODO A reference here
@@ -20,16 +33,5 @@ Chapters/Chapter4.tex:% TODO idf was suggested by jones_statistical_1972 not tfi
 Chapters/Chapter4.tex:% TODO think about this / citation needed
 Chapters/Chapter4.tex:% TODO maybe a graphic here or one of those cool pseudo-codes
 Chapters/Chapter4.tex:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
-Chapters/Chapter2.tex:% TODO if this line stays you need to cite them
-Chapters/Chapter2.tex:% TODO I can't talk about this paper in a concise way or any way really, return later
-Chapters/Chapter2.tex:% TODO proper reference and check your notation
-Chapters/Chapter2.tex:% TODO wrong, there's a tanh layer in the middle too
-Chapters/Chapter2.tex:% TODO please check this after you've gotten some sleep, like what is y?
-Chapters/Chapter2.tex:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
-Chapters/Chapter2.tex:% TODO skip-gram and maybe cbow figure here
-Chapters/Chapter2.tex:% TODO # was giving errors ...
-Chapters/Chapter2.tex:% TODO paste the negative sampling and subsampling of frequent words to be honest
-Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
-Chapters/Chapter2.tex:% TODO define hyperparameters?
-Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
-Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
+Chapters/Chapter4.tex:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
+Chapters/Chapter4.tex:% TODO we have a nth package use it

@@ -11,6 +11,15 @@ Chapters/Chapter1.tex:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:% TODO reference here after chapter 2
 Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
 Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter4.tex:% TODO this can be expanded or moved to chapter 2
+Chapters/Chapter4.tex:% TODO they are not, we use cldr, rewrite this after
+Chapters/Chapter4.tex:% TODO then, we will look into cldr
+Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here
+Chapters/Chapter4.tex:% TODO figure out how to render bulgarian and greek text here and add them
+Chapters/Chapter4.tex:% TODO idf was suggested by jones_statistical_1972 not tfidf
+Chapters/Chapter4.tex:% TODO think about this / citation needed
+Chapters/Chapter4.tex:% TODO maybe a graphic here or one of those cool pseudo-codes
+Chapters/Chapter4.tex:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
 Chapters/Chapter2.tex:% TODO if this line stays you need to cite them
 Chapters/Chapter2.tex:% TODO I can't talk about this paper in a concise way or any way really, return later
 Chapters/Chapter2.tex:% TODO proper reference and check your notation
@@ -24,11 +33,3 @@ Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA?
 Chapters/Chapter2.tex:% TODO define hyperparameters?
 Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
 Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
-Chapters/Chapter4.tex:% TODO this can be expanded or moved to chapter 2
-Chapters/Chapter4.tex:% TODO they are not, we use cldr, rewrite this after
-Chapters/Chapter4.tex:% TODO then, we will look into cldr
-Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here
-Chapters/Chapter4.tex:% TODO figure out how to render bulgarian and greek text here and add them
-Chapters/Chapter4.tex:% TODO think about this / citation needed
-Chapters/Chapter4.tex:% TODO maybe a graphic here or one of those cool pseudo-codes
-Chapters/Chapter4.tex:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's

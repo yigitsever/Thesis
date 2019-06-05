@@ -81,6 +81,8 @@ We have opted out of stopword removal considering our short definitions.
 
 What is a good scaling method for term weighing?
 \tfidf{} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
+% TODO idf was suggested by jones_statistical_1972 not tfidf
+% \cite{robertson_understanding_2004} can be cited for full tfidf
 \tfidf{} is composed of two scores; term frequency \emph{tf} and inverse document frequency \emph{idf}.
 Term frequency $tf_{w,d}$ is the number of times term $w$ occurs in a document $d$.
 Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$.
@@ -102,6 +104,8 @@ By weighing our term-document matrix $C$, for any term $x_{i,j}$
 \begin{equation}
 x_{i,j} = \text{tf}_{td} \cdot \text{idf}_{t} \end{equation}
 Such that term $x_{i,j}$ shows the importance of term $t$ with relation to its general significance throughout the corpus.
+
+% textcite{ruiz-casado_automatic_2005} says tfidf + dot product was the best for their task
 
 \subsection{Similarity Measure}%
 \label{sub:similarity_measure}

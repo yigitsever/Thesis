@@ -3,9 +3,9 @@
 \chapter{Background Information \& Related Work}%
 \label{chap:background_n_related}
 
-\citeauthor{somers_youre_2014} puts down modern dictionaries in the article \citetitle{somers_youre_2014};
+\citeauthor{somers_youre_2014} puts down modern dictionaries in their article \citetitle{somers_youre_2014};
 \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
-Speaking as an author, the efficiency of dictionaries might be worrisome for \citeauthor{somers_youre_2014} but we will build this thesis on the presumption that dictionary definitions can indeed be represented in some semantic space.
+From the perspective of an author, the efficiency of dictionaries might be worrisome but we will build this thesis on the presumption that dictionary definitions can indeed be represented in some semantic space.
 
 \section{Word Embeddings}%
 \label{sec:word_embeddings}
@@ -20,22 +20,22 @@ Speaking as an author, the efficiency of dictionaries might be worrisome for \ci
 % Used as 'what to look for', though some has conflicting information
 
 \emph{Word embeddings} are real valued dense vectors for words.
-Recently, language modelling studies are focusing on explicitly learning word embeddings in order to show words or phrases as points on a low dimensional latent space.
-On the other hand, earlier research were obtaining what we can call feature vectors for words while studying natural language processing tasks such as named entity recognition or part of speech tagging~\cite{almeida_word_2019, collobert_unified_2008}.
-The vector representation allows researchers access to the tools of the broad literature in linear algebra and machine learning, they are intuitive for humans to interpret, more so for machines.
-Vectors can be compared as a measure of semantic similarity or composed together to build more expansive representations as well.
+Recently, language modelling studies have been focusing on explicitly learning word embeddings in order to show words or phrases as points on a low dimensional latent space.
+On the other hand, earlier research had been obtaining what we can call feature vectors for words while studying natural language processing tasks such as named entity recognition or part of speech tagging~\cite{almeida_word_2019, collobert_unified_2008}.
+The vector representation allows researchers access to the tools of the broad literature in linear algebra and machine learning, since they are intuitive for humans to interpret, more so for machines.
+Vectors can be compared as a measure of semantic similarity or composed together to build more expansive representations.
 
-Learned embeddings can be saved to the disk in matrix notation.
+Induced embeddings can be saved to the disk in matrix notation.
 Each row is labelled with a token that is denoted by the following $n$ real numbers, as popularized by the open source package \emph{word2vec}.\footnote{\url{https://code.google.com/archive/p/word2vec/}}
 Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications.
+% TODO citation here
 Word embeddings available in this manner are often called as \emph{pre-trained} models.
 Examples of pre-trained word embeddings are \emph{word2vec}, \emph{GloVe}, \emph{Numberbatch} and \emph{fastText}.
 % TODO if this line stays you need to cite them
 
-In this section, we will briefly present the history of word embeddings.
+In the following section, we will briefly present the history of word embeddings.
 Word embeddings is a sprawling subject that researchers has been building upon using the ideas from probabilistic, statistical and neural network models.
-We have omitted approaches that are not used for our study and constrained ourselves only to the literature that lead up to the model we will use.
-% TODO I'm not attached to this line anymore
+We have omitted crucial contributions that optimized models and brought the literature where it is today due to space constraints, following a path that will lead into the preliminary behind the models we have chosen.
 
 \subsection{History of Word Representations}%
 \label{sub:history_of_word_representations}
@@ -49,20 +49,21 @@ In his \citeyear{harris_distributional_1954} article, \textcite{harris_distribut
 He argued that similar words appear within similar contexts.
 The famous quote by \textcite{firth_synopsis_1957} captures the idea as;
 \enquote{You shall know a word by the company it keeps!}
-For instance, the semantic similarity between the terms \emph{jacket} and \emph{coat} can be theoretically shown since they will be accompanied by similar verbs, such as \emph{wear}, \emph{dry clean} or \emph{hang}, and similar adjectives such as \emph{warm} or \emph{leather}.
+For instance, the semantic similarity or relatedness between the terms \emph{jacket} and \emph{coat} can be theoretically shown since they will be accompanied by similar verbs, such as \emph{wear}, \emph{dry clean} or \emph{hang}, and similar adjectives such as \emph{warm} or \emph{leather}.
 
 Early attempts to show words on a semantic space is studied in \textcite{osgood_measurement_1957}.
-Authors suggested representing concepts using orthogonal scales and relying on human judgement score meanings on the axes.
+Authors suggested representing concepts using orthogonal scales and relying on human judgement to score meanings on the axes.
 An example concept from their study is given in Figure~\ref{fig:early_vectors}.
 \begin{figure}[ht]
     \centering
     \incfig{Figures/early_semantic_vectors}
-    \caption{Sense representation from human judgement, adapted from \textcite{osgood_measurement_1957}.}%
+    \caption{Sense representation using human judgement scores for the concept \enquote{Father} adapted from \textcite{osgood_measurement_1957}.}%
     \label{fig:early_vectors}
 \end{figure}
-However, for a researcher to pick appropriate scales or extract these meanings by hand would be infeasible for natural language processing tasks~\cite{lund_producing_1996}.
+However, for a researcher to pick appropriate scales or have meaning extracted by hand would be infeasible for natural language processing tasks~\cite{lund_producing_1996}.
 
 Even though \citeauthor{harris_distributional_1954} argued that \enquote{language is not merely a bag of words}, using unordered collection of word counts to capture the semantic information will be used in the literature and be known as the \emph{bag-of-words} hypothesis.
+% TODO cite bag of words?
 
 \subsubsection{Vector Space Model}%
 \label{ssub:vector_space_model}
@@ -72,8 +73,8 @@ The intent was to extract vectors that represented \emph{documents}.
 First vector space model developed by \textcite{salton_vector_1975} was presented in \citetitle{salton_vector_1975}.
 % multiple sources say it's first, we should be fine
 It was the first application of bag-of-words hypothesis on a corpus to extract semantic information~\cite{turney_frequency_2010}.
-\citeauthor{salton_vector_1975} presented the novel idea of a \emph{document space}, consisting of fixed sized vectors as the columns of a term document matrix.
-The dimensions of the vectors were the whole vocabulary of the corpus.
+\citeauthor{salton_vector_1975} presented the novel idea of a \emph{document space}, that consist of fixed sized vectors as the columns of a term document matrix.
+The dimensions of the row vectors were the whole vocabulary of the corpus.
 
 In this space, a document $D_i$ is represented using $t$ distinct terms as a row vector;
 \begin{displaymath}
@@ -92,7 +93,7 @@ The weights for each of the index terms $d_{ix}$ are calculated using the \tfidf
 % \end{displaymath}
 % simply log_2(n/d_{k})
 % Where $n$ is the number of documents in the collection and $d_k$ is the number of documents that consists the term $k$.
-The weighting scheme was selected to \enquote{assign the largest weight to those terms which arise with high frequency in individual documents, but are at the same time relatively rare in the collection as a whole}.
+The weighting scheme was selected to \enquote{assign the largest weight to those terms which arise with high frequency in individual documents, but are at the same time relatively rare in the collection as a whole}~\cite{salton_vector_1975}.
 %They have cast their similarity function between documents as the inner product between their vectors which corresponds to the cosine similarity.
 
 The vector space model allowed \citeauthor{salton_vector_1975} to handle the similarity between documents as the angle between two vectors.
@@ -106,7 +107,7 @@ They have identified that the term document matrix approach cannot handle synony
 % TODO word overlap, you cited this on chapter 4?
 Synonymity is an issue because the query can have terms that have the same meaning as the target word, without getting matched.
 On the other hand, homonyms can match with an unrelated word.
-In order to address these issues, their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
+In order to answer these issues, their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
 
 Latent semantic analysis starts with a word co-occurrence matrix $X$.
 The terms of the matrix is weighted by some weighting scheme.
@@ -118,8 +119,9 @@ A term document matrix $X$ is then factorized into three matrices using singular
 \end{displaymath}
 Where the columns of $T_{0}$ and $D_{0}'$ are orthogonal to each other and $S_{0}$ is the diagonal matrix of singular values.
 The singular values of $S_{0}$ can be ordered by size to keep only the $k$ largest elements, setting others to zero~\cite{deerwester_indexing_1990}.
+The resulting matrix is shown as $S$.
 
-They talk about the use for the resulting matrix as follows;
+\citeauthor{deerwester_indexing_1990} talk about the use for the resulting matrix as follows;
 \begin{displayquote}
     Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
     That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
@@ -127,7 +129,7 @@ They talk about the use for the resulting matrix as follows;
 They have used this technique to solve document similarity task and briefly mentioned \emph{word similarity}.
 % TODO blockquoting doesn't look nice, paraphrase it
 % levy_improving_2015 section 2.2 has a very short and nice explanation if you want
-\textcite{landauer_solution_1997} later studied word similarity using latent semantic analysis.
+\textcite{landauer_solution_1997} later studied word similarity in full using latent semantic analysis.
 
 \subsection{Building Upon Distributional Hypothesis}%
 \label{sub:building_upon_distributional_hypothesis}
@@ -145,7 +147,7 @@ However, they claimed that the computation power available was not suitable yet 
 % Why did Lund capture associativity instead of semantic relatedness?
 % Collobert! This just predicts the next word, not the job of a word in a text
 \textcite{lund_producing_1996} took the challenge and experimented upon 160 million \emph{words} taken from the Usenet, a precursor to the internet.
-They used a context size of 10 words and provided a method to obtain feature vectors to represent the meaning of words.
+They used a context window of 10 words and provided a method to obtain feature vectors to represent the meaning of words.
 % maybe talk about the method but seems redundant
 However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
 To give an example, \emph{school} is related to \emph{student} while they are not similar.
@@ -176,7 +178,7 @@ To give an example, \emph{school} is related to \emph{student} while they are no
 Their model would learn feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
 Although neural networks have been proposed to learn a language model by \textcite{xu_can_2000}, the main contribution of \citeauthor{bengio_neural_2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
 For a corpus of $V$ words, there are $|V|$ dimensions for the language model to learn and taking \emph{n-gram} representations into consideration, the problem grows exponentially.
-Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable, more representative dimensions.
+Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable, more representative dimensions and the problem scaled linearly.
 % $|V| >> m$
 
 The setup for the neural network starts with the one hot encoded vector representation of the context for a word $w$.
@@ -189,17 +191,20 @@ In other words, context window of $w_t$ is $T$ words on the left of $w_t$.
     \hat{P}(w_1^T) = \prod_{t=1}^{T}\hat{P}(w_t | w_{1}^{t-1})
 \end{displaymath}
 
-The input layer is projected into an embedding layer, later to a softmax layer to get a probability distribution.
+The input layer is projected into an embedding layer, later to a softmax layer to get a probability distribution in order to minimize the following cost function.
+% TODO check this sentence again, you might be remembering the details wrong
 % TODO wrong, there's a tanh layer in the middle too
 % http://ruder.io/word-embeddings-softmax/index.html has a beautiful softmax equation
 \begin{equation}%
     \label{eqn:bengio_softmax}
     \hat{P}(w_t|w_{t-1}, \dots, w_{t-n+1}) = \frac{e^{y_{w_{t}}}}{\sum_{i}e^{y_{i}}}
 \end{equation}
-However, this formulation is too expensive computationally since all vocabulary needs to be considered for the sum in the denominator.
 % TODO please check this after you've gotten some sleep, like what is y?
-Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
+However, this formulation is too expensive computationally since all vocabulary needs to be considered for the sum in the denominator.
+The curse of dimensionality problem were shifted to the final layer of the neural network which will be solved later using hierarchical softmax.
+% TODO cite hierarchical softmax
 % TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
+Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
 
 \textcite{collobert_unified_2008} suggested a deep neural network model in order to learn feature vectors for various natural language processing tasks.
 Their proposed approach for language model is important for our case since it explicitly learned distributed word representations or simply \emph{word embeddings}.
@@ -245,12 +250,12 @@ They summarize their contribution as follows;
 word2vec package~\cite{mikolov_efficient_2013,mikolov_distributed_2013,mikolov_linguistic_2013} popularized word embeddings.
 There are two aspects of the work done by \citeauthor{mikolov_distributed_2013}  that contributed to the fact;
 \begin{itemize}
-    \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words.
+    \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words using a shallow neural network, keeping the computational cost down.
     \item They published their code as well as their pre-trained embeddings as an open source project\footnote{\url{https://code.google.com/archive/p/word2vec/}}.
 \end{itemize}
 The second point is self explanatory but in order to argue about the first one, we should report the algorithms behind word2vec.
 
-The \emph{skip-gram model}~\cite{mikolov_efficient_2013} model differs from the previous methods by predicting the surrounding words given the target word.
+The \emph{skip-gram model} introduced by \textcite{mikolov_efficient_2013} differs from the previous methods by predicting the surrounding words given the target word.
 % TODO skip-gram and maybe cbow figure here
 In \citetitle{mikolov_distributed_2013}, it is defined as follows;
 \begin{equation}
@@ -287,6 +292,7 @@ Representation algorithms they considered are;
 \end{itemize}
 They found out that choice of a particular algorithm played an insignificant role compared to choosing the right \emph{hyperparameters}.
 % TODO define hyperparameters?
+Besides, the amount of data the models are trained on were more important than the model itself.
 They used this finding to counter the results reported by \textcite{baroni_dont_2014}.
 \citeauthor{baroni_dont_2014} claimed that predictive models outperformed count based models.
 On the other hand, \citeauthor{levy_improving_2015} noted that \citeauthor{baroni_dont_2014} used count based models without hyperparameter tuning, denying them from \enquote{tricks} developed in the word representation literature.
@@ -301,24 +307,47 @@ Armed with the fact that a good word representation model should tune their hype
 On their website, authors define fastText as (a) \enquote{Library for efficient text classification and representation learning}.
 The ideas behind it are presented in \textcite{mikolov2018advances}.
 Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
+% TODO maybe a word about mnih
 
-The character n-grams or subword model is presented in \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
-Instead of using a context window and learning the representation of a target word given the context or the other way around given the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams;
+Let us turn our focus on \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
+Instead of using a context window and learning the representation of a target word given the context or switching them around given the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams;
 % TODO <wh, whe, her, ere, re> figure
-With the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
+with the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
 \begin{displaymath}
     s(w,c) = \sum_{g \in G_{w}}z_{g}^T v_c
 \end{displaymath}
-% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
+% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
 
 They are currently hosting pre-trained word embeddings for 157 languages, built from \emph{Common Crawl} and \emph{Wikipedia} data on their website~\footnote{\url{https://fasttext.cc/}}.
 
 \subsection{ConceptNet Numberbatch}%
 \label{sub:conceptnet_numberbatch}
-We also included numberbatch embeddings for our experiments.
-While we have been talking about word embeddings built upon distributional semantics, numberbatch uses a knowledge graph.
-\textcite{speer_conceptnet_2017} uses retrofitting on their sense graph using distributional word embeddings to get word embeddings with more \emph{understanding}.
-ConceptNet has relations close to what we have seen in WordNet such as \enquote{has-a}, \enquote{is-a}  as well as tool-purpose.
+
+ConceptNet\footnote{\url{http://conceptnet.io/}} is a knowledge graph.
+Like the WordNet, it presents semantic relationships between concepts but the defined relationships are more fine grained.
+The relationships are collocated from various resources like Wikimedia, English Princeton WordNet and knowledge databases like DBPedia.
+%TODO return to this line
+ConceptNet stylizes its relations with the \texttt{/r/Relationship} syntax.
+For instance, being distinct members of a set relation is defined as \texttt{/r/DistinctFrom} which includes concepts like August and September.\footnote{\url{https://github.com/commonsense/conceptnet5/wiki/Relations}}.
+Compared to WordNet, more subjective, human centric relations are defined such as \texttt{/r/MotivatedByGoal}, relationship between \emph{compete} and \emph{win} or \texttt{/r/ObstructedBy}, the relationship between \emph{sleep} and \emph{noise}.
+Total number of relations that are available between two concepts is 36.
+Moreover, these relationships are \emph{weighted} depending on how present they are.
+For example, the concept \emph{run} is related to \emph{fast} with a weight of \texttt{9.42} but the similarity between \emph{race} and \emph{run} is weighted at \texttt{2.54}.
+Finally, the ConcepNet is multilingual, encompassing 304 languages in total with 77 of them reported as having moderate support that can be used in downstream tasks.
+% TODO check this fact again
+Details of the knowledge graph and the procedure is explained by \textcite{speer_conceptnet_2017} in the paper \citetitle{speer_conceptnet_2017}.
+
+\citeauthor{speer_conceptnet_2017} also present their resource in word embedding matrix form for ease of use in the current plug-and-play environment.
+In order to get word embeddings from the knowledge graph, first they prepare a symmetric term-term matrix $X$ where an element $w_{i,j}$ is the sum of all edge weights between terms $i$ and $j$.
+This is similar to a word co-occurrence matrix but instead of constructing the matrix using unstructured text, this approach builds upon semantic connections between senses.
+\citeauthor{speer_conceptnet_2017} reports that their approach learns \emph{relatedness} more so than \emph{similarity} which was reported by the word co-occurrence approaches before.
+%TODO cite here lund, deerwester?
+
+With the term-term matrix at hand, \citeauthor{speer_conceptnet_2017} weigh the terms using positive pointwise mutual information (PPMI) as suggested by \textcite{levy_improving_2015} and reduce it to 300 dimensions, as is standard set by word2vec, using truncated SVD\@.
+Resulting matrix is similar to approaches set by \textcite{deerwester_indexing_1990} or \textcite{pennington_glove_2014} but \citeauthor{speer_conceptnet_2017} enrich it further using \emph{retrofitting} as proposed by \textcite{faruqui_improving_2014}.
+Pre-trained word2vec and GloVe embeddings are incorporated into the reduced term-term matrix to finally obtain embeddings that include both distributional and semantic relatedness signal.
+Authors call their finalized model \emph{ConceptNet numberbatch}.
+\citeauthor{speer_conceptnet_2017} reports state of the art results compared to word2vec embeddings on word relatedness and models built using their embeddings get scores equivalent to humans on SAT-style analogy tasks.
 
 \section{Bilingual Word Embeddings}%
 \label{sec:bilingual_word_embeddings}

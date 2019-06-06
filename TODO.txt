@@ -1,40 +1,46 @@
-main.tex:\usepackage[backend=biber,style=nature]{biblatex} % remove natbib TODO use this version if nothing breaks
-Chapters/Chapter3.tex:% TODO down below two tracks for sentence embeddings will crash, print out and clean up
-Chapters/Chapter3.tex:% TODO This can go to chapter2 and get expanded if need be
-Chapters/Chapter3.tex:% TODO reference the wordnet statistics table when you decide on where to put it
-Chapters/Chapter3.tex:% TODO cost matrix
-Chapters/Chapter3.tex:%%% TODO lapjv %%%
-Chapters/Chapter2.tex:% TODO if this line stays you need to cite them
-Chapters/Chapter2.tex:% TODO I'm not attached to this line anymore
-Chapters/Chapter2.tex:% TODO word overlap, you cited this on chapter 4?
-Chapters/Chapter2.tex:% TODO blockquoting doesn't look nice, paraphrase it
-Chapters/Chapter2.tex:% TODO proper reference and check your notation
-Chapters/Chapter2.tex:% TODO wrong, there's a tanh layer in the middle too
-Chapters/Chapter2.tex:% TODO please check this after you've gotten some sleep, like what is y?
-Chapters/Chapter2.tex:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
-Chapters/Chapter2.tex:% TODO skip-gram and maybe cbow figure here
-Chapters/Chapter2.tex:% TODO might not rely on some random guy's repo
-Chapters/Chapter2.tex:% TODO paste the negative sampling and subsampling of frequent words to be honest
-Chapters/Chapter2.tex:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
-Chapters/Chapter2.tex:% TODO define hyperparameters?
-Chapters/Chapter2.tex:% TODO <wh, whe, her, ere, re> figure
-Chapters/Chapter2.tex:% TODO section 3.2 of bojanowski_enriching_2016, is it alright to do this?
-Chapters/Chapter1.tex:% TODO Maybe a figure.
-Chapters/Chapter1.tex:% TODO A reference here
-Chapters/Chapter1.tex:% TODO A reference here
-Chapters/Chapter1.tex:% TODO maybe a sense graph here
-Chapters/Chapter1.tex:% TODO how to typeset numbers?
-Chapters/Chapter1.tex:% TODO reference here after chapter 2
-Chapters/Chapter1.tex:\section{Thesis Goals}% TODO return here
-Chapters/Chapter1.tex:% TODO we assume word embeddings are interchangeable
-Chapters/Chapter4.tex:% TODO this can be expanded or moved to chapter 2
-Chapters/Chapter4.tex:% TODO they are not, we use cldr, rewrite this after
-Chapters/Chapter4.tex:% TODO then, we will look into cldr
-Chapters/Chapter4.tex:% TODO when the preparing the wordnets section is ready, refer there from here
-Chapters/Chapter4.tex:% TODO figure out how to render bulgarian and greek text here and add them
-Chapters/Chapter4.tex:% TODO idf was suggested by jones_statistical_1972 not tfidf
-Chapters/Chapter4.tex:% TODO think about this / citation needed
-Chapters/Chapter4.tex:% TODO maybe a graphic here or one of those cool pseudo-codes
-Chapters/Chapter4.tex:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
-Chapters/Chapter4.tex:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
-Chapters/Chapter4.tex:% TODO we have a nth package use it
+Chapters/Chapter3.tex:9:% TODO down below two tracks for sentence embeddings will crash, print out and clean up
+Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need be
+Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
+Chapters/Chapter3.tex:75:% TODO cost matrix
+Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
+Chapters/Chapter2.tex:31:% TODO citation here
+Chapters/Chapter2.tex:34:% TODO if this line stays you need to cite them
+Chapters/Chapter2.tex:66:% TODO cite bag of words?
+Chapters/Chapter2.tex:107:% TODO word overlap, you cited this on chapter 4?
+Chapters/Chapter2.tex:130:% TODO blockquoting doesn't look nice, paraphrase it
+Chapters/Chapter2.tex:188:% TODO proper reference and check your notation
+Chapters/Chapter2.tex:195:% TODO check this sentence again, you might be remembering the details wrong
+Chapters/Chapter2.tex:196:% TODO wrong, there's a tanh layer in the middle too
+Chapters/Chapter2.tex:202:% TODO please check this after you've gotten some sleep, like what is y?
+Chapters/Chapter2.tex:205:% TODO cite hierarchical softmax
+Chapters/Chapter2.tex:206:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
+Chapters/Chapter2.tex:259:% TODO skip-gram and maybe cbow figure here
+Chapters/Chapter2.tex:269:% TODO might not rely on some random guy's repo
+Chapters/Chapter2.tex:276:% TODO paste the negative sampling and subsampling of frequent words to be honest
+Chapters/Chapter2.tex:279:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
+Chapters/Chapter2.tex:294:% TODO define hyperparameters?
+Chapters/Chapter2.tex:310:% TODO maybe a word about mnih
+Chapters/Chapter2.tex:314:% TODO <wh, whe, her, ere, re> figure
+Chapters/Chapter2.tex:319:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
+Chapters/Chapter2.tex:329:%TODO return to this line
+Chapters/Chapter2.tex:337:% TODO check this fact again
+Chapters/Chapter2.tex:344:%TODO cite here lund, deerwester?
+Chapters/Chapter1.tex:29:% TODO Maybe a figure.
+Chapters/Chapter1.tex:49:% TODO A reference here
+Chapters/Chapter1.tex:51:% TODO A reference here
+Chapters/Chapter1.tex:90:% TODO maybe a sense graph here
+Chapters/Chapter1.tex:95:% TODO how to typeset numbers?
+Chapters/Chapter1.tex:100:% TODO reference here after chapter 2
+Chapters/Chapter1.tex:174:\section{Thesis Goals}% TODO return here
+Chapters/Chapter1.tex:176:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter4.tex:9:% TODO this can be expanded or moved to chapter 2
+Chapters/Chapter4.tex:12:% TODO they are not, we use cldr, rewrite this after
+Chapters/Chapter4.tex:16:% TODO then, we will look into cldr
+Chapters/Chapter4.tex:22:% TODO when the preparing the wordnets section is ready, refer there from here
+Chapters/Chapter4.tex:24:% TODO figure out how to render bulgarian and greek text here and add them
+Chapters/Chapter4.tex:84:% TODO idf was suggested by jones_statistical_1972 not tfidf
+Chapters/Chapter4.tex:117:% TODO think about this / citation needed
+Chapters/Chapter4.tex:129:% TODO maybe a graphic here or one of those cool pseudo-codes
+Chapters/Chapter4.tex:146:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
+Chapters/Chapter4.tex:212:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
+Chapters/Chapter4.tex:214:% TODO we have a nth package use it

@@ -14,17 +14,16 @@ Chapters/Chapter2.tex:196:% TODO wrong, there's a tanh layer in the middle too
 Chapters/Chapter2.tex:202:% TODO please check this after you've gotten some sleep, like what is y?
 Chapters/Chapter2.tex:205:% TODO cite hierarchical softmax
 Chapters/Chapter2.tex:206:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
-Chapters/Chapter2.tex:259:% TODO skip-gram and maybe cbow figure here
-Chapters/Chapter2.tex:269:% TODO might not rely on some random guy's repo
-Chapters/Chapter2.tex:276:% TODO paste the negative sampling and subsampling of frequent words to be honest
-Chapters/Chapter2.tex:279:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
-Chapters/Chapter2.tex:294:% TODO define hyperparameters?
-Chapters/Chapter2.tex:310:% TODO maybe a word about mnih
-Chapters/Chapter2.tex:314:% TODO <wh, whe, her, ere, re> figure
-Chapters/Chapter2.tex:319:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
-Chapters/Chapter2.tex:329:%TODO return to this line
-Chapters/Chapter2.tex:337:% TODO check this fact again
-Chapters/Chapter2.tex:344:%TODO cite here lund, deerwester?
+Chapters/Chapter2.tex:274:% TODO might not rely on some random guy's repo
+Chapters/Chapter2.tex:281:% TODO paste the negative sampling and subsampling of frequent words to be honest
+Chapters/Chapter2.tex:284:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
+Chapters/Chapter2.tex:299:% TODO define hyperparameters?
+Chapters/Chapter2.tex:315:% TODO maybe a word about mnih
+Chapters/Chapter2.tex:319:% TODO <wh, whe, her, ere, re> figure
+Chapters/Chapter2.tex:324:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
+Chapters/Chapter2.tex:334:%TODO return to this line
+Chapters/Chapter2.tex:342:% TODO check this fact again
+Chapters/Chapter2.tex:349:%TODO cite here lund, deerwester?
 Chapters/Chapter1.tex:29:% TODO Maybe a figure.
 Chapters/Chapter1.tex:49:% TODO A reference here
 Chapters/Chapter1.tex:51:% TODO A reference here

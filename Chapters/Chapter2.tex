@@ -312,9 +312,8 @@ Armed with the fact that a good word representation model should tune their hype
 On their website, authors define fastText as (a) \enquote{Library for efficient text classification and representation learning}.
 The ideas behind it are presented in \textcite{mikolov2018advances}.
 Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
-% TODO maybe a word about mnih
 
-Let us turn our focus on \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
+Let us turn our focus towards \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
 Instead of using a context window and learning the representation of a target word given the context or switching them around given the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams;
 % TODO <wh, whe, her, ere, re> figure
 with the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
@@ -323,7 +322,12 @@ with the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dict
 \end{displaymath}
 % TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
 
-They are currently hosting pre-trained word embeddings for 157 languages, built from \emph{Common Crawl} and \emph{Wikipedia} data on their website~\footnote{\url{https://fasttext.cc/}}.
+\textcite{grave_learning_2018} trained fastText model on different languages using Wikipedia and Common Crawl data.
+Wikipedia is a curated encyclopaedia that can be used as a multilingual corpora with 28 languages that have over 100 million tokens and 82 languages with 10 million tokens~\cite{grave_learning_2018}.
+Considering the original word2vec was trained on 100 billion tokens, \citeauthor{grave_learning_2018} also used Common Crawl, a non profit project that collocates web pages and publishes the data publicly.
+This data can be inadvertently noisy which \citeauthor{grave_learning_2018} addressed using linewise language identification and by removing duplicate lines that often appear as leftover boilerplate on many cites.
+While Wikipedia provided them with a curated signal, Common Crawl data helped with capturing as many contexts as possible to train their distributed model.
+They are currently hosting the pre-trained word embeddings on their website~\footnote{\url{https://fasttext.cc/}}.
 
 \subsection{ConceptNet Numberbatch}%
 \label{sub:conceptnet_numberbatch}
@@ -339,7 +343,7 @@ Total number of relations that are available between two concepts is 36.
 Moreover, these relationships are \emph{weighted} depending on how present they are.
 For example, the concept \emph{run} is related to \emph{fast} with a weight of \texttt{9.42} but the similarity between \emph{race} and \emph{run} is weighted at \texttt{2.54}.
 Finally, the ConcepNet is multilingual, encompassing 304 languages in total with 77 of them reported as having moderate support that can be used in downstream tasks.
-% TODO check this fact again
+% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
 Details of the knowledge graph and the procedure is explained by \textcite{speer_conceptnet_2017} in the paper \citetitle{speer_conceptnet_2017}.
 
 \citeauthor{speer_conceptnet_2017} also present their resource in word embedding matrix form for ease of use in the current plug-and-play environment.
@@ -360,14 +364,12 @@ Authors call their finalized model \emph{ConceptNet numberbatch}.
 Cross lingual embedding models optimize similar objectives.
 Only source of variation is due to the data used and the monolingual regularization objectives employed~\cite{ruder_survey_2017}.
 
-\section{Document Retrieval}%
-\label{sec:document_retrieval}
-
 \section{Approaches in Wordnet Generation}%
 \label{sec:approaches_in_wordnet_generation}
 
 % from Leveraging Parallel Corpora and Existing Wordnets for Automatic Construction of the Slovene Wordnet
 WordNet generation is broken down into 4 categories
+% TODO \textcite{neale_survey_2018} says 2 and we are moving on with 2 because no time left
 \begin{enumerate}
     \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
     \item Link English entries from machine-readable bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
@@ -387,13 +389,3 @@ Relied upon traditional dictionaries.
 
 \textcite{metzler_similarity_2007} talked about short text retrieval and lexical matching.
 They reported that lexical matching is good for finding semantically identical matches.
-
-\textcite{xiao_distributed_2014} another embedding paper.
-
-\textcite{kusner_word_2015} is Word Mover's Distance.
-
-\textcite{balikas_cross-lingual_2018} suggested using optimal transport for cross-lingual document retrieval.
-
-\textcite{arora_simple_2016} simple but tough-to-beat baseline for sentence embeddings.
-
-\textcite{klementiev_inducing_2012} base paper for cross lingual word embeddings?

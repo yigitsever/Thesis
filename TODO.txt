@@ -18,12 +18,12 @@ Chapters/Chapter2.tex:274:% TODO might not rely on some random guy's repo
 Chapters/Chapter2.tex:281:% TODO paste the negative sampling and subsampling of frequent words to be honest
 Chapters/Chapter2.tex:284:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
 Chapters/Chapter2.tex:299:% TODO define hyperparameters?
-Chapters/Chapter2.tex:315:% TODO maybe a word about mnih
-Chapters/Chapter2.tex:319:% TODO <wh, whe, her, ere, re> figure
-Chapters/Chapter2.tex:324:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
-Chapters/Chapter2.tex:334:%TODO return to this line
-Chapters/Chapter2.tex:342:% TODO check this fact again
-Chapters/Chapter2.tex:349:%TODO cite here lund, deerwester?
+Chapters/Chapter2.tex:318:% TODO <wh, whe, her, ere, re> figure
+Chapters/Chapter2.tex:323:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
+Chapters/Chapter2.tex:338:%TODO return to this line
+Chapters/Chapter2.tex:346:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
+Chapters/Chapter2.tex:353:%TODO cite here lund, deerwester?
+Chapters/Chapter2.tex:372:% TODO \textcite{neale_survey_2018} says 2 and we are moving on with 2 because no time left
 Chapters/Chapter1.tex:29:% TODO Maybe a figure.
 Chapters/Chapter1.tex:49:% TODO A reference here
 Chapters/Chapter1.tex:51:% TODO A reference here

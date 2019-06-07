@@ -47,6 +47,7 @@
   booktitle = {Proceedings of the 1st {{Workshop}} on {{Sense}}, {{Concept}} and {{Entity Representations}} and Their {{Applications}}},
   date = {2017},
   pages = {12--23},
+  keywords = {word embedding wordnet},
   author = {Khodak, Mikhail and Risteski, Andrej and Fellbaum, Christiane and Arora, Sanjeev},
   file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/53HG34BT/Khodak et al. - 2017 - Automated WordNet Construction Using Word Embeddin.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/SMACXHXW/Khodak et al. - 2017 - Automated WordNet Construction Using Word Embeddin.pdf}
 }
@@ -1808,6 +1809,85 @@ and also checked by hand.},
   keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning},
   author = {Grave, Edouard and Bojanowski, Piotr and Gupta, Prakhar and Joulin, Armand and Mikolov, Tomas},
   file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/AWI86TU2/Grave et al. - 2018 - Learning Word Vectors for 157 Languages.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/LRZY2TP7/1802.html}
+}
+
+@inproceedings{klang_pairing_2016,
+  title = {Pairing {{Wikipedia Articles Across Languages}}},
+  url = {https://www.aclweb.org/anthology/W16-4410},
+  abstract = {Wikipedia has become a reference knowledge source for scores of NLP applications. One of its invaluable features lies in its multilingual nature, where articles on a same entity or concept can have from one to more than 200 different versions. The interlinking of language versions in Wikipedia has undergone a major renewal with the advent of Wikidata, a unified scheme to identify entities and their properties using unique numbers. However, as the interlinking is still manually carried out by thousands of editors across the globe, errors may creep in the assignment of entities. In this paper, we describe an optimization technique to match automatically language versions of articles, and hence entities, that is only based on bags of words and anchors. We created a dataset of all the articles on persons we extracted from Wikipedia in six languages: English, French, German, Russian, Spanish, and Swedish. We report a correct match of at least 94.3\% on each pair.},
+  booktitle = {Proceedings of the {{Open Knowledge Base}} and {{Question Answering Workshop}} ({{OKBQA}} 2016)},
+  publisher = {{The COLING 2016 Organizing Committee}},
+  date = {2016-12},
+  pages = {72-76},
+  keywords = {linear assignment},
+  author = {Klang, Marcus and Nugues, Pierre},
+  venue = {Osaka, Japan}
+}
+
+@article{barnard_matching_2003,
+  title = {Matching {{Words}} and {{Pictures}}},
+  volume = {3},
+  issn = {1532-4435},
+  url = {http://dl.acm.org/citation.cfm?id=944919.944965},
+  abstract = {We present a new approach for modeling multi-modal data sets, focusing on the specific case of segmented images with associated text. Learning the joint distribution of image regions and words has many applications. We consider in detail predicting words associated with whole images (auto-annotation) and corresponding to particular image regions (region naming). Auto-annotation might help organize and access large collections of images. Region naming is a model of object recognition as a process of translating image regions to words, much as one might translate from one language to another. Learning the relationships between image regions and semantic correlates (words) is an interesting example of multi-modal data mining, particularly because it is typically hard to apply data mining techniques to collections of images. We develop a number of models for the joint distribution of image regions and words, including several which explicitly learn the correspondence between regions and words. We study multi-modal and correspondence extensions to Hofmann's hierarchical clustering/aspect model, a translation model adapted from statistical machine translation (Brown et al.), and a multi-modal extension to mixture of latent Dirichlet allocation (MoM-LDA). All models are assessed using a large collection of annotated images of real scenes. We study in depth the difficult problem of measuring performance. For the annotation task, we look at prediction performance on held out data. We present three alternative measures, oriented toward different types of task. Measuring the performance of correspondence methods is harder, because one must determine whether a word has been placed on the right region of an image. We can use annotation performance as a proxy measure, but accurate measurement requires hand labeled data, and thus must occur on a smaller scale. We show results using both an annotation proxy, and manually labeled data.},
+  journaltitle = {J. Mach. Learn. Res.},
+  urldate = {2019-06-06},
+  date = {2003-03},
+  pages = {1107--1135},
+  keywords = {linear assignment},
+  author = {Barnard, Kobus and Duygulu, Pinar and Forsyth, David and de Freitas, Nando and Blei, David M. and Jordan, Michael I.},
+  options = {useprefix=true},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/NUKSVYCY/Barnard et al. - 2003 - Matching Words and Pictures.pdf}
+}
+
+@inproceedings{sasaki_subword-based_2019,
+  title = {Subword-Based {{Compact Reconstruction}} of {{Word Embeddings}}},
+  url = {https://www.aclweb.org/anthology/N19-1353},
+  abstract = {The idea of subword-based word embeddings has been proposed in the literature, mainly for solving the out-of-vocabulary (OOV) word problem observed in standard word-based word embeddings. In this paper, we propose a method of reconstructing pre-trained word embeddings using subword information that can effectively represent a large number of subword embeddings in a considerably small fixed space. The key techniques of our method are twofold: memory-shared embeddings and a variant of the key-value-query self-attention mechanism. Our experiments show that our reconstructed subword-based embeddings can successfully imitate well-trained word embeddings in a small fixed space while preventing quality degradation across several linguistic benchmark datasets, and can simultaneously predict effective embeddings of OOV words. We also demonstrate the effectiveness of our reconstruction method when we apply them to downstream tasks.},
+  booktitle = {Proceedings of the 2019 {{Conference}} of the {{North American Chapter}} of the {{Association}} for {{Computational Linguistics}}: {{Human Language Technologies}}, {{Volume}} 1 ({{Long}} and {{Short Papers}})},
+  publisher = {{Association for Computational Linguistics}},
+  date = {2019-06},
+  pages = {3498-3508},
+  author = {Sasaki, Shota and Suzuki, Jun and Inui, Kentaro},
+  venue = {Minneapolis, Minnesota}
+}
+
+@inproceedings{bhattacharyya_indowordnet_2010,
+  title = {Indowordnet},
+  abstract = {India is a multilingual country where machine translation and cross lingual search are highly relevant problems. These problems require large resources- like wordnets and lexicons- of high quality and coverage. Wordnets are lexical structures composed of synsets and semantic relations. Synsets are sets of synonyms. They are linked by semantic relations like hypernymy (is-a), meronymy (part-of), troponymy (manner-of) etc. IndoWordnet is a linked structure of wordnets of major Indian languages from Indo-Aryan, Dravidian and Sino-Tibetan families. These wordnets have been created by following the expansion approach from Hindi wordnet which was made available free for research in 2006. Since then a number of Indian languages have been creating their wordnets. In this paper we discuss the methodology, coverage, important considerations and multifarious benefits of IndoWordnet. Case studies are provided for Marathi, Sanskrit, Bodo and Telugu, to bring out the basic methodology of and challenges involved in the expansion approach. The guidelines the lexicographers follow for wordnet construction are enumerated. The difference between IndoWordnet and EuroWordnet also is discussed. 1.},
+  booktitle = {In {{Proc}}. of {{LREC}}-10},
+  date = {2010},
+  author = {Bhattacharyya, Pushpak},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/3BQA3CWX/Bhattacharyya - 2010 - Indowordnet.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/33JYNZND/summary.html}
+}
+
+@inproceedings{sand_wordnet_2017,
+  langid = {american},
+  title = {Wordnet Extension via Word Embeddings: {{Experiments}} on the {{Norwegian Wordnet}}},
+  url = {https://aclweb.org/anthology/papers/W/W17/W17-0242/},
+  shorttitle = {Wordnet Extension via Word Embeddings},
+  eventtitle = {Proceedings of the 21st {{Nordic Conference}} on {{Computational Linguistics}}},
+  urldate = {2019-06-07},
+  date = {2017-05},
+  pages = {298-302},
+  author = {Sand, Heidi and Velldal, Erik and Øvrelid, Lilja},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/VKCFGBPF/Sand et al. - 2017 - Wordnet extension via word embeddings Experiments.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/DHW3JSAR/W17-0242.html}
+}
+
+@article{arora_linear_2018,
+  langid = {english},
+  title = {Linear {{Algebraic Structure}} of {{Word Senses}}, with {{Applications}} to {{Polysemy}}},
+  volume = {6},
+  issn = {2307-387X},
+  url = {https://transacl.org/ojs/index.php/tacl/article/view/1346},
+  abstract = {Word embeddings are ubiquitous in NLP and information retrieval, but it is unclear what they represent when the word is polysemous. Here it is shown that multiple word senses reside in linear superposition within the word embedding and simple sparse coding can recover vectors that approximately capture the senses. The success of our approach, which applies to several embedding methods, is mathematically explained using a variant of the random walk on discourses model (Arora et al., 2016). A novel aspect of our technique is that each extracted word sense is accompanied by one of about 2000 "discourse atoms" that gives a succinct description of which other words co-occur with that word sense. Discourse atoms can be of independent interest, and make the method potentially more useful. Empirical tests are used to verify and support the theory.},
+  number = {0},
+  journaltitle = {Transactions of the Association for Computational Linguistics},
+  urldate = {2019-06-07},
+  date = {2018-07-20},
+  pages = {483-495},
+  author = {Arora, Sanjeev and Li, Yuanzhi and Liang, Yingyu and Ma, Tengyu and Risteski, Andrej},
+  file = {/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/T8QRFSS5/Arora et al. - 2018 - Linear Algebraic Structure of Word Senses, with Ap.pdf;/home/yigit/.zotero/zotero/p8h92vwx.default/zotero/storage/8IDJQSIM/1346.html}
 }
 
 

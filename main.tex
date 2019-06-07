@@ -41,12 +41,13 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \setdefaultlanguage{english}
-\setmainfont{Lora}
+% \setmainfont{Lora}
 \usepackage[bottom]{footmisc} % prevent figures from appearing under footnotes
 \usepackage[backend=biber,style=nature]{biblatex}
 \addbibresource{thesis.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\usepackage{pdfpages}
 
 % correct spacing in tf-idf
 \newcommand{\varA}[1]{{\operatorname{#1}}}

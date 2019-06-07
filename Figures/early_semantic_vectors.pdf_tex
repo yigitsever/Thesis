@@ -53,15 +53,13 @@
   \begin{picture}(1,0.47581245)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0.4164891,0.43560299){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Father\end{tabular}}}}%
-    \put(-0.00102633,0.33635526){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}happy \end{tabular}}}}%
-    \put(0.90926614,0.32609615){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}sad\end{tabular}}}}%
+    \put(0.42729292,0.38325073){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Father\end{tabular}}}}%
+    \put(0.04907121,0.30421924){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}happy \end{tabular}}}}%
+    \put(0.86300054,0.30871775){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}sad\end{tabular}}}}%
+    \put(0.04716213,0.18099647){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}hard\end{tabular}}}}%
+    \put(0.85655096,0.19144887){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}soft\end{tabular}}}}%
+    \put(0.04724811,0.06160148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}slow\end{tabular}}}}%
+    \put(0.85371704,0.0694077){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}fast\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{early_semantic_vectors.pdf}}%
-    \put(-0.0029354,0.21183074){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}hard\end{tabular}}}}%
-    \put(0.90281656,0.21183074){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}soft\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{early_semantic_vectors.pdf}}%
-    \put(-0.00284942,0.09243574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}slow\end{tabular}}}}%
-    \put(0.89998264,0.09243574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}fast\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{early_semantic_vectors.pdf}}%
   \end{picture}%
 \endgroup%

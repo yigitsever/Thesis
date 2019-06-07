@@ -3,43 +3,38 @@ Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need
 Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
 Chapters/Chapter3.tex:75:% TODO cost matrix
 Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
-Chapters/Chapter2.tex:31:% TODO citation here
-Chapters/Chapter2.tex:34:% TODO if this line stays you need to cite them
-Chapters/Chapter2.tex:66:% TODO cite bag of words?
-Chapters/Chapter2.tex:107:% TODO word overlap, you cited this on chapter 4?
-Chapters/Chapter2.tex:130:% TODO blockquoting doesn't look nice, paraphrase it
-Chapters/Chapter2.tex:188:% TODO proper reference and check your notation
-Chapters/Chapter2.tex:195:% TODO check this sentence again, you might be remembering the details wrong
-Chapters/Chapter2.tex:196:% TODO wrong, there's a tanh layer in the middle too
-Chapters/Chapter2.tex:202:% TODO please check this after you've gotten some sleep, like what is y?
-Chapters/Chapter2.tex:205:% TODO cite hierarchical softmax
-Chapters/Chapter2.tex:206:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
-Chapters/Chapter2.tex:274:% TODO might not rely on some random guy's repo
-Chapters/Chapter2.tex:281:% TODO paste the negative sampling and subsampling of frequent words to be honest
-Chapters/Chapter2.tex:284:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
-Chapters/Chapter2.tex:299:% TODO define hyperparameters?
-Chapters/Chapter2.tex:318:% TODO <wh, whe, her, ere, re> figure
-Chapters/Chapter2.tex:323:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
-Chapters/Chapter2.tex:338:%TODO return to this line
-Chapters/Chapter2.tex:346:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
-Chapters/Chapter2.tex:353:%TODO cite here lund, deerwester?
-Chapters/Chapter2.tex:372:% TODO \textcite{neale_survey_2018} says 2 and we are moving on with 2 because no time left
 Chapters/Chapter1.tex:29:% TODO Maybe a figure.
 Chapters/Chapter1.tex:49:% TODO A reference here
 Chapters/Chapter1.tex:51:% TODO A reference here
 Chapters/Chapter1.tex:90:% TODO maybe a sense graph here
 Chapters/Chapter1.tex:95:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:100:% TODO reference here after chapter 2
-Chapters/Chapter1.tex:174:\section{Thesis Goals}% TODO return here
-Chapters/Chapter1.tex:176:% TODO we assume word embeddings are interchangeable
-Chapters/Chapter4.tex:9:% TODO this can be expanded or moved to chapter 2
-Chapters/Chapter4.tex:12:% TODO they are not, we use cldr, rewrite this after
-Chapters/Chapter4.tex:16:% TODO then, we will look into cldr
-Chapters/Chapter4.tex:22:% TODO when the preparing the wordnets section is ready, refer there from here
-Chapters/Chapter4.tex:24:% TODO figure out how to render bulgarian and greek text here and add them
-Chapters/Chapter4.tex:84:% TODO idf was suggested by jones_statistical_1972 not tfidf
-Chapters/Chapter4.tex:117:% TODO think about this / citation needed
-Chapters/Chapter4.tex:129:% TODO maybe a graphic here or one of those cool pseudo-codes
-Chapters/Chapter4.tex:146:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
-Chapters/Chapter4.tex:212:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
-Chapters/Chapter4.tex:214:% TODO we have a nth package use it
+Chapters/Chapter1.tex:115:% TODO inter lingual index by eurowordnet addresses this
+Chapters/Chapter1.tex:175:\section{Thesis Goals}% TODO return here
+Chapters/Chapter1.tex:177:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter4.tex:21:% TODO when the preparing the wordnets section is ready, refer there from here
+Chapters/Chapter4.tex:23:% TODO figure out how to render bulgarian and greek text here and add them
+Chapters/Chapter4.tex:83:% TODO idf was suggested by jones_statistical_1972 not tfidf
+Chapters/Chapter4.tex:116:% TODO think about this / citation needed
+Chapters/Chapter4.tex:128:% TODO maybe a graphic here or one of those cool pseudo-codes
+Chapters/Chapter4.tex:145:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
+Chapters/Chapter4.tex:211:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
+Chapters/Chapter4.tex:213:% TODO we have a nth package use it
+Chapters/Chapter2.tex:33:% TODO if this line stays you need to cite them
+Chapters/Chapter2.tex:105:% TODO word overlap, you cited this on chapter 4?
+Chapters/Chapter2.tex:128:% TODO blockquoting doesn't look nice, paraphrase it
+Chapters/Chapter2.tex:186:% TODO proper reference and check your notation
+Chapters/Chapter2.tex:193:% TODO check this sentence again, you might be remembering the details wrong
+Chapters/Chapter2.tex:194:% TODO wrong, there's a tanh layer in the middle too
+Chapters/Chapter2.tex:200:% TODO please check this after you've gotten some sleep, like what is y?
+Chapters/Chapter2.tex:203:% TODO cite hierarchical softmax
+Chapters/Chapter2.tex:204:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
+Chapters/Chapter2.tex:234:% TODO paraphrase don't blockquote
+Chapters/Chapter2.tex:273:% TODO might not rely on some random guy's repo
+Chapters/Chapter2.tex:280:% TODO paste the negative sampling and subsampling of frequent words to be honest
+Chapters/Chapter2.tex:283:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
+Chapters/Chapter2.tex:327:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
+Chapters/Chapter2.tex:342:%TODO return to this line
+Chapters/Chapter2.tex:350:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
+Chapters/Chapter2.tex:357:%TODO cite here lund, deerwester?
+Chapters/Chapter2.tex:416:% TODO \textcite{neale_survey_2018} says 2 and we are moving on with 2 because no time left

@@ -54,7 +54,7 @@ For instance, the semantic similarity or relatedness between the terms \emph{jac
 Early attempts to show words on a semantic space is studied in \textcite{osgood_measurement_1957}.
 Authors suggested representing concepts using orthogonal scales and relying on human judgement to score meanings on the axes.
 An example concept from their study is given in Figure~\ref{fig:early_vectors}.
-\begin{figure}[ht]
+\begin{figure}[htbp]
     \centering
     \incfig{early_semantic_vectors}
     \caption{Sense representation using human judgement scores for the concept \enquote{Father} adapted from \textcite{osgood_measurement_1957}.}%
@@ -256,7 +256,7 @@ There are two aspects of the work done by \citeauthor{mikolov_distributed_2013} 
 The second point is self explanatory but in order to argue about the first one, we should report the algorithms behind word2vec.
 
 The \emph{skip-gram model} introduced by \textcite{mikolov_efficient_2013} differs from the previous methods by predicting the surrounding words given the target word (Figure~\ref{fig:skipgram}).
-\begin{figure}[ht]
+\begin{figure}[htbp]
     \centering
     \incfig{skip_gram_2}
     \caption{Skipgram architecture courtesy of \textcite{mikolov_distributed_2013}}%
@@ -314,9 +314,15 @@ The ideas behind it are presented in \textcite{mikolov2018advances}.
 Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
 
 Let us turn our focus towards \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
-Instead of using a context window and learning the representation of a target word given the context or switching them around given the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams;
-% TODO <wh, whe, her, ere, re> figure
-with the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
+Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[page=1,width=\textwidth]{Figures/fasttext.pdf}
+    \caption{Overview of fastText embedding model}%
+    \label{fig:fasttext}
+\end{figure}
+With the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
 \begin{displaymath}
     s(w,c) = \sum_{g \in G_{w}}z_{g}^T v_c
 \end{displaymath}

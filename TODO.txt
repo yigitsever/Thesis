@@ -1,17 +1,15 @@
+Chapters/Chapter1.tex:55:% TODO A reference here
+Chapters/Chapter1.tex:57:% TODO A reference here
+Chapters/Chapter1.tex:96:% TODO maybe a sense graph here
+Chapters/Chapter1.tex:101:% TODO how to typeset numbers?
+Chapters/Chapter1.tex:106:% TODO reference here after chapter 2
+Chapters/Chapter1.tex:158:\section{Thesis Goals}% TODO return here
+Chapters/Chapter1.tex:160:% TODO we assume word embeddings are interchangeable
 Chapters/Chapter3.tex:9:% TODO down below two tracks for sentence embeddings will crash, print out and clean up
 Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need be
 Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
 Chapters/Chapter3.tex:75:% TODO cost matrix
 Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
-Chapters/Chapter1.tex:29:% TODO Maybe a figure.
-Chapters/Chapter1.tex:49:% TODO A reference here
-Chapters/Chapter1.tex:51:% TODO A reference here
-Chapters/Chapter1.tex:90:% TODO maybe a sense graph here
-Chapters/Chapter1.tex:95:% TODO how to typeset numbers?
-Chapters/Chapter1.tex:100:% TODO reference here after chapter 2
-Chapters/Chapter1.tex:115:% TODO inter lingual index by eurowordnet addresses this
-Chapters/Chapter1.tex:175:\section{Thesis Goals}% TODO return here
-Chapters/Chapter1.tex:177:% TODO we assume word embeddings are interchangeable
 Chapters/Chapter4.tex:21:% TODO when the preparing the wordnets section is ready, refer there from here
 Chapters/Chapter4.tex:23:% TODO figure out how to render bulgarian and greek text here and add them
 Chapters/Chapter4.tex:83:% TODO idf was suggested by jones_statistical_1972 not tfidf
@@ -33,8 +31,8 @@ Chapters/Chapter2.tex:234:% TODO paraphrase don't blockquote
 Chapters/Chapter2.tex:273:% TODO might not rely on some random guy's repo
 Chapters/Chapter2.tex:280:% TODO paste the negative sampling and subsampling of frequent words to be honest
 Chapters/Chapter2.tex:283:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
-Chapters/Chapter2.tex:327:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
-Chapters/Chapter2.tex:342:%TODO return to this line
-Chapters/Chapter2.tex:350:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
-Chapters/Chapter2.tex:357:%TODO cite here lund, deerwester?
-Chapters/Chapter2.tex:428:% TODO \textcite{neale_survey_2018} says 2 and we are moving on with 2 because no time left
+Chapters/Chapter2.tex:328:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
+Chapters/Chapter2.tex:343:%TODO return to this line
+Chapters/Chapter2.tex:351:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
+Chapters/Chapter2.tex:358:%TODO cite here lund, deerwester?
+Chapters/Chapter2.tex:408:% TODO more usages here

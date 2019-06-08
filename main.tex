@@ -48,7 +48,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{pdfpages}
-
+\usepackage{nameref} % refer to the name of sections
 % correct spacing in tf-idf
 \newcommand{\varA}[1]{{\operatorname{#1}}}
 \newcommand{\varB}[1]{{\operatorname{\mathit{#1}}}}
@@ -66,7 +66,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage{import}
 \usepackage{xifthen}
 \usepackage{pdfpages}
-\usepackage{transparent}
+% \usepackage{transparent}
 
 \newcommand{\incfig}[1]{%
     \def\svgwidth{\columnwidth}
@@ -325,7 +325,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-\include{Appendices/AppendixA}
+%\include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 

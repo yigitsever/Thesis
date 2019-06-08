@@ -1,3 +1,8 @@
+Chapters/Chapter3.tex:9:% TODO down below two tracks for sentence embeddings will crash, print out and clean up
+Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need be
+Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
+Chapters/Chapter3.tex:75:% TODO cost matrix
+Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
 Chapters/Chapter1.tex:55:% TODO A reference here
 Chapters/Chapter1.tex:57:% TODO A reference here
 Chapters/Chapter1.tex:96:% TODO maybe a sense graph here
@@ -5,19 +10,6 @@ Chapters/Chapter1.tex:101:% TODO how to typeset numbers?
 Chapters/Chapter1.tex:106:% TODO reference here after chapter 2
 Chapters/Chapter1.tex:158:\section{Thesis Goals}% TODO return here
 Chapters/Chapter1.tex:160:% TODO we assume word embeddings are interchangeable
-Chapters/Chapter3.tex:9:% TODO down below two tracks for sentence embeddings will crash, print out and clean up
-Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need be
-Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
-Chapters/Chapter3.tex:75:% TODO cost matrix
-Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
-Chapters/Chapter4.tex:21:% TODO when the preparing the wordnets section is ready, refer there from here
-Chapters/Chapter4.tex:23:% TODO figure out how to render bulgarian and greek text here and add them
-Chapters/Chapter4.tex:83:% TODO idf was suggested by jones_statistical_1972 not tfidf
-Chapters/Chapter4.tex:116:% TODO think about this / citation needed
-Chapters/Chapter4.tex:128:% TODO maybe a graphic here or one of those cool pseudo-codes
-Chapters/Chapter4.tex:145:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
-Chapters/Chapter4.tex:211:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
-Chapters/Chapter4.tex:213:% TODO we have a nth package use it
 Chapters/Chapter2.tex:33:% TODO if this line stays you need to cite them
 Chapters/Chapter2.tex:105:% TODO word overlap, you cited this on chapter 4?
 Chapters/Chapter2.tex:128:% TODO blockquoting doesn't look nice, paraphrase it
@@ -36,3 +28,11 @@ Chapters/Chapter2.tex:343:%TODO return to this line
 Chapters/Chapter2.tex:351:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
 Chapters/Chapter2.tex:358:%TODO cite here lund, deerwester?
 Chapters/Chapter2.tex:408:% TODO more usages here
+Chapters/Chapter4.tex:21:% TODO when the preparing the wordnets section is ready, refer there from here
+Chapters/Chapter4.tex:23:% TODO figure out how to render bulgarian and greek text here and add them
+Chapters/Chapter4.tex:83:% TODO idf was suggested by jones_statistical_1972 not tfidf
+Chapters/Chapter4.tex:116:% TODO think about this / citation needed
+Chapters/Chapter4.tex:128:% TODO maybe a graphic here or one of those cool pseudo-codes
+Chapters/Chapter4.tex:145:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
+Chapters/Chapter4.tex:211:% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
+Chapters/Chapter4.tex:213:% TODO we have a nth package use it

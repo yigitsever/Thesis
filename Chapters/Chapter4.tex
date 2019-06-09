@@ -63,13 +63,13 @@ The vocabulary of this corpora is shared between the wordnet pairs as they have 
 \label{sub:term_document_matrix}
 
 With the definition collection and the vocabulary at hand, we created a \emph{term-document} matrix.
-In a term-document matrix, rows represent the documents and columns denote individual vocabulary entries.
+In this instance of the term-document matrix, rows represent the documents and columns denote individual vocabulary entries.
 Such a matrix $C$ is $m$ by $n$ while $m$ is the number of documents and $n$ is the size of the vocabulary $|V|$.
-Our definitions are just short documents so we use the terms \emph{definition} and \emph{document} interchangeably with the added benefit of using $d$ for both of them.
+Our definitions are just short documents so we use the terms \emph{definition} and \emph{document} interchangeably with the added benefit of using $d$ to denote either of them.
 
-For any element of $C$, $C_{i,j}$ is the number of times $j$ occurs in the document $i$.
+For any element of $C$, $c_{i,j}$ is the number of times $j$ occurs in the document $i$.
 This matrix is sparse since documents use a fraction of the available vocabulary $V$.
-Our case with definitions is no different with an average of 10.62 words per definition.
+Our case with definitions is no different with an average of 10.62 words per definition with vocabulary sizes well over 10,000s.
 
 \subsection{Term Weighting}%
 \label{sub:term_weighting}
@@ -79,10 +79,9 @@ Stopwords like \enquote{the}, \enquote{and} have virtually no significance and t
 We have opted out of stopword removal considering our short definitions.
 
 What is a good scaling method for term weighing?
-\tfidf{} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
-% TODO idf was suggested by jones_statistical_1972 not tfidf
-% \cite{robertson_understanding_2004} can be cited for full tfidf
 \tfidf{} is composed of two scores; term frequency \emph{tf} and inverse document frequency \emph{idf}.
+\emph{idf} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
+% \cite{robertson_understanding_2004} can be cited for full tfidf
 Term frequency $tf_{w,d}$ is the number of times term $w$ occurs in a document $d$.
 Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$.
 We have used the smooth variant of idf as follows;
@@ -113,7 +112,6 @@ Such that term $x_{i,j}$ shows the importance of term $t$ with relation to its g
 Using the term-document matrix, similarity between two documents can be calculated by assigning a scoring scheme that uses rows as document vectors.
 \emph{Cosine similarity} is such a measure that can be used to find the cosine of the angle between two vectors and scales to multidimensional case trivially.
 Moreover, since the majority of the dimensions between the vectors are zero, cosine similarity ignores these dimensions and implicitly prioritizes the non-zero dimensions.
-% TODO think about this / citation needed
 
 For the row vector $\vec{d_t}$ and $\vec{d_p}$, cosine similarity between definitions $t, p$ is
 \begin{equation}
@@ -123,9 +121,16 @@ For the row vector $\vec{d_t}$ and $\vec{d_p}$, cosine similarity between defini
 \subsection{Retrieval}%
 \label{sub:retrieval}
 
-With definition vectors and a similarity measure at hand, we split the term-document matrix $C$ as English Princeton WordNet definitions and target wordnet definitions.
+With definition vectors and a similarity measure at hand, we split the \tfidf{} weighted term-document matrix $C'$ as English Princeton WordNet definitions and target wordnet definitions.
 The target wordnet definitions were used as pseudo-queries and English Princeton WordNet definitions were used as the document collection to retrieve definitions from.
-% TODO maybe a graphic here or one of those cool pseudo-codes
+
+\begin{figure}[htbp]
+    \centering
+    \incfig{term_document}
+    \caption{Term document matrix to queries and documents}%
+    \label{fig:term_document}
+\end{figure}
+
 In order to retrieve and rank definitions given the query definition, cosine similarity between query and each corpus definition is calculated.
 The similarity scores that range between 0 and 1 are sorted in descending order with the definition index attached.
 The retrieved documents are ranked according to their similarity score.
@@ -208,9 +213,7 @@ Following the popularization of the word2vec~\cite{mikolov_distributed_2013}, \t
 By adapting the optimal transport theorem into using distances between word embeddings and documents as probability distributions that are composed of words, he suggested the following;
 
 For an embedding matrix $X \in R^{n \times d}$ $d$ is the dimension the embedding was learned at and $n$ is the size of the vocabulary.
-% TODO paper is d times n, I always worked with n times d (rows are word embeddings), is that a problem?
 In this configuration, a row $\vec{x_i} \in R^d$ of the matrix $X$ is the embedding for the $i^{\text{th}}$ word $w_i$.
-% TODO we have a nth package use it
 
 Given a a separate term-document matrix $C \in R^{m \times n}$, a row $\vec{d_j} \in R^n$ is the row vector for the $j^{\text{th}}$ document $d_j$.
 In the original paper \citetitle{kusner_word_2015}, the elements of the term-document matrix $C$ are given as normalized bag-of-words representations.

@@ -27,13 +27,6 @@ Formal definition of homonymy separates sound based and spelling based homonymy 
 The \emph{bank of a river} is homonym to the given examples.
 Homonyms are often shown in discrete blocks of descriptions.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[page=1,width=\textwidth]{Figures/hyponym_hypernym.pdf}
-    \caption{Example of a WordNet relationship graph. Hyponymy/hypernymy relations are shown from the heiarchy level of }%
-    \label{fig:fasttext}
-\end{figure}
-
 \textbf{Synonymity} is another lexical relation we are interested in.
 A word is synonymous to another if they share the same meaning but are not spelled alike, such as the terms \emph{right} and \emph{correct}.
 However, synonymity is seldom shown in dictionaries.
@@ -93,12 +86,18 @@ During this discussion, we have used sense and synset interchangeably.
 WordNet also includes other relationships such as \emph{hypernymy} and \emph{hyponymy}, semantic relation of senses being type-of one another~\cite{miller_nouns_1990}.\footnote{not to be confused with homonymy}
 For instance, the term \enquote{building} is a hyponym of \enquote{restaurant} since it encompasses a more general sense; the restaurant is type of a building.
 While coffee shop is a hypernym to the restaurant since it is a more specific sense.
-% TODO maybe a sense graph here
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[page=1,width=\textwidth]{Figures/hyponym_hypernym.pdf}
+    \caption{Example of a WordNet relationship graph. Hyponymy/hypernymy relations are shown from the heiarchy level of }%
+    \label{fig:fasttext}
+\end{figure}
+
 One other relation is the meronymy, defined as a sense being part of or a member of another~\cite{winston_taxonomy_1987}.
 Keeping to our building example, windows are meronym to buildings.
 Other relationships exist but listing them is outside the scope of this thesis.
-Bottom line is the effort that has gone through to map $117,000$ senses according to different semantic relationships.
-% TODO how to typeset numbers?
+Bottom line is the effort that has gone through to map 117,000 senses according to different semantic relationships.
 \textcite{sagot_building_2008} argue that the semantic relationships between senses are not tied to a specific language.
 With this assumption at hand, we can infer the effort behind the WordNet does not need to be repeated but can be translated to other languages.
 

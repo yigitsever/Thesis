@@ -3,6 +3,13 @@ Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need
 Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
 Chapters/Chapter3.tex:75:% TODO cost matrix
 Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
+Chapters/Chapter1.tex:48:% TODO A reference here
+Chapters/Chapter1.tex:50:% TODO A reference here
+Chapters/Chapter1.tex:105:% TODO reference here after chapter 2
+Chapters/Chapter1.tex:157:\section{Thesis Goals}% TODO return here
+Chapters/Chapter1.tex:159:% TODO we assume word embeddings are interchangeable
+Chapters/Chapter5.tex:12:% TODO figure here
+Chapters/Chapter5.tex:41:% TODO give more solutions here
 Chapters/Chapter2.tex:33:% TODO if this line stays you need to cite them
 Chapters/Chapter2.tex:107:% TODO word overlap, you cited this on chapter 4?
 Chapters/Chapter2.tex:130:% TODO blockquoting doesn't look nice, paraphrase it
@@ -22,13 +29,6 @@ Chapters/Chapter2.tex:347:%TODO return to this line
 Chapters/Chapter2.tex:355:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
 Chapters/Chapter2.tex:362:%TODO cite here lund, deerwester?
 Chapters/Chapter2.tex:412:% TODO more usages here
-Chapters/Chapter1.tex:48:% TODO A reference here
-Chapters/Chapter1.tex:50:% TODO A reference here
-Chapters/Chapter1.tex:105:% TODO reference here after chapter 2
-Chapters/Chapter1.tex:157:\section{Thesis Goals}% TODO return here
-Chapters/Chapter1.tex:159:% TODO we assume word embeddings are interchangeable
 Chapters/Chapter4.tex:21:% TODO when the preparing the wordnets section is ready, refer there from here
 Chapters/Chapter4.tex:23:% TODO figure out how to render bulgarian and greek text here and add them
 Chapters/Chapter4.tex:150:% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
-Chapters/Chapter5.tex:12:% TODO figure here
-Chapters/Chapter5.tex:41:% TODO give more solutions here

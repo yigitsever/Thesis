@@ -8,7 +8,7 @@ Given two collections of definitions, we have tried to retrieve the definition(s
 However, given the moderately sized data in our hands we have accepted as \enquote{golden}, we studied the feasibility of training an encoder~\cite{sutskever_sequence_2014}, where the objective is to learn whether the pair of definitions entail the same sense across languages.
 
 Recurrent Neural Network (RNN) architectures improve upon the prototypical neural network model by introducing a \emph{memory} for the connections in the network~\cite{rumelhart_learning_1986}.
-By updating the hidden unit over time using the output of the previous time-step, the model can \emph{remember} features of the input signal for later inputs.
+By updating the hidden unit over time using the output of the previous time step, the model can \emph{remember} features of the input signal for later inputs.
 % TODO figure here
 %RNN seemed fitting for our case given their success on tasks that require a model to \emph{remember} previous signals over a long sequence of inputs\cite{gers_lstm_2001,jean_using_2014}.
 One particular architecture of RNNs propsed by \textcite{hochreiter_long_1997} is \emph{long short-term memory} (LSTM).
@@ -39,6 +39,10 @@ Figure~\ref{fig:vanishing_gradients}, adapted from \textcite{graves_long_2012} i
 As the input signal traverses the units of an RNN, it either diminishes or blows up~\cite{graves_long_2012}.
 A long line of solutions were proposed such as decomposing structures so that only unexpected ones can be relevant.
 % TODO give more solutions here
+
+\subsection{Long Short-Term Memory}%
+\label{sub:lstm}
+
 LSTM is the solution highlighted by \textcite{graves_long_2012} as a recurrent neural network model that can work over temporally distant input signals while preserving their influence or diminishing their noise.
 The centrepiece idea is to use a \emph{constant error carousel}, special cells that enforce a constant error flow.
 In the original paper, this complex unit is named \emph{memory cell}~\cite{hochreiter_long_1997}.
@@ -80,8 +84,50 @@ By allowing internal gates to inspect the cell state, they have shown improvemen
 
 The finalized model with input, forget and output gates as well as the internal peephole connections was debuted in \textcite{graves_framewise_2005}.
 In their expansive study comparing 8 LSTM variants over 15 years of CPU time, \textcite{greff_lstm_2017} named this model the \enquote{vanilla LSTM}.
+This particular form of LSTM is commonly used~\cite{sutskever_sequence_2014}.
+The real valued vectors are denoted alongside their update time step ${(\cdot)}_t$ such that $t \in {1, \dots, T}$.
+Updates are performed on the input gate $i_t$, memory cell $c_t$, forget gate $f_t$ and output gate $o_t$.
+We show the updates over weight matrices $W_i, W_f, W_c$ and $W_o$ via the use of recurrent weights $R_i, R_f, R_c$ and $R_o$ and bias vectors $b_i, b_f, b_c$ and $b_o$.
+Peephole connections are shown using $p_{\cdot}$ for input, forget and output gates as $p_{i}, p_{f}$ and $p_{o}$ respectively.
+Finally, the input is a sequence of data in the form of $(x_1, x_2, \dots, x_T)$ and the model outputs real valued vector $y_{t}$ at the time step $t$.
 
-Recently, \textcite{mueller_siamese_2016} proposed a \emph{siamese} model using two LSTMs.
+\begin{equation}
+    i^{t} = \sigma\left(W_{i}x^{t} + R_{i}y^{t-1} + p_{i} \odot c^{t-1} + b_{i}\right)
+\end{equation}
+
+\begin{equation}
+    f^{t} = \sigma\left(W_{f}x^{t} + R_{f}y^{t-1} + p_{f} \odot c^{t-1} + b_{f}\right)
+\end{equation}
+
+\begin{equation}
+    \bar{c^{t}} = W_{c}x^{t} + R_{c}y^{t-1} + b_{c}
+\end{equation}
+
+\begin{equation}
+    c_{t} = \tanh\left(i^{t} \odot \bar{c^{t}} + f_{t} \odot c^{t-1}\right)
+\end{equation}
+
+\begin{equation}
+    o^{t} = \sigma\left(W_{o}x^{t} + R_{o}y^{t-1} + p_{o} \odot c^{t} + b_{o}\right)
+\end{equation}
+
+\begin{equation}
+    y^{t} = \tanh(o_{t}) \odot c^{t}
+\end{equation}
+
+Where $\sigma(\cdot)$ is the \emph{logistic sigmoid} function $\sigma(x) = \frac{1}{1 + e^{-x}}$ and pointwise vector multiplication is denoted using $\odot$.
+The recurrence holds via the usage of signals from the previous time steps $(\cdot)^{t-1}$.
+
+\subsection{Siamese Long Short-Term Memory}%
+\label{sub:siamese_long_short_term_memory}
+
+Recently, \textcite{mueller_siamese_2016} proposed a \emph{siamese} model to solve sentence similarity problem.
+They suggest using two networks and denote them as LSTM$_a$ and LSTM$_b$.
+The weights are shared between the networks such that LSTM$_a = $ LSTM$_b$.
+The Manhattan distance is used as the measure of similarity between
+
+We extend the siamese network architecture by using bilingual word embeddings.
+
 
 % Optimizer adelta
 \textcite{zeiler_adadelta_2012}

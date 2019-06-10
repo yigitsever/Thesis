@@ -46,6 +46,8 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage[backend=biber,style=nature]{biblatex}
 \addbibresource{thesis.bib} % The filename of the bibliography
 
+\usepackage{longtable} % for tables to span multiple pages
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} % better bar
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{pdfpages}
 \usepackage{nameref} % refer to the name of sections
@@ -325,7 +327,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-%\include{Appendices/AppendixA}
+\include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 

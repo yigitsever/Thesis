@@ -151,7 +151,7 @@ They used a context window of 10 words and provided a method to obtain feature v
 % maybe talk about the method but seems redundant
 However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
 To give an example, \emph{school} is related to \emph{student} while they are not similar.
-% Figure 1 of this paper can be adapted here
+% TODO Figure 1 of this paper can be adapted here
 
 % Count based approaches to predictive approaches
 % Conventional VSM produces high dimensional representations, since the dims. correspond to words in the number can reach millions -> don't know where I got this, can't use it as it probably plagiarism
@@ -257,12 +257,14 @@ There are two aspects of the work done by \citeauthor{mikolov_distributed_2013} 
 The second point is self explanatory but in order to argue about the first one, we should report the algorithms behind word2vec.
 
 The \emph{skip-gram model} introduced by \textcite{mikolov_efficient_2013} differs from the previous methods by predicting the surrounding words given the target word (Figure~\ref{fig:skipgram}).
+
 \begin{figure}[htbp]
     \centering
     \incfig{skip_gram_2}
-    \caption{Skipgram architecture courtesy of \textcite{mikolov_distributed_2013}}%
+    \caption{Skipgram architecture adapted from Figure 1 of \textcite{mikolov_distributed_2013}}%
     \label{fig:skipgram}
 \end{figure}
+
 In \citetitle{mikolov_distributed_2013}, it is defined as follows;
 \begin{equation}
     \frac{1}{T}\sum_{t=1}^{T}\sum_{-c \leq j \leq c, j \neq 0} \log p(w_{t+j}|w_t)

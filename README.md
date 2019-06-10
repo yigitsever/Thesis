@@ -50,3 +50,14 @@ The influence of temperature will be the object of future research . . .
 
 \end{document}
 ```
+
+# IEEE Best Practices
+[Presentation] (http://www.ieee.org.sv/files/politicayetica.pdf)
+
+> # Reuse of Published Materials
+> You must cite and acknowledge any published materials that you make re-use of
+> Examples: Diagrams/figures from an existing paper
+> Extracted and re-used => must get permission from author/publisher (copyright owner) and cite and acknowledge
+> Redrawn with modifications => should cite and indicated “adapted from” or “based on”
+> This includes your own prior published work!
+

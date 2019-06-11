@@ -1,8 +1,5 @@
-Chapters/Chapter3.tex:9:% TODO down below two tracks for sentence embeddings will crash, print out and clean up
-Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need be
 Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
-Chapters/Chapter3.tex:75:% TODO cost matrix
-Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
+Chapters/Chapter3.tex:87:% TODO cost matrix
 Chapters/Chapter2.tex:110:% TODO word overlap, you cited this on chapter 4?
 Chapters/Chapter2.tex:214:% TODO cite hierarchical softmax
 Chapters/Chapter2.tex:243:% TODO paraphrase don't blockquote

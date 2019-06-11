@@ -3,6 +3,9 @@
 \chapter{Experiments and Evaluation}%
 \label{chap:experiments_and_evaluation}
 
+\section{Mapping Word Embeddings}%
+\label{sec:mapping_word_embeddings}
+
 We experimented with in domain \emph{fasttext} embeddings.
 We have trained Romanian and Bulgarian embeddings and ran the WMD and Sinkhorn experiments.
 The performance dropped to the quarter of pre-trained embeddings so we have not repeated the experiments for other language corpora.
@@ -124,6 +127,115 @@ Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say yo
     \caption{Experiment results for monolingual retrieval}%
     \label{tab:monolingual_tfidf}
 \end{table}
+
+\subsection{Cross Lingual Retrieval Results}%
+\label{sub:cross_lingual_retrieval_results}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{multirow}
+\begin{table}[]
+\begin{tabular}{@{}lllllllllll@{}}
+ &  &  & \multicolumn{2}{r}{WMD - tfidf} & \multicolumn{2}{r}{Sinkhorn tfidf} & \multicolumn{2}{r}{WMD - tf} & \multicolumn{2}{r}{Sinkhorn - tf} \\
+Language & Vector & \multicolumn{1}{r}{Vocabulary Size} & MRR & Hits @ 1 & MRR & Hits @ 1 & MRR & Hits @ 1 & MRR & Hits @ 1 \\
+\multirow{3}{*}{bg} & 1M Fasttext & \multicolumn{1}{r}{10532} & 0.5083 & 0.4150 & 0.5185 & 0.4265 & 0.4181 & 0.3395 & 0.4276 & 0.3460 \\
+ & 500k Fasttext & \multicolumn{1}{r}{10457} & 0.5115 & 0.4190 & 0.5224 & 0.4300 & 0.4218 & 0.3415 & 0.4319 & 0.3480 \\
+ & Numberbatch & \multicolumn{1}{r}{6028} & 0.2532 & 0.1745 & 0.2497 & 0.1715 & 0.1855 & 0.1230 & 0.1809 & 0.1135 \\
+\multirow{3}{*}{el} & 1M Fasttext & \multicolumn{1}{r}{9307} & 0.4782 & 0.3905 & 0.4867 & 0.4015 & 0.4074 & 0.3285 & 0.4142 & 0.3340 \\
+ & 500k Fasttext & \multicolumn{1}{r}{9168} & 0.4745 & 0.3845 & 0.4845 & 0.3995 & 0.4053 & 0.3255 & 0.4139 & 0.3355 \\
+ & Numberbatch & \multicolumn{1}{r}{5127} & 0.1992 & 0.1315 & 0.2006 & 0.1340 & 0.1471 & 0.0995 & 0.1494 & 0.1000 \\
+\multirow{3}{*}{it} & 1M Fasttext & \multicolumn{1}{r}{10025} & 0.4024 & 0.3115 & 0.4060 & 0.3145 & 0.3198 & 0.2350 & 0.3207 & 0.2340 \\
+ & 500k Fasttext & \multicolumn{1}{r}{9975} & 0.4027 & 0.3115 & 0.4049 & 0.3130 & 0.3211 & 0.2365 & 0.3221 & 0.2350 \\
+ & Numberbatch & \multicolumn{1}{r}{8875} & 0.4272 & 0.3330 & 0.4277 & 0.3335 & 0.3511 & 0.2670 & 0.3512 & 0.2680 \\
+\multirow{3}{*}{ro} & 1M Fasttext & \multicolumn{1}{r}{12165} & 0.5130 & 0.4160 & 0.5195 & 0.4150 & 0.4420 & 0.3590 & 0.4506 & 0.3560 \\
+ & 500k Fasttext & \multicolumn{1}{r}{12034} & 0.5128 & 0.4165 & 0.5237 & 0.4220 & 0.4385 & 0.3550 & 0.4514 & 0.3575 \\
+ & Numberbatch & \multicolumn{1}{r}{6939} & 0.2768 & 0.1985 & 0.2770 & 0.1980 & 0.2157 & 0.1570 & 0.2186 & 0.1625 \\
+\multirow{3}{*}{sl} & 1M Fasttext & \multicolumn{1}{r}{12185} & 0.2622 & 0.1780 & 0.2638 & 0.1805 & 0.2343 & 0.1510 & 0.2397 & 0.1560 \\
+ & 500k Fasttext & \multicolumn{1}{r}{12020} & 0.2612 & 0.1780 & 0.2631 & 0.1795 & 0.2347 & 0.1515 & 0.2403 & 0.1580 \\
+ & Numberbatch & \multicolumn{1}{r}{5870} & 0.0935 & 0.0480 & 0.0946 & 0.0500 & 0.0635 & 0.0290 & 0.0626 & 0.0285 \\
+\multirow{3}{*}{sq} & 1M Fasttext & \multicolumn{1}{r}{8048} & 0.6566 & 0.5915 & 0.6397 & 0.5640 & 0.5647 & 0.4855 & 0.5694 & 0.4930 \\
+ & 500k Fasttext & \multicolumn{1}{r}{7990} & 0.6561 & 0.5870 & 0.6442 & 0.5685 & 0.5661 & 0.4880 & 0.5705 & 0.4925 \\
+ & Numberbatch & \multicolumn{1}{r}{4908} & 0.3107 & 0.2355 & 0.3106 & 0.2330 & 0.2431 & 0.1780 & 0.2474 & 0.1835 \\
+ &  &  & 0.4000 & 0.3178 & 0.4021 & 0.3186 & 0.3322 & 0.2583 & 0.3368 & 0.2612 \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\
+ &  &  &  &  &  &  &  &  &  &  \\ \cmidrule(r){1-2}
+\end{tabular}
+\end{table}
+
 
 \section{Case Study}%
 \label{sec:case_study}

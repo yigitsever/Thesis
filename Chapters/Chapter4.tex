@@ -6,21 +6,16 @@
 Document retrieval is the prototypical information retrieval task.
 \textcite{bush_as_1945} theorized the possibilities of the automatic information retrieval by machines in his essay titled \citetitle{bush_as_1945}.
 On his \citetitle{singhal_modern_2001}, \textcite{singhal_modern_2001} gives due credit to \textcite{luhn_statistical_1957} for the initial suggestion of using word overlap in document retrieval.
-% this can be expanded or moved to chapter 2
 
-Modern information retrieval techniques are far from the scope of this thesis.
+Modern information retrieval techniques are out of the scope of this thesis, our short definitions are arguably not even documents.
 Yet, we can still benefit from the tried and tested methods of the early information retrieval.
 Considering the small collection of documents at hand, first we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them were small as well~\cite{singhal_modern_2001}.
-However, we will get leverage from a state of the art tool from the modern computer science; \emph{Google Translate}.
-% then, we will look into cldr
 
 \section{Monolingual Retrieval}
 
-First of all, we created a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
+First of all, by collecting English Princeton WordNet definitions and target wordnet definitions, we created a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
 We used the Google Cloud API\footnote{\url{https://cloud.google.com/translate}} in order to automate the process.
-% TODO when the preparing the wordnets section is ready, refer there from here
 
-% TODO figure out how to render bulgarian and greek text here and add them
 \begin{table}[htbp]
     \centering
     \begin{tabulary}{\textwidth}{LR}
@@ -52,36 +47,31 @@ We can also see word duplication when synonyms collapse into single words.
 These shortcomings are also reported by \textcite{groves_friend_2015}.
 
 With the English Princeton WordNet definitions and 6 target wordnet definitions at hand, we can handle the task as \emph{monolingual document retrieval}.
-% We have presented the preliminary knowledge for the vector space representation in Chapter~\ref{chap:background_n_related}.
+As usual, we present our methods with a single wordnet which is repeated for 6 wordnets trivially.
 We will use the vector space model that was mentioned in Chapter~\ref{chap:background_n_related} to have real valued vectors that represent the definitions.
-
-To begin with, the definitions that were extracted from English Princeton WordNet and the target wordnet have been collocated to form a corpora.
-This process includes one target wordnet at a time and experiments were simply repeated for each wordnet.
-The vocabulary of this corpora is shared between the wordnet pairs as they have been joined in a single language.
 
 \subsection{Term Document Matrix}%
 \label{sub:term_document_matrix}
 
-With the definition collection and the vocabulary at hand, we created a \emph{term-document} matrix.
+With the corpora of two wordnets in English, we have can use a single vocabulary $V$.
+With the definition collection and the vocabulary at hand, we create a \emph{term-document} matrix.
 In this instance of the term-document matrix, rows represent the documents and columns denote individual vocabulary entries.
 Such a matrix $C$ is $m$ by $n$ while $m$ is the number of documents and $n$ is the size of the vocabulary $|V|$.
-Our definitions are just short documents so we use the terms \emph{definition} and \emph{document} interchangeably with the added benefit of using $d$ to denote either of them.
+Our definitions are used as short documents so we use the terms \emph{definition} and \emph{document} interchangeably with the added benefit of using $d$ to denote either of them.
 
 For any element of $C$, $c_{i,j}$ is the number of times $j$ occurs in the document $i$.
 This matrix is sparse since documents use a fraction of the available vocabulary $V$.
-Our case with definitions is no different with an average of 10.62 words per definition with vocabulary sizes well over 10,000s.
+Our case with definitions is no different with an average of 10.62 words per definition with vocabulary sizes well over 10,000.
 
 \subsection{Term Weighting}%
 \label{sub:term_weighting}
 
 Elements of a term-document matrix is scaled in order to assign weights to elements according to their discriminative power~\cite{manning_introduction_2009}.
-Stopwords like \enquote{the}, \enquote{and} have virtually no significance and terms that are common in the corpora's domain will have no discriminating power either, as explained by \textcite{manning_introduction_2009}.
-We have opted out of stopword removal considering our short definitions.
+Stopwords like \enquote{the}, \enquote{and} have virtually no significance and terms that are common in the corpora's domain will have no discriminating power either~\cite{manning_introduction_2009}.
 
 \textbf{What is a good scaling method for term weighing?}
 \tfidf{} is composed of two scores; term frequency \emph{tf} and inverse document frequency \emph{idf}.
 \emph{idf} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
-% \cite{robertson_understanding_2004} can be cited for full tfidf
 Term frequency $tf_{w,d}$ is the number of times term $w$ occurs in a document $d$.
 Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$.
 We have used the smooth variant of idf as follows;
@@ -89,29 +79,20 @@ We have used the smooth variant of idf as follows;
     idf_w = \log{\frac{N + 1}{df_w + 1}}
 \end{equation}
 Where $N$ is the number of documents in the corpus. $\log(\cdot)$ is used to dampen the effect of the $idf$.
-
-\citeauthor{manning_introduction_2009} explains the intuition behind the \tfidf{} in his \citetitle{manning_introduction_2009} as follows;
-\begin{displayquote}
-    \textelp{}, tf-idf$_{t,d}$ assigns to term $t$ a weight in document $d$ that is
-    \begin{enumerate}
-        \item highest when $t$ occurs many times within a small number of documents (thus lending high discriminating power to those documents);
-        \item lower when the term occurs fewer times in a document, or occurs in many documents (thus offering a less pronounced relevance signal);
-        \item lowest when the term occurs in virtually all documents.
-    \end{enumerate}
-\end{displayquote}
+Using \emph{idf} ensures that terms that appear rarely have a bigger influence and coupled with \emph{tf}, the highest weights are given to rare terms when they appear numerous times in a document.
+On the other hand, terms that appear commonly in documents or even in every document lose their influence~\cite{manning_introduction_2009}.
 By weighing our term-document matrix $C$, for any term $x_{i,j}$
 \begin{equation}
 x_{i,j} = \text{tf}_{td} \cdot \text{idf}_{t} \end{equation}
-Such that term $x_{i,j}$ shows the importance of term $t$ with relation to its general significance throughout the corpus.
-
-% textcite{ruiz-casado_automatic_2005} says tfidf + dot product was the best for their task
+term $x_{i,j}$ shows the importance of term $t$ with relation to its general significance throughout the corpus.
+Our choice of \tfidf{} weighting is further motivated by \textcite{ruiz-casado_automatic_2005} in which they claim superior results in discovering correct wordnet definitions using \tfidf{} weights.
 
 \subsection{Similarity Measure}%
 \label{sub:similarity_measure}
 
-Using the term-document matrix, similarity between two documents can be calculated by assigning a scoring scheme that uses rows as document vectors.
-\emph{Cosine similarity} is such a measure that can be used to find the cosine of the angle between two vectors and scales to multidimensional case trivially.
-Moreover, since the majority of the dimensions between the vectors are zero, cosine similarity ignores these dimensions and implicitly prioritizes the non-zero dimensions.
+With our term-document matrix ready, similarity between two documents can be calculated by assigning a scoring scheme that uses document vectors.
+\emph{Cosine similarity} is a measure that assigns to find the cosine of the angle between two vectors as their similarity score and scales to multidimensional case trivially.
+Moreover, since the majority of the dimensions between the vectors are zero, cosine similarity ignores these dimensions and implicitly considers the non-zero dimensions.
 
 For the row vector $\vec{d_t}$ and $\vec{d_p}$, cosine similarity between definitions $t, p$ is
 \begin{equation}
@@ -123,6 +104,9 @@ For the row vector $\vec{d_t}$ and $\vec{d_p}$, cosine similarity between defini
 
 With definition vectors and a similarity measure at hand, we split the \tfidf{} weighted term-document matrix $C'$ as English Princeton WordNet definitions and target wordnet definitions.
 The target wordnet definitions were used as pseudo-queries and English Princeton WordNet definitions were used as the document collection to retrieve definitions from.
+In Figure~\ref{fig:term_document}, we show the overview of the process.
+As we have mentioned in Chapter~\ref{chap:unsupervised_matching}, the golden corpora we use includes the same number of definitions on both collections.
+This number is shown as $k$ in Figure~\ref{fig:term_document}.
 
 \begin{figure}[htbp]
     \centering
@@ -135,19 +119,23 @@ In order to retrieve and rank definitions given the query definition, cosine sim
 The similarity scores that range between 0 and 1 are sorted in descending order with the definition index attached.
 The retrieved documents are ranked according to their similarity score.
 Since the definitions are aligned across wordnets, a correctly retrieved definition will have the same index as the query definition.
+By sorting the retrieved indices of the definitions, we have a ranking system.
 
 \subsection{Evaluation}%
-\label{sub:evaluation}
+\label{sub:monolingual_evaluation}
 
 Information retrieval literature usually uses \emph{precision} and \emph{recall} as the evaluation metric with the assumption that the user wants to receive as many relevant documents as possible~\cite{salton_state_1992}.
 However, we only have one correct definition we are interested in and cannot access relevance any further for any other retrieved definitions anyway.
-As a result, we used a tweaked version of \emph{Mean reciprocal rank} (MRR) as introduced by \textcite{voorhees_trec-8_1999} in \citetitle{voorhees_trec-8_1999}.
-In the report, mean reciprocal rank was used in order to evaluate a question answering track where a singular correct answer was sought among other answers and is rewarded according to the returned rank.
-In other words, mean reciprocal rank evaluates a system's retrieval score with respect to the rank of a single correct answer. % cares about only the single highest ranked term
+The only information our corpora provides is that \emph{correct} definition to retrieve has the same index as the query.
+So, we used a tweaked version of \emph{Mean reciprocal rank} (MRR) as introduced by \textcite{voorhees_trec-8_1999}.
+In their work, mean reciprocal rank was used in order to evaluate a question answering track where a singular correct answer was sought among several answers and is rewarded according to the rank of the correct item.
+In other words, mean reciprocal rank evaluates a system's retrieval score with respect to the rank of a single correct answer, averaged over all the queries.
+Considering that we have $k$ definitions that we cast as queries, the MRR is calculated as
+
 \begin{equation}
-    \text{MRR} = \frac{1}{|Q|} \cdot \sum_{q}^{|Q|} \frac{1}{\text{rank}_{q}}
+    \text{MRR} = \frac{1}{k} \sum_{q = 1}^{k} \frac{1}{R(q)}
 \end{equation}
-% TODO only wikipedia has a equation and I can't cite wikipedia and I can't write an equation that doesn't resemble wikipedia's
+
 Where rank$_q$ is the ranking of the \emph{correct} definition for the query $q$.
 
 \begin{table}[htbp]
@@ -175,27 +163,6 @@ Where rank$_q$ is the ranking of the \emph{correct} definition for the query $q$
     \label{tab:pwn_translated}
 \end{table}
 
-\subsection{Results}%
-\label{sub:results}
-
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{lrrrrr}
-        \toprule%
-        Language & MRR & Top 10 & Top 10 \% & Top 1 & Top 1 \% \\
-        \midrule%
-        bg & 0.087 & 674 & 0.337 & 403 & 0.202 \\
-        el & 0.122 & 1006 & 0.503 & 709 & 0.355 \\
-        it & 0.016 & 476 & 0.238 & 250 & 0.125 \\
-        ro & 0.051 & 988 & 0.494 & 728 & 0.364 \\
-        sl & 0.073 & 584 & 0.292 & 317 & 0.159 \\
-        sq & 0.056 & 979 & 0.490 & 767 & 0.384 \\
-        \bottomrule
-    \end{tabular}
-    \caption{Experiment results for monolingual retrieval}%
-    \label{tab:monolingual_tfidf}
-\end{table}
-
 % temporary
 % Following the monolingual retrieval, we leveraged the power of word embeddings to include the semantic similarity between words.
 % A famous example for the inadequacy of \tfidf{} is illustrated by~\cite{kusner_word_2015}.
@@ -205,38 +172,55 @@ Where rank$_q$ is the ranking of the \emph{correct} definition for the query $q$
 \section{Cross Lingual Document Retrival}%
 \label{sec:cross_lingual_document_retrival}
 
+In this section, we will talk about the methods that allowed us to use bilingual word embeddings to retrieve definitions while keeping them in their own language.
+
 \subsection{Word Movers Distance}%
 \label{sub:word_movers_distance}
 
-% ROUGH DRAFT
-Following the popularization of the word2vec~\cite{mikolov_distributed_2013}, \textcite{kusner_word_2015} introduced \emph{Word Mover's Distance}.
-By adapting the optimal transport theorem into using distances between word embeddings and documents as probability distributions that are composed of words, he suggested the following;
+Following the popularization of the word2vec~\cite{mikolov_distributed_2013}, \textcite{kusner_word_2015} introduced \emph{word mover's distance}.
+In order to explain the algorithm, first we should talk about the issue that inspired it.
 
-For an embedding matrix $X \in R^{n \times d}$ $d$ is the dimension the embedding was learned at and $n$ is the size of the vocabulary.
-In this configuration, a row $\vec{x_i} \in R^d$ of the matrix $X$ is the embedding for the $i^{\text{th}}$ word $w_i$.
+We have studied bag of words representation for document retrieval tasks, using \tfidf{} weights.
+\citeauthor{kusner_word_2015} gives a brilliant example of a case where relying on word overlap fall short;
 
-Given a a separate term-document matrix $C \in R^{m \times n}$, a row $\vec{d_j} \in R^n$ is the row vector for the $j^{\text{th}}$ document $d_j$.
-In the original paper \citetitle{kusner_word_2015}, the elements of the term-document matrix $C$ are given as normalized bag-of-words representations.
-Given the $i^{\text{th}}$ word in a document;
-\begin{equation}
-    d_i = \frac{tf_{}}{\sum_{j = 1}^{n}tf_{j}}
-\end{equation}
-Where tf$_{i,j}$ is the term frequency or the number of times term $i$ appears in document $j$.
+\begin{tabular}{l l}
+    \midrule
+    Obama speaks to the media in Illinois & The President greets the press in Chicago \\
+    \midrule
+\end{tabular}
 
-We have studied the \tfidf{} weighted case for using term-document matrices for document retrieval tasks.
-\citeauthor{kusner_word_2015} gives a brilliant example on a case where word overlap scoring nature of term-document matrices fall short;
-\begin{displayquote}
-    Recall the earlier example of two similar, but word-different sentences in one document: \enquote{Obama speaks to the media in Illinois} and in another: \enquote{The President greets the press in Chicago}. After stop-word removal, the two corresponding nBOW vectors \textbf{$d$} and \textbf{$d'$} have no common non-zero dimensions and therefore have close to maximum simplex distance, although their true distance is small.
-\end{displayquote}
-In order to use the innate similarity between words provided by word embeddings, \citeauthor{kusner_word_2015} first introduces a flow matrix $T \in R^{n \times n}$.
+After the stop words are removed, the resulting tokens \{Obama, speaks, media, Illinois\} and \{President, greets, press, Chicago\} have no overlap so their vector representations would be orthogonal, showing maximum separation.
+Yet they convey the same meaning semantically.
+However, by calculating the distances between individual words of documents, it can be proven that the case above is basically the same sentence.
+Motivated by this aim, \citeauthor{kusner_word_2015} adapted the optimal transport theorem~\cite{kantorovitch_translocation_1958}, an optimization problem like the one discussed in Chapter~\ref{chap:unsupervised_matching}.
+Their idea starts by casting documents as probability distributions defined over word embeddings of the words they are written with.
+
+% For an embedding matrix $X \in R^{n \times d}$ $d$ is the dimension the embedding was learned at and $n$ is the size of the vocabulary.
+% In this configuration, a row $\vec{x_i} \in R^d$ of the matrix $X$ is the embedding for the $i^{\text{th}}$ word $w_i$.
+
+% Given a separate term document matrix $C \in R^{m \times n}$, a row $\vec{d_j} \in R^n$ is the row vector for the $j^{\text{th}}$ document $d_j$.
+% In the original paper \citetitle{kusner_word_2015}, the elements of the term-document matrix $C$ are given as normalized bag-of-words representations.
+% Given the $i^{\text{th}}$ word in a document;
+% \begin{equation}
+    % d_i = \frac{tf_{}}{\sum_{j = 1}^{n}tf_{j}}
+% \end{equation}
+% Where tf$_{i,j}$ is the term frequency or the number of times term $i$ appears in document $j$.
+
+% In order to use the innate similarity between words provided by word embeddings, \citeauthor{kusner_word_2015} first introduces a flow matrix $T \in R^{n \times n}$.
 
 \section{\citeauthor{balikas_cross-lingual_2018} Implementation}%
 \label{sec:balikas_cross-lingual_2018_implementation}
 
+\textcite{balikas_cross-lingual_2018} extended the word mover's distance with two additions.
+First, instead of normalized bag of words representation for the documents, they introduced term frequency and \tfidf{} to weigh the documnets.
+Second addition is to use word mover's distance using bilingual word embeddings.
+For document $d^{i}$ in language $i$ is written using words $w_{x}^{i} \subset d^{i}$ which belong to vocabulary $V^{i}$.
+The same principle extends to language $j$ such that document $d^{j}$ is built with using $w_{x}^{j}$ that belong to $V^{j}$.
+Word embeddings of two languages that share a space is used such that $v_{w_{x}^{i}} \in W^{i}$ and $v_{w_{x}^{j}} \in W^{j}$.
+By using word embeddings that were mapped to the same latent space, they achieved cross lingual document retrival.
 
+\subsection{Evaluation}%
+\label{sub:cldr_evaluation}
 
-\subsection{Optimal Transport}%
-\label{sub:optimal_transport}
-
-\subsection{Sinkhorn}%
-\label{sub:sinkhorn}
+We present mean reciprocal rank that we have mentioned in Section~\ref{sub:monolingual_evaluation}.
+Furthermore, we also report precision at 10 metric, that is if the correct defintion was retrieved among the 10 closest definitions retrieved.

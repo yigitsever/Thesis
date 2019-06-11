@@ -45,3 +45,111 @@ Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say yo
     \caption{Coverage Scores for the Vectors Aligned Using VecMap}%
     \label{tab:coverage_results}
 \end{table}
+
+
+\section{Results}%
+\label{sec:chap3_results}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+& \multicolumn{3}{c}{Percentage of Correctly Matched Definitions} \\
+\cmidrule(lr){2-4}
+        \textbf{Language} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+        \midrule
+        bg & 0.39 & 0.41 & 0.19 \\
+        el & 0.37 & 0.38 & 0.14 \\
+        it & 0.28 & 0.28 & 0.36 \\
+        ro & 0.39 & 0.39 & 0.20 \\
+        sl & 0.15 & 0.15 & 0.06 \\
+        sq & 0.55 & 0.54 & 0.27 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Linear Assignment Using 2000 Definitions}%
+    \label{tab:lapjv_2000}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+& \multicolumn{3}{c}{Percentage of Correctly Matched Definitions} \\
+\cmidrule(lr){2-4}
+        \textbf{Language} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+        bg & 0.35 & 0.36 & 0.18 \\
+        el & 0.36 & 0.36 & 0.12 \\
+        it & 0.25 & 0.25 & 0.32 \\
+        ro & 0.36 & 0.37 & 0.19 \\
+        sl & 0.11 & 0.11 & 0.05 \\
+        sq & 0.39 & 0.40 & 0.19 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Linear Assignment Using 3000 Definitions}%
+    \label{tab:lapjv_3000}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule
+& \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+\midrule
+        Best & 0.55 & 0.54 & 0.36 \\
+        Worst & 0.11 & 0.11 & 0.05 \\
+        Average & 0.33 & 0.33 & 0.19 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Summary of Linear Assignment}%
+    \label{tab:lapjv_summary}
+\end{table}
+
+\subsection{Monolingual Retrieval Results}%
+\label{sub:chap4_results}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lrrrrr}
+        \toprule%
+        Language & MRR & Top 10 & Top 10 \% & Top 1 & Top 1 \% \\
+        \midrule%
+        bg & 0.087 & 674 & 0.337 & 403 & 0.202 \\
+        el & 0.122 & 1006 & 0.503 & 709 & 0.355 \\
+        it & 0.016 & 476 & 0.238 & 250 & 0.125 \\
+        ro & 0.051 & 988 & 0.494 & 728 & 0.364 \\
+        sl & 0.073 & 584 & 0.292 & 317 & 0.159 \\
+        sq & 0.056 & 979 & 0.490 & 767 & 0.384 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Experiment results for monolingual retrieval}%
+    \label{tab:monolingual_tfidf}
+\end{table}
+
+\section{Case Study}%
+\label{sec:case_study}
+
+In order to test our approach, we have acquired a general purpose Turkish dictionary~\footnote{We would like to thank Hülya Küçükaras once more}, to be used for research purposes.
+The dictionary was in a proprietary format so we have parsed the terms alongside their definitions.
+The parts of speech for the terms are also extracted.
+All in all, 67351 headwords with 93062 definitions are parsed.
+
+We have shown that the approaches we have presented so far are bound by their memory restrictions.
+We have tried to overcome it by running the experiment on only nouns but the issue persisted for the case study as well.
+As a result, we referred to \textcite{khodak_automated_2017} and constrained our scope to a list of core WordNet synsets.
+Open Multilingual Wordnet hosts~\footnote{\url{http://compling.hss.ntu.edu.sg/omw/wn30-core-synsets.tab}} a list that identifies 4961 WordNet identifiers in the form of offset and part of speech that is compatible with the nltk library.
+The list has been prepared in \textcite{boyd-graber_adding_2006} by human evaluators by selecting salient synsets from a list of frequent words.
+By using a core WordNet, we picked ourselves a problem domain we can tackle.
+We also deleted the identifiers for verbs and adjectives and worked only with nouns.
+Then, the experiment set for the Turkish dictionary is selected by translating the lemmas that belong to core WordNet synsets to Turkish and using the resulting set to query the headwords of the Turkish dictionary.
+Using this method, we obtained 702 Turkish definitions and 3280 WordNet definitions.
+
+The methods we studied so far work with two corpora of the same size so we randomly picked 702 English WordNet definitions to go against 702 Turkish dictionary definitions.
+We use our best performing set of approaches; word mover's distance using \tfidf{} weights, run on fastText embeddings mapped using VecMap.
+The bilingual dictionary provided by OpenSubtitles used in order to map Turkish and English fastText embeddings.
+
+While preparing the corpora for the word mover's distance, 101 Turkish definitions are dropped due to them having no words to be represented by fastText embeddings.
+Same number of English WordNet definitions are also dropped to keep to the symmetric size constraint.
+Then, word mover's distance is run over 601 Turkish and English definitions.
+
+We do not know the ground truth for the mapping in this study hence we cannot report for any evaluation metric.
+As a result, in Appendix~\ref{app:case_study}, we present 100 randomly selected pairs that were retrieved as the top result against the Turkish query.

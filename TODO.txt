@@ -1,9 +1,4 @@
 Chapters/Chapter3.tex:119:% TODO there was a citation for this
-Chapters/Chapter1.tex:48:% TODO A reference here
-Chapters/Chapter1.tex:50:% TODO A reference here
-Chapters/Chapter1.tex:105:% TODO reference here after chapter 2
-Chapters/Chapter1.tex:157:\section{Thesis Goals}% TODO return here
-Chapters/Chapter1.tex:159:% TODO we assume word embeddings are interchangeable
 Chapters/Chapter2.tex:110:% TODO word overlap, you cited this on chapter 4?
 Chapters/Chapter2.tex:214:% TODO cite hierarchical softmax
 Chapters/Chapter2.tex:243:% TODO paraphrase don't blockquote
@@ -13,3 +8,8 @@ Chapters/Chapter2.tex:370:%TODO cite here lund, deerwester?
 Chapters/Chapter2.tex:483:% TODO ... acc and attachment
 Chapters/Chapter5.tex:12:% TODO figure here
 Chapters/Chapter5.tex:41:% TODO give more solutions here
+Chapters/Chapter1.tex:48:% TODO A reference here
+Chapters/Chapter1.tex:50:% TODO A reference here
+Chapters/Chapter1.tex:105:% TODO reference here after chapter 2
+Chapters/Chapter1.tex:157:\section{Thesis Goals}% TODO return here
+Chapters/Chapter1.tex:159:% TODO we assume word embeddings are interchangeable

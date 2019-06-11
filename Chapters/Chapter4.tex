@@ -178,10 +178,10 @@ In this section, we will talk about the methods that allowed us to use bilingual
 \label{sub:word_movers_distance}
 
 Following the popularization of the word2vec~\cite{mikolov_distributed_2013}, \textcite{kusner_word_2015} introduced \emph{word mover's distance}.
-In order to explain the algorithm, first we should talk about the issue that inspired it.
+In order to explain the algorithm, first we should talk about the motivation behind it.
 
 We have studied bag of words representation for document retrieval tasks, using \tfidf{} weights.
-\citeauthor{kusner_word_2015} gives a brilliant example of a case where relying on word overlap fall short;
+\citeauthor{kusner_word_2015} gives a brilliant example where relying on word overlap falls short;
 
 \begin{tabular}{l l}
     \midrule
@@ -189,35 +189,34 @@ We have studied bag of words representation for document retrieval tasks, using 
     \midrule
 \end{tabular}
 
-After the stop words are removed, the resulting tokens \{Obama, speaks, media, Illinois\} and \{President, greets, press, Chicago\} have no overlap so their vector representations would be orthogonal, showing maximum separation.
+After the stop words are removed, the resulting tokens \{Obama, speaks, media, Illinois\} and \{President, greets, press, Chicago\} have no overlap so their vector representations would be orthogonal, showing maximum dissimilarity.
 Yet they convey the same meaning semantically.
-However, by calculating the distances between individual words of documents, it can be proven that the case above is basically the same sentence.
-Motivated by this aim, \citeauthor{kusner_word_2015} adapted the optimal transport theorem~\cite{kantorovitch_translocation_1958}, an optimization problem like the one discussed in Chapter~\ref{chap:unsupervised_matching}.
+By calculating the distances between individual words of documents, it can be proven that the case above is basically the same sentence.
+Using this case as their motivation, \citeauthor{kusner_word_2015} adapted the optimal transport theorem~\cite{kantorovitch_translocation_1958}, an optimization technique like the one discussed in Chapter~\ref{chap:unsupervised_matching}.
+This theorem deals with the energy cost of transporting one arbitrary mass to another, often explained with transporting piles of dirt analogy.
 Their idea starts by casting documents as probability distributions defined over word embeddings of the words they are written with.
+First, words of a document is chosen as the elements of a document's probability distribution.
+We now know that relying on sameness or word overlap is not feasible so the words are instead represented by their $d$ dimensional word embeddings.
+The distance between two words can be represented by the Eucledian distance between them over $d$ dimensions, or;
+\begin{displaymath}
+    d(w_a, w_b) = || w_a - w_b ||_2
+\end{displaymath}
+\textcite{kusner_word_2015} calls this the travel cost between word $w^a$ and $w^b$.
+Now that the distance or the cost between words can be shown, two documents $d_i$ and $d_j$, respectively written using words such that $d_i = \{w^{i}_1, w^{i}_2 \dots w^{i}_n\}$ and $d_j = \{w^{j}_1, w^{j}_2 \dots w^{j}_n\}$, a \emph{flow matrix} can be formulated using the distances between every $w^{i}_x$ and $w^{j}_y$ pair.
+This flow matrix is called T and an element $T_{i,j}$ is the distance needed to travel when starting from word $i$ to reach word $j$.
+The $T$ is optimized to find the minimum distance possible between $d_i$ and $d_j$ using linear programming.
+Optimization \emph{chooses} which word pairs to use to travel from one document to another and when cast over a whole corpus, similar documents will have lower minimal costs on their $T$ matrices depending if their words are easily \emph{moveable} across each other.
 
-% For an embedding matrix $X \in R^{n \times d}$ $d$ is the dimension the embedding was learned at and $n$ is the size of the vocabulary.
-% In this configuration, a row $\vec{x_i} \in R^d$ of the matrix $X$ is the embedding for the $i^{\text{th}}$ word $w_i$.
-
-% Given a separate term document matrix $C \in R^{m \times n}$, a row $\vec{d_j} \in R^n$ is the row vector for the $j^{\text{th}}$ document $d_j$.
-% In the original paper \citetitle{kusner_word_2015}, the elements of the term-document matrix $C$ are given as normalized bag-of-words representations.
-% Given the $i^{\text{th}}$ word in a document;
-% \begin{equation}
-    % d_i = \frac{tf_{}}{\sum_{j = 1}^{n}tf_{j}}
-% \end{equation}
-% Where tf$_{i,j}$ is the term frequency or the number of times term $i$ appears in document $j$.
-
-% In order to use the innate similarity between words provided by word embeddings, \citeauthor{kusner_word_2015} first introduces a flow matrix $T \in R^{n \times n}$.
-
-\section{\citeauthor{balikas_cross-lingual_2018} Implementation}%
-\label{sec:balikas_cross-lingual_2018_implementation}
+\subsection{Cross Lingual Word Mover's Distance}%
+\label{sub:clemd}
 
 \textcite{balikas_cross-lingual_2018} extended the word mover's distance with two additions.
 First, instead of normalized bag of words representation for the documents, they introduced term frequency and \tfidf{} to weigh the documnets.
 Second addition is to use word mover's distance using bilingual word embeddings.
-For document $d^{i}$ in language $i$ is written using words $w_{x}^{i} \subset d^{i}$ which belong to vocabulary $V^{i}$.
-The same principle extends to language $j$ such that document $d^{j}$ is built with using $w_{x}^{j}$ that belong to $V^{j}$.
-Word embeddings of two languages that share a space is used such that $v_{w_{x}^{i}} \in W^{i}$ and $v_{w_{x}^{j}} \in W^{j}$.
-By using word embeddings that were mapped to the same latent space, they achieved cross lingual document retrival.
+% For document $d^{i}$ in language $i$, written using words $w_{x}^{i} \subset d^{i}$ which belong to vocabulary $V^{i}$.
+% The same principle extends to language $j$ such that document $d^{j}$ is built with using $w_{x}^{j}$ that belong to $V^{j}$.
+% Word embeddings of two languages that share a space is used such that $v_{w_{x}^{i}} \in W^{i}$ and $v_{w_{x}^{j}} \in W^{j}$.
+% By using word embeddings that were mapped to the same latent space, they achieved cross lingual document retrival.
 
 \subsection{Evaluation}%
 \label{sub:cldr_evaluation}

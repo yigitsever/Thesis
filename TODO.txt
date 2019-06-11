@@ -6,8 +6,6 @@ Chapters/Chapter2.tex:340:% TODO section 3.2 of bojanowski_enriching_2016, it is
 Chapters/Chapter2.tex:363:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
 Chapters/Chapter2.tex:370:%TODO cite here lund, deerwester?
 Chapters/Chapter2.tex:483:% TODO ... acc and attachment
-Chapters/Chapter5.tex:12:% TODO figure here
-Chapters/Chapter5.tex:41:% TODO give more solutions here
 Chapters/Chapter1.tex:48:% TODO A reference here
 Chapters/Chapter1.tex:50:% TODO A reference here
 Chapters/Chapter1.tex:105:% TODO reference here after chapter 2

@@ -5,7 +5,7 @@
 
 \citeauthor{somers_youre_2014} puts down modern dictionaries in their article \citetitle{somers_youre_2014};
 \enquote{The definitions are these desiccated little husks of technocratic meaningese, as if a word were no more than its coordinates in semantic space.}~\cite{somers_youre_2014}.
-From the perspective of an author, the efficiency of dictionaries might be worrisome but we will build this thesis on the presumption that dictionary definitions can indeed be represented in some semantic space.
+From the perspective of an author, the efficiency of dictionaries might be worrisome but we will build this thesis on the presumption that dictionary definitions can indeed be represented in some semantic space using the words they are written with as the elements of their vectors.
 
 \section{Word Embeddings}%
 \label{sec:word_embeddings}
@@ -19,21 +19,20 @@ From the perspective of an author, the efficiency of dictionaries might be worri
 % http://ruder.io/word-embeddings-1
 % Used as 'what to look for', though some have conflicting information
 
-\emph{Word embeddings} are real valued dense vectors for words.
+\emph{Word embeddings} are real valued dense vectors that represent words.
 Recently, language modelling studies have been focusing on explicitly learning word embeddings in order to show words or phrases as points on a low dimensional latent space.
 On the other hand, earlier research had been obtaining what we can call feature vectors for words while studying natural language processing tasks such as named entity recognition or part of speech tagging~\cite{almeida_word_2019, collobert_unified_2008}.
 The vector representation allows researchers access to the tools of the broad literature in linear algebra and machine learning, since they are intuitive for humans to interpret, more so for machines.
 Vectors can be compared as a measure of semantic similarity or composed together to build more expansive sentence, paragraph or document representations.
 
 Induced embeddings can be saved to the disk in matrix notation.
-Each row is labelled with a token that is denoted by the following $n$ real numbers, as popularized by the open source package \emph{word2vec}.\footnote{\url{https://code.google.com/archive/p/word2vec/}}
-Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications.
+Each row is labelled with a token which is shown in some space by the following $n$ real numbers, as popularized by the open source package \emph{word2vec}.
+Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications~\cite{balikas_cross-lingual_2018, kusner_word_2015, speer_conceptnet_2017}.
 Word embeddings available in this manner are often called as \emph{pre-trained} models.
-Examples of pre-trained word embeddings are \emph{word2vec}, \emph{GloVe}, \emph{Numberbatch} and \emph{fastText}.
-% TODO if this line stays you need to cite them
+Examples of pre-trained word embeddings are \emph{word2vec}~\cite{mikolov_distributed_2013}, \emph{GloVe}~\cite{pennington_glove_2014}, \emph{Numberbatch}~\cite{speer_conceptnet_2017} and \emph{fastText}~\cite{bojanowski_enriching_2016}.
 
 In the following section, we will briefly present the history of word embeddings.
-Word embeddings is a sprawling subject that researchers has been building upon using the ideas from probabilistic, statistical and neural network models.
+Research on word embeddings is a sprawling subject that researchers has been building upon using the ideas from probabilistic, statistical and neural network models.
 We have omitted crucial contributions that optimized models and brought the literature where it is today due to space constraints, following a path that will lead into the preliminary behind the models we have chosen.
 
 \subsection{History of Word Representations}%
@@ -46,24 +45,24 @@ In order to talk about how words can be mapped to a multidimensional space, we s
 
 In his \citeyear{harris_distributional_1954} article, \textcite{harris_distributional_1954} introduced his ideas which later came to known as \emph{distributional hypothesis} in the field of linguistics.
 He argued that similar words appear within similar contexts.
-The famous quote by \textcite{firth_synopsis_1957} captures the idea as;
-\enquote{You shall know a word by the company it keeps!}
+The famous quote by \textcite{firth_synopsis_1957} captures the idea as; \enquote{You shall know a word by the company it keeps!}.
 For instance, the semantic similarity or relatedness between the terms \emph{jacket} and \emph{coat} can be theoretically shown since they will be accompanied by similar verbs, such as \emph{wear}, \emph{dry clean} or \emph{hang}, and similar adjectives such as \emph{warm} or \emph{leather}.
+We should note that similarity and relatedness differ from each other such that \emph{car} and \emph{motorcycle} are similar to each other while \emph{car} and \emph{road} are related.
 
 Early attempts to show words on a semantic space is studied in \textcite{osgood_measurement_1957}.
 Authors suggested representing concepts using orthogonal scales and relying on human judgement to score meanings on the axes.
-An example concept from their study is given in Figure~\ref{fig:early_vectors}.
+An example human annotated concept from their study is given in Figure~\ref{fig:early_vectors}.
 
 \begin{figure}[htbp]
     \centering
     \incfig{early_semantic_vectors}
-    \caption{Sense representation using human judgement scores for the concept \enquote{Father} adapted from \textcite{osgood_measurement_1957}.}%
+    \caption{Sense representation using human judgement scores for the concept \enquote{Father}~\cite{osgood_measurement_1957}}%
     \label{fig:early_vectors}
 \end{figure}
 
 However, for a researcher to pick appropriate scales or have meaning extracted by hand would be infeasible for natural language processing tasks~\cite{lund_producing_1996}.
 
-Even though \citeauthor{harris_distributional_1954} argued that \enquote{language is not merely a bag of words}, using unordered collection of word counts to capture the semantic information will be used in the literature and be known as the \emph{bag-of-words} model.
+Even though \citeauthor{harris_distributional_1954} argued that \enquote{language is not merely a bag of words}~\cite{harris_distributional_1954}, using just the word counts of a collection to capture the semantic information without regarding the order of the words will be used in the literature and be known as the \emph{bag-of-words} model.
 
 \subsubsection{Vector Space Model}%
 \label{ssub:vector_space_model}
@@ -71,16 +70,20 @@ Even though \citeauthor{harris_distributional_1954} argued that \enquote{languag
 The history of word embeddings is tightly coupled with \emph{vector space models} that initially appeared in the field of information retrieval.
 The intent was to extract vectors that represented \emph{documents}.
 First vector space model developed by \textcite{salton_vector_1975} was presented in \citetitle{salton_vector_1975}.
-% multiple sources say it's first, we should be fine
 It was the first application of bag-of-words hypothesis on a corpus to extract semantic information~\cite{turney_frequency_2010}.
-\citeauthor{salton_vector_1975} presented the novel idea of a \emph{document space}, that consist of fixed sized vectors as the columns of a term document matrix.
-The dimensions of the row vectors were the whole vocabulary of the corpus.
+\citeauthor{salton_vector_1975} presented the novel idea of a \emph{document space}.
+The document space is built using a term document matrix.
+The rows of the matrix represent individual documents using the whole vocabulary as their dimension.
 
-In this space, a document $D_i$ is represented using $t$ distinct terms as a row vector;
+In this space, a document $D_i$ is represented using $t$ distinct terms;
+
 \begin{displaymath}
     D_{i} = (d_{i1}, d_{i2}, \ldots, d_{it})
 \end{displaymath}
-The weights for each of the index terms $d_{ix}$ are calculated using the \tfidf{} measure introduced by \textcite{jones_statistical_1972}.
+
+The elements $d_{ix}$ can be raw term counts.
+They can be weighted using inverse document frequency measure introduced by \textcite{jones_statistical_1972}.
+Since this weighting scheme uses term frequency and the inverse document frequency, if is shortened as \tfidf{}.
 \tfidf{} is the multiplication of two metrics;
 \begin{description}
     \item[\emph{tf}] the number of times a term $k$ occurs in a document
@@ -94,10 +97,10 @@ The weights for each of the index terms $d_{ix}$ are calculated using the \tfidf
 % simply log_2(n/d_{k})
 % Where $n$ is the number of documents in the collection and $d_k$ is the number of documents that consists the term $k$.
 The weighting scheme was selected to \enquote{assign the largest weight to those terms which arise with high frequency in individual documents, but are at the same time relatively rare in the collection as a whole}~\cite{salton_vector_1975}.
-%They have cast their similarity function between documents as the inner product between their vectors which corresponds to the cosine similarity.
 
 The vector space model allowed \citeauthor{salton_vector_1975} to handle the similarity between documents as the angle between two vectors.
-Above all, they have shown that there is merit to handling documents as real valued vectors.
+Cosine similarity measure is often used since inner product of two normalized vectors is equivalent to the angle between them.
+\citeauthor{salton_vector_1975} have shown that there is merit to handling documents as real valued vectors.
 
 \subsection{Latent Semantic Analysis}%
 \label{sub:latent_semantic_analysis}
@@ -110,26 +113,26 @@ On the other hand, homonyms can match with an unrelated word.
 In order to answer these issues, their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
 
 Latent semantic analysis starts with a word co-occurrence matrix $X$.
-The terms of the matrix is weighted by some weighting scheme.
-While original study used raw term frequencies, \tfidf{} is a possibility while \textcite{levy_improving_2015} reports pointwise mutual information (PMI)~\cite{church_word_1990} as a popular choice.
+An element $x_{i,j}$ of $X$ is the number of times term $i$ co-occurs with term $j$ in a predefined context.
+Initially, whole documents were used for the context.
+Like term document matrices, the terms of the co-occurrence matrix is weighted by some weighting scheme.
+While original study by \citeauthor{deerwester_indexing_1990} used raw term frequencies, \tfidf{} is a possibility while \textcite{levy_improving_2015} reports pointwise mutual information (PMI)~\cite{church_word_1990} as a popular choice.
 A term document matrix $X$ is then factorized into three matrices using singular value decomposition~\cite{forsythe_computer_1977};
-% People don't cite this for some reason, is it wrong?
 \begin{displaymath}
     X = T_{0}S_{0}D_{0}'
 \end{displaymath}
 Where the columns of $T_{0}$ and $D_{0}'$ are orthogonal to each other and $S_{0}$ is the diagonal matrix of singular values.
 The singular values of $S_{0}$ can be ordered by size to keep only the $k$ largest elements, setting others to zero~\cite{deerwester_indexing_1990}.
 The resulting matrix is shown as $S$.
-
-\citeauthor{deerwester_indexing_1990} talk about the use for the resulting matrix as follows;
-\begin{displayquote}
-    Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
-    That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
-\end{displayquote}
-They have used this technique to solve document similarity task and briefly mentioned \emph{word similarity}.
-% TODO blockquoting doesn't look nice, paraphrase it
+% \citeauthor{deerwester_indexing_1990} talk about the use for the resulting matrix as follows;
+% \begin{displayquote}
+    % Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
+    % That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
+% \end{displayquote}
+The similarity tasks that are solved with $S$ can employ the representative $k$ dimensional vectors such that $k << |V|$.
+Latent semantic analysis was used to the solve document similarity task while \emph{word similarity} was mentioned briefly.
 % levy_improving_2015 section 2.2 has a very short and nice explanation if you want
-\textcite{landauer_solution_1997} later studied word similarity in full using latent semantic analysis.
+\textcite{landauer_solution_1997} later studied word similarity in full using latent semantic analysis, reducing the dimensions of the terms instead of documents.
 
 \subsection{Building Upon Distributional Hypothesis}%
 \label{sub:building_upon_distributional_hypothesis}
@@ -140,18 +143,24 @@ They have used this technique to solve document similarity task and briefly ment
 While \citeauthor{deerwester_indexing_1990} studied relatedness between words using vectors, their approach used the whole document for the co-occurrence information while the focus was clearly still on the document similarity.
 \textcite{schutze_dimensions_1992} proposed \enquote{to represent the semantics of words and contexts in a text as vectors} and built upon word co-occurrence.
 They theorized a context window of 1000 \emph{characters} in order to consider words that are close to the target word instead of the whole document in co-occurrence calculations.
+The choice of a character window is justified with the claim that lower number of representative long words are more discriminative than numerous short words.
 % They used cosine similarity as a measure of semantic relatedness between word vectors.
-However, they claimed that the computation power available was not suitable yet to fully tackle the task.
+\citeauthor{schutze_dimensions_1992} claimed that the computation power available was not suitable yet to fully tackle the task.
 
 % Lund is not cited as much, is context window important?
 % Why did Lund capture associativity instead of semantic relatedness?
 % Collobert! This just predicts the next word, not the job of a word in a text
-\textcite{lund_producing_1996} took the challenge and experimented upon 160 million \emph{words} taken from the Usenet, a precursor to the internet.
+\textcite{lund_producing_1996} took the challenge and experimented with 160 million \emph{words} taken from the Usenet, a precursor to the internet.
 They used a context window of 10 words and provided a method to obtain feature vectors to represent the meaning of words.
-% maybe talk about the method but seems redundant
 However, intricate tuning of word co-occurrence generated associatively similar vectors instead of semantically similar ones.
-To give an example, \emph{school} is related to \emph{student} while they are not similar.
-% TODO Figure 1 of this paper can be adapted here
+% To give an example, \emph{school} is related to \emph{student} while they are not similar, like \emph{school} and \emph{university}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[page=1,width=\textwidth]{Figures/jacket_coat.pdf}
+    \caption{How semantic similarity can be shown using similarity of two vectors, the colour gradient represents similar values for elements of the vector}%
+    \label{fig:jacket_coat}
+\end{figure}
 
 % Count based approaches to predictive approaches
 % Conventional VSM produces high dimensional representations, since the dims. correspond to words in the number can reach millions -> don't know where I got this, can't use it as it probably plagiarism
@@ -175,35 +184,34 @@ To give an example, \emph{school} is related to \emph{student} while they are no
 
 % input layer -> emb. layer -> softmax layer
 \textcite{bengio_neural_2003} proposed learning word representations using a feedforward neural network.
-Their model would learn feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
+Their model learns feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
 Although neural networks have been proposed to learn a language model by \textcite{xu_can_2000}, the main contribution of \citeauthor{bengio_neural_2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
+Their approach was also motivated exponentially increasing size of the vocabularies caused by \emph{n-grams}.
+n-grams are representations that are built using multiple tokenized words.
+For instance, as well as showing \emph{new} and \emph{york} in the vocabulary, \emph{New York} is handled as a single unit.
 For a corpus with vocabulary $V$, there are $|V|$ dimensions for the language model to learn and taking \emph{n-gram} representations into consideration, the problem grows exponentially.
-Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable, more representative dimensions and the problem scaled linearly.
-% $|V| >> m$
+Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable, more representative dimensions and the problem scaled linearly as a result.
 
-The setup for the neural network starts with the one hot encoded vector representation of the context for a word $w$.
+The setup for the neural network starts with the one hot encoded vector representation of the context for a word $w$, essentially a one dimensional vector where context words of $w$ are set while the rest of the vocabulary are zero.
 This context window is similar to those used in statistical models that predicts the word $w_t$ using the words that lead up to $w_t$.
 In other words, context window of $w_t$ is $T$ words on the left of $w_t$.
+In the following equation, we present the problem algebraically with an arbitrary probability function $P$.
 
-% TODO proper reference and check your notation
-% this is from Bengio
 \begin{displaymath}
-    \hat{P}(w_1^T) = \prod_{t=1}^{T}\hat{P}(w_t | w_{1}^{t-1})
+    P(w_1^T) = \prod_{t=1}^{T}P(w_t | w_{1}^{t-1})
 \end{displaymath}
 
-The input layer is projected into an embedding layer, later to a softmax layer to get a probability distribution in order to minimize the following cost function.
-% TODO check this sentence again, you might be remembering the details wrong
-% TODO wrong, there's a tanh layer in the middle too
-% http://ruder.io/word-embeddings-softmax/index.html has a beautiful softmax equation
+In short, the input layer is projected into an embedding layer, later to a softmax layer to get a probability distribution in order to minimize the following softmax cost function.
+
 \begin{equation}%
     \label{eqn:bengio_softmax}
     \hat{P}(w_t|w_{t-1}, \dots, w_{t-n+1}) = \frac{e^{y_{w_{t}}}}{\sum_{i}e^{y_{i}}}
 \end{equation}
-% TODO please check this after you've gotten some sleep, like what is y?
-However, this formulation is too expensive computationally since all vocabulary needs to be considered for the sum in the denominator.
-The curse of dimensionality problem were shifted to the final layer of the neural network which will be solved later using hierarchical softmax.
+
+However, this formulation is too computationally expensive since all vocabulary needs to be considered for the sum in the denominator.
+The curse of dimensionality problem is shifted to the final layer of the neural network.
+It will be solved later using hierarchical softmax.
 % TODO cite hierarchical softmax
-% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
 Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
 
 \textcite{collobert_unified_2008} suggested a deep neural network model in order to learn feature vectors for various natural language processing tasks.
@@ -211,12 +219,11 @@ Their proposed approach for language model is important for our case since it ex
 They have introduced two key ideas;
 \begin{itemize}
     \item Instead of using a context window that used words left of the target word to estimate the probability of the target word, they have placed the context window \emph{on} the target window, using $n$ words for left and right of the target word.
-    \item They introduced negative examples, where they randomly changed the middle word with a random one. This allowed them to use the ranking cost;
+    \item They introduced negative examples, where they randomly changed the middle word with a random one. As well as keeping their model from overfitting, this allowed them to use the ranking cost;
         \begin{displaymath}
             \sum_{s \in S} \sum_{w \in D} \text{max}\big( 0, 1 - f(s) + f(s^w)\big)
         \end{displaymath}
 \end{itemize}
-\textcite{collobert_unified_2008} claim that these additions allowed their system to learn the representation better rather than the probability.
 
 % Turian 2010 doesn't appear much in any of the surveys or word embedding blogs
 % but as far as I can tell, they're the first to say word embeddings are useful because they're off the shelf which I want to emphasize
@@ -225,8 +232,8 @@ They have introduced two key ideas;
 \subsection{Pre-trained Embeddings}%
 \label{sub:pre_trained_embeddings}
 
-\textcite{p._turian_word_2010} evaluated the performance of different word representations as word features you can include into an existing task.
-They summarize their contribution as follows;
+\textcite{p._turian_word_2010} evaluated the performance of different word representations as word features that researchers can include into an existing task.
+Their contribution is elegantly summarized in their work as;
 \begin{displayquote}
     Word features can be learned in advance in an unsupervised, task-inspecific, and model-agnostic manner.
     These word features, once learned, are easily disseminated with other researchers, and easily integrated into existing supervised NLP systems. \\
@@ -261,7 +268,7 @@ The \emph{skip-gram model} introduced by \textcite{mikolov_efficient_2013} diffe
 \begin{figure}[htbp]
     \centering
     \incfig{skip_gram_2}
-    \caption{Skipgram architecture adapted from Figure 1 of \textcite{mikolov_distributed_2013}}%
+    \caption{Skipgram architecture by \textcite{mikolov_distributed_2013}}%
     \label{fig:skipgram}
 \end{figure}
 
@@ -273,18 +280,12 @@ In \citetitle{mikolov_distributed_2013}, it is defined as follows;
 The $w_{1}, w_{2}, \dots, w_{T}$ are the context of the word $w_t$.
 %It includes $c$ words behind and $c$ words ahead of the word $w_t$.
 We should note that, \textcite{levy_improving_2015} has identified that this window size is \emph{dynamic} in the open source implementation of word2vec, where the actual window size is sampled between $1$ and $T$.
-%\footnote{Refer to \url{https://github.com/bollu/bollu.github.io} for a comprehensive analysis}
-% TODO might not rely on some random guy's repo
 
 % In the Equation~\ref{eqn:bengio_softmax}, we have reported on the \emph{costly} softmax function, used by \citeauthor{bengio_neural_2003}.
 % \citeauthor{mikolov_distributed_2013} significantly improves their model's performance by using \emph{hierarchical softmax}.
 % Hierarchical softmax~\cite{morin_hierarchical_2005} uses a binary tree to distribute the probability distribution among the leaves of the nodes.
-% In short, the costly denominator of the softmax calculation that scaled exponentially with the size of vocabulary $|W|$, it scales in $\log(|W|)$.
-% no need to talk about this actually delete later
-% TODO paste the negative sampling and subsampling of frequent words to be honest
 
 %The theory set out by ? was empirically shown by \citeauthor{mikolov_distributed_2013} by demonstrating that countries and their capital cities exhibited a linear pattern on the PCA.
-% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
 
 % http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/
 % Ruder says don't dwell on the specific embedding too much
@@ -311,17 +312,24 @@ On the other hand, \citeauthor{levy_improving_2015} noted that \citeauthor{baron
 % bag of character n-grams, no need to worry about mophological structure of the language, can induce oov words if parts of it are available,
 % Ruder survey demonstrated how good at compositing they are *citation needed*
 Armed with the fact that a good word representation model should tune their hyperparameters and should be trained on a large dataset, we set our sights on \emph{fastText}.
-On their website, authors define fastText as (a) \enquote{Library for efficient text classification and representation learning}.
+On their website, authors define fastText as a \enquote{Library for efficient text classification and representation learning}.
 The ideas behind it are presented in \textcite{mikolov2018advances}.
 Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
 
 Let us turn our focus towards \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
 Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams.
+We have mentioned that n-grams consider sequences like \emph{New York} as a single token.
+Character n-grams start with parsing the corpus into $c$ character long sequences.
+We will use 3 as the $c$ value.
+The boundaries of the words are marked with \enquote{<>} characters for later and the whole corpus is transformed into tokens where the phrase \enquote{lecture slide} is now \enquote{<lecture> <slide>}.
+Then, sequences of 3 characters are extracted such that \enquote{<slide>} is broken down into \enquote{<sl, sli, lid, ide, de>}.
+Note that \enquote{lid} character n-gram is different from word \enquote{<lid>}.
+These character n-grams are called subword vectors, they are trained using the skip-gram architecture.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[page=1,width=\textwidth]{Figures/fasttext.pdf}
-    \caption{Overview of fastText embedding model}%
+    \caption{Overview of character n-gram model}%
     \label{fig:fasttext}
 \end{figure}
 
@@ -332,19 +340,19 @@ With the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dict
 % TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
 
 \textcite{grave_learning_2018} trained fastText model on different languages using Wikipedia and Common Crawl data.
-Wikipedia is a curated encyclopaedia that can be used as a multilingual corpora with 28 languages that have over 100 million tokens and 82 languages with 10 million tokens~\cite{grave_learning_2018}.
-Considering the original word2vec was trained on 100 billion tokens, \citeauthor{grave_learning_2018} also used Common Crawl, a non profit project that collocates web pages and publishes the data publicly.
-This data can be inadvertently noisy which \citeauthor{grave_learning_2018} addressed using linewise language identification and by removing duplicate lines that often appear as leftover boilerplate on many cites.
+Wikipedia is a curated encyclopaedia that can be used as a multilingual corpora with 28 languages that have over \emph{100 million} tokens and 82 languages with 10 million tokens~\cite{grave_learning_2018}.
+Considering the original word2vec was trained on \emph{100 billion} tokens, \citeauthor{grave_learning_2018} also used Common Crawl, a non profit project that collocates web pages and publishes the data publicly.
+This data can be inadvertently noisy which \citeauthor{grave_learning_2018} addressed using linewise language identification and by removing duplicate lines that often appear as leftover boilerplate on many sites.
 While Wikipedia provided them with a curated signal, Common Crawl data helped with capturing as many contexts as possible to train their distributed model.
 They are currently hosting the pre-trained word embeddings on their website~\footnote{\url{https://fasttext.cc/}}.
 
 \subsection{ConceptNet Numberbatch}%
 \label{sub:conceptnet_numberbatch}
 
-ConceptNet\footnote{\url{http://conceptnet.io/}} is a knowledge graph.
+As an alternative to purely distributional models, \textcite{speer_conceptnet_2017} suggested \emph{numberbatch} embeddings built in conjugation with ConceptNet.\footnote{\url{http://conceptnet.io/}}.
+ConceptNet is a knowledge graph.
 Like the WordNet, it presents semantic relationships between concepts but the defined relationships are more fine grained.
-The relationships are collocated from various resources like Wikimedia, English Princeton WordNet and knowledge databases like DBPedia.
-%TODO return to this line
+The relationships are collocated from various resources like English Princeton WordNet, Open Mind Common Sense~\cite{anacleto_can_2006} and DBPedia~\cite{auer_dbpedia_2007}.
 ConceptNet stylizes its relations with the \texttt{/r/Relationship} syntax.
 For instance, being distinct members of a set relation is defined as \texttt{/r/DistinctFrom} which includes concepts like August and September.\footnote{\url{https://github.com/commonsense/conceptnet5/wiki/Relations}}.
 Compared to WordNet, more subjective, human centric relations are defined such as \texttt{/r/MotivatedByGoal}, relationship between \emph{compete} and \emph{win} or \texttt{/r/ObstructedBy}, the relationship between \emph{sleep} and \emph{noise}.
@@ -367,11 +375,11 @@ Pre-trained word2vec and GloVe embeddings are incorporated into the reduced term
 Authors call their finalized model \emph{ConceptNet numberbatch}.
 \citeauthor{speer_conceptnet_2017} reports state of the art results compared to word2vec embeddings on word relatedness and models built using their embeddings get scores equivalent to humans on SAT-style analogy tasks.
 
-\section{Bilingual Word Embeddings}%
-\label{sec:bilingual_word_embeddings}
+% \section{Bilingual Word Embeddings}%
+% \label{sec:bilingual_word_embeddings}
 
-Cross lingual embedding models optimize similar objectives.
-Only source of variation is due to the data used and the monolingual regularization objectives employed~\cite{ruder_survey_2017}.
+% Cross lingual embedding models optimize similar objectives.
+% Only source of variation is due to the data used and the monolingual regularization objectives employed~\cite{ruder_survey_2017}.
 
 \section{Approaches in Wordnet Generation}%
 \label{sec:approaches_in_wordnet_generation}
@@ -381,13 +389,13 @@ Only source of variation is due to the data used and the monolingual regularizat
 
 We have mentioned the lexical database WordNet created by Princeton University.
 To reiterate, WordNet is a lexical database with human annotated collection of senses and relationships among them.
-The relationships are hierarchical so they can be followed along to reach new nodes due to the transitive property.
+The relationships are hierarchical so they can be followed along to reach new nodes due to the transitive property (shown in Figure~\ref{fig:hyponymy}).
 The format itself has become the standard for databases that present meanings and concepts~\cite{neale_survey_2018}.
 
 Glosses or the definitions that go along with synsets were not initially part of the WordNet design.
 Authors believed that \enquote{definition by synonymity} would be enough.
 In other words, definition of a synset can be derived from the lemmas that make up the synset.
-As the number of items in the WordNet grew, only then short glosses, followed by longer definitions got included in WordNet~\cite{fellbaum_wordnet_1998}.
+As the number of items in the WordNet grew, only then short glosses, later followed by longer definitions got included in WordNet~\cite{fellbaum_wordnet_1998}.
 
 \begin{table}[htbp]
     \centering
@@ -408,9 +416,8 @@ As the number of items in the WordNet grew, only then short glosses, followed by
     \label{tab:synset_gloss}%
 \end{table}
 
-WordNet has been used in various natural language processing applications over the years such as text summarization~\cite{ercan_using_2007}.
-% TODO more usages here
-Since the original WordNet was prepared for English over many years of work, efforts for creating an equivalent resource for other languages went under way.
+WordNet has been used in various natural language processing applications over the years such as text summarization~\cite{ercan_using_2007} or word sense disambiguation~\cite{banerjee_adapted_2002}.
+Since the original WordNet was prepared for English over many years of work, efforts for creating an equivalent resource for other languages has been initiated.
 Arguably, EuroWordNet set the standard for creating wordnets for languages other than English~\cite{vossen_introduction_1998, vossen_eurowordnet_2004}.
 
 EuroWordNet\footnote{\url{http://projects.illc.uva.nl/EuroWordNet/}} project was initiated to introduce the benefits of English Princeton WordNet for other languages.
@@ -427,27 +434,33 @@ All in all, \textcite{vossen_introduction_1998} defines the aims as;
     \end{enumerate}
 \end{displayquote}
 
-A sense in one language might not have a direct equivalent in an other.
-Cultural differences or linguistic differences between languages contribute to this fact~\cite{kitamura_cultural_2009}.
-This phenomenon is called a lexical gap or untranslatability.
+One challange in achieving compatability is the shortcomings of using the original WordNet as the anchor.
+On one hand, since the WordNet is the first and the most comprehensive, it is a natural hub for new wordnets.
+On the other hand, a sense in one language might not have a direct equivalent in an other.
+Cultural differences or linguistic differences between languages contribute to this fact~\cite{kitamura_cultural_2009} which is called a lexical gap or untranslatability.
 EuroWordNet addresses lexical gaps using Inter-Lingual-Index (ILI).
-ILI is a higher order list of meanings just for wordnet synsets to align themselves to.
-Elevating alignment from English Princeton WordNet to ILI allowed language specific structures to exist in wordnets while keeping the connections among themselves.
+ILI is a higher order list of meanings just for wordnet synsets to align themselves to, elevating the burden for alignment from English Princeton WordNet.
+The introduction of ILI allowed language specific structures to exist in wordnets while keeping the connections among themselves.
 
-Two approaches for wordnet generation were defined;
+% \begin{enumerate}
+% \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
+% \item Link English entries from machine-readable bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
+% \end{enumerate}
+Two approaches for wordnet generation were defined by \citetitle{vossen_introduction_1998};
 \begin{description}
     \item[Merge Approach] where a wordnet structure is formed in the target language with synset selection and relation mapping. Then the connections between the new wordnet and English Princeton WordNet can be established.
     \item[Expand Approach] where English Princeton WordNet is (machine) translated to target language~\cite{knight_building_1994}, preserving connection information with a trade-off where the target language wordnet will be biased towards the relationships of the English Princeton WordNet and may not include target language specific lexical connections.
 \end{description}
 
 In order to maintain as much language specific lexical connections as possible while having a starting point for evaluation of target wordnets, EuroWordNet project offered \enquote{Base Concepts}.
-This idea later evolved into 1000 and to 5000 core synsets that are compiled from most frequent, connected and representetive synsets to be used for evaluating wordnet generation~\cite{boyd-graber_adding_2006}.
+This idea evolved into 1000 and later to 5000 core synsets that are compiled from most frequent, connected and representetive synsets to be used for evaluating wordnet generation~\cite{boyd-graber_adding_2006}.
 
 \subsection{Examples of Wordnet Generation}%
 \label{sub:examples_of_wordnet_generation}
 
-Whether an Arabic wordnet is attainable or not using parallel corpora was explored by \textcite{diab_feasibility_2004}.
-Arabic differs from other languages explored so far due to its unusual morphological nature.
+Following the EuroWordNet project, several studies were published on wordnet generation with proposals heavily leaning towards the expand approach.
+\textcite{diab_feasibility_2004} explored whether an Arabic wordnet is attainable or not using a parallel corpora.
+Arabic differs from the languages explored in EurowordNet due to its unusual morphological nature.
 Using their proposed method, they observed 52.3\% of words they processed are sufficient for a future Arabic wordnet.
 They have also reiterated that semantic relationships in a language are transferable to a target language's wordnet.
 
@@ -460,50 +473,48 @@ They proposed two approaches for this task.
 First approach uses a single bilingual dictionary to translate English Princeton WordNet lemmas to target language to form synsets.
 Second approach translates existing wordnet synsets to English and then translates them to target language.
 
-Our focus is to study approaches that proposed \emph{word embedding} based methods for the task.
-\textcite{sand_wordnet_2017} used word embedding models to extend Norwegian wordnet with relationships on existing synsets or by introducing new synsets.
-Cosine similarity is used to retrieve nearest neighbours.
-Then a threshold value is used to cut off any potential synsets below a value.
-They evaluated against accuracy, the percentage of relations that were correct.
-Attachment was also used similar to recall scoring.
+Following the publication of word2vec, approaches that use word embeddings gained traction and are interest to us.
+\textcite{sand_wordnet_2017} used word embeddings to extend Norwegian wordnet by adding new relationships on existing synsets or by introducing new synsets all together.
+First, cosine similarity measure is used to discover nearest neighbours to a potential synset.
+Then a threshold value is used to cut off any new synsets below a certain similarity value.
+They evaluated their approach against accuracy, the percentage of relations that were correct and attachment which is similar to a recall score.
 It is the percentage of considered synsets that were above the threshold value.
+Overall, \citeauthor{sand_wordnet_2017} reported.
+% TODO ... acc and attachment
 
 %\textcite{khodak_automated_2017} used word embeddings and WordNet.
 % talk about Khodak -> Automated WordNet construction Using Word Embeddings
 Arguably most relevant to our study, \textcite{khodak_automated_2017} proposed an unsupervised method for automated construction of wordnets.
 In their paper \citetitle{khodak_automated_2017} they present 3 approaches and compare their precision, recall and coverage.
 
-First off, they picked 200 French and Russian adjectives, nouns and verbs.
+First off, they picked 200 French and Russian adjectives, nouns and verbs, totalling 2 corpora with 600 items in each.
 These words are selected based on if they have a translation in the core sense list provided by English Princeton WordNet.
-Their approach is presented by handling a word $w$ in the selected list.
-
+Their approach starts with the processing of a word $w$.
 Initially, the presented method collects the possible translations of $w$ using a bilingual dictionary and uses them as lemmas to query English Princeton WordNet.
-As we have mentioned, lemmas return synsets from English Princeton WordNet in the form \texttt{<lemma.pos.offset>}.
-Furthermore, every synset includes possible lemmas that can represent the sense of the synset.
+As we have mentioned, lemmas that query the WordNet retrieve synsets in the form \texttt{<lemma.pos.offset>}.
+Furthermore, every synset includes possible lemmas that can represent the sense of the synset (Refer to Table~\ref{tab:synset_gloss}).
 These lemmas form the set $S$.
 By translating the English Princeton WordNet lemmas to target language, they obtain the set $T_S$
 Elements of $T_S$ and $w$ are both in target language so a monolingual word embeddings can be used;
 As a baseline, they calculate the average cosine similarity between word embeddings of every element of $S$ and $w$.
+
 \begin{displaymath}
     \frac{1}{S}\sum_{w' \in S}v_{w} \cdot v_{w'}
 \end{displaymath}
 
-%Further, they improve upon the baseline by introducing sentence embeddings~\cite{arora_simple_2016}.
 In order to improve the discriminative power of their target vectors, they use synsets relations, definitions and example sentences.
 These are used to get a more representative vector $v_{L}$.
 Given resources can be thought as sentences and sentence embeddings are calculated by getting a weighted average of word vectors of words that make up the sentence.
-The weighting is called smooth inverse frequency by \textcite{arora_simple_2016}.
+The weighting is called smooth inverse frequency which was suggested by \textcite{arora_simple_2016};
+
 \begin{displaymath}
     v_{L} = \sum_{w' \in L}\frac{a}{a + P{w'}}v_{w'}
 \end{displaymath}
+
 We will talk about sentence embeddings in detail for our approach in Section~\ref{sec:linear_assignment_using_sentence_embeddings}.
 
 Third approach is word sense induction~\cite{arora_linear_2018}.
 
-\begin{enumerate}
-    \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
-    \item Link English entries from machine-readable bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
-\end{enumerate}
 
 \textcite{gordeev_unsupervised_2018} uses unsupervised cross-lingual embeddings to match cross-lingual product classifications.
 Working on taxonomy matching, they use out of domain pre-trained embeddings due to small size of their corpora and investigate methods using untranslated and translated text.

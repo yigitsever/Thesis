@@ -3,25 +3,13 @@ Chapters/Chapter3.tex:13:% TODO This can go to chapter2 and get expanded if need
 Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
 Chapters/Chapter3.tex:75:% TODO cost matrix
 Chapters/Chapter3.tex:81:%%% TODO lapjv %%%
-Chapters/Chapter2.tex:33:% TODO if this line stays you need to cite them
-Chapters/Chapter2.tex:107:% TODO word overlap, you cited this on chapter 4?
-Chapters/Chapter2.tex:130:% TODO blockquoting doesn't look nice, paraphrase it
-Chapters/Chapter2.tex:154:% TODO Figure 1 of this paper can be adapted here
-Chapters/Chapter2.tex:188:% TODO proper reference and check your notation
-Chapters/Chapter2.tex:195:% TODO check this sentence again, you might be remembering the details wrong
-Chapters/Chapter2.tex:196:% TODO wrong, there's a tanh layer in the middle too
-Chapters/Chapter2.tex:202:% TODO please check this after you've gotten some sleep, like what is y?
-Chapters/Chapter2.tex:205:% TODO cite hierarchical softmax
-Chapters/Chapter2.tex:206:% TODO talk about shifting the difficulty elsewhere, instead of full vocabulary dimensions, you just have last layer to worry about
-Chapters/Chapter2.tex:236:% TODO paraphrase don't blockquote
-Chapters/Chapter2.tex:277:% TODO might not rely on some random guy's repo
-Chapters/Chapter2.tex:284:% TODO paste the negative sampling and subsampling of frequent words to be honest
-Chapters/Chapter2.tex:287:% TODO simplified graphic here, what is a PCA -> principal component analysis, t-sne is a good substitue
-Chapters/Chapter2.tex:332:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
-Chapters/Chapter2.tex:347:%TODO return to this line
-Chapters/Chapter2.tex:355:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
-Chapters/Chapter2.tex:362:%TODO cite here lund, deerwester?
-Chapters/Chapter2.tex:412:% TODO more usages here
+Chapters/Chapter2.tex:110:% TODO word overlap, you cited this on chapter 4?
+Chapters/Chapter2.tex:214:% TODO cite hierarchical softmax
+Chapters/Chapter2.tex:243:% TODO paraphrase don't blockquote
+Chapters/Chapter2.tex:340:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
+Chapters/Chapter2.tex:363:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
+Chapters/Chapter2.tex:370:%TODO cite here lund, deerwester?
+Chapters/Chapter2.tex:483:% TODO ... acc and attachment
 Chapters/Chapter1.tex:48:% TODO A reference here
 Chapters/Chapter1.tex:50:% TODO A reference here
 Chapters/Chapter1.tex:105:% TODO reference here after chapter 2

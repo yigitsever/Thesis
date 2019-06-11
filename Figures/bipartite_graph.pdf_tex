@@ -54,8 +54,8 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{bipartite_graph.pdf}}%
-    \put(0.20767188,0.43968023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}English Definitions\end{tabular}}}}%
-    \put(0.66587543,0.43968023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Target Definitions\end{tabular}}}}%
+    \put(0.18562325,0.43968023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Source Definitions\end{tabular}}}}%
+    \put(0.64382712,0.43968023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Target Definitions\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{bipartite_graph.pdf}}%
   \end{picture}%
 \endgroup%

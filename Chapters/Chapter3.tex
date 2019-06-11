@@ -2,33 +2,31 @@
 \chapter{Unsupervised Matching}%
 \label{chap:unsupervised_matching}
 
-%%% ROUGH FIRST DRAFT
-
 \section{Linear Assignment Using Sentence Embeddings}%
 \label{sec:linear_assignment_using_sentence_embeddings}
-Word embeddings represent single tokens or in some cases n-grams such as \emph{San Francisco}.
+
+Word embeddings represent single tokens or n-grams such as \emph{San Francisco} depending on the implementation.
 Yet, word2vec suggested and proved that word embeddings are compositional~\cite{mikolov_distributed_2013}.
 Research then moved on to study the representation of longer pieces of text like documents, paragraphs and sentences.
-Implementations like \textcite{le_distributed_2014} extended the skip-gram idea of \textcite{mikolov_distributed_2013} to learn the feature vectors for \emph{paragraphs} and used them to predict surrounding paragraphs in the text.
+Implementations like \textcite{le_distributed_2014} extended the skip-gram idea from \textcite{mikolov_distributed_2013} to learn the feature vectors for \emph{paragraphs} and used them to predict surrounding paragraphs in the text.
 Approaches like \textcite{kiros_skip-thought_2015} trained an encoder that constructed surrounding sentences to learn sentence representations.
-However, text in question for the given studies are continuous.
-When the text that we would like to show on a latent space is not part of a longer piece of text but \emph{discrete} pieces, that assumption does not hold.
+However, corpora in question for the given studies are continuous.
+When the document collection we would like to show on a latent space is not part of a longer text but occur as \emph{discrete} pieces, that assumption does not hold.
 Regarding dictionary definitions, we cannot rely on continuous models.
-Our dictionary definitions are comprised of 10 to 11 words each with no relation from one distinct dictionary definition to another.
-% TODO reference the wordnet statistics table when you decide on where to put it
-One other case where a similar situation occurs is \emph{twitter}.\footnote{\url{https://twitter.com}}
-\emph{Tweets} are short pieces of text due to the 280 character constraint imposed by the platform.
-With such short pieces of text, considering the scope of a possible model could fit in, instead of paragraph embeddings, we can talk about \emph{sentence embeddings}.
+Our dictionary definitions are written with of 10 to 11 words each with no relation from one distinct dictionary definition to another.
+Refer to Table~\ref{tab:en_it_examples} for examples of a typical collection of definitions.
+
+With such short pieces of text, considering the scope of a possible model could have, instead of paragraph embeddings we can talk about \emph{sentence embeddings}.
 A sentence embedding model should ideally capture the collective meaning of the short text where every word is potentially informative and discriminative.
 
 \textcite{wieting_towards_2015} studied sentence embeddings and reported that averaging word embeddings that make up a sentence to get sentence embeddings is a valid and surprisingly effective approach.
 \textcite{arora_simple_2016} built upon the simple model and has shown that weighed average of word vectors perform so well, their publication is called; \citetitle{arora_simple_2016}.
-In the suggested approach, word embeddings that make up a sentence is weighed with a scale called \emph{smooth inverse frequency} and averaged with respect to the sentence.
+In the suggested approach, word embeddings that make up a sentence is weighed with a scale called \emph{smooth inverse frequency} and averaged across the sentence.
 Smooth inverse frequency is suggested as
 \begin{displaymath}
     \text{SIF (w)} = \frac{a}{a + p(w)}
 \end{displaymath}
-where $a$ is a hyperparameter and $p(w)$ is the estimated word probability.
+where $a$ is a hyperparameter and $p(w)$ is the estimated word probability~\cite{arora_simple_2016}.
 
 Using smooth inverse frequency weighting, word embeddings $v_w \in R^{d}$ where word $w$ is in a vocabulary $V$ can be averaged over a sentence $S$ such that $S \subset V$ to get sentence embedding $v_S$ in the same dimensionality $R^{d}$.
 \begin{equation}
@@ -39,24 +37,23 @@ The authors point out that the metric is similar to \tfidf{} weighting scheme if
 These assumptions hold for us so we scaled our word embeddings using \tfidf{} weights to get sentence embeddings.
 
 \begin{equation}
-    v_S = \frac{1}{|S|}\sum_{w \in S}\text{tfidf}_{w,S} v_w
+    v_S = \frac{1}{|S|}\sum_{w \in S}\text{tf-idf}_{w,S} v_w
 \end{equation}
 
 Parallel to \citeauthor{arora_simple_2016}, \textcite{zhao_ecnu_2015} used two approaches for sentence embeddings in order to solve SemEval-2015 Task 2: Semantic Textual Similarity~\footnote{\url{http://alt.qcri.org/semeval2015/task2/}}.
-First, for a sentence $S = (w_{1}, w_{2}, \dots, w_{s})$ where the length of the presumably small sentence is $|S| = s$ and the word embedding of a $w_t$ is $v_t$;
+First, for a sentence $S = (w_{1}, w_{2}, \dots, w_{s})$ where the length of the presumably small sentence is $|S| = s$ and the word embedding of a word $w$ is $v_w$;
 \begin{itemize}
     \item They summed up the word embeddings of the sentence $\sum_{t \in S}v_{t}$
-    \item Used information content~\cite{saric_takelab_2012} to weigh each word's LSA vector $\sum_{t \in S} I(w_t) v_{t}$
+    \item Used information content~\cite{saric_takelab_2012} to weigh each word's LSA vector $\sum_{w \in S} I(w) v_{w}$
 \end{itemize}
 Both approaches results in a vector that is in the same dimensions $R^{d}$ as the original word representations.
 
 \textcite{edilson_a._correa_nilc-usp_2017} expanded upon this simple yet effective idea to tackle the SemEval-2017 Task 4\footnote{\url{http://alt.qcri.org/semeval2017/task4}}, Sentiment Analysis in Twitter.
+We have mentioned the discrete short pieces of text that are present in our definition corpora.
+\emph{Twitter} exhibits a very similar case to our study.\footnote{\url{https://twitter.com}}
+\emph{Tweets} are short pieces of text due to the 280 character constraint imposed by the platform.
 In order to acquire embeddings that represented \emph{tweets}, they weighed the word embeddings that made up a tweet; $\text{tweet}_i = (w_{i1}, w_{i2}, \dots, w_{im})$ with the \tfidf{} weights.
 For the \tfidf{} calculation, they cast individual weights as documents so that term frequency become the term count in a single tweet while document frequency become the number of tweets the term $w_t$ occurs.
-
-We have mentioned that our dictionary definitions are not continuous.
-Yet, we advocate using \tfidf{} weights to weigh our word embeddings to get sentence embeddings.
-In order to clarify, let us present Table~\ref{tab:en_it_examples}.
 
 \begin{table}
     \centering
@@ -77,19 +74,18 @@ In order to clarify, let us present Table~\ref{tab:en_it_examples}.
 
 For the \tfidf{} calculations, we followed a similar approach.
 The term frequency is the raw count of a term in a dictionary definition.
-While the document frequency is the number of dictionary definitions where $w_t$ occurs.
+While the document frequency is the number of dictionary definitions where $w$ occurs.
 
-Then, with the term-embedding matrix at hand, we have calculated definition embeddings using;
+Then, with a term embedding matrix at hand, we have calculated definition embeddings using;
 \begin{equation}
-    S_{\text{emb}}(S) = \sum_{w_{i} \in S} \varB{tf_{w_{i},S}-idf_{w_i}} \cdot Emb_{w}(w_{i})
+    S_{\text{emb}}(S) = \sum_{t \in S} \varB{tf_{t,S}-idf_{t}} \cdot Emb_{w}(t)
 \end{equation}
 Every word that makes up a definition is scaled by its vector in ${\rm I\!R}^n$, then concatenated to form sentence embeddings on ${\rm I\!R}^n$.
-% TODO cost matrix
-% Bipartite graph or matrix
-% Give the assumption, defintions are one-to-one
-Given the $N$ vectors from source and target language, we hypothesize that there exists a matching where every source definition vector is perfectly mapped to one target vector.
-Given that this problem naively iterates over $N!$ matchings, we have looked into an algorithm to handle the problem.
-Our problem is an instance of an linear assignment problem, where the nodes of our graph are
+
+As we have $N$ definitions in source wordnet (English Princeton WordNet) and target wordnet we have accepted as golden or perfectly aligned, we now hypothesize that there exists a one-to-one mapping between two sets.
+In order to discover this mapping, we can get leverage the sentence embeddings we just got and cast the cosine similarity between two sentence embeddings across languages as the weight between them.
+Given $N$ real valued vectors from source and target wordnet this problem naively iterates over $N!$ matchings to find the case where the sum of the similarity is maximum.
+Our problem is an instance of an linear assignment problem.
 
 \begin{figure}[htbp]
     \centering
@@ -98,31 +94,51 @@ Our problem is an instance of an linear assignment problem, where the nodes of o
     \label{fig:bipartite_graph}
 \end{figure}
 
-% https://blog.sourced.tech/post/lapjv/
-%
 \section{Linear Assignment Algorithm}%
 \label{sec:linear_assignment_algorithm}
-% Ok jonker volgenant is super complicated
-% can I just say I'm using linear assignment? maybe talk about hungarian algortihm a bit
 
 Linear assignment problem is an optimization problem where a cost matrix is solved.
 A cost matrix is formulated such that each row corresponds to a task and each column corresponds to a solver agent.
 The aim is to find an assignment such that each task is solved by one agent and the total cost is minimized.
 
 In our case, this formulation corresponds to two sets of wordnet definitions.
-The definitions are disjoint and independent with respect to their source wordnet.
+The definitions are disjoint and independent with respect to their parent wordnet.
 The weights among the sets are the similarity between individual dictionary definitions.
 Refer to Figure~\ref{fig:bipartite_graph} for a representation of this notation.
 
 We have calculated sentence embeddings such that each node of the graph is an $d$ dimensional sentence vector $v_S \in R^{d}$.
 The weights that connect one definition to another in this bipartite graph is the cosine similarity between two sentence's sentence vectors.
-Cosine similarity is constrained in $[0,1]$ where 1 is perfect similarity and 0 is two orthogonal vectors.
+Cosine similarity is constrained in $[0,1]$ where 1 is perfect similarity and 0 denotes two orthogonal vectors, or no similarity.
 This is crucial for our task such that we set out to maximize the total weight in this matching.
 
-% \begin{displaymath}
-%     \begin{bmatrix}
-% \end{bmatrix}
-% \end{displaymath}
-
+One of the most famous solvers for the linear assignment problem is the Hungarian method~\cite{kuhn_hungarian_1955}.
+Given a qualification matrix, the Hungarian method uses a heuristic to solve the assignment in $O(n^3)$ time.
 We use \textcite{jonker_shortest_1987} solver for the problem.
-\citeauthor{jonker_shortest_1987} improve upon the Hungarian Algorithm proposed by \textcite{kuhn_hungarian_1955} using heuristics for initialization and shortest path algorithm of \textcite{dijkstra_note_1959}.
+\citeauthor{jonker_shortest_1987} improve upon the Hungarian Algorithm using initialization heuristics and shortest path algorithm of \textcite{dijkstra_note_1959}.
+The time complexity is still $O(n^3)$ but in real life problems, \citeauthor{jonker_shortest_1987} is faster.
+% TODO there was a citation for this
+
+\subsection{Creating The Cost Matrix}%
+\label{sub:creating_the_cost_matrix}
+
+The creation of the cost matrix starts with the bilingual word embedding matrix $W$.
+$W$ is $m \times d$ where $d$ is the dimensionality of the word embeddings and $m$ is the size of the joint vocabulary across two wordnets $|V|$.
+The definitions are parsed into term document matrices such that we obtain two matrices $T_{s}$ and $T_{t}$ for source and target dictionaries.
+We weigh $T_s$ and $T_t$ using \tfidf{} as we have mentioned before, the term count is the number of times a term occurs in a definition and document frequency is the number of definitions that include the term.
+The resulting matrices are $T_s'$ and $T_t'$.
+In order to get sentence embedding matrices, first we normalize the term document matrices and run matrix multiplication such that;
+\begin{equation}
+    S_{x} = T_x' \times W
+\end{equation}
+using this equation, we obtain $S_s$ and $S_t$ for source and target sentence embeddings.
+By multiplying of $S_s$ and the transpose of the $S_t$, $S_t^T$, we obtain a cost matrix $C$ that is immediately compatible with the linear assignment solver.
+An element $c_{i,j}$ of $C$ is the cosine similarity between source definition $i$ and target definition $j$.
+
+\subsection{Evaluation}%
+\label{sub:evaluation}
+
+Since matching definitions across wordnets gives us a single \emph{answer} for each \emph{query}, we can only report the precision at 1 metric for this task.
+
+
+
+

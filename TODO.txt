@@ -1,5 +1,4 @@
-Chapters/Chapter3.tex:18:% TODO reference the wordnet statistics table when you decide on where to put it
-Chapters/Chapter3.tex:87:% TODO cost matrix
+Chapters/Chapter3.tex:119:% TODO there was a citation for this
 Chapters/Chapter2.tex:110:% TODO word overlap, you cited this on chapter 4?
 Chapters/Chapter2.tex:214:% TODO cite hierarchical softmax
 Chapters/Chapter2.tex:243:% TODO paraphrase don't blockquote

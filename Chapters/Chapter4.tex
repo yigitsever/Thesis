@@ -169,7 +169,7 @@ Where rank$_q$ is the ranking of the \emph{correct} definition for the query $q$
 % For two snippets of text; \emph{Obama speaks to the media in Illinois} and \emph{The President greets the press in Chicago} Kusner argues that while they convey the same information, they would be near orthogonal in a bag of words setting.
 % Yet before moving forward with WMD, we wanted to test sentence embeddings.
 
-\section{Cross Lingual Document Retrival}%
+\section{Cross Lingual Document Retrieval}%
 \label{sec:cross_lingual_document_retrival}
 
 In this section, we will talk about the methods that allowed us to use bilingual word embeddings to retrieve definitions while keeping them in their own language.
@@ -197,13 +197,13 @@ This theorem deals with the energy cost of transporting one arbitrary mass to an
 Their idea starts by casting documents as probability distributions defined over word embeddings of the words they are written with.
 First, words of a document is chosen as the elements of a document's probability distribution.
 We now know that relying on sameness or word overlap is not feasible so the words are instead represented by their $d$ dimensional word embeddings.
-The distance between two words can be represented by the Eucledian distance between them over $d$ dimensions, or;
+The distance between two words can be represented by the Eucledian distance between them over $k$ dimensions, or as the distance metric $c(\cdot)$;
 \begin{displaymath}
-    d(w_a, w_b) = || w_a - w_b ||_2
+    c(w_a, w_b) = || w_a - w_b ||_2
 \end{displaymath}
 \textcite{kusner_word_2015} calls this the travel cost between word $w^a$ and $w^b$.
 Now that the distance or the cost between words can be shown, two documents $d_i$ and $d_j$, respectively written using words such that $d_i = \{w^{i}_1, w^{i}_2 \dots w^{i}_n\}$ and $d_j = \{w^{j}_1, w^{j}_2 \dots w^{j}_n\}$, a \emph{flow matrix} can be formulated using the distances between every $w^{i}_x$ and $w^{j}_y$ pair.
-This flow matrix is called T and an element $T_{i,j}$ is the distance needed to travel when starting from word $i$ to reach word $j$.
+This flow matrix is called $T$ and an element $T_{i,j}$ is how much of the distance needs to be travelled when starting from word $i$ to reach word $j$ in order to move $d_i$ to $d_j$.
 The $T$ is optimized to find the minimum distance possible between $d_i$ and $d_j$ using linear programming.
 Optimization \emph{chooses} which word pairs to use to travel from one document to another and when cast over a whole corpus, similar documents will have lower minimal costs on their $T$ matrices depending if their words are easily \emph{moveable} across each other.
 
@@ -211,8 +211,9 @@ Optimization \emph{chooses} which word pairs to use to travel from one document 
 \label{sub:clemd}
 
 \textcite{balikas_cross-lingual_2018} extended the word mover's distance with two additions.
-First, instead of normalized bag of words representation for the documents, they introduced term frequency and \tfidf{} to weigh the documnets.
-Second addition is to use word mover's distance using bilingual word embeddings.
+First, instead of normalized bag of words representation for the documents, they used term frequency and \tfidf{} to weigh the document representations.
+Second, they introduced entropic regularization which allowed them to use Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967} to solve the linear assignment.
+We have modified their open source project\footnote{\url{https://github.com/balikasg/WassersteinRetrieval}} to accompany our task.
 % For document $d^{i}$ in language $i$, written using words $w_{x}^{i} \subset d^{i}$ which belong to vocabulary $V^{i}$.
 % The same principle extends to language $j$ such that document $d^{j}$ is built with using $w_{x}^{j}$ that belong to $V^{j}$.
 % Word embeddings of two languages that share a space is used such that $v_{w_{x}^{i}} \in W^{i}$ and $v_{w_{x}^{j}} \in W^{j}$.
@@ -221,5 +222,5 @@ Second addition is to use word mover's distance using bilingual word embeddings.
 \subsection{Evaluation}%
 \label{sub:cldr_evaluation}
 
-We present mean reciprocal rank that we have mentioned in Section~\ref{sub:monolingual_evaluation}.
+We report mean reciprocal rank that we have mentioned in Section~\ref{sub:monolingual_evaluation}.
 Furthermore, we also report precision at 10 metric, that is if the correct defintion was retrieved among the 10 closest definitions retrieved.

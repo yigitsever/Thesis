@@ -3,15 +3,90 @@
 \chapter{Experiments and Evaluation}%
 \label{chap:experiments_and_evaluation}
 
-\section{Mapping Word Embeddings}%
-\label{sec:mapping_word_embeddings}
+\section{Preparing Wordnets}%
+\label{sec:preparing_wordnets}
 
-We experimented with in domain \emph{fasttext} embeddings.
-We have trained Romanian and Bulgarian embeddings and ran the WMD and Sinkhorn experiments.
-The performance dropped to the quarter of pre-trained embeddings so we have not repeated the experiments for other language corpora.
+In order to run our experiments we need two sets of dictionary definitions from two different languages.
+Open Multilingual Wordnet~\cite{bond_linking_2013} project hosts 34 wordnets with permissive licenses on their website.\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}
+We have investigated the available wordnets and fortunately six of them included definitions, also known as glosses.
+Since we do not use any other information related to wordnets (like semantic relationships) only definitions were extracted into a plain text corpora.
+This intermediate corpora includes WordNet 3.0 synsets identifiers and the corresponding definitions in the target language.
+Natural Language Toolkit~\cite{bird_natural_2009} provides an API for reading and retrieving English Princeton WordNet.
+Using the synsets identifiers, it is possible to retrieve the exact synset which comes attached with an unique definition for the synset.
+Finally, we have 6 aligned corpora for 6 wordnets we will run the experiments on.
+Alignment here refers to definitions that represent same synset across languages appearing on the same index, a notation we will use throughout the chapter.
+The statistics and the 2 letter language codes that we will commonly use to denote the wordnets for the rest of this chapter is presented in Table~\ref{tab:wordnet_stats}.
 
-We have evaluated our embeddings using the standard bilingual lexicon extraction as a general measure for their performance.
-Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say you should evaluate them using downstream tasks.
+\begin{table}[hbtp]
+    \centering
+    \settowidth\tymin{\textbf{Language}}
+    \setlength\extrarowheight{2pt}
+    \begin{tabulary}{1.0\linewidth}{L L R R R R}
+        \toprule
+        Language Code & Language Name & Number of Definitions & Number of words & Average Words per Definition & Longest Definition \\ \midrule
+        sq & Albanian & 4681 & 54980 & 11.75 & 101 \\
+        bg & Bulgarian & 4959 & 63014 & 12.71 & 53 \\
+        el & Greek & 18136 & 203924 & 11.24 & 89 \\
+        it & Italian & 12688 & 93005 & 7.33 & 35 \\
+        ro & Romanian & 58754 & 586304 & 9.98 & 105 \\
+        sl & Slovene & 3144 & 39865 & 12.68 & 68 \\
+        \bottomrule
+    \end{tabulary}%
+    \caption{Language codes and statistics for the target wordnets used in the thesis.}%
+    \label{tab:wordnet_stats}
+\end{table}
+
+\section{Preparing Word Embeddings}%
+\label{sec:preparing_word_embeddings}
+
+In Chapter~\ref{chap:background_n_related}, we have mentioned the recent popularization of pre-trained word embeddings.
+Initiated by word2vec\footnote{\url{https://code.google.com/archive/p/word2vec/}}, other sources for word embeddings are GloVe\footnote{\url{https://nlp.stanford.edu/projects/glove/}}, fastText\footnote{\url{https://fasttext.cc/}} and numberbatch\footnote{\url{https://github.com/commonsense/conceptnet-numberbatch}}.
+Yet, word embeddings for languages other than English are scarce.
+FastText hosts word embeddings for 157 languages so we used them as our primary source.\cite{grave_learning_2018}
+These embeddings are trained using Common Crawl and Wikipedia data.
+
+Numberbatch provides word embeddings for 304 languages.
+However, 10 of the supported languages are presented as core languages with excellent support and 68 of them are tagged as common languages which is only given adequate support.
+Referring to Table~\ref{tab:wordnet_stats}, Italian is among the core languages and the rest are in the common languages group.
+
+The fastText embeddings include 2 million tokens out of the box.
+In order to increase the efficient of the experiments, we have cut down the size of the embeddings into 1 million and 500 thousand.
+The vectors are sorted according to their corpus frequency so the uppermost lines were used.
+
+Numberbatch embeddings are distributed in one large file and does not include fixed number of tokens per language.
+Hence after parsing the file and extracting the embeddings into individual files, the number of word vectors we are left with are presented in Table~\ref{tab:numberbatch_stats}.
+
+\begin{table}[hbtp]
+    \centering
+    \begin{tabulary}{1.0\linewidth}{L R}
+        \toprule
+        Language Code & Number of Tokens \\
+        \midrule
+        bg & 20871 \\
+        el & 16926 \\
+        en & 417195 \\
+        it & 91829 \\
+        ro & 10874 \\
+        sl & 11458 \\
+        sq & 5512 \\
+        \bottomrule
+    \end{tabulary}
+    \caption{The number of embeddings available in numberbatch}%
+    \label{tab:numberbatch_stats}
+\end{table}
+
+These embeddings are monolingual, so they are on separate arbitrary latent spaces.
+In order to represent them on the same latent space, we used VecMap~\cite{artetxe_robust_2018,artetxe_generalizing_2018,artetxe_learning_2017,artetxe_learning_2016}.\footnote{\url{https://github.com/artetxem/vecmap}}
+According to \textcite{ruder_survey_2017}, bilingual or cross lingual embedding models optimize similar objectives and differences in performance is due to available data they are trained on.
+\textcite{glavas_how_2019} supports this intuition and has empirically proven that common evaluation metrics like bilingual dictionary induction is not representative for the bilingual embedding's performance on downstream tasks.
+Hence our preference of VecMap is highly influenced by it's availability as an open source framework and it's ease of training.
+
+Best performing VecMap model available in the framework is supervised alignment.
+It requires a bilingual dictionary, otherwise known as aligned word pairs for two languages.
+We sourced our bilingual dictionary from Open Subtitles 2018\footnote{\url{http://www.opensubtitles.org/}} data as hosted by OPUS.\footnote{\url{http://opus.nlpl.eu/}}
+The dictionary can be sorted by the confidence score of the translation pair, which we did so that pairs with high confidence scored swam to top.
+The first 25000 translation pairs were shuffled and split into training and testing examples for 6 languages.
+After supervised mapping of language specific word embedding and English word embedding, we have 6 pairs of vectors that share the same latent space.
 
 \begin{table}[htbp]
     \centering
@@ -27,7 +102,7 @@ Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say yo
         sq & 24.46 & 25.36 & 58.63 \\
         \bottomrule
     \end{tabular}
-    \caption{Accuracy Scores of the Vectors Aligned Using VecMap}%
+    \caption{Accuracy scores (in percentage) of the word embeddings aligned using VecMap}%
     \label{tab:accuracy_results}
 \end{table}
 
@@ -45,9 +120,24 @@ Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say yo
         sq & 83.59 & 80.92 & 9.51 \\
         \bottomrule
     \end{tabular}
-    \caption{Coverage Scores for the Vectors Aligned Using VecMap}%
+    \caption{Coverage scores (in percentage) of the word embeddings aligned using VecMap}%
     \label{tab:coverage_results}
 \end{table}
+
+Even though bilingual dictionary induction is not representative of a bilingual word embedding pair's performance on downstream tasks~\cite{ruder_survey_2017,glavas_how_2019}, we include the evaluation results obtained from VecMap framework as a quick measure for their quality on Table~\ref{tab:accuracy_results} for accuracy and Table~\ref{tab:coverage_results} for coverage.
+Accuracy is the measure for correctly identifying the translation of a word given the test dictionary and coverage is the percentage of translation pairs that could be inducted.
+From the results, it is apparent that fastText embeddings have much better coverage due to vast data they were trained on.
+Yet, numberbatch exhibits better accuracy scores which might be a tradeoff of their low coverage.
+Nevertheless, bilingual dictionary induction results are not indicative of word embedding's real life performance.
+
+
+\section{Investigating Word Embedding Sources}%
+\label{sec:investigating_word_embedding_sources}
+
+We experimented with in domain \emph{fastText} embeddings in order to ask if pre-trained embeddings are better than embeddings trained on the experiment data.
+Since Romanian wordnet has the most data available, we have trained Romanian embeddings on the Romanian wordnet definitions, mapped the embeddings to the same latent space using supervised VecMap and ran cross lingual document retrieval experiments using word mover's distance and Sinkhorn.
+% TODO here
+The performance dropped to the quarter of pre-trained embeddings so we have not repeated the experiments for other language corpora.
 
 
 \section{Results}%
@@ -131,116 +221,11 @@ Although \textcite{ruder_survey_2017} and \textcite{glavas_how_2019} both say yo
 \subsection{Cross Lingual Retrieval Results}%
 \label{sub:cross_lingual_retrieval_results}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{multirow}
-\begin{table}[]
-\begin{tabular}{@{}lllllllllll@{}}
- &  &  & \multicolumn{2}{r}{WMD - tfidf} & \multicolumn{2}{r}{Sinkhorn tfidf} & \multicolumn{2}{r}{WMD - tf} & \multicolumn{2}{r}{Sinkhorn - tf} \\
-Language & Vector & \multicolumn{1}{r}{Vocabulary Size} & MRR & Hits @ 1 & MRR & Hits @ 1 & MRR & Hits @ 1 & MRR & Hits @ 1 \\
-\multirow{3}{*}{bg} & 1M Fasttext & \multicolumn{1}{r}{10532} & 0.5083 & 0.4150 & 0.5185 & 0.4265 & 0.4181 & 0.3395 & 0.4276 & 0.3460 \\
- & 500k Fasttext & \multicolumn{1}{r}{10457} & 0.5115 & 0.4190 & 0.5224 & 0.4300 & 0.4218 & 0.3415 & 0.4319 & 0.3480 \\
- & Numberbatch & \multicolumn{1}{r}{6028} & 0.2532 & 0.1745 & 0.2497 & 0.1715 & 0.1855 & 0.1230 & 0.1809 & 0.1135 \\
-\multirow{3}{*}{el} & 1M Fasttext & \multicolumn{1}{r}{9307} & 0.4782 & 0.3905 & 0.4867 & 0.4015 & 0.4074 & 0.3285 & 0.4142 & 0.3340 \\
- & 500k Fasttext & \multicolumn{1}{r}{9168} & 0.4745 & 0.3845 & 0.4845 & 0.3995 & 0.4053 & 0.3255 & 0.4139 & 0.3355 \\
- & Numberbatch & \multicolumn{1}{r}{5127} & 0.1992 & 0.1315 & 0.2006 & 0.1340 & 0.1471 & 0.0995 & 0.1494 & 0.1000 \\
-\multirow{3}{*}{it} & 1M Fasttext & \multicolumn{1}{r}{10025} & 0.4024 & 0.3115 & 0.4060 & 0.3145 & 0.3198 & 0.2350 & 0.3207 & 0.2340 \\
- & 500k Fasttext & \multicolumn{1}{r}{9975} & 0.4027 & 0.3115 & 0.4049 & 0.3130 & 0.3211 & 0.2365 & 0.3221 & 0.2350 \\
- & Numberbatch & \multicolumn{1}{r}{8875} & 0.4272 & 0.3330 & 0.4277 & 0.3335 & 0.3511 & 0.2670 & 0.3512 & 0.2680 \\
-\multirow{3}{*}{ro} & 1M Fasttext & \multicolumn{1}{r}{12165} & 0.5130 & 0.4160 & 0.5195 & 0.4150 & 0.4420 & 0.3590 & 0.4506 & 0.3560 \\
- & 500k Fasttext & \multicolumn{1}{r}{12034} & 0.5128 & 0.4165 & 0.5237 & 0.4220 & 0.4385 & 0.3550 & 0.4514 & 0.3575 \\
- & Numberbatch & \multicolumn{1}{r}{6939} & 0.2768 & 0.1985 & 0.2770 & 0.1980 & 0.2157 & 0.1570 & 0.2186 & 0.1625 \\
-\multirow{3}{*}{sl} & 1M Fasttext & \multicolumn{1}{r}{12185} & 0.2622 & 0.1780 & 0.2638 & 0.1805 & 0.2343 & 0.1510 & 0.2397 & 0.1560 \\
- & 500k Fasttext & \multicolumn{1}{r}{12020} & 0.2612 & 0.1780 & 0.2631 & 0.1795 & 0.2347 & 0.1515 & 0.2403 & 0.1580 \\
- & Numberbatch & \multicolumn{1}{r}{5870} & 0.0935 & 0.0480 & 0.0946 & 0.0500 & 0.0635 & 0.0290 & 0.0626 & 0.0285 \\
-\multirow{3}{*}{sq} & 1M Fasttext & \multicolumn{1}{r}{8048} & 0.6566 & 0.5915 & 0.6397 & 0.5640 & 0.5647 & 0.4855 & 0.5694 & 0.4930 \\
- & 500k Fasttext & \multicolumn{1}{r}{7990} & 0.6561 & 0.5870 & 0.6442 & 0.5685 & 0.5661 & 0.4880 & 0.5705 & 0.4925 \\
- & Numberbatch & \multicolumn{1}{r}{4908} & 0.3107 & 0.2355 & 0.3106 & 0.2330 & 0.2431 & 0.1780 & 0.2474 & 0.1835 \\
- &  &  & 0.4000 & 0.3178 & 0.4021 & 0.3186 & 0.3322 & 0.2583 & 0.3368 & 0.2612 \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\
- &  &  &  &  &  &  &  &  &  &  \\ \cmidrule(r){1-2}
-\end{tabular}
-\end{table}
-
 
 \section{Case Study}%
 \label{sec:case_study}
 
-In order to test our approach, we have acquired a general purpose Turkish dictionary~\footnote{We would like to thank Hülya Küçükaras once more}, to be used for research purposes.
+In order to test our approach, we have acquired a general purpose Turkish dictionary~\footnote{We would like to thank Hülya Küçükaras for providing the dictionary}, to be used for research purposes.
 The dictionary was in a proprietary format so we have parsed the terms alongside their definitions.
 The parts of speech for the terms are also extracted.
 All in all, 67351 headwords with 93062 definitions are parsed.

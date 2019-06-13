@@ -46,11 +46,13 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage[backend=biber,style=nature]{biblatex}
 \addbibresource{thesis.bib} % The filename of the bibliography
 
+\usepackage{lscape}
 \usepackage{longtable} % for tables to span multiple pages
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} % better bar
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{pdfpages}
 \usepackage{nameref} % refer to the name of sections
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1} \nameref*{#1}}} % One single link for the name and number ref
 % correct spacing in tf-idf
 \newcommand{\varA}[1]{{\operatorname{#1}}}
 \newcommand{\varB}[1]{{\operatorname{\mathit{#1}}}}

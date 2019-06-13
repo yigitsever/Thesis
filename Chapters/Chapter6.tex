@@ -130,18 +130,16 @@ From the results, it is apparent that fastText embeddings have much better cover
 Yet, numberbatch exhibits better accuracy scores which might be a tradeoff of their low coverage.
 Nevertheless, bilingual dictionary induction results are not indicative of word embedding's real life performance.
 
-
-\section{Investigating Word Embedding Sources}%
-\label{sec:investigating_word_embedding_sources}
-
-We experimented with in domain \emph{fastText} embeddings in order to ask if pre-trained embeddings are better than embeddings trained on the experiment data.
-Since Romanian wordnet has the most data available, we have trained Romanian embeddings on the Romanian wordnet definitions, mapped the embeddings to the same latent space using supervised VecMap and ran cross lingual document retrieval experiments using word mover's distance and Sinkhorn.
-% TODO here
-The performance dropped to the quarter of pre-trained embeddings so we have not repeated the experiments for other language corpora.
-
-
 \section{Results}%
-\label{sec:chap3_results}
+\label{sec:results}
+
+In this section, we will present the results of our experiments in the order they appeared in the main text.
+
+\subsection{Matching Results}%
+\label{sub:matching_results}
+
+In order to evaluate the definition matching of sentence embeddings that we presented in Chapter~\ref{chap:unsupervised_matching}, we choose 3 data sizes to experiment on; 2000 definitions, 3000 definitions and all available definitions each.
+As mentioned before, since definition matching is a one-to-one operation, we can only report the accuracy of the one result matched per definition.
 
 \begin{table}[htbp]
     \centering
@@ -149,17 +147,17 @@ The performance dropped to the quarter of pre-trained embeddings so we have not 
         \toprule
 & \multicolumn{3}{c}{Percentage of Correctly Matched Definitions} \\
 \cmidrule(lr){2-4}
-        \textbf{Language} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+        \textbf{Language Code} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
         \midrule
-        bg & 0.39 & 0.41 & 0.19 \\
-        el & 0.37 & 0.38 & 0.14 \\
-        it & 0.28 & 0.28 & 0.36 \\
-        ro & 0.39 & 0.39 & 0.20 \\
-        sl & 0.15 & 0.15 & 0.06 \\
-        sq & 0.55 & 0.54 & 0.27 \\
+        bg & 39.35 & 40.75 & 19.00 \\
+        el & 36.90 & 37.70 & 14.35 \\
+        it & 27.70 & 28.25 & 36.30 \\
+        ro & 38.65 & 39.45 & 20.25 \\
+        sl & 14.50 & 15.05 & 5.80 \\
+        sq & 54.85 & 54.15 & 27.05 \\
         \bottomrule
     \end{tabular}
-    \caption{Linear Assignment Using 2000 Definitions}%
+    \caption{Definition matching evaluated on 2000 definition pairs}%
     \label{tab:lapjv_2000}
 \end{table}
 
@@ -169,42 +167,73 @@ The performance dropped to the quarter of pre-trained embeddings so we have not 
         \toprule
 & \multicolumn{3}{c}{Percentage of Correctly Matched Definitions} \\
 \cmidrule(lr){2-4}
-        \textbf{Language} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
-        bg & 0.35 & 0.36 & 0.18 \\
-        el & 0.36 & 0.36 & 0.12 \\
-        it & 0.25 & 0.25 & 0.32 \\
-        ro & 0.36 & 0.37 & 0.19 \\
-        sl & 0.11 & 0.11 & 0.05 \\
-        sq & 0.39 & 0.40 & 0.19 \\
+        \textbf{Language Code} & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
+        \midrule
+        bg & 35.27 & 36.00 & 18.10 \\
+        el & 36.13 & 36.07 & 11.70 \\
+        it & 24.67 & 24.90 & 32.07 \\
+        ro & 36.43 & 36.87 & 18.73 \\
+        sl & 11.27 & 11.40 & 4.63 \\
+        sq & 39.43 & 39.67 & 19.03 \\
         \bottomrule
     \end{tabular}
-    \caption{Linear Assignment Using 3000 Definitions}%
+    \caption{Definition matching evaluated on 3000 definition pairs}%
     \label{tab:lapjv_3000}
 \end{table}
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{lrrr}
+    \begin{tabular}{@{}lrrr@{}}
         \toprule
-& \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\
-\midrule
-        Best & 0.55 & 0.54 & 0.36 \\
-        Worst & 0.11 & 0.11 & 0.05 \\
-        Average & 0.33 & 0.33 & 0.19 \\
+ & \multicolumn{3}{l}{Percentage of Correctly Matched Definitions} \\ \cmidrule(l){2-4}
+ & \textbf{fastText 1M} & \textbf{fastText 500k} & \textbf{Numberbatch} \\ \midrule
+        \textbf{Best} & 54.85 & 54.15 & 36.30 \\
+        \textbf{Worst} & 11.27 & 11.40 & 4.63 \\
+        \textbf{Average} & 32.93 & 33.35 & 18.92 \\
         \bottomrule
     \end{tabular}
-    \caption{Summary of Linear Assignment}%
+    \caption{The summary of matching dictionary definitions}%
     \label{tab:lapjv_summary}
+\end{table}
+
+In order to assess the feasibility of this algorithm in a real life data, we ran the experiment using all of the available dictionary definitions.
+We present the results in Table~\ref{tab:lapjv_full}.
+
+Romanian wordnet definitions did not fit into the memory of the machine we tested on (64 GB of available RAM) so we could not present the full definition matching results for Romanian wordnet.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{@{}lrr@{}}
+        \toprule
+        \textbf{Language Code} & \textbf{Definitions} & \textbf{Percentage of Definitions Matched Correctly} \\ \midrule
+        bg & 4958 & 28.52 \\
+        el & 18105 & 31.06 \\
+        it & 12585 & 15.65 \\
+        sl & 3143 & 11.42 \\
+        sq & 4680 & 44.81 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definition matching using all the available definition in the corpora}%
+    \label{tab:lapjv_full}
 \end{table}
 
 \subsection{Monolingual Retrieval Results}%
 \label{sub:chap4_results}
 
+We have presented our method of translating the target wordnet definitions into English and running monolingual document retrieval on the corpora in Section~\ref{sec:monolingual_retrieval}.
+As mentioned before, we handled the original English definitions as the document collection to retrieve from and used the translated target wordnet definitions as queries.
+We truncated the definitions to 2000 pairs each and ran the experiment.
+
+The results are presented in Table~\ref{tab:monolingual_tfidf}.
+Considering the other approaches, \tfidf{} weighted term document matrices and cosine similarity between definitions does not seem adequate for solving the task at hand.
+Mean reciprocal rank penalizes the query according to the rank of the correct result, if the correct definition is retrieved on a lower rank, the MRR diminishes.
+The divide between the MRR score and the precision at 1 score indicates that for some definitions the noise that arises from the translation keeps the correct definition from appearing among the top results heavily.
+
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{lrrrrr}
+    \begin{tabulary}{1.0\linewidth}{L R R R R R}
         \toprule%
-        Language & MRR & Top 10 & Top 10 \% & Top 1 & Top 1 \% \\
+        \textbf{Language Code} & \textbf{MRR} & \textbf{Precision at 10} & \textbf{Precision at 10 \%} & \textbf{Precision at 1} & \textbf{Precision at 1 \%} \\
         \midrule%
         bg & 0.087 & 674 & 0.337 & 403 & 0.202 \\
         el & 0.122 & 1006 & 0.503 & 709 & 0.355 \\
@@ -213,15 +242,64 @@ The performance dropped to the quarter of pre-trained embeddings so we have not 
         sl & 0.073 & 584 & 0.292 & 317 & 0.159 \\
         sq & 0.056 & 979 & 0.490 & 767 & 0.384 \\
         \bottomrule
-    \end{tabular}
-    \caption{Experiment results for monolingual retrieval}%
+    \end{tabulary}
+    \caption{Experiment results for monolingual retrieval, ran on 2000 definition pairs}%
     \label{tab:monolingual_tfidf}
 \end{table}
 
-\subsection{Cross Lingual Retrieval Results}%
+\subsection{Cross Lingual Document Retrieval Results}%
 \label{sub:cross_lingual_retrieval_results}
 
+We present the results of the method we have presented in Section~\ref{sec:cross_lingual_document_retrival} on the Table~\ref{tab:cldr_results}.
+Due to space restrictions, we omitted the language code header and used \enquote{\%} as the percentage of precision at one metric identifier.
 
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llrrrrrrrrr}
+    \toprule
+ &  &  & \multicolumn{2}{r}{\textbf{WMD tf-idf}} & \multicolumn{2}{r}{\textbf{Sinkhorn tf-idf}} & \multicolumn{2}{c}{\textbf{WMD tf}} & \multicolumn{2}{c}{\textbf{Sinkhorn tf}} \\ \cline{4-11}
+ & \textbf{Vector} & \textbf{Vocabulary} & \multicolumn{1}{c}{\textbf{MRR}} & \multicolumn{1}{c}{\textbf{\%}} & \multicolumn{1}{c}{\textbf{MRR}} & \multicolumn{1}{c}{\textbf{\%}} & \multicolumn{1}{c}{\textbf{MRR}} & \multicolumn{1}{c}{\textbf{\%}} & \multicolumn{1}{c}{\textbf{MRR}} & \multicolumn{1}{c}{\textbf{\%}} \\ \cline{2-11}
+\multirow{3}{*}{bg} & 1M FastText & 10532 & 50.83 & 41.50 & 51.85 & 42.65 & 41.81 & 33.95 & 42.76 & 34.60 \\
+ & 500k FastText & 10457 & 51.15 & 41.90 & 52.24 & 43.00 & 42.18 & 34.15 & 43.19 & 34.80 \\
+ & Numberbatch & 6028 & 25.32 & 17.45 & 24.97 & 17.15 & 18.55 & 12.30 & 18.09 & 11.35 \\ \cmidrule(lr){2-11}
+\multirow{3}{*}{el} & 1M FastText & 9307 & 47.82 & 39.05 & 48.67 & 40.15 & 40.74 & 32.85 & 41.42 & 33.40 \\
+ & 500k FastText & 9168 & 47.45 & 38.45 & 48.45 & 39.95 & 40.53 & 32.55 & 41.39 & 33.55 \\
+ & Numberbatch & 5127 & 19.92 & 13.15 & 20.06 & 13.40 & 14.71 & 9.95 & 14.94 & 10.00 \\ \cmidrule(lr){2-11}
+\multirow{3}{*}{it} & 1M FastText & 10025 & 40.24 & 31.15 & 40.60 & 31.45 & 31.98 & 23.50 & 32.07 & 23.40 \\
+ & 500k FastText & 9975 & 40.27 & 31.15 & 40.49 & 31.30 & 32.11 & 23.65 & 32.21 & 23.50 \\
+ & Numberbatch & 8875 & 42.72 & 33.30 & 42.77 & 33.35 & 35.11 & 26.70 & 35.12 & 26.80 \\ \cmidrule(lr){2-11}
+\multirow{3}{*}{ro} & 1M FastText & 12165 & 51.30 & 41.60 & 51.95 & 41.50 & 44.20 & 35.90 & 45.06 & 35.60 \\
+ & 500k FastText & 12034 & 51.28 & 41.65 & 52.37 & 42.20 & 43.85 & 35.50 & 45.14 & 35.75 \\
+ & Numberbatch & 6939 & 27.68 & 19.85 & 27.70 & 19.80 & 21.57 & 15.70 & 21.86 & 16.25 \\ \cmidrule(lr){2-11}
+\multirow{3}{*}{sl} & 1M FastText & 12185 & 26.22 & 17.80 & 26.38 & 18.05 & 23.43 & 15.10 & 23.97 & 15.60 \\
+ & 500k FastText & 12020 & 26.12 & 17.80 & 26.31 & 17.95 & 23.47 & 15.15 & 24.03 & 15.80 \\
+ & Numberbatch & 5870 & 9.35 & 4.80 & 9.46 & 5.00 & 6.35 & 2.90 & 6.26 & 2.85 \\ \cmidrule(lr){2-11}
+\multirow{3}{*}{sq} & 1M FastText & 8048 & 65.66 & 59.15 & 63.97 & 56.40 & 56.47 & 48.55 & 56.94 & 49.30 \\
+ & 500k FastText & 7990 & 65.61 & 58.70 & 64.42 & 56.85 & 56.61 & 48.80 & 57.05 & 49.25 \\
+ & Numberbatch & 4908 & 31.07 & 23.55 & 31.06 & 23.30 & 24.31 & 17.80 & 24.74 & 18.35 \\
+ \bottomrule
+\end{tabular}
+\caption{Results of cross lingual document retrieval cast as dictionary alignment}%
+\label{tab:cldr_results}
+\end{table}
+\end{landscape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  IN DOMAIN EMBEDDINGS  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Investigating Word Embedding Sources}%
+\label{sec:investigating_word_embedding_sources}
+
+We experimented with in domain \emph{fastText} embeddings in order to ask if pre-trained embeddings are better than embeddings trained on the experiment data.
+Since Romanian wordnet has the most data available, we have trained Romanian embeddings on the Romanian wordnet definitions, mapped the embeddings to the same latent space using supervised VecMap and ran cross lingual document retrieval experiments using word mover's distance and Sinkhorn.
+% TODO here
+The performance dropped to the quarter of pre-trained embeddings so we have not repeated the experiments for other language corpora.
+
+
+%%%%%%%%%%%%%%%%
+%  CASE STUDY  %
+%%%%%%%%%%%%%%%%
 \section{Case Study}%
 \label{sec:case_study}
 

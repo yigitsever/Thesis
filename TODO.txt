@@ -1,9 +1,3 @@
 Chapters/Chapter3.tex:119:% TODO there was a citation for this
-Chapters/Chapter2.tex:110:% TODO word overlap, you cited this on chapter 4?
-Chapters/Chapter2.tex:214:% TODO cite hierarchical softmax
-Chapters/Chapter2.tex:339:% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
-Chapters/Chapter2.tex:362:% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
-Chapters/Chapter2.tex:369:%TODO cite here lund, deerwester?
-Chapters/Chapter2.tex:482:% TODO ... acc and attachment
 Chapters/Chapter1.tex:48:% TODO A reference here
 Chapters/Chapter1.tex:50:% TODO A reference here

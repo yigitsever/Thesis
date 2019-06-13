@@ -107,7 +107,6 @@ Cosine similarity measure is often used since inner product of two normalized ve
 
 \textcite{deerwester_indexing_1990} introduced latent semantic analysis in order to address a crucial problem with the vector space model.
 They have identified that the term document matrix approach cannot handle synonyms and homonyms due to the fact that vector space model requires the words to match exactly between the two documents.
-% TODO word overlap, you cited this on chapter 4?
 Synonymity is an issue because the query can have terms that have the same meaning as the target word, without getting matched.
 On the other hand, homonyms can match with an unrelated word.
 In order to answer these issues, their model seeks the higher order latent semantic structure in order to learn the \emph{similarity between words}.
@@ -126,8 +125,8 @@ The singular values of $S_{0}$ can be ordered by size to keep only the $k$ large
 The resulting matrix is shown as $S$.
 % \citeauthor{deerwester_indexing_1990} talk about the use for the resulting matrix as follows;
 % \begin{displayquote}
-    % Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
-    % That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
+% Each term or document is then characterized by a vector of weights indicating its strength of association with each of these underlying concepts.
+% That is, the \enquote{meaning} of a particular term, query, or document can be expressed by $k$ factor values, or equivalently, by the location of a vector in the $k$-space defined by the factors.
 % \end{displayquote}
 The similarity tasks that are solved with $S$ can employ the representative $k$ dimensional vectors such that $k << |V|$.
 Latent semantic analysis was used to the solve document similarity task while \emph{word similarity} was mentioned briefly.
@@ -210,8 +209,7 @@ In short, the input layer is projected into an embedding layer, later to a softm
 
 However, this formulation is too computationally expensive since all vocabulary needs to be considered for the sum in the denominator.
 The curse of dimensionality problem is shifted to the final layer of the neural network.
-It will be solved later using hierarchical softmax.
-% TODO cite hierarchical softmax
+It will be solved later using hierarchical softmax~\cite{mikolov_distributed_2013}.
 Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
 
 \textcite{collobert_unified_2008} suggested a deep neural network model in order to learn feature vectors for various natural language processing tasks.
@@ -240,7 +238,6 @@ Their contribution is elegantly summarized in their work as;
     \textelp{} \\
     With this contribution, word embeddings can now be used off-the-shelf as word features, with no tuning.
 \end{displayquote}
-% TODO paraphrase don't blockquote
 
 % Jointly with \citeauthor{collobert_unified_2008}, \citeauthor{p._turian_word_2010} steered the work on word representations to the today's route.
 % They showcased that word embeddings can indeed be used as ready made feature vectors and once trained, can be used for other applications by other researchers.
@@ -281,6 +278,8 @@ The $w_{1}, w_{2}, \dots, w_{T}$ are the context of the word $w_t$.
 %It includes $c$ words behind and $c$ words ahead of the word $w_t$.
 We should note that, \textcite{levy_improving_2015} has identified that this window size is \emph{dynamic} in the open source implementation of word2vec, where the actual window size is sampled between $1$ and $T$.
 
+Following word2vec, \textcite{pennington_glove_2014} introduced GloVe embeddings that were built on word co-occurrence probabilities.
+
 % In the Equation~\ref{eqn:bengio_softmax}, we have reported on the \emph{costly} softmax function, used by \citeauthor{bengio_neural_2003}.
 % \citeauthor{mikolov_distributed_2013} significantly improves their model's performance by using \emph{hierarchical softmax}.
 % Hierarchical softmax~\cite{morin_hierarchical_2005} uses a binary tree to distribute the probability distribution among the leaves of the nodes.
@@ -304,6 +303,8 @@ Besides, the amount of data the models are trained on were more important than t
 They used this finding to counter the results reported by \textcite{baroni_dont_2014}.
 \citeauthor{baroni_dont_2014} claimed that predictive models outperformed count based models.
 On the other hand, \citeauthor{levy_improving_2015} noted that \citeauthor{baroni_dont_2014} used count based models without hyperparameter tuning, denying them from \enquote{tricks} developed in the word representation literature.
+Finally, \textcite{levy_neural_2014} emprically proved that word2vec's skip gram with negative sampling approach is equivalent to factorizing a word-context matrix weighted using positive pointwise mutual information.
+With the amount of overlap and marginal performance gains in between the algorithms, the choice of a particular model seems not as important.
 
 \subsection{fastText}%
 \label{sub:fasttext}
@@ -334,10 +335,10 @@ These character n-grams are called subword vectors, they are trained using the s
 \end{figure}
 
 With the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
+So the scoring function for the word in accordance to word's context n-grams is~\cite{bojanowski_enriching_2016};
 \begin{displaymath}
     s(w,c) = \sum_{g \in G_{w}}z_{g}^T v_c
 \end{displaymath}
-% TODO section 3.2 of bojanowski_enriching_2016, it is alright to do this, just reference
 
 \textcite{grave_learning_2018} trained fastText model on different languages using Wikipedia and Common Crawl data.
 Wikipedia is a curated encyclopaedia that can be used as a multilingual corpora with 28 languages that have over \emph{100 million} tokens and 82 languages with 10 million tokens~\cite{grave_learning_2018}.
@@ -359,15 +360,14 @@ Compared to WordNet, more subjective, human centric relations are defined such a
 Total number of relations that are available between two concepts is 36.
 Moreover, these relationships are \emph{weighted} depending on how present they are.
 For example, the concept \emph{run} is related to \emph{fast} with a weight of \texttt{9.42} but the similarity between \emph{race} and \emph{run} is weighted at \texttt{2.54}.
-Finally, the ConcepNet is multilingual, encompassing 304 languages in total with 77 of them reported as having moderate support that can be used in downstream tasks.
-% TODO NOPE, only 10 is given full approval, Italian is one, bg ro etc. are all lesser languages
+Finally, the ConcepNet is multilingual, encompassing 304 languages in total but only 10 languages have full support and advised to use for downstream applications.
+For our case, only Italian is fully supported by numberbatch while the rest of the languages fall into the 77 languages which reported as having moderate support and may be used in downstream tasks with loss in performance.
 Details of the knowledge graph and the procedure is explained by \textcite{speer_conceptnet_2017} in the paper \citetitle{speer_conceptnet_2017}.
 
 \citeauthor{speer_conceptnet_2017} also present their resource in word embedding matrix form for ease of use in the current plug-and-play environment.
 In order to get word embeddings from the knowledge graph, first they prepare a symmetric term-term matrix $X$ where an element $w_{i,j}$ is the sum of all edge weights between terms $i$ and $j$.
 This is similar to a word co-occurrence matrix but instead of constructing the matrix using unstructured text, this approach builds upon semantic connections between senses.
-\citeauthor{speer_conceptnet_2017} reports that their approach learns \emph{relatedness} more so than \emph{similarity} which was reported by the word co-occurrence approaches before.
-%TODO cite here lund, deerwester?
+\citeauthor{speer_conceptnet_2017} reports that their approach learns \emph{relatedness} more so than \emph{similarity} which was reported by the word co-occurrence approaches before~\cite{lund_producing_1996}.
 
 With the term-term matrix at hand, \citeauthor{speer_conceptnet_2017} weigh the terms using positive pointwise mutual information (PPMI) as suggested by \textcite{levy_improving_2015} and reduce it to 300 dimensions, as is standard set by word2vec, using truncated SVD\@.
 Resulting matrix is similar to approaches set by \textcite{deerwester_indexing_1990} or \textcite{pennington_glove_2014} but \citeauthor{speer_conceptnet_2017} enrich it further using \emph{retrofitting} as proposed by \textcite{faruqui_improving_2014}.
@@ -434,7 +434,7 @@ All in all, \textcite{vossen_introduction_1998} defines the aims as;
     \end{enumerate}
 \end{displayquote}
 
-One challange in achieving compatability is the shortcomings of using the original WordNet as the anchor.
+One challenge in achieving compatibility is the shortcomings of using the original WordNet as the anchor.
 On one hand, since the WordNet is the first and the most comprehensive, it is a natural hub for new wordnets.
 On the other hand, a sense in one language might not have a direct equivalent in an other.
 Cultural differences or linguistic differences between languages contribute to this fact~\cite{kitamura_cultural_2009} which is called a lexical gap or untranslatability.
@@ -479,8 +479,7 @@ First, cosine similarity measure is used to discover nearest neighbours to a pot
 Then a threshold value is used to cut off any new synsets below a certain similarity value.
 They evaluated their approach against accuracy, the percentage of relations that were correct and attachment which is similar to a recall score.
 It is the percentage of considered synsets that were above the threshold value.
-Overall, \citeauthor{sand_wordnet_2017} reported.
-% TODO ... acc and attachment
+Overall, \citeauthor{sand_wordnet_2017} reported accuracy scores within the 55.80 to 64.47 percent range with respect to different frequency thresholds and an attachment score that fluctuate between 96.20 and 98.36 percent.
 
 %\textcite{khodak_automated_2017} used word embeddings and WordNet.
 % talk about Khodak -> Automated WordNet construction Using Word Embeddings
@@ -513,16 +512,33 @@ The weighting is called smooth inverse frequency which was suggested by \textcit
 
 We will talk about sentence embeddings in detail for our approach in Section~\ref{sec:linear_assignment_using_sentence_embeddings}.
 
-Third approach is word sense induction~\cite{arora_linear_2018}.
+\section{Other Related Work}%
+\label{sec:other_related_work}
 
+\textcite{lesk_automatic_1986} presented the \emph{Lesk Algorithm} which is one of the earliest answers to word sense disambiguation problem.
+This classic algorithm identifies the correct sense for a couple of words among their synonyms using the word that it co-occurs with.
+The classic example uses the \emph{pine cone} for demonstration.
+First, the dictionary definitions of the two words in the sentence are extracted.
+For \emph{pine}, the definitions are \enquote{kind of evergreen tree with needle-shaped leaves \dots} and \enquote{waste away through sorrow or illness \dots}.
+For \emph{cone}, the definitions are presented as \enquote{solid body which narrows to a point \dots}, \enquote{something of this shape whiter solid or hollow \dots} and \enquote{fruit of certain evergreen trees}~\cite{lesk_automatic_1986}.
+The algorithm then assigns the sense pairs that have the highest number of word overlaps between them.
+For the \emph{pine cone} case, the algorithm finds the overlap on \emph{evergreen} and \emph{tree} to assign the matching senses; \enquote{kind of evergreen tree with needle-shaped leaves \dots} and \enquote{fruit of certain evergreen trees}.
+This approach relied on the definitions given by traditional dictionaries.
 
-\textcite{gordeev_unsupervised_2018} uses unsupervised cross-lingual embeddings to match cross-lingual product classifications.
-Working on taxonomy matching, they use out of domain pre-trained embeddings due to small size of their corpora and investigate methods using untranslated and translated text.
+\textcite{banerjee_adapted_2002} extended the \emph{Lesk Algorithm} by levering the WordNet synsets.
+Instead of comparing the definitions of the pair of words, their approach uses the definitions of the co-occurring words as well as the definitions of synsets that are connected to the word pair.
 
-\textcite{lesk_automatic_1986} represent words using their gloss.
-Relied upon traditional dictionaries.
+\textcite{gordeev_unsupervised_2018} presented various approaches for matching cross lingual product classifications or product taxonomies using bilingual embeddings.
+Their work is highly related since they have also studied the viability of showing senses using word embeddings on a latent space which were Russian and English product descriptions.
+However, they relied on other information sources such as the category of the products which is absent in our study.
+Our study and their approaches are similar in an additional way; they reported some products did not have direct equivalents on the target language's product space, which highly resembles the lexical gap we have talked about in Section~\ref{sec:approaches_in_wordnet_generation}.
+They also used out of domain pre-trained word embeddings due to small size of their corpora.
 
-\textcite{banerjee_adapted_2002} developed on lesk algorithm and included WordNet definitions.
-
-\textcite{metzler_similarity_2007} talked about short text retrieval and lexical matching.
-They reported that lexical matching is good for finding semantically identical matches.
+Three algorithms that were presented which are relevant to our study;
+\begin{enumerate}
+    \item doc2vec~\cite{le_distributed_2014} on untranslated text.
+    \item doc2vec on translated text.
+    \item averaging the category description vector.
+\end{enumerate}
+\citeauthor{gordeev_unsupervised_2018} reported 19.75\% accuracy on the first approach and 44\% on the second approach.
+Like our case, their best results came from using out of domain word embedding vectors to encode the text at hand, which is presented in the third approach with an accuracy of 55\%.

@@ -256,7 +256,7 @@ word2vec package~\cite{mikolov_efficient_2013,mikolov_distributed_2013,mikolov_l
 There are two aspects of the work done by \citeauthor{mikolov_distributed_2013}  that contributed to the fact;
 \begin{itemize}
     \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words using a shallow neural network, keeping the computational cost down.
-    \item They published their code as well as their pre-trained embeddings as an open source project\footnote{\url{https://code.google.com/archive/p/word2vec/}}.
+    \item They published their code as well as their pre-trained embeddings as an open source project\footnote{\url{https://code.google.com/archive/p/word2vec}}.
 \end{itemize}
 The second point is self explanatory but in order to argue about the first one, we should report the algorithms behind word2vec.
 
@@ -345,12 +345,12 @@ Wikipedia is a curated encyclopaedia that can be used as a multilingual corpora 
 Considering the original word2vec was trained on \emph{100 billion} tokens, \citeauthor{grave_learning_2018} also used Common Crawl, a non profit project that collocates web pages and publishes the data publicly.
 This data can be inadvertently noisy which \citeauthor{grave_learning_2018} addressed using linewise language identification and by removing duplicate lines that often appear as leftover boilerplate on many sites.
 While Wikipedia provided them with a curated signal, Common Crawl data helped with capturing as many contexts as possible to train their distributed model.
-They are currently hosting the pre-trained word embeddings on their website~\footnote{\url{https://fasttext.cc/}}.
+They are currently hosting the pre-trained word embeddings on their website~\footnote{\url{https://fasttext.cc}}.
 
 \subsection{ConceptNet Numberbatch}%
 \label{sub:conceptnet_numberbatch}
 
-As an alternative to purely distributional models, \textcite{speer_conceptnet_2017} suggested \emph{numberbatch} embeddings built in conjugation with ConceptNet.\footnote{\url{http://conceptnet.io/}}.
+As an alternative to purely distributional models, \textcite{speer_conceptnet_2017} suggested \emph{numberbatch} embeddings built in conjugation with ConceptNet.\footnote{\url{http://conceptnet.io}}.
 ConceptNet is a knowledge graph.
 Like the WordNet, it presents semantic relationships between concepts but the defined relationships are more fine grained.
 The relationships are collocated from various resources like English Princeton WordNet, Open Mind Common Sense~\cite{anacleto_can_2006} and DBPedia~\cite{auer_dbpedia_2007}.
@@ -415,7 +415,7 @@ WordNet has been used in various natural language processing applications over t
 Since the original WordNet was prepared for English over many years of work, efforts for creating an equivalent resource for other languages has been initiated.
 Arguably, EuroWordNet set the standard for creating wordnets for languages other than English~\cite{vossen_introduction_1998, vossen_eurowordnet_2004}.
 
-EuroWordNet\footnote{\url{http://projects.illc.uva.nl/EuroWordNet/}} project was initiated to introduce the benefits of English Princeton WordNet for other languages.
+EuroWordNet\footnote{\url{http://projects.illc.uva.nl/EuroWordNet}} project was initiated to introduce the benefits of English Princeton WordNet for other languages.
 Additionally, an interlinked semantic network can be a research topic on lexicalization patterns of languages, finding conceptual clusters of vocabularies or cross lingual text retrieval~\cite{gonzalo_applying_1998, vossen_introduction_1998}.
 EuroWordNet project included 7 wordnets for languages other than English and an adapted English wordnet.
 Due to the effort needed to create a wordnet from scratch, \citeauthor{vossen_introduction_1998} averted the EuroWordNet project from creating full scale semantic lexicons and prioritized the connectivity between wordnets.

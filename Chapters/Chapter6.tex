@@ -7,7 +7,7 @@
 \label{sec:preparing_wordnets}
 
 In order to run our experiments we need two sets of dictionary definitions from two different languages.
-Open Multilingual Wordnet~\cite{bond_linking_2013} project hosts 34 wordnets with permissive licenses on their website.\footnote{\url{http://compling.hss.ntu.edu.sg/omw/}}
+Open Multilingual Wordnet~\cite{bond_linking_2013} project hosts 34 wordnets with permissive licenses on their website.\footnote{\url{http://compling.hss.ntu.edu.sg/omw}}
 We have investigated the available wordnets and found out that six of them included definitions, also known as glosses.
 Since we do not use any other information related to wordnets (like semantic relationships) only definitions were extracted into a plain text corpora.
 This intermediate corpora includes WordNet 3.0 synsets identifiers and the corresponding definitions in the target language.
@@ -40,7 +40,7 @@ The statistics and the 2 letter language codes that we will commonly use to deno
 \label{sec:preparing_word_embeddings}
 
 In Chapter~\ref{chap:background_n_related}, we have mentioned the recent popularization of pre-trained word embeddings.
-Initiated by word2vec\footnote{\url{https://code.google.com/archive/p/word2vec/}}, other sources for word embeddings are GloVe\footnote{\url{https://nlp.stanford.edu/projects/glove/}}, fastText\footnote{\url{https://fasttext.cc/}} and numberbatch\footnote{\url{https://github.com/commonsense/conceptnet-numberbatch}}.
+Initiated by word2vec\footnote{\url{https://code.google.com/archive/p/word2vec}}, other sources for word embeddings are GloVe\footnote{\url{https://nlp.stanford.edu/projects/glove}}, fastText\footnote{\url{https://fasttext.cc}} and numberbatch\footnote{\url{https://github.com/commonsense/conceptnet-numberbatch}}.
 Yet, word embeddings for languages other than English are scarce.
 FastText hosts word embeddings for 157 languages so we used them as our primary source\cite{grave_learning_2018}.
 These embeddings are trained using Common Crawl and Wikipedia data.
@@ -84,7 +84,7 @@ Hence our preference of VecMap is highly influenced by it's availability as an o
 
 Best performing VecMap model available in the framework is supervised alignment.
 It requires a bilingual dictionary, otherwise known as aligned word pairs for two languages.
-We sourced our bilingual dictionary from Open Subtitles 2018\footnote{\url{http://www.opensubtitles.org/}} data as hosted by OPUS.\footnote{\url{http://opus.nlpl.eu/}}
+We sourced our bilingual dictionary from Open Subtitles 2018\footnote{\url{http://www.opensubtitles.org}} data as hosted by OPUS.\footnote{\url{http://opus.nlpl.eu}}
 The dictionary can be sorted by the confidence score of the translation pair, which we did so that pairs with high confidence scored swam to top.
 The first 25000 translation pairs were shuffled and split into training and testing examples for 6 languages.
 After supervised mapping of language specific word embedding and English word embedding, we have 6 pairs of vectors that share the same latent space, trained on 12500 word alignments.

@@ -3,15 +3,54 @@
 \chapter{Conclusion}%
 \label{chap:conclusion}
 
-% check if wordnets have been prepared by humans, if not talk about it here
+In this study, we set out to investigate the feasibility of representing senses using their dictionary definitions.
+Along the way, we used document retrieval, linear programming and neural networks to answer the issue on as many angles as possible.
+The grand aim of the study was to compare the approaches that we had identified for the task.
+To our best knowledge, a comparable study where the dictionary alignment approaches were reported on the basis of their performance is not available so we had to anchor the study to itself.
+At the end of the day, we can make justified comparisons.
 
-We accepted Open Multilingual WordNet as golden.
-% https://github.com/commonsense/conceptnet5/wiki/Languages
-Italian is a core language in numberbatch, the performance skyrockets!
+The monolingual retrieval using \tfidf weights and cosine similarity measure was chosen as a baseline because it is the most greedy approach available.
+If dictionary generation could be solved by automatic machine translation, this thesis would not take hold.
+The results presented in Chapter~\ref{chap:experiments_and_evaluation} prove so.
+
+The matching algorithm is interesting.
+Moving on with our greedy connotation, for a task like dictionary alignment, assigning a sense to a definition that is closest to it by some distance metric might leave another definition with less than an ideal match later down the line.
+Matching ensures that the \emph{closest} metric in between definitions holds not just for individual definitions but for the whole corpora.
+We have mentioned the lexical gap problem in Chapter~\ref{chap:background_n_related} where some senses do not have equivalences in the target language.
+Recently, \textcite{bolukbasi_man_2016} reported on gender biases of word embedding models which numberbatch embeddings responded with so called de-biased embeddings, eliminating it from their models almost completely.
+Considering the most common type of lexical gap arises from languages with grammatical gender, possible effect of this on the matching approach is left for future work.
+
+Overall, cross lingual document retrieval consistently shown the best performance across the board.
+We have also proven our justification behind the choice of the particular embedding model and the fact that conventional evaluation of word embeddings might not translate to downstream tasks.
+Numberbatch has scored first place on SemEval-2017 Task 2~\cite{camachocollados-EtAl:2017:SemEval}, on multilingual word similarity task.
+Yet, against fastText embeddings, their model performed worse with the exception of Italian.
+Italian is a \emph{core language} for numberbatch, where they claim full support.
+It is also the language where numberbatch consistently outperformed fastText embeddings.
+We have set out to investigate the effect of particular choices like this for the dictionary alignment task.
+It can be reported with confidence that the advantage of one approach over another is not clear cut and should be investigated further.
+
+With the supervised long short-term memory approach, we have observed that not only it is possible to represent senses using their dictionary definitions but also the metric of \emph{representing} the same sense can be learned.
+The data required for obtaining any good performance should be noted and experimenting on diverse data should be left for future work.
+
+The crucial shortcoming is the data requirements we have.
+On one hand, any type of description that represent a sense can be aligned not with just WordNet but any dictionary.
+Projects like BabelNet\footnote{\url{https://babelnet.org/}} or ConceptNet are creating semantic databases of their own while WordNet is on version 3.0, still online well after 20 years.
+Natural language processing research relies on external sources of information and the pre-annotated nature of these resources will always find a use.
+Working towards automatically extending them creates more opportunities for sprawling research later down the line.
 
 \section{Future Work}%
 \label{sec:future_work}
 
-Transfer learning from ruder supports geomm, encode same sense using n languages and predict same senseness in n+1th language.
-Can plug ruiz wikipedia to extract possible senses and decide on the correct one.
+Throughout the thesis, English was always the centrepiece of the experiments.
+The wordnets were evaluated by their alignment towards the first and the most comprehensive, WordNet.
+The word embeddings were mapped to share a latent space with English word embeddings.
+As we have mentioned in Chapter~\ref{chap:background_n_related}, ideas like Inter-Lingual Index offer ways to bypass the English as a hub language.
+As an immediate future work, alignments that do not use English nor English Princeton WordNet can be investigated.
+Culturally or syntactically closer languages can be bridges more easily than distant yet abundant English.
 
+Recent transfer learning models like BERT~\cite{devlin_bert_2018} offer a novel way to overcome the fundamental shortcoming with the supervised encoder we presented;
+the model performs in accordance with the available data and requires aligned data to function in the first place.
+Transfer learning inspires approaches like encoding the metric for representing the same sense in $n$ languages after which the model is ready to predict on $n+1^{th}$ language.
+Very recently, \textcite{jawanpuria_learning_2019} proposed a VecMap like framework for convenient alignment of word embeddings.
+To our interest, the framework can map \emph{multilingual} embeddings on a \emph{shared space}.
+With a potential synset discovery approach like the one proposed by \textcite{ruiz-casado_automatic_2005} where possible sense definitions are found and validated using supervised learning will be investigated next using the novel ideas as inspiration.

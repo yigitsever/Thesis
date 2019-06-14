@@ -57,6 +57,14 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \newcommand{\varA}[1]{{\operatorname{#1}}}
 \newcommand{\varB}[1]{{\operatorname{\mathit{#1}}}}
 \newcommand{\tfidf}{\ $\varB{tf-idf}$\ }
+% \usepackage[compact]{titlesec}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries\centering}{\thechapter.}{0.25em}{}
+% \titleformat{\chapter}[hang]{\huge}{\thechapter}{1em}{}
+\titlespacing{\chapter}{0pt}{-5em}{1em}
+
+\titlelabel{\thetitle.\quad}
 
 \usepackage[super]{nth} % 1st 2nd 3rd 4th ...
 \usepackage{booktabs}   % beautiful tables
@@ -301,7 +309,7 @@ The acknowledgments and the people to thank go here, don't forget to include you
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
-\dedicatory{For/Dedicated to/To my\ldots}
+\dedicatory{Aileme\dots}
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -311,9 +319,6 @@ The acknowledgments and the people to thank go here, don't forget to include you
 
 \pagestyle{thesis} % Return the page headers back to the "thesis" style
 
-% Include the chapters of the thesis as separate files from the Chapters folder
-% Uncomment the lines as you write the chapters
-
 \include{Chapters/Chapter1}
 \include{Chapters/Chapter2}
 \include{Chapters/Chapter3}
@@ -322,25 +327,10 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \include{Chapters/Chapter6}
 \include{Chapters/Chapter7}
 
-%----------------------------------------------------------------------------------------
-%	THESIS CONTENT - APPENDICES
-%----------------------------------------------------------------------------------------
+\printbibliography[heading=bibintoc]
 
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
-% Include the appendices of the thesis as separate files from the Appendices folder
-% Uncomment the lines as you write the Appendices
-
 \include{Appendices/AppendixA}
-%\include{Appendices/AppendixB}
-%\include{Appendices/AppendixC}
-
-%----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-\printbibliography[heading=bibintoc]
-
-%----------------------------------------------------------------------------------------
 
 \end{document}

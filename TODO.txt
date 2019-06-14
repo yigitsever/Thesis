@@ -1,4 +1,3 @@
 Chapters/Chapter3.tex:119:% TODO there was a citation for this
 Chapters/Chapter1.tex:48:% TODO A reference here
 Chapters/Chapter1.tex:50:% TODO A reference here
-Chapters/Chapter6.tex:296:% TODO here

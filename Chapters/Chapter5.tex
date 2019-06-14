@@ -132,6 +132,8 @@ We used a similarity function that relies on cosine similarity over the outputs 
 \end{equation}
 Where $y^{s}$ is the output of the LSTM that encodes the source definitions and $y^{t}$ is the output of the LSTM that encodes the target definitions.
 We use adelta optimizer as suggested by \textcite{zeiler_adadelta_2012} and our loss function is the mean squared error.
+The LSTM weights are uniformly initialized~\cite{glorot_understanding_2010}.
+Furthermore, gradient clipping is employed in order to avoid the exploding gradient problem~\cite{pascanu_difficulty_2012}.
 We train our model using positive and negative samples.
 With the aligned golden corpora, we randomly shuffled half of the definitions and assigned them the label 0.
 The shuffle was done randomly since if we had chosen to only shuffle the latter half for instance, definitions that clump together might have related definitions or definitions from the same domain.
@@ -143,4 +145,4 @@ Any sentence that is longer than $T$ will have words dropped.
 We have experimented with various values for $T$ and found that more than twice the average word count across the whole corpora work best.
 Following the input layer and the embedding layer, we have positioned the shared LSTM layer.
 The output of which is concatenated and fed into the mean squared error.
-We validate our model with respect to accuracy.
+We will report the accuracy of our model in Chapter~\ref{chap:experiments_and_evaluation}.

@@ -167,12 +167,11 @@ Two unsupervised approaches will be presented as an answer to dictionary alignme
 First one is the matching approach, in which the dictionary definitions across languages will be thought as nodes of a weighted bipartite graph.
 By assigning appropriate weights to the edges with respect to distance between individual dictionary definitions, we hypothesize that there is a case where minimum flow is achieved between the disjoint dictionary sets.
 The same case can also be stated as the case where the edge weights of the matching is maximum if a similarity metric is used to assign weights.
-
-The second unsupervised approach will be a document retrieval approach, adapted on dictionary definitions.
+The second approach will be a unsupervised document retrieval approach, adapted on dictionary definitions.
 An algorithm that works with the consideration of individual distances between words will be presented.
 
-We will also look into an encoder using a neural network approach.
-The encoder will be trained on a metric for determining if two sentences that were written in different languages entail the same sense.
+We will also look into the supervised sentence alignment using a neural network approach.
+An encoder will be trained on a metric for determining if two sentences that were written in different languages entail the same sense.
 The performance of the encoder will hopefully give us insight towards using a bag of words model of sentence representation, decoupled from syntax of the language can be viable for the task.
 
 All in all, we will investigate the following research questions;
@@ -182,7 +181,7 @@ All in all, we will investigate the following research questions;
     \item Which parameters should be taken into consideration while tackling this task
 \end{itemize}
 
-We will not train our own word embeddings but get existing models.
+The comparative study will be done using existing word embedding models.
 This highlights the major advantage of our approach;
 current word embedding models are trained on billions of tokens to learn the distributional properties of the words.
 Comparatively, dictionaries are short texts.
@@ -220,5 +219,4 @@ In order to present our problem, we will report on the current state of the art 
 Since our thesis is heavily concerned with investigating the best approach for the task at hand, we collected all our results in Chapter~\ref{chap:experiments_and_evaluation}.
 By presenting all results from a single place, we hope to give a complete picture on how we have attacked the dictionary alignment task, which approaches performed better against others and the findings that emerged within the results.
 Details concerning our implementation, how we obtained the aligned corpora and the word embeddings that share the same latent space are explained in Chapter~\ref{chap:experiments_and_evaluation} as well.
-
-Last but not least, we will conclude our thesis in Chapter~\ref{chap:conclusion} with an overall look on our findings and the future work that we would like to study next.
+Finally, we will conclude our thesis in Chapter~\ref{chap:conclusion} with an overall look on our findings and the future work that we would like to study next.

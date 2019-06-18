@@ -74,7 +74,7 @@ Stopwords like \enquote{the}, \enquote{and} have virtually no significance and t
 \tfidf{} is composed of two scores; term frequency \emph{tf} and inverse document frequency \emph{idf}.
 \emph{idf} was initially suggested by \textcite{jones_statistical_1972} and is highlighted by \textcite{manning_introduction_2009}.
 Term frequency $tf_{w,d}$ is the number of times term $w$ occurs in a document $d$.
-Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$.
+Inverse document frequency $idf_{w}$ is calculated using the number of documents that contain the term $w$ which is also known as the document frequency of $w$, $df_w$~\cite{manning_introduction_2009}
 We have used the smooth variant of idf as follows;
 \begin{equation}
     idf_w = \log{\frac{N + 1}{df_w + 1}}

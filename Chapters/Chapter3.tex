@@ -57,8 +57,6 @@ For the \tfidf{} calculation, they cast individual weights as documents so that 
 
 \begin{table}
     \centering
-    \caption{Some definitions from English Princeton WordNet}%
-    \label{tab:en_it_examples}
     \begin{tabular}{l}
         \toprule
         turn red, as if in embarrassment or shame \\
@@ -70,6 +68,8 @@ For the \tfidf{} calculation, they cast individual weights as documents so that 
         a lengthy rebuke \\
         \bottomrule
     \end{tabular}
+    \caption{Some definitions from English Princeton WordNet}%
+    \label{tab:en_it_examples}
 \end{table}
 
 For the \tfidf{} calculations, we followed a similar approach.
@@ -90,7 +90,7 @@ Our problem is an instance of an linear assignment problem.
 \begin{figure}[htbp]
     \centering
     \incfig{bipartite_graph}
-    \caption{Matching sentence embeddings can be shown as finding the minimum flow in a bipartite graph. Connections are similarity between sentences and not all connections are shown}%
+    \caption{Matching sentence embeddings can be shown as a variant of finding the maximum flow in a bipartite graph. In the figure above, the connections denote the similarity between the sentences and the width of the stroke represents the magnitude of that similarity between two definition nodes. Any two pairs of definitions have some similarity defined between them yet the matched definition are picked to ensure the overall flow is maximum. In the figure above, matched nodes have the same colour. Note the \textcolor[rgb]{0.17,0.48,0.71}{blue} node, it is not assigned to the most similar sentence in order increase the overall similarity between the two disjoint sets.}%
     \label{fig:bipartite_graph}
 \end{figure}
 
@@ -98,8 +98,8 @@ Our problem is an instance of an linear assignment problem.
 \label{sec:linear_assignment_algorithm}
 
 Linear assignment problem is an optimization problem where a cost matrix is solved.
-A cost matrix is formulated such that each row corresponds to a task and each column corresponds to a solver agent.
-The aim is to find an assignment such that each task is solved by one agent and the total cost is minimized.
+A cost matrix is formulated such that each row corresponds to a task and each column corresponds to a worker for the task.
+The aim is to find an assignment such that each task is solved by one worker and the total cost is minimized.
 
 In our case, this formulation corresponds to two sets of wordnet definitions.
 The definitions are disjoint and independent with respect to their parent wordnet.
@@ -136,4 +136,15 @@ An element $c_{i,j}$ of $C$ is the cosine similarity between source definition $
 \subsection{Evaluation}%
 \label{sub:evaluation}
 
-Since matching definitions across wordnets gives us a single \emph{answer} for each \emph{query}, we can only report the precision at 1 metric for this task.
+The matching approach is the application of our hypothesis that there exists a one-to-one matching between two sets of dictionary definitions.
+As a natural extension of this, matching definitions across wordnets results in a single \emph{answer} for each \emph{query}.
+Hence we will report precision at one scores for matching approaches.
+Precision at one is the fraction of correct matches throughout the experiment set.
+In Chapter~\ref{chap:experiments_and_evaluation}, we will present it as a percentage rather than fraction for legibility.
+
+The matching approaches require two sets of dictionary definitions to have same the number of definitions in both sets, or the sets should have the same \emph{cardinality}.
+For an experiment run with cardinality $C$, say the number of correctly matched definitions are $q$.
+Then we calculate our score using;
+\begin{equation}
+    P = \frac{q}{C}\%
+\end{equation}

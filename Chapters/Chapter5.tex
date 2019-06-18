@@ -1,11 +1,14 @@
 % Chapter Template
 
-\chapter{Supervised Validation}%
+\chapter{Supervised Alignment}%
 \label{chap:supervised_validation}
 
 The approaches we have presented so far work fully unsupervised.
 Given two collections of definitions, we have studied the methods that retrieved the definition(s) that represented the same meaning.
 In this chapter, given the moderately sized data in our hands we have accepted as \enquote{golden}, we will investigate the feasibility of training an encoder~\cite{sutskever_sequence_2014}, where the objective is to learn whether the pair of definitions entail the same sense across languages.
+
+\section{Neural Network Model}%
+\label{sec:neural_network_model}
 
 Recurrent Neural Network (RNN) architectures improve upon the prototypical neural network model by introducing a \emph{memory} for the connections in the network~\cite{rumelhart_learning_1986}.
 By updating the hidden unit over time using the output of the previous time step, the model can \emph{remember} features of the input signal for later inputs.
@@ -52,7 +55,6 @@ A simplified overview of the suggested model is presented in Figure~\ref{fig:sim
     \caption{Simplified long short-term memory cell architecture}%
     \label{fig:simple_lstm}
 \end{figure}
-% We kept forward pass and backprop equations out because no time and out of scope hopefully
 
 Multiple arrows denote input from current time frame and recurrent connections.
 $\odot$ symbol denotes multiplication.
@@ -114,8 +116,8 @@ Finally, the input is a sequence of data in the form of $(x_1, x_2, \dots, x_T)$
 Where $\sigma(\cdot)$ is the \emph{logistic sigmoid} function $\sigma(x) = \frac{1}{1 + e^{-x}}$ and pointwise vector multiplication is denoted using $\odot$.
 The recurrence holds via the usage of signals from the previous time steps $(\cdot)^{t-1}$.
 
-\subsection{Siamese Long Short-Term Memory}%
-\label{sub:siamese_long_short_term_memory}
+\section{Siamese Long Short-Term Memory}%
+\label{sec:siamese_long_short_term_memory}
 
 Recently, \textcite{mueller_siamese_2016} proposed a \emph{siamese} model to solve sentence similarity problem.
 They suggest using two discrete LSTM units that accept input from two separate streams.
@@ -125,6 +127,14 @@ The Manhattan distance is used as the measure of similarity between the sentence
 
 We extend the siamese network architecture by using bilingual word embeddings.
 Our learning objective encodes a sense to be represented across languages using bilingual word embeddings.
+
+
+\begin{figure}[htbp]
+    \centering
+    \incfig{lstm_overview}
+    \caption{Overview of the siamese long short-term memory architecture used in the study}%
+    \label{fig:lstm_model_overview}
+\end{figure}
 
 We used a similarity function that relies on cosine similarity over the outputs of the LSTM units.
 \begin{equation}

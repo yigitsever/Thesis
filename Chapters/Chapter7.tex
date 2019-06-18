@@ -16,6 +16,8 @@ The results presented in Chapter~\ref{chap:experiments_and_evaluation} prove so.
 The matching algorithm is interesting.
 Moving on with our greedy connotation, for a task like dictionary alignment, assigning a sense to a definition that is closest to it by some distance metric might leave another definition with less than an ideal match later down the line.
 Matching ensures that the \emph{closest} metric in between definitions holds not just for individual definitions but for the whole corpora.
+We can refer to Figure~\ref{fig:bipartite_graph} to illustrate this point.
+
 We have mentioned the lexical gap problem in Chapter~\ref{chap:background_n_related} where some senses do not have equivalences in the target language.
 Recently, \textcite{bolukbasi_man_2016} reported on gender biases of word embedding models which numberbatch embeddings responded with so called de-biased embeddings, eliminating it from their models almost completely.
 Considering the most common type of lexical gap arises from languages with grammatical gender, possible effect of this on the matching approach is left for future work.
@@ -27,7 +29,7 @@ Yet, against fastText embeddings, their model performed worse with the exception
 Italian is a \emph{core language} for numberbatch, where they claim full support.
 It is also the language where numberbatch consistently outperformed fastText embeddings.
 We have set out to investigate the effect of particular choices like this for the dictionary alignment task.
-It can be reported with confidence that the advantage of one approach over another is not clear cut and should be investigated further.
+It can be reported with confidence that the advantage of one embedding model over another is not clear cut and should be investigated further.
 
 With the supervised long short-term memory approach, we have observed that not only it is possible to represent senses using their dictionary definitions but also the metric of \emph{representing} the same sense can be learned.
 The data required for obtaining any good performance should be noted and experimenting on diverse data should be left for future work.
@@ -37,6 +39,16 @@ On one hand, any type of description that represent a sense can be aligned not w
 Projects like BabelNet\footnote{\url{https://babelnet.org}} or ConceptNet are creating semantic databases of their own while WordNet is on version 3.0, still online well after 20 years.
 Natural language processing research relies on external sources of information and the pre-annotated nature of these resources will always find a use.
 Working towards automatically extending them creates more opportunities for sprawling research later down the line.
+
+Our main contribution in this study is the empirical comparison of alignment and retrieval approaches.
+We have hypothesized that aligning definitions one-to-one instead of greedily assigning each definition to it's closest counterpart will perform better.
+Our intuition behind the hypothesis is that dictionaries include discrete senses.
+Once a pair of definitions is matched, continuing to align further senses to any of the definitions can only deteriorate the performance.
+The results we have presented in Section~\ref{sec:case_study} confirms our hypothesis.
+Matching approaches outperformed retrieval approaches on any language set.
+Including 6 different languages and observing the performance differences on all of them further confirms that by using the power of word embeddings, our finding are as language agnostic as possible.
+Our final conclusion is that the state of the art approach Sinkhorn distance~\cite{balikas_cross-lingual_2018} between term document representation outperformed sentence embeddings that were proposed specifically for short text representation.
+Further studies in the field can take this finding into account in their models.
 
 \section{Future Work}%
 \label{sec:future_work}

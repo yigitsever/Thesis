@@ -133,7 +133,7 @@ In their work, mean reciprocal rank was used in order to evaluate a question ans
 In other words, mean reciprocal rank evaluates a system's retrieval score with respect to the rank of a single correct answer, averaged over all the queries.
 Considering that we have $k$ definitions that we cast as queries, the MRR is calculated as
 
-\begin{equation}
+\begin{equation}\label{eq:mrr}
     \text{MRR} = \frac{1}{k} \sum_{q = 1}^{k} \frac{1}{R(q)}
 \end{equation}
 
@@ -196,7 +196,7 @@ By calculating the distances between individual words of documents, it can be pr
 Using this case as their motivation, \citeauthor{kusner_word_2015} adapted the optimal transport theorem~\cite{kantorovitch_translocation_1958}, an optimization technique like the one discussed in Chapter~\ref{chap:unsupervised_matching}.
 This theorem deals with the energy cost of transporting one arbitrary mass to another, often explained with transporting piles of dirt analogy.
 Their idea starts by casting documents as probability distributions defined over word embeddings of the words they are written with.
-First, words of a document is chosen as the elements of a document's probability distribution.
+First, words of a document is thought as the elements of a document's probability distribution.
 We now know that relying on sameness or word overlap is not feasible so the words are instead represented by their $d$ dimensional word embeddings.
 The distance between two words can be represented by the Eucledian distance between them over $k$ dimensions, or as the distance metric $c(\cdot)$;
 \begin{displaymath}
@@ -206,14 +206,24 @@ The distance between two words can be represented by the Eucledian distance betw
 Now that the distance or the cost between words can be shown, two documents $d_i$ and $d_j$, respectively written using words such that $d_i = \{w^{i}_1, w^{i}_2 \dots w^{i}_n\}$ and $d_j = \{w^{j}_1, w^{j}_2 \dots w^{j}_n\}$, a \emph{flow matrix} can be formulated using the distances between every $w^{i}_x$ and $w^{j}_y$ pair.
 This flow matrix is called $T$ and an element $T_{i,j}$ is how much of the distance needs to be travelled when starting from word $i$ to reach word $j$ in order to move $d_i$ to $d_j$.
 The $T$ is optimized to find the minimum distance possible between $d_i$ and $d_j$ using linear programming.
-Optimization \emph{chooses} which word pairs to use to travel from one document to another and when cast over a whole corpus, similar documents will have lower minimal costs on their $T$ matrices depending if their words are easily \emph{moveable} across each other.
+Mainly, the following constraints are solved in order to find the $T$ with the least overall sum~\cite{kusner_word_2015};
+
+\begin{gather}
+    \sum_{i,j}^{n}T_{i,j}c(i,j) \\
+    \sum_{j=1}^{n}T_{i,j} = d_i \forall i \in {1, \dots, n} \\
+    \sum_{i=1}^{n}T_{i,j} = d'_j \forall j \in {1, \dots, n}
+\end{gather}
+
+This optimization is solved by \emph{choosing} which word pairs to use to travel from one document to another and when cast over a whole corpus.
+Similar documents will have lower minimal costs on their $T$ matrices depending if their words are easily \emph{moveable} across each other.
 
 \subsection{Cross Lingual Word Mover's Distance}%
 \label{sub:clemd}
 
 \textcite{balikas_cross-lingual_2018} extended the word mover's distance with two additions.
 First, instead of normalized bag of words representation for the documents, they used term frequency and \tfidf{} to weigh the document representations.
-Second, they introduced entropic regularization which allowed them to use Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967} to solve the linear assignment.
+Second, they introduced \emph{entropic regularization} which allowed them to use Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967} to solve the linear assignment between word embeddings of the source and the target documents.
+
 We have modified their open source project\footnote{\url{https://github.com/balikasg/WassersteinRetrieval}} to accompany our task.
 % For document $d^{i}$ in language $i$, written using words $w_{x}^{i} \subset d^{i}$ which belong to vocabulary $V^{i}$.
 % The same principle extends to language $j$ such that document $d^{j}$ is built with using $w_{x}^{j}$ that belong to $V^{j}$.
@@ -223,5 +233,6 @@ We have modified their open source project\footnote{\url{https://github.com/bali
 \subsection{Evaluation}%
 \label{sub:cldr_evaluation}
 
-We report mean reciprocal rank that we have mentioned in Section~\ref{sub:monolingual_evaluation}.
-Furthermore, we also report precision at 10 metric, that is if the correct defintion was retrieved among the 10 closest definitions retrieved.
+In order to evaluate cross lingual pseudo document retrieval approaches, mean reciprocal rank that was presented in Equation~\ref{eq:mrr} is reported here as well.
+Mean reciprocal rank gives an overall insight about the performance of the retrieval system by giving penalty to cases that retrieved the correct definition in a lower rank.
+However, in the context of dictionary alignment, percentage score of \emph{precision at one} is also reported since in a real life application, retrieving the correct definition on the top spot is more important.

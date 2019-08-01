@@ -278,7 +278,7 @@ Similar to how we built sentence embeddings, out of vocabulary words are handled
 Any individual definition that does not have at least 3 tokens are removed from the experiment set alongside its equivalent on the other language.
 We have chosen to remove 3 tokens arbitrarily, in order to remove potentially unrepresentative definitions as well as in order to keep the problem on the short document retrieval domain.
 
-Cross lingual document retrieval is expensive in terms of memory requirements; in the study where the approach is proposed~\cite{balikas_cross-lingual_2018} as well as the open source implementation by the original author\footnote{\url{https://github.com/balikasg/WassersteinRetrieval}} which we modified for our study, the experiment set was kept at 500 documents on each language.
+Cross lingual document retrieval is expensive in terms of memory requirements; in the study where the approach is proposed~\cite{balikasCrosslingual2018} as well as the open source implementation by the original author\footnote{\url{https://github.com/balikasg/WassersteinRetrieval}} which we modified for our study, the experiment set was kept at 500 documents on each language.
 So, after removing the definitions according to the guidelines above, 2000 definitions on both languages are chosen randomly as the experiment data.
 
 We present mean reciprocal scores in Table~\ref{tab:cldr_mrr} and precision at one scores in Table~\ref{tab:cldr_pao}.
@@ -356,15 +356,15 @@ We present mean reciprocal scores in Table~\ref{tab:cldr_mrr} and precision at o
 \subsection{Performance Comparison}%
 \label{sub:performance_comparison}
 
-\textcite{balikas_cross-lingual_2018} suggested entropic regularized version of word mover's distance.
+\textcite{balikasCrosslingual2018} suggested entropic regularized version of word mover's distance.
 Their claim was that the smoothed out matrix can be solved more efficiently using the Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967}.
 Since the original study did not report on timing performance results, we have timed our experiments and aligned our 6 corpora using different number of definition pairs.
 After completing the experiments, only timing information was relevant so we averaged the results over the experiments that used the same number of instances.
 We cannot iterate on the experiment using increasing number of definition pairs since the number of definitions available within each language's wordnet is restrictive.
 So we ran the timing study for 100, 200, 500 and 1000 definition pairs.
 To our surprise, there were next to no differences in terms of MRR or precision at one between Sinkhorn and word mover's distance when the other variables were fixed.
-Yet, using Sinkhorn algorithm as suggested by \citeauthor{balikas_cross-lingual_2018} results in an average slowdown of 2.52 regarding our experiments.
-We present Figure~\ref{fig:perf} to compare the timings of two equally performing approaches.
+Yet, using Sinkhorn algorithm as suggested by \citeauthor{balikasCrosslingual2018} results in an average slowdown of 2.52 regarding our experiments.
+We present Figure~\ref{fig:perf} to compare the run times of two approaches that perform comparatively.
 
 \begin{figure}[htpb]
     \centering
@@ -459,7 +459,7 @@ We have split the presentation in two due to size constraints.
 Table~\ref{tab:comparison_retrieval} is the overview of the retrieval approaches.
 Using a metric to represent dictionary definitions and a similarity measure between them, given a query definition from target language, English Princeton WordNet definitions are ranked according to the similarity metric.
 The evaluation is the percentage of queries where English definition with the same index as the query is ranked on top.
-\textcite{balikas_cross-lingual_2018} proposed using word mover's and Sinkhorn distances in order to retrieve documents in a different language than the query.
+\textcite{balikasCrosslingual2018} proposed using word mover's and Sinkhorn distances in order to retrieve documents in a different language than the query.
 Their state of the art model achieved the highest precision among the retrieval approaches we studied.
 
 Using sentence embeddings in the context of matching is discussed in detail at Section~\ref{sec:linear_assignment_using_sentence_embeddings}.
@@ -535,12 +535,12 @@ To observe the performance of dictionary alignment on a real life scenario we ac
 After parsing, 67351 headwords spanning 93062 definitions are extracted.
 Against 117000 synsets (that correspond to unique definitions) of WordNet, the size of the problem is not feasible due to memory restrictions of the pseudo document retrieval approach.
 We have tried to overcome it by running the experiment on only nouns but the issue persisted.
-As a result, as suggested by \textcite{khodak_automated_2017}, we constrained our scope to a list of core WordNet synsets.
+As a result, as suggested by \textcite{khodakAutomated2017}, we constrained our scope to a list of core WordNet synsets.
 Open Multilingual Wordnet hosts\footnote{\url{http://compling.hss.ntu.edu.sg/omw/wn30-core-synsets.tab}} a list that denotes 4961 WordNet identifiers in the form of offset and part of speech that is compatible with the nltk library, which was used to access to definitions of the identified synsets.\footnote{\url{http://www.nltk.org/}}
 The list has been prepared by \textcite{boyd-graber_adding_2006} with the help of human evaluators by selecting salient synsets from a list of frequent words.
 Using a set of core WordNet synsets allowed us to pick a problem domain that can be tackled.
 
-As further suggested by \textcite{khodak_automated_2017}, the identifiers for verbs and adjectives are deleted leaving only nouns.
+As further suggested by \textcite{khodakAutomated2017}, the identifiers for verbs and adjectives are deleted leaving only nouns.
 The final experiment set for Turkish dictionary definitions is prepared by translating the lemmas of the core WordNet synsets to Turkish and using the resulting list of lemmas to query the headwords of the Turkish dictionary.
 Using this method, we obtained 601 Turkish definitions. After removing the adjectives and verbs, 3280 WordNet definitions formed the definitions to retrieve against.
 

@@ -47,7 +47,7 @@ Once a pair of definitions is matched, continuing to align further senses to any
 The results we have presented in Section~\ref{sec:case_study} confirms our hypothesis.
 Matching approaches outperformed retrieval approaches on any language set.
 Including 6 different languages and observing the performance differences on all of them further confirms that by using the power of word embeddings, our finding are as language agnostic as possible.
-Our final conclusion is that the state of the art approach Sinkhorn distance~\cite{balikas_cross-lingual_2018} between term document representation outperformed sentence embeddings that were proposed specifically for short text representation.
+Our final conclusion is that the state of the art approach Sinkhorn distance~\cite{balikasCrosslingual2018} between term document representation outperformed sentence embeddings that were proposed specifically for short text representation.
 Further studies in the field can take this finding into account in their models.
 
 \section{Future Work}%
@@ -63,6 +63,6 @@ Culturally or syntactically closer languages can be bridges more easily than dis
 Recent transfer learning models like BERT~\cite{devlin_bert_2018} offer a novel way to overcome the fundamental shortcoming with the supervised encoder we presented;
 the model performs in accordance with the available data and requires aligned data to function in the first place.
 Transfer learning inspires approaches like encoding the metric for representing the same sense in $n$ languages after which the model is ready to predict on $n+1^{th}$ language.
-Very recently, \textcite{jawanpuria_learning_2019} proposed a VecMap like framework for convenient alignment of word embeddings.
+Very recently, \textcite{jawanpuriaLearning2019} proposed a VecMap like framework for convenient alignment of word embeddings.
 To our interest, the framework can map \emph{multilingual} embeddings on a \emph{shared space}.
 With a potential synset discovery approach like the one proposed by \textcite{ruiz-casado_automatic_2005} where possible sense definitions are found and validated using supervised learning will be investigated next using the novel ideas as inspiration.

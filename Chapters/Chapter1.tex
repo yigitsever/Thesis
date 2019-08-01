@@ -54,7 +54,7 @@ With the digitized data, it was only natural for dictionaries to go digital as w
 \label{sec:wordnet}
 George A.\ Miller started the WordNet project in the mid-1980s.
 On its early days, project members studied theories that were aimed towards enabling computers to understand natural language as intrinsically as humans do.
-While working on then popular semantic networks and sense graphs, they have started something that will evolve into an expansive, influential resource~\cite{fellbaum_wordnet_1998}.
+While working on then popular semantic networks and sense graphs, they have started something that will evolve into an expansive, influential resource~\cite{fellbaumWordNet1998}.
 
 Traditional dictionaries are rigid, constrained by the nature of the printed form.
 Today, people can browse WordNet via queries, like an online dictionary or a thesaurus.
@@ -103,7 +103,7 @@ In other words, preparing new wordnets via extending the English Princeton WordN
 With this information at hand, we can infer the effort behind the WordNet does not need to be fully repeated for other languages.
 
 Since it's inception, other projects built lexical databases, using the same WordNet design.
-\textcite{fellbaum_semantic_1998} talks about the correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
+\textcite{fellbaumWordNet1998} talks about the correct terminology that we abide for the thesis; \enquote{As WordNet became synonymous with a particular kind of lexicon design, the proper name shed its capital letters and became a common designator for semantic networks of natural languages}.
 Hence \emph{WordNet} refers to English Princeton WordNet, while \emph{wordnets} created for other languages are not stylized.
 
 \section{Multilingual Wordnets}%
@@ -120,19 +120,19 @@ Studying other languages can provide insight towards concepts that are not prese
 Translation, information transfer from foreign languages is a valid way of enriching a language's corpora; if a term that for a sense does not have a match in the target language, it is a good indication for the linguists of that language to look into their lexicons and work towards expanding it~\cite{ibrahim_usta_turkce_2006}.
 Further research in the area contributes to languages other than English having access to tools that will incorporate them into the literature.
 
-Open Multilingual WordNet~\cite{bond_survey_2012, bond_linking_2013} set out to discover the effects related to the choice of license for wordnets.
+Open Multilingual WordNet~\cite{bondSurvey2012, bond_linking_2013} set out to discover the effects related to the choice of license for wordnets.
 Their criteria for usefulness is the number of citations a publication tied to the wordnet has gotten on literature.
 They identified two major problems with the current distributions;
 \begin{itemize}
     \item some projects have picked restrictive licenses, effectively barring access to their tools for research purposes.
     \item the structures of the wordnets are not standardized, creating additional cost for creating programs to parse and use the wordnets.
 \end{itemize}
-In order to overcome the standardization issue, \citeauthor{bond_survey_2012} have aligned the wordnets according to their English Princeton WordNet lemma ids and have written individual scripts to parse them.
+In order to overcome the standardization issue, \citeauthor{bondSurvey2012} have aligned the wordnets according to their English Princeton WordNet lemma ids and have written individual scripts to parse them.
 They are currently hosting the results from a single source.\footnote{\url{http://compling.hss.ntu.edu.sg/omw}}
 
 With alignment information at hand, we have created our dataset that we will assume to be perfectly aligned; a golden corpus.
 Among the 34 wordnets available on Open Multilingual WordNet, only 6 of them have gloss information available.
-Given this thesis will only investigate the ability to map senses using definitions of the sense, we used the subset of Albanian~\cite{ruci_current_2008}, Bulgarian~\cite{simov_constructing_2010}, Greek~\cite{stamou_exploring_2004}, Italian~\cite{pianta_multiwordnet_2002}, Slovenian~\cite{fiser_slownet_2012} and Romanian~\cite{tufis_romanian_2008} wordnets.
+Given this thesis will only investigate the ability to map senses using definitions of the sense, we used the subset of Albanian~\cite{rucicurrent2008}, Bulgarian~\cite{simovConstructing2010}, Greek~\cite{stamouExploring2004}, Italian~\cite{piantaMultiWordNet2002}, Slovenian~\cite{fiser_slownet_2012} and Romanian~\cite{tufisRomanian2008} wordnets.
 Table~\ref{tab:summary_table} shows brief statistics about them.
 We should note that the languages of the wordnets used in the thesis are all present in the 40 languages that have a significant presence on the internet that we have mentioned before.
 We have constrained this study to use only the freely available wordnets and not considered wordnets that are gated behind restrictive licenses.

@@ -27,9 +27,9 @@ Vectors can be compared as a measure of semantic similarity or composed together
 
 Induced embeddings can be saved to the disk in matrix notation.
 Each row is labelled with a token which is shown in some space by the following $n$ real numbers, as popularized by the open source package \emph{word2vec}.
-Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications~\cite{balikas_cross-lingual_2018, kusner_word_2015, speer_conceptnet_2017}.
+Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications~\cite{balikasCrosslingual2018, kusner_word_2015, speer_conceptnet_2017}.
 Word embeddings available in this manner are often called as \emph{pre-trained} models.
-Examples of pre-trained word embeddings are \emph{word2vec}~\cite{mikolov_distributed_2013}, \emph{GloVe}~\cite{pennington_glove_2014}, \emph{Numberbatch}~\cite{speer_conceptnet_2017} and \emph{fastText}~\cite{bojanowski_enriching_2016}.
+Examples of pre-trained word embeddings are \emph{word2vec}~\cite{mikolovDistributed2013}, \emph{GloVe}~\cite{pennington_glove_2014}, \emph{Numberbatch}~\cite{speer_conceptnet_2017} and \emph{fastText}~\cite{bojanowski_enriching_2016}.
 
 In the following section, we will briefly present the history of word embeddings.
 Research on word embeddings is a sprawling subject that researchers has been building upon using the ideas from probabilistic, statistical and neural network models.
@@ -209,7 +209,7 @@ In short, the input layer is projected into an embedding layer, later to a softm
 
 However, this formulation is too computationally expensive since all vocabulary needs to be considered for the sum in the denominator.
 The curse of dimensionality problem is shifted to the final layer of the neural network.
-It will be solved later using hierarchical softmax~\cite{mikolov_distributed_2013}.
+It will be solved later using hierarchical softmax~\cite{mikolovDistributed2013}.
 Authors reported training times around 3 weeks using 3 to 5 context window sizes and vocabulary sizes around 17000.
 
 \textcite{collobert_unified_2008} suggested a deep neural network model in order to learn feature vectors for various natural language processing tasks.
@@ -252,8 +252,8 @@ Their contribution is elegantly summarized in their work as;
 \subsection{Popularization of Word Embeddings}%
 \label{sub:popularization_of_word_embeddings}
 
-word2vec package~\cite{mikolov_efficient_2013,mikolov_distributed_2013,mikolov_linguistic_2013} popularized word embeddings.
-There are two aspects of the work done by \citeauthor{mikolov_distributed_2013}  that contributed to the fact;
+word2vec package~\cite{mikolov_efficient_2013,mikolovDistributed2013,mikolov_linguistic_2013} popularized word embeddings.
+There are two aspects of the work done by \citeauthor{mikolovDistributed2013}  that contributed to the fact;
 \begin{itemize}
     \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words using a shallow neural network, keeping the computational cost down.
     \item They published their code as well as their pre-trained embeddings as an open source project\footnote{\url{https://code.google.com/archive/p/word2vec}}.
@@ -265,11 +265,11 @@ The \emph{skip-gram model} introduced by \textcite{mikolov_efficient_2013} diffe
 \begin{figure}[htbp]
     \centering
     \incfig{skip_gram_2}
-    \caption{Skipgram architecture by \textcite{mikolov_distributed_2013}}%
+    \caption{Skipgram architecture by \textcite{mikolovDistributed2013}}%
     \label{fig:skipgram}
 \end{figure}
 
-In \citetitle{mikolov_distributed_2013}, it is defined as follows;
+In \citetitle{mikolovDistributed2013}, it is defined as follows;
 \begin{equation}
     \frac{1}{T}\sum_{t=1}^{T}\sum_{-c \leq j \leq c, j \neq 0} \log p(w_{t+j}|w_t)
 \end{equation}
@@ -295,7 +295,7 @@ Representation algorithms they considered are;
 \begin{itemize}
     \item Positive pointwise mutual information (PPMI)~\cite{church_word_1990, bullinaria_extracting_2007}
     \item Singular Value Decomposition on PPMI Matrix (Latent Semantic Analysis)~\cite{deerwester_indexing_1990}
-    \item Skip-Gram with Negative Sampling~\cite{mikolov_distributed_2013}
+    \item Skip-Gram with Negative Sampling~\cite{mikolovDistributed2013}
     \item Global Vectors for Word Representation~\cite{pennington_glove_2014}
 \end{itemize}
 They found out that choice of a particular algorithm played an insignificant role compared to choosing the right approach during training, mainly picking correct \emph{hyperparameters}.
@@ -315,7 +315,7 @@ With the amount of overlap and marginal performance gains in between the algorit
 Armed with the fact that a good word representation model should tune their hyperparameters and should be trained on a large dataset, we set our sights on \emph{fastText}.
 On their website, authors define fastText as a \enquote{Library for efficient text classification and representation learning}.
 The ideas behind it are presented in \textcite{mikolov2018advances}.
-Overall, it builds upon word2vec~\cite{mikolov_distributed_2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
+Overall, it builds upon word2vec~\cite{mikolovDistributed2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
 
 Let us turn our focus towards \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
 Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams.
@@ -390,7 +390,7 @@ The format itself has become the standard for databases that present meanings an
 Glosses or the definitions that go along with synsets were not initially part of the WordNet design.
 Authors believed that \enquote{definition by synonymity} would be enough.
 In other words, definition of a synset can be derived from the lemmas that make up the synset.
-As the number of items in the WordNet grew, only then short glosses, later followed by longer definitions got included in WordNet~\cite{fellbaum_wordnet_1998}.
+As the number of items in the WordNet grew, only then short glosses, later followed by longer definitions got included in WordNet~\cite{fellbaumWordNet1998}.
 
 \begin{table}[htbp]
     \centering
@@ -461,7 +461,7 @@ They have also reiterated that semantic relationships in a language are transfer
 
 % \textcite{ruiz-casado_automatic_2005} explored using online encyclopaedia Wikipedia to automatically discover potential synsets using the definitions in the term's pages.
 % Just English
-Further approaches using parallel corpora to align the target language with English Princeton WordNet were used by \textcite{sagot_building_2008} in order to create a production ready French wordnet and by \textcite{fiser_leveraging_2009} to create a Slovene wordnet.
+Further approaches using parallel corpora to align the target language with English Princeton WordNet were used by \textcite{sagot_building_2008} in order to create a production ready French wordnet and by \textcite{fiserLeveraging2009} to create a Slovene wordnet.
 
 Approaches that used machine translation to get potential synsets for the target language was explored by \textcite{lam_automatically_2014}.
 They proposed two approaches for this task.
@@ -478,8 +478,8 @@ Overall, \citeauthor{sand_wordnet_2017} reported accuracy scores within the 55.8
 
 %\textcite{khodak_automated_2017} used word embeddings and WordNet.
 % talk about Khodak -> Automated WordNet construction Using Word Embeddings
-Arguably most relevant to our study, \textcite{khodak_automated_2017} proposed an unsupervised method for automated construction of wordnets.
-In their paper \citetitle{khodak_automated_2017} they present 3 approaches and compare their precision, recall and coverage.
+Arguably most relevant to our study, \textcite{khodakAutomated2017} proposed an unsupervised method for automated construction of wordnets.
+In their paper \citetitle{khodakAutomated2017} they present 3 approaches and compare their precision, recall and coverage.
 
 First off, they picked 200 French and Russian adjectives, nouns and verbs, totalling 2 corpora with 600 items in each.
 These words are selected based on if they have a translation in the core sense list provided by English Princeton WordNet.

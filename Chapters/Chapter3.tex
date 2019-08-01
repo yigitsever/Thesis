@@ -6,9 +6,9 @@
 \label{sec:linear_assignment_using_sentence_embeddings}
 
 Word embeddings represent single tokens or n-grams such as \emph{San Francisco} depending on the implementation.
-Yet, word2vec suggested and proved that word embeddings are compositional~\cite{mikolov_distributed_2013}.
+Yet, word2vec suggested and proved that word embeddings are compositional~\cite{mikolovDistributed2013}.
 Research then moved on to study the representation of longer pieces of text like documents, paragraphs and sentences.
-Implementations like \textcite{le_distributed_2014} extended the skip-gram idea from \textcite{mikolov_distributed_2013} to learn the feature vectors for \emph{paragraphs} and used them to predict surrounding paragraphs in the text.
+Implementations like \textcite{le_distributed_2014} extended the skip-gram idea from \textcite{mikolovDistributed2013} to learn the feature vectors for \emph{paragraphs} and used them to predict surrounding paragraphs in the text.
 Approaches like \textcite{kiros_skip-thought_2015} trained an encoder that constructed surrounding sentences to learn sentence representations.
 However, corpora in question for the given studies are continuous.
 When the document collection we would like to show on a latent space is not part of a longer text but occur as \emph{discrete} pieces, that assumption does not hold.

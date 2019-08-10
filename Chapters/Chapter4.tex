@@ -11,7 +11,7 @@ Modern information retrieval techniques are out of the scope of this thesis, our
 Yet, we can still benefit from the tried and tested methods of the early information retrieval.
 Considering the small collection of documents at hand, first we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them were small as well~\cite{singhal_modern_2001}.
 
-\section{Monolingual Retrieval}%
+\section{Google Translate Monolingual Baseline}%
 \label{sec:monolingual_retrieval}
 
 First of all, by collecting English Princeton WordNet definitions and target wordnet definitions, we created a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
@@ -86,7 +86,7 @@ By weighing our term-document matrix $C$, for any term $x_{i,j}$
 \begin{equation}
 x_{i,j} = \text{tf}_{td} \cdot \text{idf}_{t} \end{equation}
 term $x_{i,j}$ shows the importance of term $t$ with relation to its general significance throughout the corpus.
-Our choice of \tfidf{} weighting is further motivated by \textcite{ruiz-casado_automatic_2005} in which they claim superior results in discovering correct wordnet definitions using \tfidf{} weights.
+Our choice of \tfidf{} weighting is further motivated by \textcite{ruizcasadoAutomatic2005} in which they claim superior results in discovering correct wordnet definitions using \tfidf{} weights.
 
 \subsection{Similarity Measure}%
 \label{sub:similarity_measure}

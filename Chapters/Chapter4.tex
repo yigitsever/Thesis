@@ -11,7 +11,7 @@ Modern information retrieval techniques are out of the scope of this thesis, our
 Yet, we can still benefit from the tried and tested methods of the early information retrieval.
 Considering the small collection of documents at hand, first we will investigate if we can handle the task using approaches that were available to the researchers when the size of corpora that were available to them were small as well~\cite{singhal_modern_2001}.
 
-\section{Google Translate Monolingual Baseline}%
+\section{Machine Translation Monolingual Baseline}%
 \label{sec:monolingual_retrieval}
 
 First of all, by collecting English Princeton WordNet definitions and target wordnet definitions, we created a corpora suitable for the task by translating the target language's definitions to English using Google Translate.
@@ -209,7 +209,7 @@ The $T$ is optimized to find the minimum distance possible between $d_i$ and $d_
 Mainly, the following constraints are solved in order to find the $T$ with the least overall sum~\cite{kusnerWord2015};
 
 \begin{gather}
-    \sum_{i,j}^{n}T_{i,j}c(i,j) \\
+    \min \sum_{i,j}^{n}T_{i,j}c(i,j) \\
     \sum_{j=1}^{n}T_{i,j} = d_i \forall i \in {1, \dots, n} \\
     \sum_{i=1}^{n}T_{i,j} = d'_j \forall j \in {1, \dots, n}
 \end{gather}
@@ -220,11 +220,19 @@ Similar documents will have lower minimal costs on their $T$ matrices depending 
 \subsection{Cross Lingual Word Mover's Distance}%
 \label{sub:clemd}
 
-\textcite{balikasCrosslingual2018} extended the Word Mover's Distance with two additions.
+\textcite{balikasCrosslingual2018} proposed using Sinkhorn distance~\cite{cuturiSinkhorn2013} in a cross-lingual document retrieval setting.
+Their approach can be thought as a step forward from Word Mover's Distance.
 First, instead of normalized bag of words representation for the documents, they used term frequency and \tfidf{} to weigh the document representations.
-Second, they introduced \emph{entropic regularization} which allowed them to use Sinkhorn-Knopp algorithm~\cite{sinkhornConcerning1967} to solve the linear assignment between word embeddings of the source and the target documents.
+Second, they used \emph{entropic regularization} which allowed them to use Sinkhorn-Knopp algorithm~\cite{sinkhornConcerning1967} to solve the linear assignment between word embeddings of the source and the target documents.
+For the regularization term $\lambda$ and entropy of the transport matrix $T$; $E(T)$;
 
-We have modified their open source project\footnote{\url{https://github.com/balikasg/WassersteinRetrieval}} to accompany our task.
+\begin{gather}
+    \min \sum_{i,j = 1} T_{i,j} c(i,j) - \frac{1}{\lambda} E(T) \\
+    \sum_{j=1}^{n}T_{i,j} = d_i \forall i \in {1, \dots, n} \\
+    \sum_{i=1}^{n}T_{i,j} = d'_j \forall j \in {1, \dots, n}
+\end{gather}
+
+We have modified their open source project\footnote{\url{https://github.com/balikasg/WassersteinRetrieval}} to accompany our task as cross-lingual textual similarity measure.
 % For document $d^{i}$ in language $i$, written using words $w_{x}^{i} \subset d^{i}$ which belong to vocabulary $V^{i}$.
 % The same principle extends to language $j$ such that document $d^{j}$ is built with using $w_{x}^{j}$ that belong to $V^{j}$.
 % Word embeddings of two languages that share a space is used such that $v_{w_{x}^{i}} \in W^{i}$ and $v_{w_{x}^{j}} \in W^{j}$.

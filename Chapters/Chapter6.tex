@@ -314,7 +314,7 @@ We present mean reciprocal scores in Table~\ref{tab:cldr_mrr} and precision at o
                             & Numberbatch & \textbf{31.07} & 31.06 & 24.31 & 24.74 \\
                             \bottomrule
     \end{tabulary}
-    \caption{Mean reciprocal rank scores of cross lingual pseudo document retrieval approaches using word mover's distance and sinkhorn}%
+    \caption{Mean reciprocal rank scores of cross lingual pseudo document retrieval approaches using Word Mover's Distance and Sinkhorn distance}%
     \label{tab:cldr_mrr}
 \end{table}
 
@@ -349,27 +349,27 @@ We present mean reciprocal scores in Table~\ref{tab:cldr_mrr} and precision at o
                             & Numberbatch & \textbf{23.55} & 23.30 & 17.80 & 18.35 \\
                             \bottomrule
     \end{tabulary}
-    \caption{Precision at one percentage scores for cross lingual pseudo document retrieval using word mover's distance and sinkhorn.}%
+    \caption{Precision at one percentage scores for cross lingual pseudo document retrieval using Word Mover's Distance and Sinkhorn distance}%
     \label{tab:cldr_pao}
 \end{table}
 
 \subsection{Performance Comparison}%
 \label{sub:performance_comparison}
 
-\textcite{balikasCrosslingual2018} suggested entropic regularized version of word mover's distance.
+\textcite{balikasCrosslingual2018} suggested entropic regularized version of Word Mover's Disntace.
 Their claim was that the smoothed out matrix can be solved more efficiently using the Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967}.
 Since the original study did not report on timing performance results, we have timed our experiments and aligned our 6 corpora using different number of definition pairs.
 After completing the experiments, only timing information was relevant so we averaged the results over the experiments that used the same number of instances.
 We cannot iterate on the experiment using increasing number of definition pairs since the number of definitions available within each language's wordnet is restrictive.
 So we ran the timing study for 100, 200, 500 and 1000 definition pairs.
-To our surprise, there were next to no differences in terms of MRR or precision at one between Sinkhorn and word mover's distance when the other variables were fixed.
+To our surprise, there were next to no differences in terms of MRR or precision at one between Sinkhorn and Word Mover's Distance when the other variables were fixed.
 Yet, using Sinkhorn algorithm as suggested by \citeauthor{balikasCrosslingual2018} results in an average slowdown of 2.52 regarding our experiments.
 We present Figure~\ref{fig:perf} to compare the run times of two approaches that perform comparatively.
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=1\linewidth]{perf.png}
-    \caption{Timing comparison between word mover's distance and Sinkhorn algorithm}%
+    \caption{Timing comparison between Word Mover's Distance and Sinkhorn distance}%
     \label{fig:perf}
 \end{figure}
 
@@ -440,8 +440,8 @@ We also experimented with \emph{fastText} embeddings that were trained using the
 The research question we are aiming to answer is if pre-trained embeddings are better than embeddings trained on the experiment data.
 Since Romanian wordnet has the most data available and word embedding's distributional models perform better as they learn from more distributional information, we have trained Romanian embeddings on the Romanian wordnet definitions.
 English fastText embeddings are trained on English Princeton WordNet definitions that were in the experiment set of Romaian wordnet.
-Then we mapped the embeddings to the same latent space using supervised VecMap and ran cross lingual document retrieval experiments using word mover's distance and Sinkhorn.
-Compared to MRR score of 51.30 for the word mover's distance and 51.95 with the Sinkhorn algorithm, using word embeddings trained using available data resulted in an MRR score of 28.69 for word mover's distance and 28.6 for Sinkhorn.
+Then we mapped the embeddings to the same latent space using supervised VecMap and ran cross lingual document retrieval experiments using Word Mover's Distance and Sinkhorn distance.
+Compared to MRR score of 51.30 for the Word Mover's Distance and 51.95 with the Sinkhorn distance, using word embeddings trained using available data resulted in an MRR score of 28.69 for Word Mover's Distance and 28.6 for Sinkhorn distance.
 Considering the drop in performance, we did not repeat the experiments for other language's corpora.
 
 \section{Comparative Analysis}%
@@ -453,7 +453,7 @@ In other words, we \emph{retrieved} dictionary definitions on the basis of cosin
 In order to draw accurate conclusions, both matching and retrieval approaches were run on two sets constrained to 2000 dictionary definitions.
 Only fastText vectors that were truncated to most frequent 500 thousand (or fastText 500k in the context of this chapter) is used.
 Further, we only report \emph{precision at one} or the percentage of correctly matched definitions in order to compare retrieval and matching approaches fairly.
-For cross lingual pseudo document retrieval, word mover's distance and Sinkhorn algorithms that use term definition matrices that were weighted using term frequency (Refer to Table~\ref{tab:cldr_pao}) consistently perform worse than \tfidf{} weighted variants so they are not included in the comparisons.
+For cross lingual pseudo document retrieval, Word Mover's Distance and Sinkhorn distance that use term definition matrices that were weighted using term frequency (Refer to Table~\ref{tab:cldr_pao}) consistently perform worse than \tfidf{} weighted variants so they are not included in the comparisons.
 
 We have split the presentation in two due to size constraints.
 Table~\ref{tab:comparison_retrieval} is the overview of the retrieval approaches.
@@ -463,15 +463,14 @@ The evaluation is the percentage of queries where English definition with the sa
 Their state of the art model achieved the highest precision among the retrieval approaches we studied.
 
 Using sentence embeddings in the context of matching is discussed in detail at Section~\ref{sec:linear_assignment_using_sentence_embeddings}.
-Extending said approach using word mover's distance or Sinkhorn distance is trivial.
+Extending said approach using Word Mover's Distance or Sinkhorn distance is trivial.
 First, both metrics are used to populate a definition to definition distance matrix where $w_{i,j}$ is the distance calculated by either algorithm, between a term $i$ of source language and a term $j$ of the target language.
 Jonker-Volgenant algorithm is run in order to find the assignment where the overall sum of the distances is minimized.
 This approach is evaluated on the percentage of matched definitions with the same index.
 Table~\ref{tab:comparison_matching} presents the evaluation of matching approaches.
 
 Looking a Table~\ref{tab:comparison_matching}, \textbf{Sinkhorn} distance is the best performing metric.
-On Table~\ref{tab:showdown}, best precision at one percentage scores for retrieval and matching approaches are presented.
-Apart from the retrieval using word mover's distance on English and Albanian dictionary defintions, every score belongs to a metric that used Sinkhorn distance.
+On Table~\ref{tab:showdown}, best precision at one percentage scores for retrieval and matching approaches are presented. Apart from the retrieval using Word Mover's Distance on English and Albanian dictionary defintions, every score belongs to a metric that used Sinkhorn distance.
 Furthermore, matching has a clear advantage over the retrieval approaches.
 
 \begin{table}[p]
@@ -544,7 +543,7 @@ As further suggested by \textcite{khodakAutomated2017}, the identifiers for verb
 The final experiment set for Turkish dictionary definitions is prepared by translating the lemmas of the core WordNet synsets to Turkish and using the resulting list of lemmas to query the headwords of the Turkish dictionary.
 Using this method, we obtained 601 Turkish definitions. After removing the adjectives and verbs, 3280 WordNet definitions formed the definitions to retrieve against.
 
-The approach for the case study is the word mover's distance using \tfidf{} weights, ran on fastText embeddings prepared using supervised VecMap.
+The approach for the case study is the Word Mover's Distance using \tfidf{} weights, ran on fastText embeddings prepared using supervised VecMap.
 The bilingual dictionary provided by OpenSubtitles is used in order to map Turkish and English fastText embeddings.
 
 While preparing the corpora for the pseudo document retrieval, 101 Turkish definitions are dropped due to them having no words to be represented by fastText embeddings while only 3 English definitions had to be omitted.

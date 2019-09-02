@@ -178,7 +178,7 @@ In this section, we will talk about the methods that allowed us to use bilingual
 \subsection{Word Movers Distance}%
 \label{sub:word_movers_distance}
 
-Following the popularization of the word2vec~\cite{mikolovDistributed2013}, \textcite{kusner_word_2015} introduced \emph{word mover's distance}.
+Following the popularization of the word2vec~\cite{mikolovDistributed2013}, \textcite{kusner_word_2015} introduced \emph{Word Mover's Distance}.
 In order to explain the algorithm, first we should talk about the motivation behind it.
 
 We have studied bag of words representation for document retrieval tasks, using \tfidf{} weights.
@@ -220,7 +220,7 @@ Similar documents will have lower minimal costs on their $T$ matrices depending 
 \subsection{Cross Lingual Word Mover's Distance}%
 \label{sub:clemd}
 
-\textcite{balikasCrosslingual2018} extended the word mover's distance with two additions.
+\textcite{balikasCrosslingual2018} extended the Word Mover's Distance with two additions.
 First, instead of normalized bag of words representation for the documents, they used term frequency and \tfidf{} to weigh the document representations.
 Second, they introduced \emph{entropic regularization} which allowed them to use Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967} to solve the linear assignment between word embeddings of the source and the target documents.
 

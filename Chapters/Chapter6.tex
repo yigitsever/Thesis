@@ -119,7 +119,7 @@ After supervised mapping of target language word embedding and English word embe
         \midrule
         bg & 96.43 & 93.36 & 17.53 \\
         el & 94.44 & 90.28 & 12.15 \\
-        it & 97.93 & 95.97 & 41.08 \\
+        it & 97.93 & 95.97 & \textbf{41.08} \\
         ro & 97.06 & 94.91 & 16.4 \\
         sl & 94.67 & 90.73 & 9.23 \\
         sq & 83.59 & 80.92 & 9.51 \\
@@ -160,23 +160,28 @@ Linear assignment using sentence embeddings using all of the available dictionar
     \centering
     \begin{tabulary}{1.0\linewidth}{L L R R}
         \toprule
-        \textbf{Language Code} & \textbf{Vector} & \textbf{Cardinality} & \textbf{Precision at one \%} \\ \midrule
-        \multirow{3}{*}{bg} & fastText 1M & 4958 & 27.93 \\
-                            & fastText 500k & 4958 & 28.52 \\
-                            & numberbatch & 4896 & 12.99 \\
-        \multirow{3}{*}{el} & fastText 1M & 18117 & 31.15 \\
-                            & fastText 500k & 18105 & 31.06 \\
-                            & numberbatch & 17595 & 7.97 \\
-        \multirow{3}{*}{it} & fastText 1M & 12590 & 15.50 \\
-                            & fastText 500k & 12585 & 15.73 \\
-                            & numberbatch & 12563 & 20.63 \\
-        \multirow{3}{*}{sl} & fastText 1M & 3143 & 10.44 \\
-                            & fastText 500k & 3143 & 11.42 \\
-                            & numberbatch & 2955 & 4.70 \\
-        \multirow{3}{*}{sq} & fastText 1M & 4680 & 44.96 \\
-                            & fastText 500k & 4680 & 44.81 \\
-                            & numberbatch & 4639 & 16.06 \\
-                            \bottomrule
+        \textbf{Language Code} & \textbf{Vector} & \textbf{Cardinality} & \textbf{Precision at one \%} \\
+        \midrule
+        \multirow{3}{*}{bg}                    & fastText 1M   & 4958  & 27.93 \\
+                                               & fastText 500k & 4958  & \textbf{28.52} \\
+                                               & numberbatch   & 4896  & 12.99 \\
+        \cmidrule(lr){2-4}
+        \multirow{3}{*}{el}                    & fastText 1M   & 18117 & \textbf{31.15} \\
+                                               & fastText 500k & 18105 & 31.06 \\
+                                               & numberbatch   & 17595 & 7.97 \\
+        \cmidrule(lr){2-4}
+        \multirow{3}{*}{it}                    & fastText 1M   & 12590 & 15.50 \\
+                                               & fastText 500k & 12585 & 15.73 \\
+                                               & numberbatch   & 12563 & \textbf{20.63} \\
+        \cmidrule(lr){2-4}
+        \multirow{3}{*}{sl}                    & fastText 1M   & 3143  & 10.44 \\
+                                               & fastText 500k & 3143  & \textbf{11.42} \\
+                                               & numberbatch   & 2955  & 4.70 \\
+        \cmidrule(lr){2-4}
+        \multirow{3}{*}{sq}                    & fastText 1M   & 4680  & \textbf{44.96} \\
+                                               & fastText 500k & 4680  & 44.81 \\
+                                               & numberbatch   & 4639  & 16.06 \\
+        \bottomrule
     \end{tabulary}
     \caption{Evaluation results for linear assignment using sentence embeddings}%
     \label{tab:lapjv_sentence_emb}
@@ -238,10 +243,11 @@ From Table~\ref{tab:lapjv_3000}, we can infer that fastText vectors truncated to
 %     \label{tab:lapjv_full}
 % \end{table}
 
-\subsection{Google Translate Baseline}%
+\subsection{Machine Translation Baseline}%
 \label{sub:chap4_results}
 
-We have presented our method of translating the target wordnet definitions into English using Google Translate and running monolingual document retrieval on the corpora in Section~\ref{sec:monolingual_retrieval}.
+We have presented our method of translating the target wordnet definitions into English using machine translation and running monolingual document retrieval on the corpora in Section~\ref{sec:monolingual_retrieval}.
+Google Translate is used as the machine translation engine.
 As mentioned before, we used the original English definitions extracted from English Princeton WordNet as the document collection to retrieve from and used the translated target wordnet definitions as queries to retrieve with.
 The experiments are done on 2000 definitions pairs for both languages.
 
@@ -353,6 +359,34 @@ We present mean reciprocal scores in Table~\ref{tab:cldr_mrr} and precision at o
     \label{tab:cldr_pao}
 \end{table}
 
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\textwidth]{enro.eps}
+        \caption{en - ro}%
+        \label{subfig:enro}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\textwidth]{elro.eps}
+        \caption{el - ro}%
+        \label{subfig:elro}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.45\linewidth}
+        \includegraphics[width=\textwidth]{bgit.eps}
+        \caption{bg - it}%
+        \label{subfig:bgit}
+    \end{subfigure}
+    \caption{The plots for the ranks of the correct definitions when retrieved using Sinkhorn distance for English - Romanian~\ref{subfig:enro}, Greek - Romanian and Bulgarian - Italian}%
+    \label{fig:success_plots}
+\end{figure}
+
+In order to analyze the retrieval approach, the ranking successes of 3 language pairs are plotted on Figure~\ref{fig:success_plots}.
+The best performing pair English - Romanian depicts a graph such that for 90\% of the definitions, the correct result is retrieved among the first 50 results.
+The mediocre and worse Greek - Romanian and Bulgarian - Italian pairs still plot a success similar to best performing English - Romanian pair.
+
+
 \subsection{Performance Comparison}%
 \label{sub:performance_comparison}
 
@@ -429,6 +463,39 @@ Surprisingly, the encoder's performance was comparable among Bulgarian and Itali
     \label{tab:lstm_size_acc}
 \end{table}
 
+Following the training, the models are used for a retrieval task.
+For every definition in the source portion of the test set, the closest definition in the target portion is retrieved.
+In other words, for each source definition, the model predicted a cosine similarity for each target definition which are and then ranked.
+The results for 1000 test pairs are shown in Table~\ref{tab:supervised_results}.
+
+
+
+\begin{table}[htp]
+    \centering
+    \begin{tabulary}{0.65\linewidth}{LLRr}
+        \toprule
+        Source Language & Target Language & Training Samples & P@1\% \\
+        \midrule
+        bg & el & 1817 & 9.7 \\
+        bg & it & 1115 & 7.6 \\
+        bg & ro & 3701 & 9.3 \\
+        el & it & 3801 & 12.8 \\
+        el & ro & 13889 & 19.5 \\
+        el & sq & 3662 & 10.9 \\
+        en & bg & 3959 & 10.4 \\
+        en & el & 17136 & 24.8 \\
+        en & it & 11688 & 24.2 \\
+        en & ro & 57754 & \textbf{52} \\
+        en & sl & 2144 & 4.2 \\
+        en & sq & 3681 & 29.9 \\
+        it & ro & 9353 & 18.1 \\
+        ro & sl & 1085 & 6.2 \\
+        ro & sq & 3646 & 9.7 \\
+        \bottomrule
+    \end{tabulary}
+    \caption{Supervised results}%
+    \label{tab:supervised_results}
+    \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %  IN DOMAIN EMBEDDINGS  %

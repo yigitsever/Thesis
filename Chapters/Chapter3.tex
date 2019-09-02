@@ -20,27 +20,27 @@ With such short pieces of text, considering the scope of a possible model could 
 A sentence embedding model should ideally capture the collective meaning of the short text where every word is potentially informative and discriminative.
 
 \textcite{wieting_towards_2015} studied sentence embeddings and reported that averaging word embeddings that make up a sentence to get sentence embeddings is a valid and surprisingly effective approach.
-\textcite{arora_simple_2016} built upon the simple model and has shown that weighed average of word vectors perform so well, their publication is called; \citetitle{arora_simple_2016}.
+\textcite{aroraSimple2016} built upon the simple model and has shown that weighed average of word vectors perform so well, their publication is called; \citetitle{aroraSimple2016}.
 In the suggested approach, word embeddings that make up a sentence is weighed with a scale called \emph{smooth inverse frequency} and averaged across the sentence.
 Smooth inverse frequency is suggested as
 \begin{displaymath}
     \text{SIF (w)} = \frac{a}{a + p(w)}
 \end{displaymath}
-where $a$ is a hyperparameter and $p(w)$ is the estimated word probability~\cite{arora_simple_2016}.
+where $a$ is a hyperparameter and $p(w)$ is the estimated word probability~\cite{aroraSimple2016}.
 
 Using smooth inverse frequency weighting, word embeddings $v_w \in R^{d}$ where word $w$ is in a vocabulary $V$ can be averaged over a sentence $S$ such that $S \subset V$ to get sentence embedding $v_S$ in the same dimensionality $R^{d}$.
 \begin{equation}
     v_S = \frac{1}{|S|}\sum_{w \in S}\text{SIF (w)}v_{w}
 \end{equation}
 
-The authors point out that the metric is similar to \tfidf{} weighting scheme if \enquote{one treats a \enquote{sentence} as a \enquote{document} and make the reasonable assumption that the sentence doesn't typically contain repeated words}~\cite{arora_simple_2016}.
+The authors point out that the metric is similar to \tfidf{} weighting scheme if \enquote{one treats a \enquote{sentence} as a \enquote{document} and make the reasonable assumption that the sentence doesn't typically contain repeated words}~\cite{aroraSimple2016}.
 These assumptions hold for us so we scaled our word embeddings using \tfidf{} weights to get \emph{sentence embeddings}.
 
 \begin{equation}
     v_S = \frac{1}{|S|}\sum_{w \in S}\text{tf-idf}_{w,S} v_w
 \end{equation}
 
-Parallel to \citeauthor{arora_simple_2016}, \textcite{zhao_ecnu_2015} used two approaches for sentence embeddings in order to solve SemEval-2015 Task 2: Semantic Textual Similarity~\footnote{\url{http://alt.qcri.org/semeval2015/task2}}.
+Parallel to \citeauthor{aroraSimple2016}, \textcite{zhao_ecnu_2015} used two approaches for sentence embeddings in order to solve SemEval-2015 Task 2: Semantic Textual Similarity~\footnote{\url{http://alt.qcri.org/semeval2015/task2}}.
 First, for a sentence $S = (w_{1}, w_{2}, \dots, w_{s})$ where the length of the presumably small sentence is $|S| = s$ and the word embedding of a word $w$ is $v_w$;
 \begin{itemize}
     \item They summed up the word embeddings of the sentence $\sum_{t \in S}v_{t}$

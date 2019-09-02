@@ -81,9 +81,9 @@ Hence after parsing the file and extracting the embeddings into individual files
 \end{table}
 
 These embeddings are monolingual, so they are on separate arbitrary latent spaces.
-In order to represent them on the same latent space, we used VecMap~\cite{artetxe_robust_2018,artetxe_generalizing_2018,artetxe_learning_2017,artetxe_learning_2016}.\footnote{\url{https://github.com/artetxem/vecmap}}
-According to \textcite{ruder_survey_2017}, bilingual or cross lingual embedding models optimize similar objectives and differences in performance is due to the data they are trained on.
-\textcite{glavas_how_2019} supports this suggestion and has empirically proven that common evaluation metrics like bilingual dictionary induction is not representative for the bilingual embedding's performance on downstream tasks.
+In order to represent them on the same latent space, we used VecMap~\cite{artetxerobust2018,artetxeGeneralizing2018,artetxeLearning2017,artetxe_learning_2016}.\footnote{\url{https://github.com/artetxem/vecmap}}
+According to \textcite{ruderSurvey2017}, bilingual or cross lingual embedding models optimize similar objectives and differences in performance is due to the data they are trained on.
+\textcite{glavasHow2019} supports this suggestion and has empirically proven that common evaluation metrics like bilingual dictionary induction is not representative for the bilingual embedding's performance on downstream tasks.
 Hence our preference of VecMap is highly influenced by it's availability as an open source framework and it's ease of training.
 
 Best performing VecMap model for learning bilingual embeddings that is available in the framework is \emph{supervised alignment}.
@@ -129,7 +129,7 @@ After supervised mapping of target language word embedding and English word embe
     \label{tab:coverage_results}
 \end{table}
 
-Even though bilingual dictionary induction is not representative of a bilingual word embedding pair's performance on downstream tasks~\cite{ruder_survey_2017,glavas_how_2019}, we include the evaluation results obtained from VecMap framework as a quick identifier for their performance on Table~\ref{tab:accuracy_results} for accuracy and Table~\ref{tab:coverage_results} for coverage.
+Even though bilingual dictionary induction is not representative of a bilingual word embedding pair's performance on downstream tasks~\cite{ruderSurvey2017,glavasHow2019}, we include the evaluation results obtained from VecMap framework as a quick identifier for their performance on Table~\ref{tab:accuracy_results} for accuracy and Table~\ref{tab:coverage_results} for coverage.
 Accuracy is the measure for correctly identifying the translation of a word given the test dictionary and coverage is the percentage of translation pairs that could be inducted.
 From the results, it is apparent that fastText embeddings have much better coverage due to vast data they were trained on.
 Yet, numberbatch exhibits better accuracy scores which might be a trade-off of their low coverage.
@@ -357,7 +357,7 @@ We present mean reciprocal scores in Table~\ref{tab:cldr_mrr} and precision at o
 \label{sub:performance_comparison}
 
 \textcite{balikasCrosslingual2018} suggested entropic regularized version of Word Mover's Disntace.
-Their claim was that the smoothed out matrix can be solved more efficiently using the Sinkhorn-Knopp algorithm~\cite{sinkhorn_concerning_1967}.
+Their claim was that the smoothed out matrix can be solved more efficiently using the Sinkhorn-Knopp algorithm~\cite{sinkhornConcerning1967}.
 Since the original study did not report on timing performance results, we have timed our experiments and aligned our 6 corpora using different number of definition pairs.
 After completing the experiments, only timing information was relevant so we averaged the results over the experiments that used the same number of instances.
 We cannot iterate on the experiment using increasing number of definition pairs since the number of definitions available within each language's wordnet is restrictive.

@@ -27,9 +27,9 @@ Vectors can be compared as a measure of semantic similarity or composed together
 
 Induced embeddings can be saved to the disk in matrix notation.
 Each row is labelled with a token which is shown in some space by the following $n$ real numbers, as popularized by the open source package \emph{word2vec}.
-Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications~\cite{balikasCrosslingual2018, kusner_word_2015, speer_conceptnet_2017}.
+Researchers have been sharing their models on the internet so that other researchers can simply download and use them in their own applications~\cite{balikasCrosslingual2018, kusnerWord2015, speer_conceptnet_2017}.
 Word embeddings available in this manner are often called as \emph{pre-trained} models.
-Examples of pre-trained word embeddings are \emph{word2vec}~\cite{mikolovDistributed2013}, \emph{GloVe}~\cite{pennington_glove_2014}, \emph{Numberbatch}~\cite{speer_conceptnet_2017} and \emph{fastText}~\cite{bojanowski_enriching_2016}.
+Examples of pre-trained word embeddings are \emph{word2vec}~\cite{mikolovDistributed2013}, \emph{GloVe}~\cite{pennington_glove_2014}, \emph{Numberbatch}~\cite{speer_conceptnet_2017} and \emph{fastText}~\cite{bojanowskiEnriching2016a}.
 
 In the following section, we will briefly present the history of word embeddings.
 Research on word embeddings is a sprawling subject that researchers has been building upon using the ideas from probabilistic, statistical and neural network models.
@@ -182,14 +182,14 @@ However, intricate tuning of word co-occurrence generated associatively similar 
 % For instance Turney Pantel (VSM Survey) doesn't mention bengio or any other word embeddings (2010)
 
 % input layer -> emb. layer -> softmax layer
-\textcite{bengio_neural_2003} proposed learning word representations using a feedforward neural network.
+\textcite{bengioneural2003} proposed learning word representations using a feedforward neural network.
 Their model learns feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
-Although neural networks have been proposed to learn a language model by \textcite{xu_can_2000}, the main contribution of \citeauthor{bengio_neural_2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
+Although neural networks have been proposed to learn a language model by \textcite{xu_can_2000}, the main contribution of \citeauthor{bengioneural2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
 Their approach was also motivated exponentially increasing size of the vocabularies caused by \emph{n-grams}.
 n-grams are representations that are built using multiple tokenized words.
 For instance, as well as showing \emph{new} and \emph{york} in the vocabulary, \emph{New York} is handled as a single unit.
 For a corpus with vocabulary $V$, there are $|V|$ dimensions for the language model to learn and taking \emph{n-gram} representations into consideration, the problem grows exponentially.
-Using $m$ dimensions in the embedding layer allowed \citeauthor{bengio_neural_2003} to represent words using manageable, more representative dimensions and the problem scaled linearly as a result.
+Using $m$ dimensions in the embedding layer allowed \citeauthor{bengioneural2003} to represent words using manageable, more representative dimensions and the problem scaled linearly as a result.
 
 The setup for the neural network starts with the one hot encoded vector representation of the context for a word $w$, essentially a one dimensional vector where context words of $w$ are set while the rest of the vocabulary are zero.
 This context window is similar to those used in statistical models that predicts the word $w_t$ using the words that lead up to $w_t$.
@@ -315,10 +315,10 @@ With the amount of overlap and marginal performance gains in between the algorit
 Armed with the fact that a good word representation model should tune their hyperparameters and should be trained on a large dataset, we set our sights on \emph{fastText}.
 On their website, authors define fastText as a \enquote{Library for efficient text classification and representation learning}.
 The ideas behind it are presented in \textcite{mikolov2018advances}.
-Overall, it builds upon word2vec~\cite{mikolovDistributed2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowski_enriching_2016}.
+Overall, it builds upon word2vec~\cite{mikolovDistributed2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowskiEnriching2016a}.
 
-Let us turn our focus towards \citetitle{bojanowski_enriching_2016}~\cite{bojanowski_enriching_2016}.
-Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the the skip-gram model, \citeauthor{bojanowski_enriching_2016} learn representations for character n-grams.
+Let us turn our focus towards \citetitle{bojanowskiEnriching2016a}~\cite{bojanowskiEnriching2016a}.
+Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the the skip-gram model, \citeauthor{bojanowskiEnriching2016a} learn representations for character n-grams.
 We have mentioned that n-grams consider sequences like \emph{New York} as a single token.
 Character n-grams start with parsing the corpus into $c$ character long sequences.
 We will use 3 as the $c$ value.
@@ -335,7 +335,7 @@ These character n-grams are called subword vectors, they are trained using the s
 \end{figure}
 
 With the subword vectors $z_g$ for every n-gram $g$ at hand, authors take a dictionary of n-grams of size G and for a given word $w$, they denote $G_{w} \subset {1, \dots, G}$ as the n-grams of $w$.
-So the scoring function for the word in accordance to word's context n-grams is~\cite{bojanowski_enriching_2016};
+So the scoring function for the word in accordance to word's context n-grams is~\cite{bojanowskiEnriching2016a};
 \begin{displaymath}
     s(w,c) = \sum_{g \in G_{w}}z_{g}^T v_c
 \end{displaymath}
@@ -413,13 +413,13 @@ As the number of items in the WordNet grew, only then short glosses, later follo
 
 WordNet has been used in various natural language processing applications over the years such as text summarization~\cite{ercan_using_2007} or word sense disambiguation~\cite{banerjee_adapted_2002}.
 Since the original WordNet was prepared for English over many years of work, efforts for creating an equivalent resource for other languages has been initiated.
-Arguably, EuroWordNet set the standard for creating wordnets for languages other than English~\cite{vossen_introduction_1998, vossen_eurowordnet_2004}.
+Arguably, EuroWordNet set the standard for creating wordnets for languages other than English~\cite{vossenIntroduction1998, vossen_eurowordnet_2004}.
 
 EuroWordNet\footnote{\url{http://projects.illc.uva.nl/EuroWordNet}} project was initiated to introduce the benefits of English Princeton WordNet for other languages.
-Additionally, an interlinked semantic network can be a research topic on lexicalization patterns of languages, finding conceptual clusters of vocabularies or cross lingual text retrieval~\cite{gonzalo_applying_1998, vossen_introduction_1998}.
+Additionally, an interlinked semantic network can be a research topic on lexicalization patterns of languages, finding conceptual clusters of vocabularies or cross lingual text retrieval~\cite{gonzalo_applying_1998, vossenIntroduction1998}.
 EuroWordNet project included 7 wordnets for languages other than English and an adapted English wordnet.
-Due to the effort needed to create a wordnet from scratch, \citeauthor{vossen_introduction_1998} averted the EuroWordNet project from creating full scale semantic lexicons and prioritized the connectivity between wordnets.
-All in all, \textcite{vossen_introduction_1998} defines the aims as;
+Due to the effort needed to create a wordnet from scratch, \citeauthor{vossenIntroduction1998} averted the EuroWordNet project from creating full scale semantic lexicons and prioritized the connectivity between wordnets.
+All in all, \textcite{vossenIntroduction1998} defines the aims as;
 \begin{displayquote}
     \begin{enumerate}
         \item to create a multilingual database;
@@ -438,10 +438,10 @@ ILI is a higher order list of meanings just for wordnet synsets to align themsel
 The introduction of ILI allowed language specific structures to exist in wordnets while keeping the connections among themselves.
 
 % \begin{enumerate}
-% \item Expand model, \textcite{vossen_introduction_1998}, fixed synsets are translated from English to target language.
+% \item Expand model, \textcite{vossenIntroduction1998}, fixed synsets are translated from English to target language.
 % \item Link English entries from machine-readable bilingual dictionaries to English Princeton WordNet senses~\textcite{knight_building_1994}.
 % \end{enumerate}
-Two approaches for wordnet generation were defined by \citetitle{vossen_introduction_1998};
+Two approaches for wordnet generation were defined by \citetitle{vossenIntroduction1998};
 \begin{description}
     \item[Merge Approach] where a wordnet structure is formed in the target language with synset selection and relation mapping. Then the connections between the new wordnet and English Princeton WordNet can be established.
     \item[Expand Approach] where English Princeton WordNet is (machine) translated to target language~\cite{knight_building_1994}, preserving connection information with a trade-off where the target language wordnet will be biased towards the relationships of the English Princeton WordNet and may not include target language specific lexical connections.
@@ -454,14 +454,14 @@ This idea evolved into 1000 and later to 5000 core synsets that are compiled fro
 \label{sub:examples_of_wordnet_generation}
 
 Following the EuroWordNet project, several studies were published on wordnet generation with proposals heavily leaning towards the expand approach.
-\textcite{diab_feasibility_2004} explored whether an Arabic wordnet is attainable or not using a parallel corpora.
+\textcite{diabFeasibility2004} explored whether an Arabic wordnet is attainable or not using a parallel corpora.
 Arabic differs from the languages explored in EurowordNet due to its unusual morphological nature.
 Using their proposed method, they observed 52.3\% of words they processed are sufficient for a future Arabic wordnet.
 They have also reiterated that semantic relationships in a language are transferable to a target language's wordnet.
 
 % \textcite{ruiz-casado_automatic_2005} explored using online encyclopaedia Wikipedia to automatically discover potential synsets using the definitions in the term's pages.
 % Just English
-Further approaches using parallel corpora to align the target language with English Princeton WordNet were used by \textcite{sagot_building_2008} in order to create a production ready French wordnet and by \textcite{fiserLeveraging2009} to create a Slovene wordnet.
+Further approaches using parallel corpora to align the target language with English Princeton WordNet were used by \textcite{sagotBuilding2008} in order to create a production ready French wordnet and by \textcite{fiserLeveraging2009} to create a Slovene wordnet.
 
 Approaches that used machine translation to get potential synsets for the target language was explored by \textcite{lam_automatically_2014}.
 They proposed two approaches for this task.
@@ -469,12 +469,12 @@ First approach uses a single bilingual dictionary to translate English Princeton
 Second approach translates existing wordnet synsets to English and then translates them to target language.
 
 Following the publication of word2vec, approaches that use word embeddings gained traction and are interest to us.
-\textcite{sand_wordnet_2017} used word embeddings to extend Norwegian wordnet by adding new relationships on existing synsets or by introducing new synsets all together.
+\textcite{sandWordnet2017} used word embeddings to extend Norwegian wordnet by adding new relationships on existing synsets or by introducing new synsets all together.
 First, cosine similarity measure is used to discover nearest neighbours to a potential synset.
 Then a threshold value is used to cut off any new synsets below a certain similarity value.
 They evaluated their approach against accuracy, the percentage of relations that were correct and attachment which is similar to a recall score.
 It is the percentage of considered synsets that were above the threshold value.
-Overall, \citeauthor{sand_wordnet_2017} reported accuracy scores within the 55.80 to 64.47 percent range with respect to different frequency thresholds and an attachment score that fluctuate between 96.20 and 98.36 percent.
+Overall, \citeauthor{sandWordnet2017} reported accuracy scores within the 55.80 to 64.47 percent range with respect to different frequency thresholds and an attachment score that fluctuate between 96.20 and 98.36 percent.
 
 %\textcite{khodak_automated_2017} used word embeddings and WordNet.
 % talk about Khodak -> Automated WordNet construction Using Word Embeddings
@@ -499,7 +499,7 @@ As a baseline, they calculate the average cosine similarity between word embeddi
 In order to improve the discriminative power of their target vectors, they use synsets relations, definitions and example sentences.
 These are used to get a more representative vector $v_{L}$.
 Given resources can be thought as sentences and sentence embeddings are calculated by getting a weighted average of word vectors of words that make up the sentence.
-The weighting is called smooth inverse frequency which was suggested by \textcite{arora_simple_2016};
+The weighting is called smooth inverse frequency which was suggested by \textcite{aroraSimple2016};
 
 \begin{displaymath}
     v_{L} = \sum_{w' \in L}\frac{a}{a + P{w'}}v_{w'}

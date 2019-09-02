@@ -62,7 +62,7 @@ An example human annotated concept from their study is given in Figure~\ref{fig:
 
 However, for a researcher to pick appropriate scales or have meaning extracted by hand would be infeasible for natural language processing tasks~\cite{lund_producing_1996}.
 
-Even though \citeauthor{harris_distributional_1954} argued that \enquote{language is not merely a bag of words}~\cite{harris_distributional_1954}, using just the word counts of a collection to capture the semantic information without regarding the order of the words will be used in the literature and be known as the \emph{bag-of-words} model.
+Even though \citeauthor{harris_distributional_1954} argued that \enquote{language is not merely a bag of words}~\cite{harris_distributional_1954}, using just the word counts of a collection to capture the semantic information without regarding the order of the words is the \emph{bag-of-words} model, commonly found in literature.
 
 \subsubsection{Vector Space Model}%
 \label{ssub:vector_space_model}
@@ -139,7 +139,7 @@ Latent semantic analysis was used to the solve document similarity task while \e
 % \textcite{schutze_dimensions_1992} (intro to information retrieval co-author) is earlier but doesn't appear in any survey, A Survey on Word Representations of Meaning cites later works (Automatic word sense disambiguation), most just skip to lund
 % "in order for the dimensions of meaning and the vector representations of words to reflect closeness in meaning faithfully, a global optimization of cooccurrence constraints is necessary, an operation so complex that only a supercomputer can perform it." that's why
 % also used a context size of _characters_ because "few long words are better than many short words"
-While \citeauthor{deerwester_indexing_1990} studied relatedness between words using vectors, their approach used the whole document for the co-occurrence information while the focus was clearly still on the document similarity.
+While \citeauthor{deerwester_indexing_1990} studied relatedness between words using vectors, their approach used the whole document for the co-occurrence information while the focus was still on the document similarity.
 \textcite{schutze_dimensions_1992} proposed \enquote{to represent the semantics of words and contexts in a text as vectors} and built upon word co-occurrence.
 They theorized a context window of 1000 \emph{characters} in order to consider words that are close to the target word instead of the whole document in co-occurrence calculations.
 The choice of a character window is justified with the claim that lower number of representative long words are more discriminative than numerous short words.
@@ -184,7 +184,7 @@ However, intricate tuning of word co-occurrence generated associatively similar 
 % input layer -> emb. layer -> softmax layer
 \textcite{bengioneural2003} proposed learning word representations using a feedforward neural network.
 Their model learns feature vectors for words using a predictive approach instead of counting based approaches we have presented until now.
-Although neural networks have been proposed to learn a language model by \textcite{xu_can_2000}, the main contribution of \citeauthor{bengioneural2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
+Although \textcite{xu_can_2000} proposed neural networks to learn a language model, the main contribution of \citeauthor{bengioneural2003} is to use an \emph{embedding layer}, in order to attack \emph{curse of dimensionality}.
 Their approach was also motivated exponentially increasing size of the vocabularies caused by \emph{n-grams}.
 n-grams are representations that are built using multiple tokenized words.
 For instance, as well as showing \emph{new} and \emph{york} in the vocabulary, \emph{New York} is handled as a single unit.
@@ -256,7 +256,7 @@ word2vec package~\cite{mikolov_efficient_2013,mikolovDistributed2013,mikolov_lin
 There are two aspects of the work done by \citeauthor{mikolovDistributed2013}  that contributed to the fact;
 \begin{itemize}
     \item Their model captures the semantic and syntactic attributes of words and phrases on a large scale with good accuracy, trained on billions of words using a shallow neural network, keeping the computational cost down.
-    \item They published their code as well as their pre-trained embeddings as an open source project\footnote{\url{https://code.google.com/archive/p/word2vec}}.
+    \item They published their code as well as their pre-trained embeddings as an open source project.\footnote{\url{https://code.google.com/archive/p/word2vec}}
 \end{itemize}
 The second point is self explanatory but in order to argue about the first one, we should report the algorithms behind word2vec.
 
@@ -318,7 +318,7 @@ The ideas behind it are presented in \textcite{mikolov2018advances}.
 Overall, it builds upon word2vec~\cite{mikolovDistributed2013} by adding position dependent features presented in \textcite{mnih_learning_2013} and character n-grams suggested on \textcite{bojanowskiEnriching2016a}.
 
 Let us turn our focus towards \citetitle{bojanowskiEnriching2016a}~\cite{bojanowskiEnriching2016a}.
-Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the the skip-gram model, \citeauthor{bojanowskiEnriching2016a} learn representations for character n-grams.
+Instead of using a context window to learn the representation of the target word or predicting surrounding words given the centre word like in the skip-gram model, \citeauthor{bojanowskiEnriching2016a} learn representations for character n-grams.
 We have mentioned that n-grams consider sequences like \emph{New York} as a single token.
 Character n-grams start with parsing the corpus into $c$ character long sequences.
 We will use 3 as the $c$ value.
@@ -343,9 +343,9 @@ So the scoring function for the word in accordance to word's context n-grams is~
 \textcite{grave_learning_2018} trained fastText model on different languages using Wikipedia and Common Crawl data.
 Wikipedia is a curated encyclopaedia that can be used as a multilingual corpora with 28 languages that have over \emph{100 million} tokens and 82 languages with 10 million tokens~\cite{grave_learning_2018}.
 Considering the original word2vec was trained on \emph{100 billion} tokens, \citeauthor{grave_learning_2018} also used Common Crawl, a non profit project that collocates web pages and publishes the data publicly.
-This data can be inadvertently noisy which \citeauthor{grave_learning_2018} addressed using linewise language identification and by removing duplicate lines that often appear as leftover boilerplate on many sites.
+This data can be inadvertently noisy which \citeauthor{grave_learning_2018} addressed using linewise language identification and by removing duplicate lines that often appear as leftover boilerplate on sites.
 While Wikipedia provided them with a curated signal, Common Crawl data helped with capturing as many contexts as possible to train their distributed model.
-They are currently hosting the pre-trained word embeddings on their website~\footnote{\url{https://fasttext.cc}}.
+They are currently hosting the pre-trained word embeddings on their website.\footnote{\url{https://fasttext.cc}}
 
 \subsection{ConceptNet Numberbatch}%
 \label{sub:conceptnet_numberbatch}
@@ -407,7 +407,7 @@ As the number of items in the WordNet grew, only then short glosses, later follo
         \{depository financial institution, bank, banking concern, banking company\} & (a financial institution that accepts deposits and channels the money into lending activities) \\
         \bottomrule %
     \end{tabulary}
-    \caption{Example synsets and their respective glosses from WordNet}%
+    \caption{Example synsets and their corresponding glosses from WordNet}%
     \label{tab:synset_gloss}%
 \end{table}
 

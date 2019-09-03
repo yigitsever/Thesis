@@ -33,7 +33,7 @@ nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment t
 %liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
 parskip, % Uncomment to add space between paragraphs
-%nohyperref, % Uncomment to not load the hyperref package
+nohyperref, % Uncomment to not load the hyperref package
 headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
@@ -93,8 +93,14 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 \usepackage{url}        % add urls to footnotes
 \emergencystretch=1em
-\RequirePackage[xetex]{hyperref}
+%\RequirePackage[xetex]{hyperref}
 \usepackage{todonotes}
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 \newcommand{\titletitlesize}{\fontsize{16pt}{18pt}\selectfont}
 %----------------------------------------------------------------------------------------
@@ -130,20 +136,22 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \faculty{\href{http://faculty.university.com}{Graduate School of Science and Engineering}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
 \makeatletter
-\hypersetup{%
-    final       = true,
-    colorlinks  = true,
-    urlcolor    = blue,
-    citecolor   = blue,
-    linkcolor   = MidnightBlue,
-    unicode     = true,
-    linktoc     = section,
-    pdflang     = en-GB,
-    pdfauthor   = {\authorname},
-    pdfkeywords = {\keywordnames},
-    pdftitle    = {\ttitle},
-    pdfsubject  = {}
-}
+
+%\hypersetup{%
+%    final       = true,
+%    colorlinks  = false,
+%    urlcolor    = blue,
+%    citecolor   = blue,
+%    %linkcolor   = MidnightBlue,
+%    unicode     = true,
+%    linktoc     = section,
+%    pdflang     = en-GB,
+%    pdfauthor   = {\authorname},
+%    pdfkeywords = {\keywordnames},
+%    pdftitle    = {\ttitle},
+%    pdfsubject  = {}
+%}
+
 \makeatother
 
 % \AtBeginDocument{
@@ -296,5 +304,8 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
 \include{Appendices/AppendixA}
+
+\afterpage{\blankpage} % Include 2 blank pages
+\afterpage{\blankpage} % For printing, remove for web upload
 
 \end{document}

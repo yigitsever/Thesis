@@ -362,7 +362,7 @@ Since the original study did not report on timing performance results, we have t
 After completing the experiments, only timing information was relevant so we averaged the results over the experiments that used the same number of instances.
 We cannot iterate on the experiment using increasing number of definition pairs since the number of definitions available within each language's wordnet is restrictive.
 So we ran the timing study for 100, 200, 500 and 1000 definition pairs.
-To our surprise, there were next to no differences in terms of MRR or precision at one between Sinkhorn and word mover's distance when the other variables were fixed.
+To our surprise, there were next to no differences in terms of MRR or precision at one between Sinkhorn and Word Mover's Distance when the other variables were fixed.
 Yet, using Sinkhorn algorithm as suggested by \citeauthor{balikasCrosslingual2018} results in an average slowdown of 2.52 regarding our experiments.
 We present Figure~\ref{fig:perf} to compare the run times of two approaches that perform comparatively.
 
@@ -470,8 +470,7 @@ This approach is evaluated on the percentage of matched definitions with the sam
 Table~\ref{tab:comparison_matching} presents the evaluation of matching approaches.
 
 Looking a Table~\ref{tab:comparison_matching}, \textbf{Sinkhorn} distance is the best performing metric.
-On Table~\ref{tab:showdown}, best precision at one percentage scores for retrieval and matching approaches are presented.
-Apart from the retrieval using word mover's distance on English and Albanian dictionary defintions, every score belongs to a metric that used Sinkhorn distance.
+On Table~\ref{tab:showdown}, best precision at one percentage scores for retrieval and matching approaches are presented. Apart from the retrieval using word mover's distance on English and Albanian dictionary defintions, every score belongs to a metric that used Sinkhorn distance.
 Furthermore, matching has a clear advantage over the retrieval approaches.
 
 \begin{table}[p]

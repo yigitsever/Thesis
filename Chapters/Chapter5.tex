@@ -141,9 +141,9 @@ We used a similarity function that relies on cosine similarity over the outputs 
     \exp(\sum{||y^{s}\cdot y^{t}}||_2)
 \end{equation}
 Where $y^{s}$ is the output of the LSTM that encodes the source definitions and $y^{t}$ is the output of the LSTM that encodes the target definitions.
-We use adelta optimizer as suggested by \textcite{zeiler_adadelta_2012} and our loss function is the mean squared error.
-The LSTM weights are uniformly initialized~\cite{glorot_understanding_2010}.
-Furthermore, gradient clipping is employed in order to avoid the exploding gradient problem~\cite{pascanu_difficulty_2012}.
+We use adelta optimizer as suggested by \textcite{zeilerADADELTA2012} and our loss function is the mean squared error.
+The LSTM weights are uniformly initialized~\cite{glorotUnderstanding2010}.
+Furthermore, gradient clipping is employed in order to avoid the exploding gradient problem~\cite{pascanudifficulty2012}.
 We train our model using positive and negative samples.
 With the aligned golden corpora, we randomly shuffled half of the definitions and assigned them the label 0.
 The shuffle was done randomly since if we had chosen to only shuffle the latter half for instance, definitions that clump together might have related definitions or definitions from the same domain.

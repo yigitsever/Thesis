@@ -13,34 +13,34 @@ Approaches like \textcite{kiros_skip-thought_2015} trained an encoder that const
 However, corpora in question for the given studies are continuous.
 When the document collection we would like to show on a latent space is not part of a longer text but occur as \emph{discrete} pieces, that assumption does not hold.
 Regarding dictionary definitions, we cannot rely on continuous models.
-Our dictionary definitions are written with of 10 to 11 words each with no relation from one distinct dictionary definition to another.
+Our dictionary definitions consists of with of 10 to 11 words each with no relation from one distinct dictionary definition to another.
 Refer to Table~\ref{tab:en_it_examples} for examples of a typical collection of definitions.
 
 With such short pieces of text, considering the scope of a possible model could have, instead of paragraph embeddings we can talk about \emph{sentence embeddings}.
 A sentence embedding model should ideally capture the collective meaning of the short text where every word is potentially informative and discriminative.
 
 \textcite{wieting_towards_2015} studied sentence embeddings and reported that averaging word embeddings that make up a sentence to get sentence embeddings is a valid and surprisingly effective approach.
-\textcite{arora_simple_2016} built upon the simple model and has shown that weighed average of word vectors perform so well, their publication is called; \citetitle{arora_simple_2016}.
+\textcite{aroraSimple2016} built upon the simple model and has shown that weighed average of word vectors perform so well, their publication is called; \citetitle{aroraSimple2016}.
 In the suggested approach, word embeddings that make up a sentence is weighed with a scale called \emph{smooth inverse frequency} and averaged across the sentence.
 Smooth inverse frequency is suggested as
 \begin{displaymath}
     \text{SIF (w)} = \frac{a}{a + p(w)}
 \end{displaymath}
-where $a$ is a hyperparameter and $p(w)$ is the estimated word probability~\cite{arora_simple_2016}.
+where $a$ is a hyperparameter and $p(w)$ is the estimated word probability~\cite{aroraSimple2016}.
 
 Using smooth inverse frequency weighting, word embeddings $v_w \in R^{d}$ where word $w$ is in a vocabulary $V$ can be averaged over a sentence $S$ such that $S \subset V$ to get sentence embedding $v_S$ in the same dimensionality $R^{d}$.
 \begin{equation}
     v_S = \frac{1}{|S|}\sum_{w \in S}\text{SIF (w)}v_{w}
 \end{equation}
 
-The authors point out that the metric is similar to \tfidf{} weighting scheme if \enquote{one treats a \enquote{sentence} as a \enquote{document} and make the reasonable assumption that the sentence doesn't typically contain repeated words}~\cite{arora_simple_2016}.
+The authors point out that the metric is similar to \tfidf{} weighting scheme if \enquote{one treats a \enquote{sentence} as a \enquote{document} and make the reasonable assumption that the sentence doesn't typically contain repeated words}~\cite{aroraSimple2016}.
 These assumptions hold for us so we scaled our word embeddings using \tfidf{} weights to get \emph{sentence embeddings}.
 
 \begin{equation}
     v_S = \frac{1}{|S|}\sum_{w \in S}\text{tf-idf}_{w,S} v_w
 \end{equation}
 
-Parallel to \citeauthor{arora_simple_2016}, \textcite{zhao_ecnu_2015} used two approaches for sentence embeddings in order to solve SemEval-2015 Task 2: Semantic Textual Similarity~\footnote{\url{http://alt.qcri.org/semeval2015/task2}}.
+Parallel to \citeauthor{aroraSimple2016}, \textcite{zhao_ecnu_2015} used two approaches for sentence embeddings in order to solve SemEval-2015 Task 2: Semantic Textual Similarity.\footnote{\url{http://alt.qcri.org/semeval2015/task2}}
 First, for a sentence $S = (w_{1}, w_{2}, \dots, w_{s})$ where the length of the presumably small sentence is $|S| = s$ and the word embedding of a word $w$ is $v_w$;
 \begin{itemize}
     \item They summed up the word embeddings of the sentence $\sum_{t \in S}v_{t}$
@@ -50,7 +50,7 @@ Both approaches results in a vector that is in the same dimensions $R^{d}$ as th
 
 \textcite{edilson_a._correa_nilc-usp_2017} expanded upon this simple yet effective idea to tackle the SemEval-2017 Task 4\footnote{\url{http://alt.qcri.org/semeval2017/task4}}, Sentiment Analysis in Twitter.
 We have mentioned the discrete short pieces of text that are present in our definition corpora.
-\emph{Twitter} exhibits a very similar case to our study.\footnote{\url{https://twitter.com}}
+\emph{Twitter} exhibits a similar case to our study.\footnote{\url{https://twitter.com}}
 \emph{Tweets} are short pieces of text due to the 280 character constraint imposed by the platform.
 In order to acquire embeddings that represented \emph{tweets}, they weighed the word embeddings that made up a tweet; $\text{tweet}_i = (w_{i1}, w_{i2}, \dots, w_{im})$ with the \tfidf{} weights.
 For the \tfidf{} calculation, they cast individual weights as documents so that term frequency become the term count in a single tweet while document frequency become the number of tweets the term $w_t$ occurs.
